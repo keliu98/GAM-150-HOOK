@@ -1,8 +1,32 @@
+
+/*!*************************************************************************
+****
+\file GameStateManager.cpp
+\authors: Tan Wei Wen
+		  Egi Tan
+		  Liu Ke
+		  Yong Hui
+
+\par DP email:  t.weiwen@digipen.edu
+				egi.tan@digipen.edu
+				ke.liu@digipen.edu
+				l.yonghui@digipen.edu
+
+\par Course: CSD 1450
+\par Project: Software Engineering Project 2
+\date 020221
+
+
+\brief //TODO
+
+
+****************************************************************************
+***/
+
 // ---------------------------------------------------------------------------
 // includes
 
-#include "AEEngine.h"
-
+#include "Code/pch.h"
 
 /*
 	NOTES:
@@ -19,6 +43,74 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 {
 	UNREFERENCED_PARAMETER(hPrevInstance);
 	UNREFERENCED_PARAMETER(lpCmdLine);
+
+	//Intialise System
+	// Using custom window procedure
+	AESysInit(hInstance, nCmdShow, 800, 600, 1, 60, true, NULL);
+
+	// Changing the window title
+	AESysSetWindowTitle("My New Demo!");
+
+	// reset the system modules
+	AESysReset();
+
+	//set background color
+	AEGfxSetBackgroundColor(0.0f, 0.0f, 0.0f);
+
+    //GSM initialize
+    GSM_Initialize(GS_LEVEL1);
+
+    while (current != GS_QUIT)
+    {
+        //Set state to previous if it is restarted.
+        if (current == GS_RESTART)
+        {
+            current = previous;
+            next = previous;
+        }
+        else
+        {
+            //If it is not restarting or quiting -> AKA Level Change -> Calls the GSM_Update, to update the function pointers
+            GSM_Update();
+            fpLoad();
+        }
+
+        fpInitialize();
+
+        //Gameplay Loop
+        //**Need to add frames in actual build
+        while (current == next)
+        {
+			// Informing the system about the loop's start
+			AESysFrameStart();
+
+            fpUpdate();
+            fpDraw();
+
+			// Informing the system about the loop's end
+			AESysFrameEnd();
+        
+        }
+
+        //Out of the loop = Quit, Restart, Change level
+        fpFree();
+
+        if (next != GS_RESTART)
+        {
+            fpUnload();
+        }
+
+        previous = current;
+        current = next;
+    }
+    
+	// free the system
+	AESysExit();
+
+}
+
+
+/*
 
 	///////////////////////
 	// Variable declaration
@@ -77,18 +169,18 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 			-50.0f, -50.0f, 0xFFFF0000, 0.0f, 0.0f, 
 			 35.5f,  00.0f, 0xFFFF0000, 0.0f, 0.0f,
 			-50.0f,  50.0f, 0xFFFF0000, 0.0f, 0.0f);
-		/*
+		
 		AEGfxTriAdd(
 			-105.5f, -105.5f, 0x0000FF, 0.0f, 0.0f,
 			-80.5f, 80.0f, 0x0000FF, 0.0f, 0.0f,
 			-40.5f, 20.5f, 0x0000FF, 0.0f, 0.0f);
-			*/
+			
 		// Saving the mesh (list of triangles) in pMesh1
 
 		pMesh1 = AEGfxMeshEnd();
 		AE_ASSERT_MESG(pMesh1, "Failed to create mesh 1!!");
 
-		/*
+		
 		// Informing the library that we're about to start adding triangles
 		AEGfxMeshStart();
 		
@@ -102,7 +194,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 			30.0f, -30.0f, 0x00FFFFFF, 1.0f, 1.0f,
 			30.0f, 30.0f, 0x00FFFFFF, 1.0f, 0.0f,
 			-30.0f, 30.0f, 0x00FFFFFF, 0.0f, 0.0f);
-			*/
+			
 		// Saving the mesh (list of triangles) in pMesh2
 
 		pMesh2 = AEGfxMeshEnd();
@@ -111,14 +203,14 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
 		// Informing the library that we're about to start adding vertices
 		AEGfxMeshStart();
-		/*
+		
 		// This shape has 5 vertices
 		AEGfxVertexAdd(0.0f, 0.0f, 0xFFFFFFFF, 0.0f, 0.0f);
 		AEGfxVertexAdd(100.0f, 0.0f, 0xFFFFFFFF, 0.0f, 0.0f);
 		AEGfxVertexAdd(200.0f, 150.0f, 0xFFFFFFFF, 0.0f, 0.0f);
 		AEGfxVertexAdd(300.0f, -100.0f, 0xFFFFFFFF, 0.0f, 0.0f);
 		//AEGfxVertexAdd(100.0f, -250.0f, 0xFFFFFFFF, 0.0f, 0.0f);
-		*/
+		
 
 		pMeshLine = AEGfxMeshEnd();
 		AE_ASSERT_MESG(pMeshLine, "Failed to create line mesh!!");
@@ -301,4 +393,4 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	// free the system
 	AESysExit();
 
-}
+}*/
