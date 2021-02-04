@@ -97,6 +97,7 @@
     <ClInclude Include="Code\GameStateList.h" />
     <ClInclude Include="Code\GameStateManager.h" />
     <ClInclude Include="Code\Levels\Level1.h" />
+    <ClInclude Include="Code\Object_List.h" />
     <ClInclude Include="Code\pch.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

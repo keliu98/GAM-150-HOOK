@@ -41,5 +41,8 @@
     <ClInclude Include="Code\Levels\Level1.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Code\Object_List.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
