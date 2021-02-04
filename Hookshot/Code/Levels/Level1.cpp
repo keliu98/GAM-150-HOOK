@@ -1,4 +1,4 @@
-#include "pch.h"
+#include "../pch.h"
 
 //Declaration of Variables.
 AEGfxVertexList* pMesh1 = 0;

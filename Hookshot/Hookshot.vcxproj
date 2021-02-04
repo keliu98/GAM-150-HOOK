@@ -89,14 +89,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Code\GameStateManager.cpp" />
-    <ClCompile Include="Code\Level1.cpp" />
+    <ClCompile Include="Code\Levels\Level1.cpp" />
     <ClCompile Include="Code\pch.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Code\GameStateList.h" />
     <ClInclude Include="Code\GameStateManager.h" />
-    <ClInclude Include="Code\Level1.h" />
+    <ClInclude Include="Code\Levels\Level1.h" />
     <ClInclude Include="Code\pch.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
