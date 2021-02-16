@@ -74,6 +74,7 @@ struct Wall {
 
 	Index spawn_index;
 	AEVec2 position;
+	AABB aabb;
 };
 
 

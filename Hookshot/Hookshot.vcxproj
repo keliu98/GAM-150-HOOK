@@ -92,15 +92,14 @@
     <ClCompile Include="Code\Levels\Level1.cpp" />
     <ClCompile Include="Code\pch.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="physics.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Code\GameStateList.h" />
     <ClInclude Include="Code\GameStateManager.h" />
     <ClInclude Include="Code\Levels\Level1.h" />
+    <ClInclude Include="Code\extern.h" />
     <ClInclude Include="Code\Object_List.h" />
     <ClInclude Include="Code\pch.h" />
-    <ClInclude Include="physics.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

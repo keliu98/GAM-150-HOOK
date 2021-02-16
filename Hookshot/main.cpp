@@ -35,6 +35,8 @@
 */
 // ---------------------------------------------------------------------------
 // main
+float	 g_dt;
+double	 g_appTime;
 
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	_In_opt_ HINSTANCE hPrevInstance,
@@ -90,6 +92,8 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 			// Informing the system about the loop's end
 			AESysFrameEnd();
         
+			g_dt = (f32)AEFrameRateControllerGetFrameTime();
+			g_appTime += g_dt;
         }
 
         //Out of the loop = Quit, Restart, Change level
