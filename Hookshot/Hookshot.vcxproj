@@ -88,12 +88,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Code\collision.cpp" />
     <ClCompile Include="Code\GameStateManager.cpp" />
     <ClCompile Include="Code\Levels\Level1.cpp" />
     <ClCompile Include="Code\pch.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Code\collision.h" />
     <ClInclude Include="Code\GameStateList.h" />
     <ClInclude Include="Code\GameStateManager.h" />
     <ClInclude Include="Code\Levels\Level1.h" />

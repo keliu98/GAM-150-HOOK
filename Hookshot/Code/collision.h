@@ -19,8 +19,7 @@ Technology is prohibited.
 
 #include "pch.h"
 
-bool CollisionIntersection_RectRect(const AABB& aabb1, const AEVec2& vel1,
-	const AABB& aabb2, const AEVec2& vel2);
+bool CollisionIntersection_RectRect(const struct AABB& aabb1, const AEVec2& vel1, const struct AABB& aabb2, const AEVec2& vel2);
 
 
 #endif // CS230_COLLISION_H_

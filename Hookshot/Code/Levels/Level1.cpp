@@ -32,9 +32,8 @@ void Level1_Update()
 {
 	// Handling Input
 	AEInputUpdate();
-	std::cout << g_appTime;
-	std::cout << "tets";
-
+	//std::cout << g_appTime;
+	//std::cout << "tets";
 }
 
 void Level1_Draw()

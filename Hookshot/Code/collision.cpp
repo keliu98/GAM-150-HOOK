@@ -20,8 +20,7 @@ Technology is prohibited.
 	A collision test function to see if two rectangle object collide together.
 */
 /**************************************************************************/
-bool CollisionIntersection_RectRect(const AABB& aabb1, const AEVec2& vel1,
-	const AABB& aabb2, const AEVec2& vel2)
+bool CollisionIntersection_RectRect(const AABB& aabb1, const AEVec2& vel1, const AABB& aabb2, const AEVec2& vel2)
 {
 	// Step 1: Check for static collision detection between rectangles (before moving)
 	if (aabb1.min.x < aabb2.max.x &&
@@ -33,11 +32,11 @@ bool CollisionIntersection_RectRect(const AABB& aabb1, const AEVec2& vel1,
 	}
 
 	// Step 2: Check for dynamic collision
-	AEVec2 tFirst;
+	AEVec2 tFirst = {0, 0};
 	AEVec2 tLast = { g_dt, g_dt };
-	bool x_col = true, y_col = true;
-	AEVec2 v1 = vel1, v2 = vel2, Vb;
-	AEVec2Sub(&Vb, &v2, &v1);
+	AEVec2 velocity_1 = vel1, velocity_2 = vel2, Vb;
+	bool x_col = false, y_col = false;
+	AEVec2Sub(&Vb, &velocity_2, &velocity_1);
 
 	// Step 3: Working with one dimension (x-axis).
 	if (Vb.x < 0)
@@ -45,16 +44,16 @@ bool CollisionIntersection_RectRect(const AABB& aabb1, const AEVec2& vel1,
 		// case 1
 		if (aabb1.min.x > aabb2.max.x)
 		{
-			x_col = false;
+			return false;
 		}
 		// case 4
 		if (aabb1.max.x < aabb2.min.x)
 		{
-			tFirst = AEMax((aabb1.max.x - aabb2.min.x) / Vb.x, tFirst);
+			tFirst.x = AEMax((aabb1.max.x - aabb2.min.x) / Vb.x, tFirst.x);
 		}
 		if (aabb1.min.x < aabb2.max.x)
 		{
-			tLast = AEMin((aabb1.min.x - aabb2.max.x) / Vb.x, tLast);
+			tLast.x = AEMin((aabb1.min.x - aabb2.max.x) / Vb.x, tLast.x);
 		}
 	}
 
@@ -63,16 +62,16 @@ bool CollisionIntersection_RectRect(const AABB& aabb1, const AEVec2& vel1,
 		// case 3
 		if (aabb1.max.x < aabb2.min.x)
 		{
-			x_col = false;
+			return false;
 		}
 		// case 2
 		if (aabb1.min.x > aabb2.max.x)
 		{
-			tFirst = AEMax((aabb1.min.x - aabb2.max.x) / Vb.x, tFirst);
+			tFirst.x = AEMax((aabb1.min.x - aabb2.max.x) / Vb.x, tFirst.x);
 		}
 		if (aabb1.max.x > aabb2.min.x)
 		{
-			tLast = AEMin((aabb1.max.x - aabb2.min.x) / Vb.x, tLast);
+			tLast.x = AEMin((aabb1.max.x - aabb2.min.x) / Vb.x, tLast.x);
 		}
 	}
 
@@ -82,7 +81,7 @@ bool CollisionIntersection_RectRect(const AABB& aabb1, const AEVec2& vel1,
 	}
 
 	// case 5
-	if (tFirst > tLast)
+	if (tFirst.x > tLast.x)
 		return 0;
 
 	// Step 4: Repeat step 3 on the y-axis
@@ -96,11 +95,11 @@ bool CollisionIntersection_RectRect(const AABB& aabb1, const AEVec2& vel1,
 		// case 4
 		if (aabb1.max.y < aabb2.min.y)
 		{
-			tFirst = AEMax((aabb1.max.y - aabb2.min.y) / Vb.y, tFirst);
+			tFirst.y = AEMax((aabb1.max.y - aabb2.min.y) / Vb.y, tFirst.y);
 		}
 		if (aabb1.min.y < aabb2.max.y)
 		{
-			tLast = AEMin((aabb1.min.y - aabb2.max.y) / Vb.y, tLast);
+			tLast.y = AEMin((aabb1.min.y - aabb2.max.y) / Vb.y, tLast.y);
 		}
 	}
 
@@ -114,11 +113,11 @@ bool CollisionIntersection_RectRect(const AABB& aabb1, const AEVec2& vel1,
 		// case 2
 		if (aabb1.min.y > aabb2.max.y)
 		{
-			tFirst = AEMax((aabb1.min.y - aabb2.max.y) / Vb.y, tFirst);
+			tFirst.y = AEMax((aabb1.min.y - aabb2.max.y) / Vb.y, tFirst.y);
 		}
 		if (aabb1.max.y > aabb2.min.y)
 		{
-			tLast = AEMin((aabb1.max.y - aabb2.min.y) / Vb.y, tLast);
+			tLast.y = AEMin((aabb1.max.y - aabb2.min.y) / Vb.y, tLast.y);
 		}
 	}
 
@@ -129,7 +128,7 @@ bool CollisionIntersection_RectRect(const AABB& aabb1, const AEVec2& vel1,
 	}
 
 	// case 5
-	if (tFirst > tLast)
+	if (tFirst.y > tLast.y)
 		return 0;
 
 
