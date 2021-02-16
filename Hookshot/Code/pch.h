@@ -12,8 +12,7 @@
 #include <fstream>
 #include <iostream>
 #include "AEEngine.h"
-// #include "physics.h"
-#include "collision.h"
+#include "physics.h"
 #include "extern.h"
 #include "Object_List.h"
 #include "Levels/Level1.h"
