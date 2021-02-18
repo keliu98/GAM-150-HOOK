@@ -3,8 +3,8 @@
 //Declaration of Variables.
 AEGfxVertexList* pMesh1 = 0;
 
-float CHARACTER_ACCEL_HORI = 40.0f;
 Character character;
+float CHARACTER_ACCEL_HORI = 40.0f;
 
 void Level1_Load()
 {
@@ -59,34 +59,18 @@ void Level1_Update()
 	//Temporary for doing physics.cpp
 	if (AEInputCheckCurr(AEVK_LEFT))
 	{
-		character.accel = {-1.0f, 0.0f};
-
-		//Scale the acceleration
-		AEVec2Scale(&character.accel, &character.accel, CHARACTER_ACCEL_HORI);
-
-		//Find the velocity according to the acceleration
-		//newVel = Accleration * dt + currentVel 
-		AEVec2Scale(&character.accel, &character.accel, delta_time);
-		AEVec2Add(&character.velocity, &character.accel, &character.velocity);
+		AEVec2 dir = {-1.0f, 0.0f};
+		set_accel_to_vel(character.velocity, dir, CHARACTER_ACCEL_HORI);
 	}
 
 	if (AEInputCheckCurr(AEVK_RIGHT))
 	{
-		character.accel = {1.0f, 0.0f};
-
-		//Scale the acceleration
-		AEVec2Scale(&character.accel, &character.accel, CHARACTER_ACCEL_HORI);
-
-		//Find the velocity according to the acceleration
-		//newVel = Accleration * dt + currentVel 
-		AEVec2Scale(&character.accel, &character.accel, delta_time);
-		AEVec2Add(&character.velocity, &character.accel, &character.velocity);
+		AEVec2 dir = {1.0f, 0.0f};
+		set_accel_to_vel(character.velocity, dir, CHARACTER_ACCEL_HORI);
 	}
 
 	//Within the loop, done constantly
-	AEVec2 delta_velocity;
-	AEVec2Scale(&delta_velocity, &character.velocity, delta_time);
-	AEVec2Add(&character.pos, &delta_velocity, &character.pos);
+	set_vel_to_pos(character.pos, character.velocity);
 
 	//Friction. 
 	AEVec2Scale(&character.velocity, &character.velocity, 0.99f);
