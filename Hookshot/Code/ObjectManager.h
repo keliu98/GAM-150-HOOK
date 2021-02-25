@@ -110,7 +110,7 @@ struct Enemy {
 Hook* create_hook();
 
 // Create character
-Character* create_character(Hook*);
+Character* create_character();
 
 // Create 1 singular enemy
 std::vector<Enemy> create_enemy(std::vector<Enemy>&);

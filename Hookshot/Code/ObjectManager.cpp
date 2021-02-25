@@ -9,9 +9,9 @@ Hook* create_hook() {
 	return hook;
 }
 
-Character* create_character(Hook* hook)
+Character* create_character()
 {
-	Character* character = new Character{
+	Character* character = new Character {
 		{0,0},		// Index spawn_index;
 		{0,0},		// AABB  aabb;
 		1.0f,		// float scale;
@@ -27,8 +27,6 @@ Character* create_character(Hook* hook)
 
 		3,			// int lives;
 		0,			// int damage;
-
-		hook		// Hook* hook;
 	};
 	return character;
 }
