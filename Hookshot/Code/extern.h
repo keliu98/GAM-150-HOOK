@@ -4,7 +4,6 @@
 
 //------------------------------------
 // Globals
-
 extern float	g_dt;
 extern double	g_appTime;
 

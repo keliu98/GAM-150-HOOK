@@ -34,6 +34,7 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Code\ObjectManager.cpp">
+    <ClCompile Include="Code\physics.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -63,6 +64,7 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Code\ObjectManager.h">
+    <ClInclude Include="Code\physics.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

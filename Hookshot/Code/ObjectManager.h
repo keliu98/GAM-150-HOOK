@@ -50,7 +50,9 @@ enum hook_state
 struct Character {
 	Index spawn_index;
 	AABB  aabb;
+
 	float scale;
+	AEMtx33 transform;
 
 	AEVec2 pos;
 	AEVec2 accel;
