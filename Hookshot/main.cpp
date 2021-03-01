@@ -35,8 +35,11 @@
 */
 // ---------------------------------------------------------------------------
 // main
+
 float	 g_dt;
 double	 g_appTime;
+int      WINDOW_WIDTH = 800;
+int      WINDOW_HEIGHT = 600;
 
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	_In_opt_ HINSTANCE hPrevInstance,
@@ -48,7 +51,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
 	//Intialise System
 	// Using custom window procedure
-	AESysInit(hInstance, nCmdShow, 800, 600, 1, 60, true, NULL);
+	AESysInit(hInstance, nCmdShow, WINDOW_WIDTH, WINDOW_HEIGHT, 1, 60, true, NULL);
 
 	// Changing the window title
 	AESysSetWindowTitle("My New Demo!");

@@ -11,12 +11,15 @@
 
 #include <fstream>
 #include <iostream>
+#include <vector>
 #include <cmath>
 
 #include "AEEngine.h"
 #include "physics.h"
 #include "extern.h"
-#include "Object_List.h"
+#include "hook.h"
+
+#include "ObjectManager.h"
 #include "Levels/Level1.h"
 #include "GameStateList.h"
 #include "GameStateManager.h"

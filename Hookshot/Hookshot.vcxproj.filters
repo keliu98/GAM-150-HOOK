@@ -30,6 +30,12 @@
     <ClCompile Include="Code\physics.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Code\ObjectManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Hook.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Code\pch.h">
@@ -44,13 +50,16 @@
     <ClInclude Include="Code\Levels\Level1.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Code\Object_List.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Code\extern.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Code\physics.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\ObjectManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Hook.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

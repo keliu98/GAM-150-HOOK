@@ -1,9 +1,16 @@
 #pragma once
 #include "pch.h"
 
+//Extern Pointers to use for objects
+struct Character;
+extern Character* character;
+
+struct Hook;
+extern Hook* hook;
 
 //min is the bottom-left of the object
 //max is the top-right of the object
+
 struct AABB {
 	AEVec2 min;
 	AEVec2 max;
@@ -29,9 +36,8 @@ struct Hook {
 
 	int hook_state;
 
-	AEVec2 head_pos;
+	AEMtx33 transform;
 	AEVec2 center_pos;
-	AEVec2 tail_pos;
 
 	float curr_len;
 	float max_len;
@@ -43,6 +49,7 @@ struct Hook {
 
 enum hook_state
 {
+	not_firing,
 	firing,
 	first_tether,
 	tethered
@@ -68,7 +75,7 @@ struct Character {
 	int damage;
 
 	Hook* hook;
-};
+} typedef Character;
 
 struct Wall {
 	float scale;
@@ -77,7 +84,7 @@ struct Wall {
 	Index spawn_index;
 	AEVec2 position;
 	AABB aabb;
-};
+} typedef Wall;
 
 
 //TODO for yong hui
@@ -94,8 +101,32 @@ struct Button {
 };
 
 
+struct Render {
+	// all the render stuff - add more
+	char* texture;
+	float scale;
+
+};
+
 //TO be done by yong hui
 struct Enemy {
 	//TODO
-};
+} typedef Enemy;
+
+// --------------------------FUNCTIONS FROM OBJECTMANAGER.CPP---------------------------------------------
+// Create hook
+Hook* create_hook();
+
+// Create character
+Character* create_character();
+
+// Create 1 singular enemy
+std::vector<Enemy> create_enemy(std::vector<Enemy>&);
+
+// When enemy is defeated by players (pass in enemy vec and index to delete)
+void destory_enemy(std::vector<Enemy>&, int index); 
+
+// Free all object
+void free_object(std::vector<Enemy>&, Character*, Hook*);
+// -------------------------------------------------------------------------------------------------------
 

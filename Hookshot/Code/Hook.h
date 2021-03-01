@@ -1,0 +1,2 @@
+
+void hook_update();

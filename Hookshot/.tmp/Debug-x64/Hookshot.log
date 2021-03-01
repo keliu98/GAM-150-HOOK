@@ -1,3 +1,4 @@
-﻿  Level1.cpp
-C:\Users\james\Documents\Software Engineering Project\JUMPS\GAM-150-HOOK\Hookshot\Code\Levels\Level1.cpp(95,25): warning C4305: '=': truncation from 'double' to 'f32'
+﻿  Hook.cpp
+C:\Users\james\Documents\Software Engineering Project\JUMPS\GAM-150-HOOK\Hookshot\Code\Hook.cpp(35,24): warning C4244: '=': conversion from 'int' to 'f32', possible loss of data
+C:\Users\james\Documents\Software Engineering Project\JUMPS\GAM-150-HOOK\Hookshot\Code\Hook.cpp(36,24): warning C4244: '=': conversion from 'int' to 'f32', possible loss of data
   Hookshot.vcxproj -> C:\Users\james\Documents\Software Engineering Project\JUMPS\GAM-150-HOOK\Hookshot\\bin\Debug-x64\Hookshot.exe

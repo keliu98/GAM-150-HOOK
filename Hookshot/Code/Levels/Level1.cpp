@@ -3,11 +3,7 @@
 //Declaration of Variables.
 AEGfxVertexList* pMesh1 = 0;
 
-Character character;
 float CHARACTER_ACCEL_HORI = 500.0f;
-float GRAVITY = 500.0f;
-float CHAR_HEIGHT = 50.0f;
-float CHAR_HEIGHT_VEL;
 
 void Level1_Load()
 {
@@ -15,12 +11,18 @@ void Level1_Load()
 	// Informing the library that we're about to start adding triangles
 	AEGfxMeshStart();
 
-	// 1 triangle at a time
+	// 2 triangle at a time
 	// X, Y, Color, texU, texV
+
 	AEGfxTriAdd(
-		-0.5f, -0.5f, 0xFFFF0000, 0.0f, 0.0f,
-		0.5f, 0.0f, 0xFFFF0000, 0.0f, 0.0f,
-		-0.5f, 0.5f, 0xFFFF0000, 0.0f, 0.0f);
+		-0.5f, 0.5f, 0x808080, 0.0f, 0.0f,
+		-0.5f, -0.5f, 0x808080, 0.0f, 0.0f,
+		0.5f, 0.5f, 0x808080, 0.0f, 0.0f);
+
+	AEGfxTriAdd(
+		0.5f, -0.5f, 0x808080, 0.0f, 0.0f,
+		-0.5f, -0.5f, 0x808080, 0.0f, 0.0f,
+		0.5f, 0.5f, 0x808080, 0.0f, 0.0f);
 
 	// Saving the mesh (list of triangles) in pMesh1
 
@@ -31,27 +33,11 @@ void Level1_Load()
 
 void Level1_Initialize()
 {
-	character.scale = 32.0f;
-	character.pos = {0.0f,0.0f};
-	character.accel = {0.0f,0.0f};
-	character.velocity = { 0.0f,0.0f };
+	character = create_character();
+	hook = create_hook();
 
-	//TODO
-	//Index spawn_index;
-	//AABB  aabb;
+	physics_intialize();
 
-
-	//float jump_height;
-	//float gravity;
-
-	//int char_state;
-
-	//int lives;
-	//int damage;
-
-	//Hook* hook;
-
-	CHAR_HEIGHT_VEL = create_vel_height(CHAR_HEIGHT, GRAVITY);
 }
 
 void Level1_Update()
@@ -65,63 +51,73 @@ void Level1_Update()
 	if (AEInputCheckCurr(AEVK_LEFT))
 	{
 		AEVec2 dir = {-1.0f, 0.0f};
-		set_accel_to_vel(character.velocity, dir, CHARACTER_ACCEL_HORI);
+		set_accel_to_vel(character->velocity, dir, CHARACTER_ACCEL_HORI);
 	}
 
 	if (AEInputCheckCurr(AEVK_RIGHT))
 	{
 		AEVec2 dir = {1.0f, 0.0f};
-		set_accel_to_vel(character.velocity, dir, CHARACTER_ACCEL_HORI);
+		set_accel_to_vel(character->velocity, dir, CHARACTER_ACCEL_HORI);
 	}
 
 	if (AEInputCheckTriggered(AEVK_UP) || AEInputCheckTriggered (AEVK_SPACE))
 	{
-		character.velocity.y += CHAR_HEIGHT_VEL;
+		character->velocity.y += CHAR_HEIGHT_VEL;
 	}
 
-	//Within the loop, done constantly
-	set_vel_to_pos(character.pos, character.velocity);
-
-	//Horizontal Friction. 
-	character.velocity.x = character.velocity.x * 0.97f;
-
-	//Gravity.
-	AEVec2 gravity_dir{ 0.0f, -1.0f };
-	set_accel_to_vel(character.velocity, gravity_dir, GRAVITY);
-
-	//Temporary wall collision
-	if (character.pos.y < 0)
-	{
-		character.pos.y = 0.01;
-		character.velocity.y = 0;
-	}
-	
+	hook_update();
+	physics_update();
 }
 
 void Level1_Draw()
 {
-	AEMtx33	trans, scale;
+	AEMtx33	trans, scale, rot;
 
+
+	//---------for drawing the character--------------
 	// Compute the scaling matrix
-	AEMtx33Scale(&scale, character.scale, character.scale);
+	AEMtx33Scale(&scale, character->scale, character->scale);
 
 	// Compute the translation matrix
-	AEMtx33Trans(&trans, character.pos.x, character.pos.y);
+	AEMtx33Trans(&trans, character->pos.x, character->pos.y);
 
-	AEMtx33Concat(&character.transform, &trans, &scale);
-
+	AEMtx33Concat(&character->transform, &trans, &scale);
 
 	// Will need to create a seperate function for drawing all the objects.
 	// Drawing object 1
 	AEGfxSetRenderMode(AE_GFX_RM_COLOR);
-	// Set position for object 1
-	AEGfxSetPosition(0.0f, 0.0f);
 	// No texture for object 1
 	AEGfxTextureSet(NULL, 0, 0);
 	// Transforing the picture based on its matrix
-	AEGfxSetTransform(character.transform.m);
+	AEGfxSetTransform(character->transform.m);
 	// Drawing the mesh (list of triangles)
 	AEGfxMeshDraw(pMesh1, AE_GFX_MDM_TRIANGLES);
+
+
+	//---------for drawing the hook------------
+	if (hook->flag == true)
+	{
+		//Scale it by the length of the hook
+		AEMtx33Scale(&scale, hook->curr_len, 4.0f);
+		// Compute the translation matrix
+		AEMtx33Trans(&trans, hook->center_pos.x, hook->center_pos.y);
+		//Rotate it by the angle hooked
+		AEMtx33Rot(&rot, hook->pivot_angle);
+
+		AEMtx33Concat(&hook->transform, &rot, &scale);
+		AEMtx33Concat(&hook->transform, &trans, &hook->transform);
+
+		AEGfxSetRenderMode(AE_GFX_RM_COLOR);
+		// No texture for object 1
+		AEGfxTextureSet(NULL, 0, 0);
+		// Transforing the picture based on its matrix
+		AEGfxSetTransform(hook->transform.m);
+		// Drawing the mesh (list of triangles)
+		AEGfxMeshDraw(pMesh1, AE_GFX_MDM_TRIANGLES);
+	}
+
+
+
 
 	//Temporary for exiting the system
 	if (AEInputCheckTriggered(AEVK_ESCAPE) || 0 == AESysDoesWindowExist())
