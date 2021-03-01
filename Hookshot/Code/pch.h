@@ -11,6 +11,8 @@
 
 #include <fstream>
 #include <iostream>
+#include <cmath>
+
 #include "AEEngine.h"
 #include "physics.h"
 #include "extern.h"

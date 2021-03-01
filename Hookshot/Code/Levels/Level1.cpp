@@ -4,7 +4,10 @@
 AEGfxVertexList* pMesh1 = 0;
 
 Character character;
-float CHARACTER_ACCEL_HORI = 40.0f;
+float CHARACTER_ACCEL_HORI = 500.0f;
+float GRAVITY = 500.0f;
+float CHAR_HEIGHT = 50.0f;
+float CHAR_HEIGHT_VEL;
 
 void Level1_Load()
 {
@@ -47,6 +50,8 @@ void Level1_Initialize()
 	//int damage;
 
 	//Hook* hook;
+
+	CHAR_HEIGHT_VEL = create_vel_height(CHAR_HEIGHT, GRAVITY);
 }
 
 void Level1_Update()
@@ -69,11 +74,27 @@ void Level1_Update()
 		set_accel_to_vel(character.velocity, dir, CHARACTER_ACCEL_HORI);
 	}
 
+	if (AEInputCheckTriggered(AEVK_UP) || AEInputCheckTriggered (AEVK_SPACE))
+	{
+		character.velocity.y += CHAR_HEIGHT_VEL;
+	}
+
 	//Within the loop, done constantly
 	set_vel_to_pos(character.pos, character.velocity);
 
-	//Friction. 
-	AEVec2Scale(&character.velocity, &character.velocity, 0.99f);
+	//Horizontal Friction. 
+	character.velocity.x = character.velocity.x * 0.97f;
+
+	//Gravity.
+	AEVec2 gravity_dir{ 0.0f, -1.0f };
+	set_accel_to_vel(character.velocity, gravity_dir, GRAVITY);
+
+	//Temporary wall collision
+	if (character.pos.y < 0)
+	{
+		character.pos.y = 0.01;
+		character.velocity.y = 0;
+	}
 	
 }
 
