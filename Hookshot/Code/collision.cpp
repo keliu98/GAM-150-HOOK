@@ -15,11 +15,7 @@ Technology is prohibited.
 
 #include "collision.h"
 
-/**************************************************************************/
-/*!
-	A collision test function to see if two rectangle object collide together.
-*/
-/**************************************************************************/
+
 bool CollisionIntersection_RectRect(const AABB& aabb1, const AEVec2& vel1, const AABB& aabb2, const AEVec2& vel2)
 {
 	// Step 1: Check for static collision detection between rectangles (before moving)

@@ -19,6 +19,7 @@
 #include "Levels/Level1.h"
 #include "GameStateList.h"
 #include "GameStateManager.h"
+#include "camera.h"
 
 
 

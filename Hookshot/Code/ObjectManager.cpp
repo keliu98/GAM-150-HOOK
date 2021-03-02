@@ -1,3 +1,18 @@
+/******************************************************************************/
+/*!
+\file         ObjectManager.cpp
+\author       Tan Egi, egi.tan, 2002777
+\par          egi.tan@digipen.edu
+\date         March 2, 2021
+\brief        This file creates game pointer objects and draw them using 
+			  rendering system.
+
+Copyright (C) 2021 DigiPen Institute of Technology.
+Reproduction or disclosure of this file or its contents without the prior 
+written consent of DigiPen Institute of Technology is prohibited.
+*/
+/******************************************************************************/
+
 #include "ObjectManager.h"
 
 Hook* create_hook() {

@@ -33,6 +33,8 @@ void Level1_Initialize()
 	character.accel = {0.0f,0.0f};
 	character.velocity = { 0.0f,0.0f };
 
+	camera_init(character.pos);
+
 	//TODO
 	//Index spawn_index;
 	//AABB  aabb;
@@ -74,7 +76,8 @@ void Level1_Update()
 
 	//Friction. 
 	AEVec2Scale(&character.velocity, &character.velocity, 0.99f);
-	
+
+	camera_update(character.pos);	
 }
 
 void Level1_Draw()

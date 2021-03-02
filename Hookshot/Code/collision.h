@@ -16,4 +16,9 @@ Technology is prohibited.
 
 #include "pch.h"
 
+/**************************************************************************/
+/*!
+	A collision test function to see if two rectangle object collide together.
+*/
+/**************************************************************************/
 bool CollisionIntersection_RectRect(const struct AABB& aabb1, const AEVec2& vel1, const struct AABB& aabb2, const AEVec2& vel2);
