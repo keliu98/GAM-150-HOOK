@@ -14,6 +14,8 @@
 
 ****************************************************************************
 ***/
+static float SWING_ACCELERATION = 100;
+static float PI = 3.141592f;
 
 #include "pch.h"
 
@@ -37,7 +39,13 @@ void hook_update()
 		//Storing the pivot position
 		if (hook->hook_state == not_firing)
 		{
+			//Setting the pivot pos to the mouse cusor
 			AEVec2Set(&hook->pivot_pos, static_cast<float>(cursor_x), static_cast<float>(cursor_y));
+
+			//Getting the max_len
+			hook->max_len = AEVec2Distance(&hook->pivot_pos, &character->pos);
+
+			//setting the mode
 			hook->hook_state = firing;
 		}
 
@@ -47,12 +55,9 @@ void hook_update()
 		AEVec2Normalize(&dir_vec, &dir_vec);
 		hook->pivot_angle = static_cast<float>(atan2(dir_vec.y, dir_vec.x));
 
-		//Getting the max_len
-		hook->max_len = AEVec2Distance(&hook->pivot_pos, &character->pos);
-
 		//Getting the various position of the hook
 		AEVec2 tail_pos = character->pos;//tail
-		
+
 		AEVec2 head_pos;
 		AEVec2Scale(&head_pos, &dir_vec, hook->curr_len);
 		AEVec2Add(&head_pos, &tail_pos, &head_pos);//head
@@ -61,7 +66,7 @@ void hook_update()
 		AEVec2Scale(&hook->center_pos, &hook->center_pos, 0.5f);//center
 
 		//Scaling the hook length
-		if(hook->hook_state == firing)
+		if (hook->hook_state == firing)
 			hook->curr_len += 10;
 
 		//~~TODO REPLACE WITH THE COLLISION EVENTUALLY TO DETECT IF IT HIT A WALL
@@ -77,34 +82,71 @@ void hook_update()
 		{
 			hook->curr_len = hook->max_len;
 
-			//Getting the pivot again
+			//Getting the pivot angle again
 			AEVec2 dir_vec;
 			AEVec2Sub(&dir_vec, &hook->pivot_pos, &character->pos);
 			AEVec2Normalize(&dir_vec, &dir_vec);
 			hook->pivot_angle = static_cast<float>(atan2(dir_vec.y, dir_vec.x));
 
-			//Getting the arc tangent angle = sin 0
-			hook->arc_tan = sin(hook->pivot_angle);
+			//Angle perpendicular to the pivot angle
+			hook->arc_tan = hook->pivot_angle + PI / 2;
 
-			//Magnitude of current velocity to translate it to a swing direction
-			
+			//Getting the character velocity magnitude so that it can be conserved
+			float magnitude = AEVec2Length(&character->velocity);
+
+			//Creating the directional vector based on the angle of the arc tan
+			AEVec2 arc_tan_vel;
+			AEVec2FromAngle(&arc_tan_vel, hook->arc_tan);
+
+			//inverting movement for top left
+			if (hook->pivot_angle > 0 && hook->pivot_angle < PI / 2)
+				AEVec2Scale(&arc_tan_vel, &arc_tan_vel, -1.0f);
+
+			//inverting movement for bottom right
+			if (hook->pivot_angle < 0 && hook->pivot_angle > -(PI / 2))
+				AEVec2Scale(&arc_tan_vel, &arc_tan_vel, -1.0f);
+
+			//Scaling the new velocity direction with the old velocity magnitude
+			AEVec2Scale(&arc_tan_vel, &arc_tan_vel, magnitude);
+			character->velocity = arc_tan_vel;
+
+			hook->hook_state = tethered;
 		}
 
-		
+
 
 		//---------------------PHASE 3: TETHERED AND SWINGING-----------------------------------
 
 		if (hook->hook_state == tethered)
 		{
 			hook->curr_len = hook->max_len;
+
+			//Getting the pivot angle again
+			AEVec2 dir_vec;
+			AEVec2Sub(&dir_vec, &hook->pivot_pos, &character->pos);
+			AEVec2Normalize(&dir_vec, &dir_vec);
+			hook->pivot_angle = static_cast<float>(atan2(dir_vec.y, dir_vec.x));
+
+			//Getting the arc tangent angle
+			hook->arc_tan = hook->pivot_angle + PI / 2;
+
+
+			//~~~~MIGHT NOT BE NECCESSARY, TBC~~~
+			//Creating the directional vector based on the angle of the arc tan
+			AEVec2 arc_tan_dir;
+			AEVec2FromAngle(&arc_tan_dir, hook->arc_tan);
+
+			//inverting movement for top left
+			if (hook->pivot_angle > 0 && hook->pivot_angle < PI / 2)
+				AEVec2Scale(&arc_tan_dir, &arc_tan_dir, -1.0f);
+
+			//inverting movement for bottom right
+			if (hook->pivot_angle < 0 && hook->pivot_angle > -(PI / 2))
+				AEVec2Scale(&arc_tan_dir, &arc_tan_dir, -1.0f);
+
+			set_accel_to_vel(character->velocity, arc_tan_dir, SWING_ACCELERATION);
+			//~~~~MIGHT NOT BE NECCESSARY, TBC~~~
 		}
-		
-
-
-
-
-			
-
 	}
 
 	if (AEInputCheckReleased(AEVK_LBUTTON))

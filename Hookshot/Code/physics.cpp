@@ -35,6 +35,20 @@ void physics_update()
 	//Within the loop, done constantly
 	set_vel_to_pos(character->pos, character->velocity);
 
+	if (hook->hook_state == tethered)
+	{
+		/*???????? WHY IS THIS NOT WORKING ????
+		if (AEVec2Distance(&character->pos, &hook->pivot_pos) > hook->max_len)
+		{
+			AEVec2 new_pos;
+			AEVec2 pivot_vector;
+			AEVec2FromAngle(&pivot_vector, hook->pivot_angle);
+		
+			AEVec2Scale(&new_pos, &pivot_vector, hook->max_len);
+			character->pos = new_pos;
+		}*/
+	}
+
 	//Horizontal Friction. 
 	character->velocity.x = character->velocity.x * 0.97f;
 
