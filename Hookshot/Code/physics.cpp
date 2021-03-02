@@ -18,14 +18,43 @@
 
 #include "pch.h"
 
+static float GRAVITY = 500.0f;
+static float CHAR_HEIGHT = 50.0f;
+float CHAR_HEIGHT_VEL;
+
+void physics_intialize()
+{
+	CHAR_HEIGHT_VEL = create_vel_height(CHAR_HEIGHT, GRAVITY);
+}
+
 void physics_update()
 {
 
+//------------------Updating Character physics---------------------
+
+	//Within the loop, done constantly
+	set_vel_to_pos(character->pos, character->velocity);
+
+	//Horizontal Friction. 
+	character->velocity.x = character->velocity.x * 0.97f;
+
+	//Gravity.
+	AEVec2 gravity_dir{ 0.0f, -1.0f };
+	set_accel_to_vel(character->velocity, gravity_dir, GRAVITY);
+
+	//Temporary wall collision
+	if (character->pos.y < 0)
+	{
+		character->pos.y = 0.01f;
+		character->velocity.y = 0;
+	}
+
+//------------------Updating Character physics---------------------
 }
 
 //Calculates and sets the velocity of the object using an flat acceleration value and a normalised direction vector. 
 //The new velocity is assigned to the referenced velocity.
-void set_accel_to_vel(AEVec2& vel, AEVec2 &dir, float &accel)
+void set_accel_to_vel(AEVec2& vel, AEVec2 dir, float &accel)
 {
 	AEVec2 accel_vector;
 
@@ -40,7 +69,7 @@ void set_accel_to_vel(AEVec2& vel, AEVec2 &dir, float &accel)
 
 //Calculates and sets the position of the object using an flat velocity value and a normalised direction vector. 
 //The new velocity is assigned to the referenced velocity.
-void set_vel_to_pos(AEVec2& pos, AEVec2 &dir, float &vel)
+void set_vel_to_pos(AEVec2& pos, AEVec2 dir, float &vel)
 {
 	AEVec2 vel_vector;
 
@@ -60,5 +89,13 @@ void set_vel_to_pos(AEVec2& pos, AEVec2 &vel)
 	AEVec2Scale(&delta_vel, &vel, g_dt);
 	AEVec2Add(&pos, &delta_vel, &pos);
 }
+
+//Takes in the height and then outputs the required velocity. TO only be called once during intialise, not used within the game loop
+float create_vel_height(float height, float gravity)
+{
+	// Square root 2g(h)
+	return sqrt(2 * gravity * height);
+}
+
 
 

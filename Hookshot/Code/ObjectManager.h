@@ -1,8 +1,16 @@
 #pragma once
 #include "pch.h"
 
+//Extern Pointers to use for objects
+struct Character;
+extern Character* character;
+
+struct Hook;
+extern Hook* hook;
+
 //min is the bottom-left of the object
 //max is the top-right of the object
+
 struct AABB {
 	AEVec2 min;
 	AEVec2 max;
@@ -28,9 +36,8 @@ struct Hook {
 
 	int hook_state;
 
-	AEVec2 head_pos;
+	AEMtx33 transform;
 	AEVec2 center_pos;
-	AEVec2 tail_pos;
 
 	float curr_len;
 	float max_len;
@@ -42,6 +49,7 @@ struct Hook {
 
 enum hook_state
 {
+	not_firing,
 	firing,
 	first_tether,
 	tethered

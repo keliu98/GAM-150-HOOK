@@ -1,25 +1,24 @@
-/******************************************************************************/
-/*!
-\file         ObjectManager.cpp
-\author       Tan Egi, egi.tan, 2002777
-\par          egi.tan@digipen.edu
-\date         March 2, 2021
-\brief        This file creates game pointer objects and draw them using 
-			  rendering system.
-
-Copyright (C) 2021 DigiPen Institute of Technology.
-Reproduction or disclosure of this file or its contents without the prior 
-written consent of DigiPen Institute of Technology is prohibited.
-*/
-/******************************************************************************/
-
 #include "ObjectManager.h"
 
+Character* character;
+Hook* hook;
+
 Hook* create_hook() {
-	Hook* hook = new Hook;
+	Hook* hook = new Hook{
+		{false},      //bool flag
 
-	// init values here
+		{not_firing}, //int hook_state
 
+		{0,0},		  //AEVec2 transform
+		{0,0},        //AEVec2 center_pos
+
+		{0},          //float curr_len
+		{0},          //float max_len
+
+		{0,0},        //AEVec2 pivot_pos
+		{0},          //float arc_tan
+		{0},		  //float pivot_angle;
+	};
 
 	return hook;
 }
@@ -29,7 +28,8 @@ Character* create_character()
 	Character* character = new Character {
 		{0,0},		// Index spawn_index;
 		{0,0},		// AABB  aabb;
-		1.0f,		// float scale;
+
+		32.0f,		// float scale;
 
 		{0,0},		// AEVec2 pos;
 		{0,0},		// AEVec2 accel;
