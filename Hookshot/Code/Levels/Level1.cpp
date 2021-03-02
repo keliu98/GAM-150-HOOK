@@ -48,19 +48,19 @@ void Level1_Update()
 	AEInputUpdate();
 
 	//Temporary for doing physics.cpp
-	if (AEInputCheckCurr(AEVK_LEFT))
+	if (AEInputCheckCurr(AEVK_A) && hook->flag == false)
 	{
 		AEVec2 dir = {-1.0f, 0.0f};
 		set_accel_to_vel(character->velocity, dir, CHARACTER_ACCEL_HORI);
 	}
 
-	if (AEInputCheckCurr(AEVK_RIGHT))
+	if (AEInputCheckCurr(AEVK_D) && hook->flag == false)
 	{
 		AEVec2 dir = {1.0f, 0.0f};
 		set_accel_to_vel(character->velocity, dir, CHARACTER_ACCEL_HORI);
 	}
 
-	if (AEInputCheckTriggered(AEVK_UP) || AEInputCheckTriggered (AEVK_SPACE))
+	if (AEInputCheckTriggered(AEVK_W) && hook->flag == false)
 	{
 		character->velocity.y += CHAR_HEIGHT_VEL;
 	}

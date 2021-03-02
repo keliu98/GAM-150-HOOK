@@ -1,4 +1,2 @@
 ﻿  Hook.cpp
-C:\Users\james\Documents\Software Engineering Project\JUMPS\GAM-150-HOOK\Hookshot\Code\Hook.cpp(35,24): warning C4244: '=': conversion from 'int' to 'f32', possible loss of data
-C:\Users\james\Documents\Software Engineering Project\JUMPS\GAM-150-HOOK\Hookshot\Code\Hook.cpp(36,24): warning C4244: '=': conversion from 'int' to 'f32', possible loss of data
-  Hookshot.vcxproj -> C:\Users\james\Documents\Software Engineering Project\JUMPS\GAM-150-HOOK\Hookshot\\bin\Debug-x64\Hookshot.exe
+  Hookshot.vcxproj -> C:\Users\t.weiwen\Documents\GitHub\GAM-150-HOOK\Hookshot\bin\Debug-x64\Hookshot.exe
