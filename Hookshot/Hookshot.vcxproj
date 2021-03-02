@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|x64">
@@ -90,6 +90,7 @@
   <ItemGroup>
     <ClCompile Include="Code\GameStateManager.cpp" />
     <ClCompile Include="Code\Hook.cpp" />
+    <ClCompile Include="Code\Input.cpp" />
     <ClCompile Include="Code\Levels\Level1.cpp" />
     <ClCompile Include="Code\ObjectManager.cpp" />
     <ClCompile Include="Code\pch.cpp" />
@@ -100,6 +101,7 @@
     <ClInclude Include="Code\GameStateList.h" />
     <ClInclude Include="Code\GameStateManager.h" />
     <ClInclude Include="Code\Hook.h" />
+    <ClInclude Include="Code\Input.h" />
     <ClInclude Include="Code\Levels\Level1.h" />
     <ClInclude Include="Code\extern.h" />
     <ClInclude Include="Code\ObjectManager.h" />

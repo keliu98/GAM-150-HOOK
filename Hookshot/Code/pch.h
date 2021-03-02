@@ -18,6 +18,7 @@
 #include "physics.h"
 #include "extern.h"
 #include "hook.h"
+#include "Input.h"
 
 #include "ObjectManager.h"
 #include "Levels/Level1.h"

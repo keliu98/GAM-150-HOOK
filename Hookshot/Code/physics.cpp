@@ -47,6 +47,7 @@ void physics_update()
 	{
 		character->pos.y = 0.01f;
 		character->velocity.y = 0;
+		character->char_state = idle;
 	}
 
 //------------------Updating Character physics---------------------
