@@ -10,7 +10,10 @@ Hook* create_hook() {
 		{not_firing}, //int hook_state
 
 		{0,0},		  //AEVec2 transform
+
+		{0,0},        //AEVec2 head_pos
 		{0,0},        //AEVec2 center_pos
+		{0,0},        //AEVec2 tail_pos
 
 		{0},          //float curr_len
 		{0},          //float max_len

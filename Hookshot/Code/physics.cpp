@@ -35,18 +35,10 @@ void physics_update()
 	//Within the loop, done constantly
 	set_vel_to_pos(character->pos, character->velocity);
 
-	if (hook->hook_state == tethered)
+	//Do hook check
+	if (hook->hook_state == first_tether || hook->hook_state == tethered)
 	{
-		/*???????? WHY IS THIS NOT WORKING ????
-		if (AEVec2Distance(&character->pos, &hook->pivot_pos) > hook->max_len)
-		{
-			AEVec2 new_pos;
-			AEVec2 pivot_vector;
-			AEVec2FromAngle(&pivot_vector, hook->pivot_angle);
-		
-			AEVec2Scale(&new_pos, &pivot_vector, hook->max_len);
-			character->pos = new_pos;
-		}*/
+		hook_char_pos_update();
 	}
 
 	//Horizontal Friction. 
@@ -57,9 +49,9 @@ void physics_update()
 	set_accel_to_vel(character->velocity, gravity_dir, GRAVITY);
 
 	//Temporary wall collision
-	if (character->pos.y < 0)
+	if (character->pos.y < -150.0f)
 	{
-		character->pos.y = 0.01f;
+		character->pos.y = -150.1f;
 		character->velocity.y = 0;
 	}
 

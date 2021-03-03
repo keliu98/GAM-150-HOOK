@@ -65,8 +65,9 @@ void Level1_Update()
 		character->velocity.y += CHAR_HEIGHT_VEL;
 	}
 
-	hook_update();
+	
 	physics_update();
+	hook_update();
 }
 
 void Level1_Draw()

@@ -37,7 +37,10 @@ struct Hook {
 	int hook_state;
 
 	AEMtx33 transform;
+
+	AEVec2 head_pos;
 	AEVec2 center_pos;
+	AEVec2 tail_pos;
 
 	float curr_len;
 	float max_len;
