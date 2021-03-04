@@ -54,7 +54,6 @@ enum hook_state
 {
 	not_firing,
 	firing,
-	first_tether,
 	tethered
 };
 

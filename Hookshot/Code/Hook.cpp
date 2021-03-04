@@ -26,7 +26,7 @@ int cursor_y;
 
 float intial_angle;
 
-enum swing_dir
+enum class swing_dir
 {
 	NO_DIR,
 	CLOCKWISE,
@@ -110,32 +110,6 @@ void hook_update()
 			AEVec2 dir_vec_arc;
 			AEVec2FromAngle(&dir_vec_arc, hook->arc_tan);
 
-		
-			if (magnitude < 30.0f)
-			{
-				/*switch (swing_dir)
-				{
-					case(CLOCKWISE)
-						swing_dir = ANTI_CLOCKWISE;
-						break;
-
-						case(CLOCKWISE)
-						swing_dir = ANTI_CLOCKWISE;
-						break;
-				}*/
-				
-				//1 = anti clock wise, 2 = clockwise 
-				if (swing_dir == CLOCKWISE)
-				{
-					swing_dir = ANTI_CLOCKWISE;
-				}
-
-				if (swing_dir == ANTI_CLOCKWISE)
-				{
-					swing_dir = CLOCKWISE;
-				}
-					
-			}
 
 			//Scaling the new velocity direction with the old velocity magnitude
 			AEVec2Scale(&dir_vec_arc, &dir_vec_arc, magnitude);
@@ -149,22 +123,30 @@ void hook_update()
 		}
 	}
 
-	//---------------------PHASE 4: RELEASING-----------------------------------
+	//---------------------PHASE 3: RELEASING-----------------------------------
 	if (AEInputCheckReleased(AEVK_LBUTTON))
 	{
 		hook->flag = false;
 		hook->hook_state = not_firing;
+
+		AEVec2Zero(&hook->head_pos);       
+		AEVec2Zero(&hook->center_pos);       
+		AEVec2Zero(&hook->tail_pos);  
+
 		hook->curr_len = 0;
 		hook->max_len = 0;
 
-		swing_dir = NO_DIR;
+		AEVec2Zero(&hook->pivot_pos);
 
-		//TODO CONSERVE MOMENTUM WHEN RELEASED.
+		hook->arc_tan = 0;
+		hook->pivot_angle = 0;
+
+		swing_dir = swing_dir::NO_DIR;
 	}
 
 }
 
-//function for reseting the character position to stay within the arc
+//Function for transalating the character position to stay within the arc, "pulling it back in". Called in physics.cpp
 void hook_char_pos_update()
 {
 	float distance = AEVec2Distance(&hook->pivot_pos, &character->pos);
@@ -186,7 +168,6 @@ void hook_char_pos_update()
 	}
 }
 
-
 float calculate_pivot()
 {
 	AEVec2 dir_vec;
@@ -197,30 +178,47 @@ float calculate_pivot()
 
 float calculate_arc()
 {
-	if (swing_dir == NO_DIR)
+	//Getting the direction when first hooking
+	if (swing_dir == swing_dir::NO_DIR)
 	{
 		//inverting movement when aiming for top left of character
 		if (hook->pivot_angle > 0 && hook->pivot_angle < PI / 2)
 		{
-			swing_dir = ANTI_CLOCKWISE;
+			swing_dir = swing_dir::ANTI_CLOCKWISE;
 			return hook->pivot_angle - PI / 2;
 		}
 
 		//inverting movement when aiming for bottom left of character
 		if (hook->pivot_angle < 0 && hook->pivot_angle > -(PI / 2))
 		{
-			swing_dir = ANTI_CLOCKWISE;
+			swing_dir = swing_dir::ANTI_CLOCKWISE;
 			return hook->pivot_angle - PI / 2;
 		}
 
-		swing_dir = CLOCKWISE;
+		swing_dir = swing_dir::CLOCKWISE;
 		return hook->pivot_angle + PI / 2;
 	}
+	//-----------------------------------------------------------------------------------------
 
-	if (swing_dir == ANTI_CLOCKWISE)
+	//Changing the direction if the character slows down and velocity nearly becomes 0
+	if (AEVec2Length(&character->velocity) < 15.0f)
+	{
+		//1 = anti clock wise, 2 = clockwise 
+		if (swing_dir == swing_dir::CLOCKWISE)
+		{
+			swing_dir = swing_dir::ANTI_CLOCKWISE;
+		}
+		else
+		{
+			swing_dir = swing_dir::CLOCKWISE;
+		}
+
+	}
+
+	if (swing_dir == swing_dir::ANTI_CLOCKWISE)
 		return hook->pivot_angle - PI / 2;
 
-	if (swing_dir == CLOCKWISE)
+	if (swing_dir == swing_dir::CLOCKWISE)
 		return hook->pivot_angle + PI / 2;
 }
 
