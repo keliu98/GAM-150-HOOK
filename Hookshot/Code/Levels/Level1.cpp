@@ -47,7 +47,7 @@ void Level1_Update()
 	AEInputUpdate();
 
 	//Temporary for doing physics.cpp
-	Input();
+	Input_g_mode();
 
 	hook_update();
 	physics_update();

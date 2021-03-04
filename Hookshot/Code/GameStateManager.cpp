@@ -52,6 +52,15 @@ void GSM_Update()
 
 	switch (current)
 	{
+	
+	case GS_MENU:
+		fpLoad = menu_Load;
+		fpInitialize = menu_Initialize;
+		fpUpdate = menu_Update;
+		fpDraw = menu_Draw;
+		fpFree = menu_Free;
+		fpUnload = menu_Unload;
+		break;
 	case GS_LEVEL1:		
 		fpLoad = Level1_Load;
 		fpInitialize = Level1_Initialize;

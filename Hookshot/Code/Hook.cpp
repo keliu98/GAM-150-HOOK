@@ -29,19 +29,6 @@ void hook_update()
 	cursor_x = cursor_x - WINDOW_WIDTH / 2;
 	cursor_y = (cursor_y - WINDOW_HEIGHT / 2) * -1;
 
-	if (AEInputCheckCurr(AEVK_LBUTTON))
-	{
-		hook->flag = true;
-		hook->center_pos.x = cursor_x;
-		hook->center_pos.y = cursor_y;
-		hook->curr_len += 10;
 
-	}
-
-	if (AEInputCheckReleased(AEVK_LBUTTON))
-	{
-		hook->flag = false;
-		hook->curr_len = 0;
-	}
-
+	Input_g_mode(cursor_x, cursor_y);
 }

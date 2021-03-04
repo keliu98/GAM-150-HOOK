@@ -63,7 +63,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	AEGfxSetBackgroundColor(0.0f, 0.0f, 0.0f);
 
     //GSM initialize
-    GSM_Initialize(GS_LEVEL1);
+    GSM_Initialize(GS_MENU);
 
     while (current != GS_QUIT)
     {
