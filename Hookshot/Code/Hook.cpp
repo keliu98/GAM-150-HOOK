@@ -24,6 +24,16 @@ AEVec2 cursor_pos;
 int cursor_x;
 int cursor_y;
 
+float intial_angle;
+
+enum swing_dir
+{
+	NO_DIR,
+	CLOCKWISE,
+	ANTI_CLOCKWISE,
+
+}swing_dir;
+
 float calculate_pivot();
 float calculate_arc();
 void calculate_positions(AEVec2 &dir_vec);
@@ -73,39 +83,12 @@ void hook_update()
 			{
 				//need to set head_pos to pivot_pos -> current_length
 				hook->curr_len = hook->max_len;
-				hook->hook_state = first_tether;
+				hook->hook_state = tethered;
 			}
 		}
 
-		//---------------------PHASE 2: FIRST TETHER-----------------------------------
-		if (hook->hook_state == first_tether)
-		{
-			//Getting the pivot angle again
-			AEVec2 dir_vec;
-			hook->pivot_angle = calculate_pivot();
-			AEVec2FromAngle(&dir_vec, hook->pivot_angle);
 
-			//Center_pos for rendering
-			calculate_positions(dir_vec);
-
-			//Angle perpendicular to the pivot angle
-			hook->arc_tan = calculate_arc();
-
-			//Getting the character velocity magnitude so that it can be conserved
-			float magnitude = AEVec2Length(&character->velocity);
-
-			//Creating the directional vector based on the angle of the arc tan
-			AEVec2 dir_vec_arc;
-			AEVec2FromAngle(&dir_vec_arc, hook->arc_tan);
-
-			//Scaling the new velocity direction with the old velocity magnitude
-			AEVec2Scale(&dir_vec_arc, &dir_vec_arc, magnitude);
-			character->velocity = dir_vec_arc;
-
-			hook->hook_state = tethered;
-		}
-
-		//---------------------PHASE 3: TETHERED AND SWINGING-----------------------------------
+		//---------------------PHASE 2: TETHERED AND SWINGING-----------------------------------
 
 		if (hook->hook_state == tethered)
 		{
@@ -118,22 +101,46 @@ void hook_update()
 			calculate_positions(dir_vec);
 
 			//Getting the arc tangent angle
-			hook->arc_tan = hook->pivot_angle + PI / 2;
+			hook->arc_tan = calculate_arc();
 
-			//~~~!!!!!!!!!!!!!!!~~~~~~~NEEDS TO BE REWORKED~~~~~~~!!!!!!!!!!!!!!!!!!!!!!!
+			//Getting the character velocity magnitude so that it can be conserved
+			float magnitude = AEVec2Length(&character->velocity);
+
 			//Creating the directional vector based on the angle of the arc tan
-			AEVec2 arc_tan_dir;
-			AEVec2FromAngle(&arc_tan_dir, hook->arc_tan);
+			AEVec2 dir_vec_arc;
+			AEVec2FromAngle(&dir_vec_arc, hook->arc_tan);
 
-			//inverting movement for top left
-			if (hook->pivot_angle > 0 && hook->pivot_angle < PI / 2)
-				AEVec2Scale(&arc_tan_dir, &arc_tan_dir, -1.0f);
+		
+			if (magnitude < 30.0f)
+			{
+				/*switch (swing_dir)
+				{
+					case(CLOCKWISE)
+						swing_dir = ANTI_CLOCKWISE;
+						break;
 
-			//inverting movement for bottom right
-			if (hook->pivot_angle < 0 && hook->pivot_angle > -(PI / 2))
-				AEVec2Scale(&arc_tan_dir, &arc_tan_dir, -1.0f);
+						case(CLOCKWISE)
+						swing_dir = ANTI_CLOCKWISE;
+						break;
+				}*/
+				
+				//1 = anti clock wise, 2 = clockwise 
+				if (swing_dir == CLOCKWISE)
+				{
+					swing_dir = ANTI_CLOCKWISE;
+				}
 
-			set_accel_to_vel(character->velocity, arc_tan_dir, SWING_ACCELERATION);
+				if (swing_dir == ANTI_CLOCKWISE)
+				{
+					swing_dir = CLOCKWISE;
+				}
+					
+			}
+
+			//Scaling the new velocity direction with the old velocity magnitude
+			AEVec2Scale(&dir_vec_arc, &dir_vec_arc, magnitude);
+			character->velocity = dir_vec_arc;
+
 
 			//NOTE TO SELF TO ADJUST LENGTH OF HOOK NEED TO CHANGE BOTH
 			//hook->max_len -= 2;
@@ -149,6 +156,8 @@ void hook_update()
 		hook->hook_state = not_firing;
 		hook->curr_len = 0;
 		hook->max_len = 0;
+
+		swing_dir = NO_DIR;
 
 		//TODO CONSERVE MOMENTUM WHEN RELEASED.
 	}
@@ -188,15 +197,31 @@ float calculate_pivot()
 
 float calculate_arc()
 {
-	//inverting movement for top left
-	if (hook->pivot_angle > 0 && hook->pivot_angle < PI / 2)
-		return hook->arc_tan = hook->pivot_angle - PI / 2;
+	if (swing_dir == NO_DIR)
+	{
+		//inverting movement when aiming for top left of character
+		if (hook->pivot_angle > 0 && hook->pivot_angle < PI / 2)
+		{
+			swing_dir = ANTI_CLOCKWISE;
+			return hook->pivot_angle - PI / 2;
+		}
 
-	//inverting movement for bottom right
-	if (hook->pivot_angle < 0 && hook->pivot_angle > -(PI / 2))
-		return hook->arc_tan = hook->pivot_angle - PI / 2;
+		//inverting movement when aiming for bottom left of character
+		if (hook->pivot_angle < 0 && hook->pivot_angle > -(PI / 2))
+		{
+			swing_dir = ANTI_CLOCKWISE;
+			return hook->pivot_angle - PI / 2;
+		}
 
-	return hook->pivot_angle + PI / 2;
+		swing_dir = CLOCKWISE;
+		return hook->pivot_angle + PI / 2;
+	}
+
+	if (swing_dir == ANTI_CLOCKWISE)
+		return hook->pivot_angle - PI / 2;
+
+	if (swing_dir == CLOCKWISE)
+		return hook->pivot_angle + PI / 2;
 }
 
 void calculate_positions(AEVec2& dir_vec)

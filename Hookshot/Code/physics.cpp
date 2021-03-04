@@ -41,12 +41,18 @@ void physics_update()
 		hook_char_pos_update();
 	}
 
-	//Horizontal Friction. 
-	character->velocity.x = character->velocity.x * 0.97f;
+	//Friction and gravity applies when not using hook
+	if (hook->hook_state != first_tether && hook->hook_state != tethered)
+	{
+		//Horizontal Friction. 
+		character->velocity.x = character->velocity.x * 0.97f;
+	}
 
 	//Gravity.
 	AEVec2 gravity_dir{ 0.0f, -1.0f };
 	set_accel_to_vel(character->velocity, gravity_dir, GRAVITY);
+
+
 
 	//Temporary wall collision
 	if (character->pos.y < -150.0f)
