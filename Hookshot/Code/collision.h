@@ -16,6 +16,41 @@ Technology is prohibited.
 
 #include "pch.h"
 
+
+const int	COLLISION_LEFT = 0x00000001;	//0001
+const int	COLLISION_RIGHT = 0x00000002;	//0010
+const int	COLLISION_TOP = 0x00000004;	//0100
+const int	COLLISION_BOTTOM = 0x00000008;	//1000
+
+enum TYPE_OBJECT
+{
+	TYPE_OBJECT_EMPTY,			//0
+	TYPE_OBJECT_COLLISION,		//1
+	TYPE_OBJECT_HERO,			//2
+	TYPE_OBJECT_ENEMY1,			//3
+	TYPE_OBJECT_COIN			//4
+};
+
+struct Corners 
+{
+	AEVec2 point_1;
+	AEVec2 point_2;
+}typedef Corners;
+
+struct Hotspot
+{
+	Corners left;
+	Corners right;
+	Corners top;
+	Corners bottom;
+}typedef Hotspot;
+
+// check binary map collision
+int	CheckInstanceBinaryMapCollision(float PosX, float PosY, float scaleX, float scaleY);
+
+// snap object back to cell if there is collision
+void SnapToCell(float* Coordinate);
+
 /**************************************************************************/
 /*!
 	A collision test function to see if two rectangle object collide together.

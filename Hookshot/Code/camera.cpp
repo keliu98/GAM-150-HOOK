@@ -14,74 +14,117 @@ written consent of DigiPen Institute of Technology is prohibited.
 
 #include "camera.h"
 
-static AEVec2 move_spd{ 2, 2};
 static AEVec2 center;
+AEVec2 scale, win_min, win_max, dist;
+static int counter = 0;
 
-void camera_init(AEVec2 const character_pos) {
+void draw_static_obj()
+{
+	AEGfxMeshStart();
+
+	AEGfxVertexAdd(40.0f, 140.0f, 0x808080, 0.0f, 0.0f);
+	AEGfxVertexAdd(10.0f, 50.0f, 0x808080, 0.0f, 0.0f);
+
+	AEGfxVertexList* pMeshLine = AEGfxMeshEnd();
+	AE_ASSERT_MESG(pMeshLine, "Failed to create line mesh!!");
+
+	AEGfxSetRenderMode(AE_GFX_RM_COLOR);
+	AEGfxSetPosition(0.0f, 0.0f);
+	AEGfxMeshDraw(pMeshLine, AE_GFX_MDM_LINES_STRIP);
+
+	AEGfxMeshFree(pMeshLine);
+}
+
+void draw_cam_bounding_box()
+{
+	// Informing the library that we're about to start adding triangles
+	AEGfxMeshStart();
+
+	AEGfxVertexAdd(bounding_box.min.x, bounding_box.min.y, 0x808080, 0.0f, 0.0f);
+	AEGfxVertexAdd(bounding_box.min.x, bounding_box.max.y, 0x808080, 0.0f, 0.0f);
+	AEGfxVertexAdd(bounding_box.max.x, bounding_box.max.y, 0x808080, 0.0f, 0.0f);
+	AEGfxVertexAdd(bounding_box.max.x, bounding_box.min.y, 0x808080, 0.0f, 0.0f);
+	AEGfxVertexAdd(bounding_box.min.x, bounding_box.min.y, 0x808080, 0.0f, 0.0f);
+
+	AEGfxVertexList* pMeshLine2 = AEGfxMeshEnd();
+	AE_ASSERT_MESG(pMeshLine2, "Failed to create line mesh!!");
+
+	AEGfxSetRenderMode(AE_GFX_RM_COLOR);
+	AEGfxSetPosition(0.0f, 0.0f);
+	AEGfxMeshDraw(pMeshLine2, AE_GFX_MDM_LINES_STRIP);
+
+	AEGfxMeshFree(pMeshLine2);
+}
+
+void camera_init(AEVec2 character_pos) {
 	center = character_pos;
-	AEVec2 win_min = { AEGfxGetWinMinX(), AEGfxGetWinMinY() };
-	AEVec2 win_max = { AEGfxGetWinMaxX(), AEGfxGetWinMaxY() };
+	scale = { AEGfxGetWinMaxX() * 0.5f, AEGfxGetWinMaxY() * 0.7f };
+	win_min = { AEGfxGetWinMinX(), AEGfxGetWinMinY() };
+	win_max = { AEGfxGetWinMaxX(), AEGfxGetWinMaxY() };
 
 	// Set bounding box min
-	AEVec2Scale(&bounding_box.min, &win_max, 0.25);
-	AEVec2Add(&bounding_box.min, &win_min, &bounding_box.min);
-
+	AEVec2Add( &bounding_box.min, &win_min,  &scale);
 	// Set boundng box max
-	AEVec2Scale(&bounding_box.max, &win_max, 0.25);
-	AEVec2Sub(&bounding_box.max, &win_max, &bounding_box.max);
+	AEVec2Sub(&bounding_box.max, &win_max, &scale);
 
 	// Set camera at character position
 	AEGfxGetCamPosition(&center.x, &center.y);
-
-	printf("Min: %f | %f\n", bounding_box.min.x, bounding_box.min.y);
-	printf("Max: %f | %f\n", bounding_box.max.x, bounding_box.max.y);
-	printf("Center: %f | %f\n", center.x, center.y);
+	AEVec2Sub(&dist, &bounding_box.max, &character_pos);
 }
 
 
 // Create a small bounding box for player - 3/4 of the screen top and bottom
-void camera_update(AEVec2 const character_pos)
+void camera_update(AEVec2 const character_pos, AEVec2 velocity, float scale)
 {
-	// AEGfxGetCamPosition(&pos.x, &pos.y);
+	// set bounding box min
+	AEVec2Add(&bounding_box.max, &center, &dist);
+	// set boundng box max
+	AEVec2Sub(&bounding_box.min, &center, &dist);
 
-	// move left
-	if (character_pos.x < bounding_box.min.x)
+	// move left 
+	if (velocity.x < 0.01f)
 	{
-		center.x -= move_spd.x;
-		AEGfxSetCamPosition(center.x, center.y);
-		bounding_box.min.x -= move_spd.x;
-		bounding_box.max.x -= move_spd.x;
+		if ((character_pos.x - scale) < bounding_box.min.x)
+		{
+			center.x -= bounding_box.min.x - character_pos.x + scale;
+			AEGfxSetCamPosition(center.x, center.y);
+		}
 	}
 
 	// move right
-	if (character_pos.x > bounding_box.max.x)
+	if (velocity.x > 0.01f)
 	{
-		center.x += move_spd.x;
-		AEGfxSetCamPosition(center.x, center.y);
-		bounding_box.min.x += move_spd.x;
-		bounding_box.max.x += move_spd.x;
-
-		printf("Min: %f | %f\n", bounding_box.min.x, bounding_box.min.y);
-		printf("Max: %f | %f\n", bounding_box.max.x, bounding_box.max.y);
-		printf("Center: %f | %f\n", center.x, center.y);
-	}
-
-	// move bottom
-	if (character_pos.y < bounding_box.min.y)
-	{
-		center.y -= move_spd.y;
-		AEGfxSetCamPosition(center.x, center.y);
-		bounding_box.min.y -= move_spd.y;
-		bounding_box.max.y -= move_spd.y;
+		if ((character_pos.x + scale) > bounding_box.max.x)
+		{
+			center.x += character_pos.x + scale - bounding_box.max.x;
+			AEGfxSetCamPosition(center.x, center.y);
+			// printf("Touching bounding box: %d\n", counter++);
+			//center.x += velocity.x * g_dt;
+			//AEGfxSetCamPosition(center.x, center.y);
+		}
 	}
 
 	// move top
-	if (character_pos.y > bounding_box.max.y)
+	if (velocity.y > 0.01f)
 	{
-		center.y += move_spd.y;
-		AEGfxSetCamPosition(center.x, center.y);
-		bounding_box.min.y += move_spd.y;
-		bounding_box.max.y += move_spd.y;
+		if ((character_pos.y + scale) > bounding_box.max.y)
+		{
+			center.y += character_pos.y + scale - bounding_box.max.y;
+			AEGfxSetCamPosition(center.x, center.y);
+			//center.y += velocity.y * g_dt;
+			//AEGfxSetCamPosition(center.x, center.y);
+		}
 	}
+
+	// move bottom
+	if (velocity.y < 0.01f)
+	{
+		if ((character_pos.y - scale) < bounding_box.min.y)
+		{
+			center.y -= bounding_box.min.y - character_pos.y + scale;
+			AEGfxSetCamPosition(center.x, center.y);
+		}
+	}
+
 }
 

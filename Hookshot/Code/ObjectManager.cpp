@@ -76,14 +76,14 @@ void destory_enemy(std::vector<Enemy>& enemies, int index)
 	}
 }
 
-void free_object(std::vector<Enemy>& enemies, Character* character, Hook* hook)
+void free_object(Character* character, Hook* hook) // std::vector<Enemy>& enemies, 
 {
-	for (int i{0}; i < enemies.size(); ++i)
-	{
-		// remove first element
-		delete &enemies[i];
-		enemies.erase(enemies.begin());
-	}
+	//for (int i{0}; i < enemies.size(); ++i)
+	//{
+	//	// remove first element
+	//	delete &enemies[i];
+	//	enemies.erase(enemies.begin());
+	//}
 	
 	delete hook;
 	delete character;

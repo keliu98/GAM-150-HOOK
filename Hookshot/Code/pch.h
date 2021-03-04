@@ -13,6 +13,8 @@
 #include <iostream>
 #include <vector>
 #include <cmath>
+#include <string>
+#include <memory>
 
 #include "AEEngine.h"
 #include "physics.h"
@@ -24,6 +26,8 @@
 #include "GameStateList.h"
 #include "GameStateManager.h"
 #include "camera.h"
+#include "LoadMap.h"
+#include "collision.h"
 
 
 

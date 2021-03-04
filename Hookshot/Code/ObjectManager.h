@@ -127,6 +127,6 @@ std::vector<Enemy> create_enemy(std::vector<Enemy>&);
 void destory_enemy(std::vector<Enemy>&, int index); 
 
 // Free all object
-void free_object(std::vector<Enemy>&, Character*, Hook*);
+void free_object(Character*, Hook*); //std::vector<Enemy>&, 
 // -------------------------------------------------------------------------------------------------------
 

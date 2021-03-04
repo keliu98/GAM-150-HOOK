@@ -15,6 +15,52 @@ Technology is prohibited.
 
 #include "collision.h"
 
+void SnapToCell(float* Coordinate)
+{
+	*Coordinate = (int)(*Coordinate) + 0.5f;
+}
+
+int	CheckInstanceBinaryMapCollision(float PosX, float PosY, float scaleX, float scaleY)
+{
+	int flag = 0;
+	Hotspot item;
+
+	item.right.point_1 = { PosX + scaleX / 2 , PosY + scaleY / 4 };
+	item.right.point_2 = { PosX + scaleX / 2 , PosY - scaleY / 4 };
+
+	item.left.point_1 = { PosX - scaleX / 2, PosY + scaleY / 4 };
+	item.left.point_2 = { PosX - scaleX / 2, PosY - scaleY / 4 };
+
+	item.top.point_1 = { PosX - scaleX / 4, PosY + scaleY / 2 };
+	item.top.point_2 = { PosX + scaleX / 4, PosY + scaleY / 2 };
+
+	item.bottom.point_1 = { PosX - scaleX / 4, PosY - scaleY / 2 };
+	item.bottom.point_2 = { PosX + scaleX / 4, PosY - scaleY / 2 };
+
+	// check collision
+	if (GetCellValue((int)item.right.point_1.x, (int)item.right.point_1.y) ||
+		GetCellValue((int)item.right.point_2.x, (int)item.right.point_2.y))
+	{
+		flag += COLLISION_RIGHT;
+	}
+	if (GetCellValue((int)item.left.point_1.x, (int)item.left.point_1.y) ||
+		GetCellValue((int)item.left.point_2.x, (int)item.left.point_2.y))
+	{
+		flag += COLLISION_LEFT;
+	}
+	if (GetCellValue((int)item.top.point_1.x, (int)item.top.point_1.y) ||
+		GetCellValue((int)item.top.point_2.x, (int)item.top.point_2.y))
+	{
+		flag += COLLISION_TOP;
+	}
+	if (GetCellValue((int)item.bottom.point_1.x, (int)item.bottom.point_1.y) ||
+		GetCellValue((int)item.bottom.point_2.x, (int)item.bottom.point_2.y))
+	{
+		flag += COLLISION_BOTTOM;
+	}
+
+	return flag;
+}
 
 bool CollisionIntersection_RectRect(const AABB& aabb1, const AEVec2& vel1, const AABB& aabb2, const AEVec2& vel2)
 {
@@ -131,3 +177,4 @@ bool CollisionIntersection_RectRect(const AABB& aabb1, const AEVec2& vel1, const
 	// Step 5: Otherwise the rectangles intersect
 	return (x_col && y_col);
 }
+

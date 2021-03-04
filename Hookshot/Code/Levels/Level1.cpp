@@ -7,6 +7,12 @@ float CHARACTER_ACCEL_HORI = 500.0f;
 
 void Level1_Load()
 {
+	//../Code/Levels/Exported.txt
+	if (ImportMapDataFromTxt("../Code/Levels/Map_1.txt"))
+	{	
+		PrintRetrievedInformation();
+	}
+
 	// Will need to create a seperate file for the meshes.
 	// Informing the library that we're about to start adding triangles
 	AEGfxMeshStart();
@@ -28,7 +34,6 @@ void Level1_Load()
 
 	pMesh1 = AEGfxMeshEnd();
 	AE_ASSERT_MESG(pMesh1, "Failed to create mesh 1!!");
-
 }
 
 void Level1_Initialize()
@@ -36,9 +41,9 @@ void Level1_Initialize()
 	character = create_character();
 	hook = create_hook();
 
-	physics_intialize();
-	camera_init(character.pos);
 
+	physics_intialize();
+	camera_init(character->pos);
 }
 
 void Level1_Update()
@@ -68,7 +73,10 @@ void Level1_Update()
 
 	hook_update();
 	physics_update();
-	camera_update(character.pos);
+
+	camera_update(character->pos, character->velocity, character->scale);
+	//draw_cam_bounding_box();
+	//draw_static_obj();
 }
 
 void Level1_Draw()
@@ -129,11 +137,13 @@ void Level1_Draw()
 // Called if change state, for everything including reset
 void Level1_Free()
 {
-	
+	FreeMapData();
+	free_object(character, hook);
+	AEGfxMeshFree(pMesh1);
 }
 
 //  Called if change state and State is NOT reset. ie Change levels. Do not unload if reseting.
 void Level1_Unload()
 {
-	AEGfxMeshFree(pMesh1);
+	
 }

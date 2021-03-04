@@ -26,13 +26,23 @@ struct BoundingBox {
 static Camera::BoundingBox bounding_box;
 
 /// <summary>
+///		This is for testing the camera system.
+/// </summary>
+void draw_static_obj();
+
+/// <summary>
+///		This is for debugging to draw the camera bounding box.
+/// </summary>
+void draw_cam_bounding_box();
+
+/// <summary>
 ///		This function set the camera inital position. 
 /// </summary>
 /// <param name="character_pos"></param>
-void camera_init(AEVec2 const character_pos);
+void camera_init(AEVec2 character_pos);
 
 /// <summary>
 ///		This function update camera position when character exit the camera bounding box.
 /// </summary>
 /// <param name="character_pos"></param>
-void camera_update(AEVec2 const character_pos);
+void camera_update(AEVec2 character_pos, AEVec2 velocity, float scale);
