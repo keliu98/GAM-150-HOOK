@@ -42,7 +42,7 @@ void physics_update()
 		hook_char_pos_update();
 
 		//hook friction, lesser than normal friction
-		character->velocity.x = character->velocity.x * 0.995f;
+		//character->velocity.x = character->velocity.x * 0.995f;
 	}
 	else
 	{
@@ -57,10 +57,10 @@ void physics_update()
 	set_accel_to_vel(character->velocity, gravity_dir, GRAVITY);
 
 
-	//Temporary wall collision
-	if (character->pos.y < -150.0f)
+	//!!!!!!!!!!!!!!!! Temporary wall collision NEED TO CHANGE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	if (character->pos.y < 0.0f)
 	{
-		character->pos.y = -150.1f;
+		character->pos.y = 0.1f;
 		character->velocity.y = 0;
 	}
 

@@ -86,7 +86,7 @@ void camera_update(AEVec2 const character_pos, AEVec2 velocity, float scale)
 	{
 		if ((character_pos.x - scale) < bounding_box.min.x)
 		{
-			center.x -= bounding_box.min.x - character_pos.x + scale;
+			center.x -= bounding_box.min.x - character_pos.x + scale; //translate the camera by the distance of when it exits the bounding box
 			AEGfxSetCamPosition(center.x, center.y);
 		}
 	}
@@ -126,5 +126,13 @@ void camera_update(AEVec2 const character_pos, AEVec2 velocity, float scale)
 		}
 	}
 
+}
+
+
+//FUNCTION TO TRANSLATE THE CURSOR POSITION WHEN THE CAMERA MOVES AS WELL.
+void translate_cursor(int& cursor_x, int& cursor_y)
+{
+	cursor_x += static_cast <int>(center.x);
+	cursor_y += static_cast <int>(center.y);
 }
 

@@ -50,6 +50,9 @@ void Level1_Update()
 {
 	float delta_time = g_dt;
 
+
+	//-------------------------START OF INPUT------------------------------
+
 	// Handling Input
 	AEInputUpdate();
 
@@ -71,15 +74,38 @@ void Level1_Update()
 		character->velocity.y += CHAR_HEIGHT_VEL;
 	}
 
+	AEVec2 cursor_pos;
+	int cursor_x;
+	int cursor_y;
+
+	//temporary input, will need to translate as the camera moves ....
+	AEInputGetCursorPosition(&cursor_x, &cursor_y);
+
+	//centering the cursor_position
+	cursor_x = cursor_x - WINDOW_WIDTH / 2;
+	cursor_y = (cursor_y - WINDOW_HEIGHT / 2) * -1;
+
+	translate_cursor(cursor_x, cursor_y);
+
+	if (AEInputCheckCurr(AEVK_LBUTTON))
+	{
+		fire_hook(cursor_x, cursor_y);
+	}
+
+	if (AEInputCheckReleased(AEVK_LBUTTON))
+	{
+		release_hook();
+	}
+
+
+	//-------------------------END OF INPUT------------------------------
 	
 	physics_update();
 
 	camera_update(character->pos, character->velocity, character->scale);
 		//For Debuging Camera
-		//draw_cam_bounding_box();
-		//draw_static_obj();
-		
-	hook_update();
+		draw_cam_bounding_box();
+		draw_static_obj();
 }
 
 void Level1_Draw()
