@@ -80,14 +80,14 @@ struct Character {
 	int damage;
 
 	Hook* hook;
-} typedef Character;
+};
 
 struct Button {
 	//AABB  aabb;
 	float scale;
 	AEMtx33 transform;
 	AEVec2 pos;
-} typedef Button;
+};
 
 struct Wall {
 	float scale;
@@ -96,7 +96,7 @@ struct Wall {
 	Index spawn_index;
 	AEVec2 position;
 	AABB aabb;
-} typedef Wall;
+};
 
 
 //TODO for yong hui

@@ -3,14 +3,14 @@
 void Input_g_mode() {
 	float CHARACTER_ACCEL_HORI = 500.0f;
 
-	//Temporary for doing physics.cpp
-	if (AEInputCheckCurr(AEVK_A) && hook->flag == false)
+	//Keyboard
+	if (AEInputCheckCurr(AEVK_A))
 	{
 		AEVec2 dir = { -1.0f, 0.0f };
 		set_accel_to_vel(character->velocity, dir, CHARACTER_ACCEL_HORI);
 	}
 
-	if (AEInputCheckCurr(AEVK_D) && hook->flag == false)
+	if (AEInputCheckCurr(AEVK_D))
 	{
 		AEVec2 dir = { 1.0f, 0.0f };
 		set_accel_to_vel(character->velocity, dir, CHARACTER_ACCEL_HORI);
@@ -25,22 +25,28 @@ void Input_g_mode() {
 		}
 	}
 
-}
 
-void Input_g_mode(int x, int y) {
+	//Mouse Press and position
+	int cursor_x;
+	int cursor_y;
+
+	//temporary input, will need to translate as the camera moves ....
+	AEInputGetCursorPosition(&cursor_x, &cursor_y);
+
+	//centering the cursor_position
+	cursor_x = cursor_x - WINDOW_WIDTH / 2;
+	cursor_y = (cursor_y - WINDOW_HEIGHT / 2) * -1;
+
+	translate_cursor(cursor_x, cursor_y);
 
 	if (AEInputCheckCurr(AEVK_LBUTTON))
 	{
-		hook->flag = true;
-		hook->center_pos.x = x;
-		hook->center_pos.y = y;
-		hook->curr_len += 10;
-
+		fire_hook(cursor_x, cursor_y);
 	}
 
 	if (AEInputCheckReleased(AEVK_LBUTTON))
 	{
-		hook->flag = false;
-		hook->curr_len = 0;
+		release_hook();
 	}
+
 }

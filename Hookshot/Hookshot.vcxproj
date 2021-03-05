@@ -113,7 +113,6 @@
     <ClInclude Include="Code\LoadMap.h" />
     <ClInclude Include="Code\menu.h" />
     <ClInclude Include="Code\ObjectManager.h" />
-    <ClInclude Include="Code\Object_List.h" />
     <ClInclude Include="Code\pch.h" />
     <ClInclude Include="Code\physics.h" />
   </ItemGroup>

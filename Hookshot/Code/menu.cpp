@@ -4,6 +4,7 @@ AEGfxVertexList* button = 0;
 AEGfxVertexList* text = 0;
 AEGfxTexture * pTex1; 
 
+//TODO~!!! FREE MEMORY AND CREATE BUTTONS ARRAY, pointer to a list of buttons
 
 void menu_Load() {
 	AEGfxMeshStart();
@@ -30,12 +31,12 @@ void menu_Load() {
 	pTex1 = AEGfxTextureLoad("Title.png");
 	AE_ASSERT_MESG(pTex1, "Failed to create texture1!!");
 
-
 }
 
 void menu_Initialize()
 {
 	button_1 = create_button();
+
 }
 
 void menu_Update() {
@@ -71,4 +72,6 @@ void menu_Free() {
 void menu_Unload() {
 	AEGfxMeshFree(button);
 	AEGfxTextureUnload(pTex1);
+
+	delete[] button_1;
 }

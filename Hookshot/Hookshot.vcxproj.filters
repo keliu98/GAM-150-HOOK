@@ -61,9 +61,6 @@
     <ClInclude Include="Code\LoadMap.h">
       <Filter>Header files</Filter>
     </ClInclude>
-    <ClInclude Include="Code\Object_List.h">
-      <Filter>Header files</Filter>
-    </ClInclude>
     <ClInclude Include="Code\ObjectManager.h">
       <Filter>Header files</Filter>
     </ClInclude>
@@ -71,6 +68,12 @@
       <Filter>Header files</Filter>
     </ClInclude>
     <ClInclude Include="Code\physics.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Input.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\menu.h">
       <Filter>Header files</Filter>
     </ClInclude>
   </ItemGroup>

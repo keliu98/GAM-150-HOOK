@@ -54,9 +54,10 @@ void Level1_Update()
 
 	// Handling Input
 	AEInputUpdate();
-
+	/*
 	//Temporary for doing physics.cpp
 	if (AEInputCheckCurr(AEVK_A))
+
 	{
 		AEVec2 dir = {-1.0f, 0.0f};
 		set_accel_to_vel(character->velocity, dir, CHARACTER_ACCEL_HORI);
@@ -71,31 +72,10 @@ void Level1_Update()
 	if (AEInputCheckTriggered(AEVK_W) && hook->flag == false)
 	{
 		character->velocity.y += CHAR_HEIGHT_VEL;
-	}
+	}*/
+
 	Input_g_mode();
 
-	AEVec2 cursor_pos;
-	int cursor_x;
-	int cursor_y;
-
-	//temporary input, will need to translate as the camera moves ....
-	AEInputGetCursorPosition(&cursor_x, &cursor_y);
-
-	//centering the cursor_position
-	cursor_x = cursor_x - WINDOW_WIDTH / 2;
-	cursor_y = (cursor_y - WINDOW_HEIGHT / 2) * -1;
-
-	translate_cursor(cursor_x, cursor_y);
-
-	if (AEInputCheckCurr(AEVK_LBUTTON))
-	{
-		fire_hook(cursor_x, cursor_y);
-	}
-
-	if (AEInputCheckReleased(AEVK_LBUTTON))
-	{
-		release_hook();
-	}
 
 
 	//-------------------------END OF INPUT------------------------------
@@ -104,8 +84,8 @@ void Level1_Update()
 
 	camera_update(character->pos, character->velocity, character->scale);
 		//For Debuging Camera
-		draw_cam_bounding_box();
-		draw_static_obj();
+		//draw_cam_bounding_box();
+		//draw_static_obj();
 }
 
 void Level1_Draw()
@@ -134,6 +114,7 @@ void Level1_Draw()
 
 
 	//---------for drawing the hook------------
+
 	if (hook->flag == true)
 	{
 		//Scale it by the length of the hook
