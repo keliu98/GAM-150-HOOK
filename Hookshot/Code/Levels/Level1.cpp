@@ -84,8 +84,8 @@ void Level1_Update()
 
 	camera_update(character->pos, character->velocity, character->scale);
 		//For Debuging Camera
-		//draw_cam_bounding_box();
-		//draw_static_obj();
+		draw_cam_bounding_box();
+		draw_static_obj();
 }
 
 void Level1_Draw()
