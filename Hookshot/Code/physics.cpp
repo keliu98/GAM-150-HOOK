@@ -35,17 +35,32 @@ void physics_update()
 	//Within the loop, done constantly
 	set_vel_to_pos(character->pos, character->velocity);
 
-	//Horizontal Friction. 
-	character->velocity.x = character->velocity.x * 0.97f;
+	
+	if (hook->hook_state == tethered)
+	{
+		//Update position based on arc on hook, if the player is outside the range, pull it back.
+		hook_char_pos_update();
+
+		//hook friction, lesser than normal friction
+		character->velocity.x = character->velocity.x * 0.995f;
+	}
+	else
+	{
+		//Horizontal Friction. 
+		character->velocity.x = character->velocity.x * 0.97f;
+
+	}
+
 
 	//Gravity.
 	AEVec2 gravity_dir{ 0.0f, -1.0f };
 	set_accel_to_vel(character->velocity, gravity_dir, GRAVITY);
 
+
 	//Temporary wall collision
-	if (character->pos.y < 0)
+	if (character->pos.y < -150.0f)
 	{
-		character->pos.y = 0.01f;
+		character->pos.y = -150.1f;
 		character->velocity.y = 0;
 	}
 

@@ -54,13 +54,13 @@ void Level1_Update()
 	AEInputUpdate();
 
 	//Temporary for doing physics.cpp
-	if (AEInputCheckCurr(AEVK_A) && hook->flag == false)
+	if (AEInputCheckCurr(AEVK_A))
 	{
 		AEVec2 dir = {-1.0f, 0.0f};
 		set_accel_to_vel(character->velocity, dir, CHARACTER_ACCEL_HORI);
 	}
 
-	if (AEInputCheckCurr(AEVK_D) && hook->flag == false)
+	if (AEInputCheckCurr(AEVK_D))
 	{
 		AEVec2 dir = {1.0f, 0.0f};
 		set_accel_to_vel(character->velocity, dir, CHARACTER_ACCEL_HORI);
@@ -71,12 +71,15 @@ void Level1_Update()
 		character->velocity.y += CHAR_HEIGHT_VEL;
 	}
 
-	hook_update();
+	
 	physics_update();
 
 	camera_update(character->pos, character->velocity, character->scale);
-	//draw_cam_bounding_box();
-	//draw_static_obj();
+		//For Debuging Camera
+		//draw_cam_bounding_box();
+		//draw_static_obj();
+		
+	hook_update();
 }
 
 void Level1_Draw()
