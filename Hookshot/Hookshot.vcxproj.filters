@@ -26,4 +26,13 @@
     <ClInclude Include="Code\physics.h" />
     <ClInclude Include="Code\LoadMap.h" />
   </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source files">
+      <UniqueIdentifier>{4a50b9b7-7e1f-4134-a202-97eccc7ecf83}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files">
+      <UniqueIdentifier>{9874461f-e863-44ca-b70a-3defcc117f78}</UniqueIdentifier>
+      <Extensions>cpp</Extensions>
+    </Filter>
+  </ItemGroup>
 </Project>
