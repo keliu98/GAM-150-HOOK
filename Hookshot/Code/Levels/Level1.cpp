@@ -3,7 +3,6 @@
 //Declaration of Variables.
 AEGfxVertexList* pMesh1 = 0;
 
-float CHARACTER_ACCEL_HORI = 500.0f;
 
 void Level1_Load()
 {
@@ -73,6 +72,7 @@ void Level1_Update()
 	{
 		character->velocity.y += CHAR_HEIGHT_VEL;
 	}
+	Input_g_mode();
 
 	AEVec2 cursor_pos;
 	int cursor_x;

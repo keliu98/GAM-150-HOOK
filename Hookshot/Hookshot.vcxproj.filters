@@ -29,6 +29,12 @@
     <ClCompile Include="Code\ObjectManager.cpp">
       <Filter>Source files</Filter>
     </ClCompile>
+    <ClCompile Include="Code\Input.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\menu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Code\camera.h">

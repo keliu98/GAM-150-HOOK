@@ -223,3 +223,6 @@ void calculate_positions(AEVec2& dir_vec)
 	AEVec2Scale(&hook->center_pos, &hook->center_pos, 0.5f);	    //center the mid point
 }
 
+
+	Input_g_mode(cursor_x, cursor_y);
+}

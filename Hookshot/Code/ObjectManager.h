@@ -8,6 +8,9 @@ extern Character* character;
 struct Hook;
 extern Hook* hook;
 
+struct Button;
+extern Button* button_1;
+
 //min is the bottom-left of the object
 //max is the top-right of the object
 
@@ -79,6 +82,13 @@ struct Character {
 	Hook* hook;
 } typedef Character;
 
+struct Button {
+	//AABB  aabb;
+	float scale;
+	AEMtx33 transform;
+	AEVec2 pos;
+} typedef Button;
+
 struct Wall {
 	float scale;
 	int type;
@@ -95,12 +105,12 @@ enum wall_type
 
 };
 
-struct Button {
+/*struct Button {
 	float height;
 	float width;
 
 	AEVec2 position;
-};
+};*/
 
 
 struct Render {
@@ -121,6 +131,9 @@ Hook* create_hook();
 
 // Create character
 Character* create_character();
+
+// Create Buttons
+Button* create_button();
 
 // Create 1 singular enemy
 std::vector<Enemy> create_enemy(std::vector<Enemy>&);

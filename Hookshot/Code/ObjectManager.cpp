@@ -2,6 +2,7 @@
 
 Character* character;
 Hook* hook;
+Button* button_1;
 
 Hook* create_hook() {
 	Hook* hook = new Hook{
@@ -28,12 +29,13 @@ Hook* create_hook() {
 
 Character* create_character()
 {
-	Character* character = new Character {
+	Character* character = new Character{
 		{0,0},		// Index spawn_index;
 		{0,0},		// AABB  aabb;
 
 		32.0f,		// float scale;
 
+		{0,0},		//AEVec2 transform;
 		{0,0},		// AEVec2 pos;
 		{0,0},		// AEVec2 accel;
 		{0,0},		// AEVec2 velocity;
@@ -49,7 +51,20 @@ Character* create_character()
 	return character;
 }
 
-std::vector<Enemy> create_enemy(std::vector<Enemy>& enemies) 
+
+Button* create_button()
+{
+	Button* button = new Button{
+		40.0f,			//scale
+		{0,0},		//AEVec2 transform;
+		{0,0},		// AEVec2 pos;
+
+	};
+	return button;
+}
+
+
+std::vector<Enemy> create_enemy(std::vector<Enemy>& enemies)
 {
 	// create single enemy
 	Enemy* enemy = new Enemy;
