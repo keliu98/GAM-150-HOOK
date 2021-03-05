@@ -1,1 +1,4 @@
-﻿  Hookshot.vcxproj -> C:\Users\kerr_\Documents\GitHub\GAM-150-HOOK\Hookshot\\bin\Debug-x64\Hookshot.exe
+﻿  main.cpp
+C:\Users\kerr_\Documents\GitHub\GAM-150-HOOK\Hookshot\main.cpp(46,9): warning C4477: 'printf' : format string '%s' requires an argument of type 'char *', but variadic argument 1 has type 'AEGfxVertexList *'
+C:\Users\kerr_\Documents\GitHub\GAM-150-HOOK\Hookshot\main.cpp(46,9): warning C4477: 'printf' : format string '%s' requires an argument of type 'char *', but variadic argument 2 has type 'AEGfxTexture *'
+  Hookshot.vcxproj -> C:\Users\kerr_\Documents\GitHub\GAM-150-HOOK\Hookshot\\bin\Debug-x64\Hookshot.exe
