@@ -130,7 +130,7 @@ void Level1_Draw()
 	// Drawing the mesh (list of triangles)
 	AEGfxMeshDraw(pMesh1, AE_GFX_MDM_TRIANGLES);
 	
-	load_texture("testimageCopy.png");
+	load_texture("blockspng.png");
 	draw_render1(character->pos, pMesh1, pTex2);
 
 

@@ -73,7 +73,7 @@ void load_hookmesh()
 void load_texture(const char* image)
 {
 
-	 pTex1st = AEGfxTextureLoad(image);
+	 pTex1st = AEGfxTextureLoad("testimageCopy.png");
 	AE_ASSERT_MESG(pTex1st, "Failed to create texture1!!");
 	std::cout << "texturedraw\n";
 
