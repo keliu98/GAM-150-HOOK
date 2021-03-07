@@ -2,7 +2,10 @@
 
 //Declaration of Variables.
 AEGfxVertexList* pMesh1 = 0;
-
+AEGfxVertexList* pMesh2;
+AEGfxTexture* pTex2;
+//AEGfxTexture* pTex3;
+AEGfxVertexList* pMesh3;
 
 void Level1_Load()
 {
@@ -14,25 +17,30 @@ void Level1_Load()
 
 	// Will need to create a seperate file for the meshes.
 	// Informing the library that we're about to start adding triangles
+	
 	AEGfxMeshStart();
 
 	// 2 triangle at a time
 	// X, Y, Color, texU, texV
+	
+	AEGfxTriAdd(
+		-0.5f, 0.5f, 0x00FF00FF, 0.0f, 1.0f,
+		-0.5f, -0.5f, 0x00FFFF00, 1.0f, 1.0f,
+		0.5f, 0.5f, 0x0000FFFF, 0.0f, 0.0f);
 
 	AEGfxTriAdd(
-		-0.5f, 0.5f, 0x808080, 0.0f, 0.0f,
-		-0.5f, -0.5f, 0x808080, 0.0f, 0.0f,
-		0.5f, 0.5f, 0x808080, 0.0f, 0.0f);
-
-	AEGfxTriAdd(
-		0.5f, -0.5f, 0x808080, 0.0f, 0.0f,
-		-0.5f, -0.5f, 0x808080, 0.0f, 0.0f,
-		0.5f, 0.5f, 0x808080, 0.0f, 0.0f);
+		0.5f, 0.5f, 0x00FFFFFF, 1.0f, 1.0f,
+		0.5f, -0.5f, 0x00FFFFFF, 1.0f, 0.0f,
+		-0.5f, 0.5f, 0x00FFFFFF, 0.0f, 0.0f);
 
 	// Saving the mesh (list of triangles) in pMesh1
-
+	
 	pMesh1 = AEGfxMeshEnd();
 	AE_ASSERT_MESG(pMesh1, "Failed to create mesh 1!!");
+	
+	//load_hookmesh();
+	load_mesh();
+
 }
 
 void Level1_Initialize()
@@ -43,6 +51,9 @@ void Level1_Initialize()
 
 	physics_intialize();
 	camera_init(character->pos);
+
+
+
 }
 
 void Level1_Update()
@@ -93,8 +104,12 @@ void Level1_Draw()
 	AEMtx33	trans, scale, rot;
 
 
+
 	//---------for drawing the character--------------
 	// Compute the scaling matrix
+	
+	
+
 	AEMtx33Scale(&scale, character->scale, character->scale);
 
 	// Compute the translation matrix
@@ -104,13 +119,20 @@ void Level1_Draw()
 
 	// Will need to create a seperate function for drawing all the objects.
 	// Drawing object 1
+	
 	AEGfxSetRenderMode(AE_GFX_RM_COLOR);
 	// No texture for object 1
 	AEGfxTextureSet(NULL, 0, 0);
+	// No tint
+	AEGfxSetTintColor(1.0f, 1.0f, 1.0f, 1.0f);
 	// Transforing the picture based on its matrix
 	AEGfxSetTransform(character->transform.m);
 	// Drawing the mesh (list of triangles)
 	AEGfxMeshDraw(pMesh1, AE_GFX_MDM_TRIANGLES);
+	
+	load_texture("testimageCopy.png");
+	draw_render1(character->pos, pMesh1, pTex2);
+
 
 
 	//---------for drawing the hook------------
@@ -150,6 +172,8 @@ void Level1_Free()
 	FreeMapData();
 	free_object(character, hook);
 	AEGfxMeshFree(pMesh1);
+	free_render(pMesh2, pTex2);
+	//free_render(pMesh2, pTex3);
 }
 
 //  Called if change state and State is NOT reset. ie Change levels. Do not unload if reseting.

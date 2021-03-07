@@ -99,6 +99,7 @@
     <ClCompile Include="Code\ObjectManager.cpp" />
     <ClCompile Include="Code\pch.cpp" />
     <ClCompile Include="Code\physics.cpp" />
+    <ClCompile Include="Code\testrender.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -115,6 +116,22 @@
     <ClInclude Include="Code\ObjectManager.h" />
     <ClInclude Include="Code\pch.h" />
     <ClInclude Include="Code\physics.h" />
+    <ClInclude Include="Code\testrender.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Alpha_Engine.dll" />
+    <None Include="bin\Alpha_EngineD.dll" />
+    <None Include="bin\freetype.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="bin\blockspng.png" />
+    <Image Include="bin\PlanetTexture.png" />
+    <Image Include="bin\testimageCopy.png" />
+    <Image Include="bin\Title.png" />
+    <Image Include="bin\YellowTexture.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="bin\Roboto-Regular.ttf" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

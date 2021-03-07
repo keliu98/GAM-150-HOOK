@@ -30,7 +30,7 @@
 #include "camera.h"
 #include "LoadMap.h"
 #include "collision.h"
-
+#include "testrender.h"
 
 
 #endif //PCH_H

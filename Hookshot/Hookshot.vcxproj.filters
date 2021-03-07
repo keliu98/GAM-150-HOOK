@@ -35,6 +35,9 @@
     <ClCompile Include="Code\menu.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Code\testrender.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Code\camera.h">
@@ -76,6 +79,9 @@
     <ClInclude Include="Code\menu.h">
       <Filter>Header files</Filter>
     </ClInclude>
+    <ClInclude Include="Code\testrender.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Source files">
@@ -86,5 +92,20 @@
       <UniqueIdentifier>{9874461f-e863-44ca-b70a-3defcc117f78}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
     </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Alpha_Engine.dll" />
+    <None Include="bin\Alpha_EngineD.dll" />
+    <None Include="bin\freetype.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="bin\PlanetTexture.png" />
+    <Image Include="bin\Title.png" />
+    <Image Include="bin\YellowTexture.png" />
+    <Image Include="bin\blockspng.png" />
+    <Image Include="bin\testimageCopy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="bin\Roboto-Regular.ttf" />
   </ItemGroup>
 </Project>
