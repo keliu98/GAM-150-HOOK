@@ -1,6 +1,22 @@
-#pragma once
 
 #include "pch.h"
+
+//globals for tracking texture
+static const int MAX_TEXTURE = 20;
+AEGfxTexture* texturelist[MAX_TEXTURE];
+int texture_count;
+
+//Pointer to square mesh
+AEGfxVertexList* square_mesh;
+
+//Pointer to the wall texture
+AEGfxTexture* wall_texture;
+
+//Pointer to the character texture
+AEGfxTexture* character_texture;
+
+//Pointer to the hook texture
+AEGfxTexture* hook_texture;
 
 struct Render
 {
@@ -15,7 +31,9 @@ struct Render
 	AEMtx33 transform;
 };
 
-AEGfxVertexList* load_mesh()
+void draw_render(Render& render);
+
+void load_square_mesh()
 {
 
 	AEGfxMeshStart();
@@ -31,25 +49,80 @@ AEGfxVertexList* load_mesh()
 		-0.5, 0.5, 0x00FFFFFF, 0.0f, 0.0f);
 
 
-	AEGfxVertexList* pMesh = AEGfxMeshEnd();
-	AE_ASSERT_MESG(pMesh, "Failed to create mesh 1!!");
-
-	return pMesh;
+	square_mesh = AEGfxMeshEnd();
+	AE_ASSERT_MESG(square_mesh, "Failed to create mesh 1!!");
 }
+
 
 AEGfxTexture* load_texture(const char* image)
 {
 
 	AEGfxTexture* pTex1st = AEGfxTextureLoad(image);
 	AE_ASSERT_MESG(pTex1st, "Failed to create texture1!!");
+	texturelist[texture_count] = pTex1st;
+	texture_count++;
+
 	return pTex1st;
 }
 
-void update_render()
+//WEI_WEN: PLS LIU KE I AM LEAVING THIS TO YOU
+//!!!!!!Need to change this to that it becomes specific ie load walls texture only when neccessary. cause right now its loading all textures!!!!
+//for example we dont want to load wall texture for main menu 
+void load_render()
+{
+	load_square_mesh();
+
+	//load texture for wall
+	wall_texture = load_texture("../Images/Dirt1.png");
+	character_texture = load_texture("../Images/Dirt1.png");
+	hook_texture = load_texture("../Images/Dirt1.png");
+
+}
+
+void update_render_walls()
 {
 	Render render;
-	//Drawing character
+
+	for (Wall const &wall : walls)
+	{
+		render.pos = wall.position;
+		render.x_scale = wall.scale;
+		render.y_scale = wall.scale;
+		render.pMesh = square_mesh;
+		render.pTexture = wall_texture;
+		render.dir = 0;
+
+		draw_render(render);
+	}
+}
+
+void update_render_character()
+{
+	Render render;
+	render.pos = character->pos;
+	render.x_scale = character->scale;
+	render.y_scale = character->scale;
+	render.pMesh = square_mesh;
+	render.pTexture = character_texture;
+	render.dir = 0; //TO update base on character movement
+
 	draw_render(render);
+}
+
+void update_render_hook()
+{
+	if (hook->flag == true)
+	{
+		Render render;
+		render.pos = hook->center_pos;
+		render.x_scale = hook->scale;
+		render.y_scale = hook->curr_len;
+		render.pMesh = square_mesh; 
+		render.pTexture = hook_texture;
+		render.dir = hook->pivot_angle - PI/2; //TEMPORARY FIX , SHOULD NOT NEED TO ROTATE IT AGAIN :/
+
+		draw_render(render);
+	}
 }
 
 
@@ -58,30 +131,43 @@ void draw_render(Render &render)
 
 	AEMtx33	trans, scale, rot;
 
-	//Scale it by the length of the hook
+	// Compute the scalling matrix
 	AEMtx33Scale(&scale, render.x_scale, render.y_scale);
-	// Compute the translation matrix
-	AEMtx33Trans(&trans, render.pos.x, render.pos.y);
-	//Rotate it by the angle hooked
+
+	// Compute the rotational matrix
 	AEMtx33Rot(&rot, render.dir);
 
-	AEMtx33Concat(&hook->transform, &rot, &scale);
-	AEMtx33Concat(&hook->transform, &trans, &hook->transform);
+	// Compute the translation matrix
+	AEMtx33Trans(&trans, render.pos.x, render.pos.y);
+
+	//Combining the matrix
+	AEMtx33Concat(&render.transform, &rot, &scale);
+	AEMtx33Concat(&render.transform, &trans, &render.transform);
 
 	// Drawing object  - (first) - No tint
 	AEGfxSetRenderMode(AE_GFX_RM_TEXTURE);	// set to texture
 	// No tint
 	AEGfxSetTintColor(1.0f, 1.0f, 1.0f, 1.0f);
 	// Set texture
-	AEGfxTextureSet(render.pTexture, 0.0f, 0.0f);		// Same object, different texture
+	AEGfxTextureSet(render.pTexture, 0.0f, 0.0f); // Same object, different texture
+	// Set transformation matrix
+	AEGfxSetTransform(render.transform.m);
 	// Draw the mesh
 	AEGfxMeshDraw(render.pMesh, AE_GFX_MDM_TRIANGLES);
 
 }
 
-void free_render(AEGfxVertexList* pMesh1, AEGfxTexture* pTex1)
+void unload_render()
 {
-	AEGfxTextureUnload(pTex1);
-	AEGfxMeshFree(pMesh1);
+	//unload texture
+	for (int i = 0; i < MAX_TEXTURE; i++)
+	{
+		if (texturelist[i] != nullptr)
+		{
+			AEGfxTextureUnload(texturelist[i]);
+		}
+	}
 
+	//free mesh
+	AEGfxMeshFree(square_mesh);
 }

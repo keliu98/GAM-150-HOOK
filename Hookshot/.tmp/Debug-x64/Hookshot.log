@@ -12,5 +12,5 @@
   physics.cpp
   main.cpp
   Generating Code...
-C:\Users\egita\Desktop\SiT Stuff\Sem 2\CSD 1450 - Software Development 2\GAM-150-HOOK\Hookshot\Code\Hook.cpp(213): warning C4715: 'calculate_arc': not all control paths return a value
-  Hookshot.vcxproj -> C:\Users\egita\Desktop\SiT Stuff\Sem 2\CSD 1450 - Software Development 2\GAM-150-HOOK\Hookshot\\bin\Debug-x64\Hookshot.exe
+C:\Users\james\Documents\Software Engineering Project\JUMPS\GAM-150-HOOK\Hookshot\Code\Hook.cpp(213): warning C4715: 'calculate_arc': not all control paths return a value
+  Hookshot.vcxproj -> C:\Users\james\Documents\Software Engineering Project\JUMPS\GAM-150-HOOK\Hookshot\\bin\Debug-x64\Hookshot.exe

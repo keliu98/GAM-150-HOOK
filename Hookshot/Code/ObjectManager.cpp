@@ -13,6 +13,8 @@ Hook* create_hook() {
 
 		{0,0},		  //AEVec2 transform
 
+		{4.0},		  //float scale;
+
 		{0,0},        //AEVec2 head_pos
 		{0,0},        //AEVec2 center_pos
 		{0,0},        //AEVec2 tail_pos
@@ -110,7 +112,7 @@ void free_object(Character* character, Hook* hook, std::vector<Wall> walls)
 
 
 // Question: Use vector or array? Cause wall can be nullpointer.
-void create_wall(AEGfxVertexList* mesh, AEGfxTexture* texture, int type, float scale, AEVec2 pos)
+void create_wall(int type, float scale, AEVec2 pos)
 {
 	// create a wall
 	// Wall *wall = new Wall;
@@ -121,10 +123,5 @@ void create_wall(AEGfxVertexList* mesh, AEGfxTexture* texture, int type, float s
 	wall.scale = scale;
 	wall.position = pos;
 	walls.push_back(wall);
-
-	// load wall graphic here
-	draw_render1(pos, mesh, texture);
-
-	//free_render(wall_mesh, wall_texture);
 }
 

@@ -41,6 +41,8 @@ struct Hook {
 
 	AEMtx33 transform;
 
+	float scale;
+
 	AEVec2 head_pos;
 	AEVec2 center_pos;
 	AEVec2 tail_pos;
@@ -89,6 +91,14 @@ struct Button {
 	AEVec2 pos;
 };
 
+enum wall_type
+{
+	TEMP,
+	WALL1,
+	WALL2,
+	WALL3
+};
+
 struct Wall {
 	float scale;
 	int type;
@@ -96,15 +106,9 @@ struct Wall {
 	Index spawn_index;
 	AEVec2 position;
 	AABB aabb;
-}typedef Wall;
+};
 
 extern std::vector<Wall> walls;
-
-//TODO for yong hui
-enum wall_type
-{
-
-};
 
 /*struct Button {
 	float height;
@@ -112,14 +116,6 @@ enum wall_type
 
 	AEVec2 position;
 };*/
-
-
-struct Render {
-	// all the render stuff - add more
-	char* texture;
-	float scale;
-
-};
 
 //TO be done by yong hui
 struct Enemy {
@@ -139,7 +135,8 @@ Button* create_button();
 // Create 1 singular enemy
 std::vector<Enemy> create_enemy(std::vector<Enemy>&);
 
-void create_wall(AEGfxVertexList* mesh, AEGfxTexture* texture, int type, float scale, AEVec2 pos);
+void create_wall(int type, float scale, AEVec2 pos);
+
 // loadLevel is defined in LoadMap.cpp
 extern void loadLevel(AEGfxVertexList* mesh, AEGfxTexture* texture, float scale, AEVec2 pos);
 

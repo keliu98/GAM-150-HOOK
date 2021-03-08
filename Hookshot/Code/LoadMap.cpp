@@ -119,21 +119,33 @@ int	GetCellValue(int X, int Y)
 	return 0;
 }
 
-void loadLevel(AEGfxVertexList* mesh, AEGfxTexture* texture, float scale, AEVec2 pos)
+//WEI WEN: We will need to change this to intialse level, so that we can reset the positions of all the characters ?
+void IntializeLevel()
 {
-	AEVec2 init_pos = pos;
+	float wall_scale = 20.0f;
+	AEVec2 wall_pos = { AEGfxGetWinMinX() + wall_scale, AEGfxGetWinMinY() + wall_scale }; // store bottom left of the position
+
+	AEVec2 init_pos = wall_pos;
 	for (int x = 0; x < map_height; ++x)
 	{
 		// std::cout << x << " | ";
 		for (int y = 0; y < map_width; ++y)
 		{
 			if (binary_collision_array[x][y] == 1)
-				create_wall(mesh, texture, 0, scale, pos);
-				pos.x += (scale * 2);
+			{
+				create_wall(TEMP, wall_scale * 2, wall_pos);
+			}
+
+			wall_pos.x += (wall_scale * 2);
 		}
-		pos.y += (scale * 2);
-		pos.x = init_pos.x;
+		wall_pos.y += (wall_scale * 2);
+		wall_pos.x = init_pos.x;
 	}
+
+	//WEI WEN: Egi need ya to translate the position of where the character is on the map data into the creating the characters at the specific spot. Probably need to change it so that
+	//the function create character takes in the position. 
+	character = create_character();
+	hook = create_hook();
 }
 
 
