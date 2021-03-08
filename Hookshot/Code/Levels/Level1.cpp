@@ -27,12 +27,11 @@ void Level1_Initialize()
 	//Intialize camera
 	camera_init(character->pos);
 
+	
 }
 
 void Level1_Update()
 {
-	float delta_time = g_dt;
-
 	// Handling Input
 	AEInputUpdate();
 	Input_g_mode();
@@ -53,6 +52,7 @@ void Level1_Draw()
 	update_render_walls();
 	update_render_character();
 	update_render_hook();
+	update_render_enemy();
 
 
 	//Temporary for exiting the system

@@ -210,6 +210,8 @@ float calculate_arc()
 
 	if (swing_dir == swing_dir::CLOCKWISE)
 		return hook->pivot_angle + PI / 2;
+
+	return 0;
 }
 
 void calculate_positions(AEVec2& dir_vec)

@@ -4,6 +4,7 @@ Character* character;
 Hook* hook;
 Button* button_1;
 std::vector<Wall> walls;
+std::vector<Enemy> enemies;
 
 Hook* create_hook() {
 	Hook* hook = new Hook{
@@ -33,7 +34,6 @@ Hook* create_hook() {
 Character* create_character()
 {
 	Character* character = new Character{
-		{0,0},		// Index spawn_index;
 		{0,0},		// AABB  aabb;
 
 		32.0f,		// float scale;
@@ -58,6 +58,7 @@ Character* create_character()
 Button* create_button()
 {
 	Button* button = new Button{
+		{0,0},
 		40.0f,			//scale
 		{0,0},		//AEVec2 transform;
 		{0,0},		// AEVec2 pos;
@@ -67,19 +68,18 @@ Button* create_button()
 }
 
 
-std::vector<Enemy> create_enemy(std::vector<Enemy>& enemies)
+void create_enemy(int enemy_type, AEVec2 pos)
 {
 	// create single enemy
-	Enemy* enemy = new Enemy;
+	Enemy enemy;
+	
+	//TODO intialise values
+	enemy.scale = 32.0f;
+	enemy.dir = 0.0f;
+	enemy.pos = pos;
+	enemy.type = enemy_type;
 
-	// init values here
-
-	enemies.push_back(*enemy);
-
-	// load enemy graphic here? (Use render system)
-
-	// return vector
-	return enemies;
+	enemies.push_back(enemy);
 }
 
 // When enemy is defeated by players

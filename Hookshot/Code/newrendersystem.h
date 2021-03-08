@@ -9,6 +9,7 @@ AEGfxTexture* load_texture(const char* image);
 void update_render_walls();
 void update_render_character();
 void update_render_hook();
+void update_render_enemy();
 
 void load_render();
 void unload_render();

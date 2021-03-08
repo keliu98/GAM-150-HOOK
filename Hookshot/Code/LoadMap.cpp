@@ -133,7 +133,7 @@ void IntializeLevel()
 		{
 			if (binary_collision_array[x][y] == 1)
 			{
-				create_wall(TEMP, wall_scale * 2, wall_pos);
+				create_wall(TEMP_WALL, wall_scale * 2, wall_pos);
 			}
 
 			wall_pos.x += (wall_scale * 2);
@@ -146,6 +146,7 @@ void IntializeLevel()
 	//the function create character takes in the position. 
 	character = create_character();
 	hook = create_hook();
+	create_enemy(TEMP_WALL, {0.0f, 0.0f});
 }
 
 

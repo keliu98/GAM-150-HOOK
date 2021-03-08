@@ -125,6 +125,22 @@ void update_render_hook()
 	}
 }
 
+void update_render_enemy()
+{
+	Render render;
+	for (Enemy const& enemy : enemies)
+	{
+		render.pos = enemy.pos;
+		render.x_scale = enemy.scale;
+		render.y_scale = enemy.scale;
+		render.pMesh = square_mesh;
+		render.pTexture = wall_texture; //TO CHANGE !!!!, render based on the enemy type and its state
+		render.dir = 0;
+
+		draw_render(render);
+	}
+}
+
 
 void draw_render(Render &render)
 {

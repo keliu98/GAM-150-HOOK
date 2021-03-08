@@ -51,7 +51,6 @@ void physics_update()
 
 	}
 
-
 	//Gravity.
 	AEVec2 gravity_dir{ 0.0f, -1.0f };
 	set_accel_to_vel(character->velocity, gravity_dir, GRAVITY);
@@ -65,7 +64,34 @@ void physics_update()
 		character->char_state = idle;
 	}
 
-//------------------Updating Character physics---------------------
+
+//------------------Updating Enemy physics---------------------
+	
+	//TEMP ENEMY VELOCITY
+	for (Enemy& enemy : enemies)
+	{
+		enemy.velocity.x = -20;
+	}
+
+	//TODO KNOCKBACK AND COLLISION AYYEE
+	for (Enemy& enemy : enemies)
+	{
+		set_vel_to_pos(enemy.pos, enemy.velocity);
+
+		//Gravity.
+		set_accel_to_vel(enemy.velocity, gravity_dir, GRAVITY);
+
+		//!!!!!!!!!!!!!!!! Temporary wall collision NEED TO CHANGE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+		if (enemy.pos.y < 0.0f)
+		{
+			enemy.pos.y = 0.1f;
+			enemy.velocity.y = 0;
+		}
+	}
+
+
+
+
 }
 
 //Calculates and sets the velocity of the object using an flat acceleration value and a normalised direction vector. 

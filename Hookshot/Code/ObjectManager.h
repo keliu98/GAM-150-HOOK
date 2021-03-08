@@ -11,18 +11,18 @@ extern Hook* hook;
 struct Button;
 extern Button* button_1;
 
-//min is the bottom-left of the object
-//max is the top-right of the object
+//Extern list to use for walls and enemies
+struct Wall;
+extern std::vector<Wall> walls;
+
+struct Enemy;
+extern std::vector<Enemy> enemies;
+
+//-----------------------------------------------------------
 
 struct AABB {
-	AEVec2 min;
-	AEVec2 max;
-};
-
-//Used for spliting the screen into multiple parts
-struct Index {
-	int x_index;
-	int y_index;
+	AEVec2 min; //min is the bottom-left of the object
+	AEVec2 max; //max is the top-right of the object
 };
 
 enum char_state {
@@ -32,6 +32,28 @@ enum char_state {
 	falling,
 	idle,
 	onhook
+};
+
+enum hook_state
+{
+	not_firing,
+	firing,
+	tethered
+};
+
+enum wall_type
+{
+	TEMP_WALL,
+	WALL1,
+	WALL2,
+	WALL3
+};
+
+enum enemy_type
+{
+	TEMP_ENEMY,
+	BASIC,
+	ELITE,
 };
 
 struct Hook {
@@ -55,15 +77,8 @@ struct Hook {
 	float pivot_angle;
 };
 
-enum hook_state
-{
-	not_firing,
-	firing,
-	tethered
-};
 
 struct Character {
-	Index spawn_index;
 	AABB  aabb;
 
 	float scale;
@@ -85,42 +100,41 @@ struct Character {
 };
 
 struct Button {
-	//AABB  aabb;
+	AABB  aabb;
 	float scale;
 	AEMtx33 transform;
 	AEVec2 pos;
 };
 
-enum wall_type
-{
-	TEMP,
-	WALL1,
-	WALL2,
-	WALL3
-};
 
 struct Wall {
+
 	float scale;
 	int type;
 
-	Index spawn_index;
 	AEVec2 position;
 	AABB aabb;
 };
 
-extern std::vector<Wall> walls;
 
-/*struct Button {
-	float height;
-	float width;
-
-	AEVec2 position;
-};*/
-
-//TO be done by yong hui
 struct Enemy {
-	//TODO
-} typedef Enemy;
+	AABB  aabb;
+
+	float scale;
+	float dir;
+	AEMtx33 transform;
+
+	AEVec2 pos;
+	AEVec2 velocity;
+
+	float jump_height;
+	float gravity;
+
+	int type;
+
+	int lives;
+	int damage;
+};
 
 // --------------------------FUNCTIONS FROM OBJECTMANAGER.CPP---------------------------------------------
 // Create hook
@@ -132,13 +146,11 @@ Character* create_character();
 // Create Buttons
 Button* create_button();
 
-// Create 1 singular enemy
-std::vector<Enemy> create_enemy(std::vector<Enemy>&);
+// Inserts a enemy into the vecot list enemies
+void create_enemy(int enemy_type, AEVec2 pos);
 
+// Inserts a wall into the vector list walls
 void create_wall(int type, float scale, AEVec2 pos);
-
-// loadLevel is defined in LoadMap.cpp
-extern void loadLevel(AEGfxVertexList* mesh, AEGfxTexture* texture, float scale, AEVec2 pos);
 
 // When enemy is defeated by players (pass in enemy vec and index to delete)
 void destory_enemy(std::vector<Enemy>&, int index); 
