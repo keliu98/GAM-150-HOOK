@@ -28,9 +28,9 @@
 #include "GameStateList.h"
 #include "GameStateManager.h"
 #include "camera.h"
-#include "LoadMap.h"
 #include "collision.h"
-
+#include "newrendersystem.h"
+#include "LoadMap.h"
 
 
 #endif //PCH_H

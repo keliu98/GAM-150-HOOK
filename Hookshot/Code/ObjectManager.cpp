@@ -3,6 +3,7 @@
 Character* character;
 Hook* hook;
 Button* button_1;
+std::vector<Wall> walls;
 
 Hook* create_hook() {
 	Hook* hook = new Hook{
@@ -94,14 +95,14 @@ void destory_enemy(std::vector<Enemy>& enemies, int index)
 	}
 }
 
-void free_object(Character* character, Hook* hook) // std::vector<Enemy>& enemies, 
+void free_object(Character* character, Hook* hook, std::vector<Wall> walls)
 {
-	//for (int i{0}; i < enemies.size(); ++i)
-	//{
-	//	// remove first element
-	//	delete &enemies[i];
-	//	enemies.erase(enemies.begin());
-	//}
+	for (int i{0}; i < walls.size(); ++i)
+	{
+		// remove first element
+		//delete & walls[i];
+		walls.erase(walls.begin());
+	}
 	
 	delete hook;
 	delete character;
@@ -109,20 +110,21 @@ void free_object(Character* character, Hook* hook) // std::vector<Enemy>& enemie
 
 
 // Question: Use vector or array? Cause wall can be nullpointer.
-//std::vector<Wall> create_wall (std::vector<Wall>& walls, int type, float scale, AEVec2 pos)
-//{
-//	// create a wall
-//	Wall *wall = new Wall;
-//
-//	// init values
-//	wall->type = type;
-//	wall->scale = scale;
-//	wall->position = pos;
-//	walls.push_back(*wall);
-//
-//	// load wall graphic here?
-//
-//	// return vector
-//	return walls;
-//}
+void create_wall(AEGfxVertexList* mesh, AEGfxTexture* texture, int type, float scale, AEVec2 pos)
+{
+	// create a wall
+	// Wall *wall = new Wall;
+	Wall wall;
+
+	// init values
+	wall.type = type;
+	wall.scale = scale;
+	wall.position = pos;
+	walls.push_back(wall);
+
+	// load wall graphic here
+	draw_render1(pos, mesh, texture);
+
+	//free_render(wall_mesh, wall_texture);
+}
 

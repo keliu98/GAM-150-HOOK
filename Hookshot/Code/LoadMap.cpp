@@ -14,6 +14,7 @@ written consent of DigiPen Institute of Technology is prohibited.
 /******************************************************************************/
 #include "LoadMap.h"
 
+
 int ImportMapDataFromTxt(const char* FileName)
 {
 	std::ifstream read_file;
@@ -23,10 +24,10 @@ int ImportMapDataFromTxt(const char* FileName)
 	if (read_file)
 	{
 		std::getline(read_file, file_input);
-		map_width = (int)file_input.back() - 48;
+		map_width = std::stoi(file_input.substr(file_input.find_first_of(" ")));
 
 		std::getline(read_file, file_input);
-		map_height = (int)file_input.back() - 48;
+		map_height = std::stoi(file_input.substr(file_input.find_first_of(" ")));
 
 		map_data = new int* [map_height];
 		binary_collision_array = new int* [map_height];
@@ -83,7 +84,7 @@ void FreeMapData(void)
 
 void PrintRetrievedInformation(void)
 {
-	std::cout << "Map:" << std::endl;
+	std::cout << "Map: " << map_width << " x " << map_height << std::endl;
 
 	for (int x = 0; x < map_height; ++x)
 	{
@@ -116,6 +117,23 @@ int	GetCellValue(int X, int Y)
 	}
 
 	return 0;
+}
+
+void loadLevel(AEGfxVertexList* mesh, AEGfxTexture* texture, float scale, AEVec2 pos)
+{
+	AEVec2 init_pos = pos;
+	for (int x = 0; x < map_height; ++x)
+	{
+		// std::cout << x << " | ";
+		for (int y = 0; y < map_width; ++y)
+		{
+			if (binary_collision_array[x][y] == 1)
+				create_wall(mesh, texture, 0, scale, pos);
+				pos.x += (scale * 2);
+		}
+		pos.y += (scale * 2);
+		pos.x = init_pos.x;
+	}
 }
 
 

@@ -96,6 +96,7 @@
     <ClCompile Include="Code\Levels\Level1.cpp" />
     <ClCompile Include="Code\LoadMap.cpp" />
     <ClCompile Include="Code\menu.cpp" />
+    <ClCompile Include="Code\newrendersystem.cpp" />
     <ClCompile Include="Code\ObjectManager.cpp" />
     <ClCompile Include="Code\pch.cpp" />
     <ClCompile Include="Code\physics.cpp" />
@@ -112,6 +113,7 @@
     <ClInclude Include="Code\extern.h" />
     <ClInclude Include="Code\LoadMap.h" />
     <ClInclude Include="Code\menu.h" />
+    <ClInclude Include="Code\newrendersystem.h" />
     <ClInclude Include="Code\ObjectManager.h" />
     <ClInclude Include="Code\pch.h" />
     <ClInclude Include="Code\physics.h" />

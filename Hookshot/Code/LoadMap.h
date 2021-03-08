@@ -42,3 +42,5 @@ void PrintRetrievedInformation(void);
 
 // retrieve value from cell
 int	GetCellValue(int X, int Y);
+
+// std::vector<Wall*> loadLevel();

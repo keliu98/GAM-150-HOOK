@@ -3,12 +3,17 @@
 //Declaration of Variables.
 AEGfxVertexList* pMesh1 = 0;
 
+// For drawing of wall
+AEGfxVertexList* wall_mesh;
+AEGfxTexture* wall_texture;
+AEVec2 wall_pos; // store bottom left of the position
+float wall_size = 20.0f;
 
 void Level1_Load()
 {
 	//../Code/Levels/Exported.txt
 	if (ImportMapDataFromTxt("../Code/Levels/Map_1.txt"))
-	{	
+	{
 		PrintRetrievedInformation();
 	}
 
@@ -33,6 +38,9 @@ void Level1_Load()
 
 	pMesh1 = AEGfxMeshEnd();
 	AE_ASSERT_MESG(pMesh1, "Failed to create mesh 1!!");
+
+	wall_mesh = load_mesh(20.0f);
+	wall_texture = load_texture("../Images/Dirt1.png");
 }
 
 void Level1_Initialize()
@@ -40,9 +48,11 @@ void Level1_Initialize()
 	character = create_character();
 	hook = create_hook();
 
-
 	physics_intialize();
 	camera_init(character->pos);
+
+	// init wall pos
+	wall_pos = { AEGfxGetWinMinX() + wall_size, AEGfxGetWinMinY() + wall_size };
 }
 
 void Level1_Update()
@@ -90,8 +100,12 @@ void Level1_Update()
 
 void Level1_Draw()
 {
+	// load the level by drawing walls
+	loadLevel(wall_mesh, wall_texture, wall_size, wall_pos);
+
 	AEMtx33	trans, scale, rot;
 
+	// draw_render1({ 100,100 }, wall_mesh, wall_texture);
 
 	//---------for drawing the character--------------
 	// Compute the scaling matrix
@@ -137,8 +151,6 @@ void Level1_Draw()
 	}
 
 
-
-
 	//Temporary for exiting the system
 	if (AEInputCheckTriggered(AEVK_ESCAPE) || 0 == AESysDoesWindowExist())
 		next = GS_QUIT;
@@ -148,8 +160,10 @@ void Level1_Draw()
 void Level1_Free()
 {
 	FreeMapData();
-	free_object(character, hook);
 	AEGfxMeshFree(pMesh1);
+	free_object(character, hook, walls);
+	// free wall mesh
+	free_render(wall_mesh, wall_texture);
 }
 
 //  Called if change state and State is NOT reset. ie Change levels. Do not unload if reseting.

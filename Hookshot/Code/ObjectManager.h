@@ -96,8 +96,9 @@ struct Wall {
 	Index spawn_index;
 	AEVec2 position;
 	AABB aabb;
-};
+}typedef Wall;
 
+extern std::vector<Wall> walls;
 
 //TODO for yong hui
 enum wall_type
@@ -138,10 +139,14 @@ Button* create_button();
 // Create 1 singular enemy
 std::vector<Enemy> create_enemy(std::vector<Enemy>&);
 
+void create_wall(AEGfxVertexList* mesh, AEGfxTexture* texture, int type, float scale, AEVec2 pos);
+// loadLevel is defined in LoadMap.cpp
+extern void loadLevel(AEGfxVertexList* mesh, AEGfxTexture* texture, float scale, AEVec2 pos);
+
 // When enemy is defeated by players (pass in enemy vec and index to delete)
 void destory_enemy(std::vector<Enemy>&, int index); 
 
 // Free all object
-void free_object(Character*, Hook*); //std::vector<Enemy>&, 
+void free_object(Character* character, Hook* hook, std::vector<Wall> walls);
 // -------------------------------------------------------------------------------------------------------
 
