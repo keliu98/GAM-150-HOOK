@@ -57,3 +57,10 @@ void SnapToCell(float* Coordinate);
 */
 /**************************************************************************/
 bool CollisionIntersection_RectRect(const struct AABB& aabb1, const AEVec2& vel1, const struct AABB& aabb2, const AEVec2& vel2);
+
+/**************************************************************************/
+/*!
+	A collision test function to see if a point object and rectangle object collide together.
+*/
+/**************************************************************************/
+bool CollisionIntersection_PointRect(const AEVec2 point1, const AABB& aabb2);

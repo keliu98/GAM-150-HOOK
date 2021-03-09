@@ -12,3 +12,5 @@ extern int      WINDOW_WIDTH;
 
 extern float    CHAR_HEIGHT_VEL;
 
+extern const float GRAVITY;
+

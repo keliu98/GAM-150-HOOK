@@ -4,10 +4,12 @@
 
 AEGfxVertexList* load_mesh(float size); //player
 
-AEGfxVertexList* load_hookmesh(); // hook
-
 AEGfxTexture* load_texture(const char* image);
 
-void draw_render1(AEVec2 Position, AEGfxVertexList* pMesh1, AEGfxTexture* pTex1);
+void update_render_walls();
+void update_render_character();
+void update_render_hook();
+void update_render_enemy();
 
-void free_render(AEGfxVertexList* pMesh1, AEGfxTexture* pTex1);
+void load_render();
+void unload_render();
