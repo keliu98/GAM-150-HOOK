@@ -133,6 +133,9 @@
   <ItemGroup>
     <Font Include="bin\Roboto-Regular.ttf" />
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="levels\leveldesign.txt" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

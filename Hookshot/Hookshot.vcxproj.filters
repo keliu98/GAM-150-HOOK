@@ -108,4 +108,7 @@
   <ItemGroup>
     <Font Include="bin\Roboto-Regular.ttf" />
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="levels\leveldesign.txt" />
+  </ItemGroup>
 </Project>
