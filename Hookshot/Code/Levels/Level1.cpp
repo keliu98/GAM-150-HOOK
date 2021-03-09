@@ -12,7 +12,7 @@ float wall_size = 20.0f;
 void Level1_Load()
 {
 	//../Code/Levels/Exported.txt
-	if (ImportMapDataFromTxt("../Code/Levels/Map_1.txt"))
+	if (ImportMapDataFromTxt("../Levels/leveldesign.txt"))
 	{
 		PrintRetrievedInformation();
 	}
