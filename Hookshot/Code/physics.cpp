@@ -18,7 +18,7 @@
 
 #include "pch.h"
 
-static float GRAVITY = 500.0f;
+const float GRAVITY = 500.0f;
 static float CHAR_HEIGHT = 50.0f;
 float CHAR_HEIGHT_VEL;
 
@@ -66,20 +66,18 @@ void physics_update()
 
 
 //------------------Updating Enemy physics---------------------
-	
-	//TEMP ENEMY VELOCITY
-	for (Enemy& enemy : enemies)
-	{
-		enemy.velocity.x = -20;
-	}
 
 	//TODO KNOCKBACK AND COLLISION AYYEE
 	for (Enemy& enemy : enemies)
 	{
+		//Setting velocity to position
 		set_vel_to_pos(enemy.pos, enemy.velocity);
 
 		//Gravity.
 		set_accel_to_vel(enemy.velocity, gravity_dir, GRAVITY);
+
+		//Horizontal Friction. 
+		enemy.velocity.x = enemy.velocity.x * 0.97f;
 
 		//!!!!!!!!!!!!!!!! Temporary wall collision NEED TO CHANGE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 		if (enemy.pos.y < 0.0f)
@@ -96,7 +94,7 @@ void physics_update()
 
 //Calculates and sets the velocity of the object using an flat acceleration value and a normalised direction vector. 
 //The new velocity is assigned to the referenced velocity.
-void set_accel_to_vel(AEVec2& vel, AEVec2 dir, float &accel)
+void set_accel_to_vel(AEVec2& vel, AEVec2 dir, float const accel)
 {
 	AEVec2 accel_vector;
 

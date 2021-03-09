@@ -79,6 +79,12 @@ void create_enemy(int enemy_type, AEVec2 pos)
 	enemy.pos = pos;
 	enemy.type = enemy_type;
 
+	enemy.knockback.y = create_vel_height(30.0f, GRAVITY);
+	enemy.knockback.x = 200.0f;
+
+	enemy.velocity.x = 0;
+	enemy.velocity.y = 0;
+
 	enemies.push_back(enemy);
 }
 

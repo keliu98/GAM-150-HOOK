@@ -134,6 +134,8 @@ struct Enemy {
 
 	int lives;
 	int damage;
+
+	AEVec2 knockback;
 };
 
 // --------------------------FUNCTIONS FROM OBJECTMANAGER.CPP---------------------------------------------

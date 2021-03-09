@@ -44,7 +44,6 @@ void Level1_Update()
 		//draw_cam_bounding_box();
 		//draw_static_obj();
 
-	
 }
 
 void Level1_Draw()

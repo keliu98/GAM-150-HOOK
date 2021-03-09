@@ -30,7 +30,7 @@ enum class swing_dir
 
 }swing_dir;
 
-float calculate_pivot();
+float calculate_angle(AEVec2& pos1, AEVec2& pos2);
 float calculate_arc();
 void calculate_positions(AEVec2 &dir_vec);
 
@@ -59,7 +59,7 @@ void fire_hook(int cursor_x, int cursor_y)
 
 		//Getting the pivot angle and directional vector
 		AEVec2 dir_vec;
-		hook->pivot_angle = calculate_pivot();
+		hook->pivot_angle = calculate_angle(hook->pivot_pos, character->pos);
 		AEVec2FromAngle(&dir_vec, hook->pivot_angle);
 
 		//Getting the various position of the hook
@@ -68,7 +68,44 @@ void fire_hook(int cursor_x, int cursor_y)
 		//Increasing the hook length
 		hook->curr_len += HOOK_SPEED;
 
-		//~~TODO REPLACE WITH THE COLLISION EVENTUALLY TO DETECT IF IT HIT A WALL
+		//~~~~~~~~~~!!!!!!TODO REPLACE WITH THE COLLISION EVENTUALLY TO DETECT IF IT HIT A WALL AND ENEMY!!!!!~~~~~~~~~~~~~
+		//Collision with enemy, to be reworked and place in enemy code.													//
+																														
+				for (Enemy& enemy : enemies)																			//
+				{
+					enemy.aabb.min.x = enemy.pos.x - (enemy.scale / 2);													//
+					enemy.aabb.min.y = enemy.pos.y - (enemy.scale / 2);													
+					enemy.aabb.max.x = enemy.pos.x + (enemy.scale / 2);													//
+					enemy.aabb.max.y = enemy.pos.y + (enemy.scale / 2);
+
+					//BUG: why nand ???????????????
+					if (CollisionIntersection_PointRect(hook->head_pos, enemy.aabb))									//
+					{
+						std::cout << "collisiom ";
+						AEVec2 knockback_dir;
+						AEVec2Sub(&knockback_dir, &hook->head_pos, &character->pos);									//
+						AEVec2Normalize(&knockback_dir, &knockback_dir);
+						AEVec2Scale(&knockback_dir, &knockback_dir, enemy.knockback.x);
+						//for a jumping up effect.
+						knockback_dir.y += enemy.knockback.y;															//
+						enemy.velocity = knockback_dir;
+																														//
+						hook->max_len = hook->curr_len;
+						hook->pivot_pos = hook->head_pos;
+					}
+
+																														//
+				}
+
+				//Wall collision																						//
+				for (Wall& wall : walls)
+				{
+					//TODO wall collision																				//
+				}
+																														//
+		//~~~~~~~~~~!!!!!!TODO REPLACE WITH THE COLLISION EVENTUALLY TO DETECT IF IT HIT A WALL AND ENEMY!!!!!~~~~~~~~~~~~~
+
+		//Reaching the selected point
 		if (hook->curr_len > hook->max_len)
 		{
 			//need to set head_pos to pivot_pos -> current_length
@@ -84,7 +121,7 @@ void fire_hook(int cursor_x, int cursor_y)
 	{
 		//Getting the pivot angle again
 		AEVec2 dir_vec;
-		hook->pivot_angle = calculate_pivot();
+		hook->pivot_angle = calculate_angle(hook->pivot_pos, character->pos);
 		AEVec2FromAngle(&dir_vec, hook->pivot_angle);
 
 		//Center_pos for rendering
@@ -158,10 +195,10 @@ void hook_char_pos_update()
 	}
 }
 
-float calculate_pivot()
+float calculate_angle(AEVec2& pos1, AEVec2& pos2)
 {
 	AEVec2 dir_vec;
-	AEVec2Sub(&dir_vec, &hook->pivot_pos, &character->pos);
+	AEVec2Sub(&dir_vec, &pos1, &pos2);
 	AEVec2Normalize(&dir_vec, &dir_vec);
 	return static_cast<float>(atan2(dir_vec.y, dir_vec.x));
 }

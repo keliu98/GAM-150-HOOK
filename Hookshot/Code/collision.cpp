@@ -178,3 +178,16 @@ bool CollisionIntersection_RectRect(const AABB& aabb1, const AEVec2& vel1, const
 	return (x_col && y_col);
 }
 
+bool CollisionIntersection_PointRect(const AEVec2 point1, const AABB& aabb2)
+{
+	//static collision
+	if (point1.x > aabb2.min.x &&
+		point1.x < aabb2.max.x &&
+		point1.y > aabb2.min.y &&
+		point1.y < aabb2.max.y)
+	{
+		return true;
+	}
+
+	return false;	
+}

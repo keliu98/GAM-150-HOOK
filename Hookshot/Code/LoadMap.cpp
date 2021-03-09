@@ -146,7 +146,7 @@ void IntializeLevel()
 	//the function create character takes in the position. 
 	character = create_character();
 	hook = create_hook();
-	create_enemy(TEMP_WALL, {0.0f, 0.0f});
+	create_enemy(TEMP_ENEMY, {0.0f, 0.0f});
 }
 
 
