@@ -31,15 +31,18 @@ int ImportMapDataFromTxt(const char* FileName)
 
 		map_data = new int* [map_height];
 		binary_collision_array = new int* [map_height];
+		normalize_map_data = new int* [map_height];
 
 		for (int x = 0; x < map_height; ++x)
 		{
 			map_data[x] = new int[map_width];
 			binary_collision_array[x] = new int[map_width];
+			normalize_map_data[x] = new int[map_width];
 		}
-
+		
 
 		char c;
+		int x1 = map_height - 1;
 		for (int x = 0; x < map_height; ++x)
 		{
 			for (int y = 0; y < map_width; ++y)
@@ -48,16 +51,17 @@ int ImportMapDataFromTxt(const char* FileName)
 				if (isdigit(c))
 				{
 					map_data[x][y] = (int)c - 48;
-					binary_collision_array[x][y] = map_data[x][y];
+					binary_collision_array[x1][y] = map_data[x][y];
+					normalize_map_data[x1][y] = map_data[x][y];
 
 					if (map_data[x][y] != 1)
 					{
-						binary_collision_array[x][y] = 0;
+						binary_collision_array[x1][y] = 0;
 					}
 					// std::cout << "Map["<< x << ", " << y << "]:" << map_data[x][y] << " | ";
 				}
 			}
-			// std::cout << "\n";
+			--x1;
 		}
 
 		read_file.close();
@@ -75,15 +79,28 @@ void FreeMapData(void)
 		{
 			free(map_data[i]);
 			free(binary_collision_array[i]);
+			free(normalize_map_data[i]);
 		}
 	}
 
 	free(map_data);
 	free(binary_collision_array);
+	free(normalize_map_data);
 }
 
 void PrintRetrievedInformation(void)
 {
+	std::cout << "NORM Map: " << map_width << " x " << map_height << std::endl;
+
+	for (int x = 0; x < map_height; ++x)
+	{
+		for (int y = 0; y < map_width; ++y)
+		{
+			std::cout << normalize_map_data[x][y] << " ";
+		}
+		std::cout << std::endl;
+	}
+
 	std::cout << "Map: " << map_width << " x " << map_height << std::endl;
 
 	for (int x = 0; x < map_height; ++x)
@@ -119,41 +136,10 @@ int	GetCellValue(int X, int Y)
 	return 0;
 }
 
-//WEI WEN: We will need to change this to intialse level, so that we can reset the positions of all the characters ?
-//void IntializeLevel()
-//{
-//	float wall_scale = 20.0f;
-//	AEVec2 wall_pos = { AEGfxGetWinMinX() + wall_scale, AEGfxGetWinMinY() + wall_scale }; // store bottom left of the position
-//
-//	AEVec2 init_pos = wall_pos;
-//	for (int x = 0; x < map_height; ++x)
-//	{
-//		// std::cout << x << " | ";
-//		for (int y = 0; y < map_width; ++y)
-//		{
-//			if (binary_collision_array[x][y] == 1)
-//			{
-//				create_wall(TEMP_WALL, wall_scale * 2, wall_pos);
-//			}
-//
-//			wall_pos.x += (wall_scale * 2);
-//		}
-//		wall_pos.y += (wall_scale * 2);
-//		wall_pos.x = init_pos.x;
-//	}
-//
-//	//WEI WEN: Egi need ya to translate the position of where the character is on the map data into the creating the characters at the specific spot. Probably need to change it so that
-//	//the function create character takes in the position. 
-//	character = create_character();
-//	hook = create_hook();
-//	create_enemy(TEMP_ENEMY, {0.0f, 0.0f});
-//}
-
 void IntializeLevel()
 {
 	float wall_scale = 20.0f;
-	// AEVec2 pos = { AEGfxGetWinMinX() + wall_scale, AEGfxGetWinMinY() + wall_scale }; // store bottom left of the position
-	AEVec2 pos = { wall_scale,  wall_scale };
+	AEVec2 pos = { wall_scale,  wall_scale }; // store bottom left of the position
 
 	AEVec2 init_pos = pos;
 	for (int x = 0; x < map_height; ++x)
@@ -162,18 +148,18 @@ void IntializeLevel()
 		for (int y = 0; y < map_width; ++y)
 		{
 			// type 1 = wall
-			if (map_data[x][y] == 1)
+			if (normalize_map_data[x][y] == 1)
 			{
 				create_wall(TEMP_WALL, 40, pos);
 			}
 			// ty[e 2 = character
-			if (map_data[x][y] == 2)
+			if (normalize_map_data[x][y] == 2)
 			{
 				character = create_character(pos);
 				hook = create_hook();
 			}
 			// type 3 = enemy
-			if (map_data[x][y] == 3)
+			if (normalize_map_data[x][y] == 3)
 			{
 				create_enemy(TEMP_ENEMY, pos);
 			}
@@ -183,4 +169,5 @@ void IntializeLevel()
 		pos.x = init_pos.x;
 	}
 }
+
 

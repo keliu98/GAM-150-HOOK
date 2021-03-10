@@ -27,7 +27,7 @@ void physics_intialize()
 	CHAR_HEIGHT_VEL = create_vel_height(CHAR_HEIGHT, GRAVITY);
 }
 
-void physics_update()
+void physics_update(int Flag)
 {
 
 //------------------Updating Character physics---------------------
@@ -57,11 +57,13 @@ void physics_update()
 
 
 	//!!!!!!!!!!!!!!!! Temporary wall collision NEED TO CHANGE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-	if (character->pos.y < -0.0f)
+	if (Flag == COLLISION_BOTTOM)
 	{
-		character->pos.y = 0.1f;
+		// character->pos.y = 0.1f;
+		SnapToCell(&character->pos.y);
 		character->velocity.y = 0;
 		character->char_state = idle;
+		Flag -= COLLISION_BOTTOM;
 	}
 
 
@@ -86,10 +88,6 @@ void physics_update()
 			enemy.velocity.y = 0;
 		}
 	}
-
-
-
-
 }
 
 //Calculates and sets the velocity of the object using an flat acceleration value and a normalised direction vector. 

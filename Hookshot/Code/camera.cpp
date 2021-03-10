@@ -40,17 +40,17 @@ void draw_cam_bounding_box(AEVec2 point1, AEVec2 point2)
 	// Informing the library that we're about to start adding triangles
 	AEGfxMeshStart();
 
-	AEGfxVertexAdd(point1.x, point1.y, 0x808080, 0.0f, 0.0f);
-	AEGfxVertexAdd(point1.x, point2.y, 0x808080, 0.0f, 0.0f);
-	AEGfxVertexAdd(point2.x, point2.y, 0x808080, 0.0f, 0.0f);
-	AEGfxVertexAdd(point2.x, point1.y, 0x808080, 0.0f, 0.0f);
-	AEGfxVertexAdd(point1.x, point1.y, 0x808080, 0.0f, 0.0f);
+	//AEGfxVertexAdd(point1.x, point1.y, 0x808080, 0.0f, 0.0f);
+	//AEGfxVertexAdd(point1.x, point2.y, 0x808080, 0.0f, 0.0f);
+	//AEGfxVertexAdd(point2.x, point2.y, 0x808080, 0.0f, 0.0f);
+	//AEGfxVertexAdd(point2.x, point1.y, 0x808080, 0.0f, 0.0f);
+	//AEGfxVertexAdd(point1.x, point1.y, 0x808080, 0.0f, 0.0f);
 
-	//AEGfxVertexAdd(bounding_box.min.x, bounding_box.min.y, 0x808080, 0.0f, 0.0f);
-	//AEGfxVertexAdd(bounding_box.min.x, bounding_box.max.y, 0x808080, 0.0f, 0.0f);
-	//AEGfxVertexAdd(bounding_box.max.x, bounding_box.max.y, 0x808080, 0.0f, 0.0f);
-	//AEGfxVertexAdd(bounding_box.max.x, bounding_box.min.y, 0x808080, 0.0f, 0.0f);
-	//AEGfxVertexAdd(bounding_box.min.x, bounding_box.min.y, 0x808080, 0.0f, 0.0f);
+	AEGfxVertexAdd(bounding_box.min.x, bounding_box.min.y, 0x808080, 0.0f, 0.0f);
+	AEGfxVertexAdd(bounding_box.min.x, bounding_box.max.y, 0x808080, 0.0f, 0.0f);
+	AEGfxVertexAdd(bounding_box.max.x, bounding_box.max.y, 0x808080, 0.0f, 0.0f);
+	AEGfxVertexAdd(bounding_box.max.x, bounding_box.min.y, 0x808080, 0.0f, 0.0f);
+	AEGfxVertexAdd(bounding_box.min.x, bounding_box.min.y, 0x808080, 0.0f, 0.0f);
 
 	AEGfxVertexList* pMeshLine2 = AEGfxMeshEnd();
 	AE_ASSERT_MESG(pMeshLine2, "Failed to create line mesh!!");
@@ -64,7 +64,7 @@ void draw_cam_bounding_box(AEVec2 point1, AEVec2 point2)
 
 void camera_init(AEVec2 character_pos) {
 	center = character_pos;
-	scale = { AEGfxGetWinMaxX() * 0.5f, AEGfxGetWinMaxY() * 0.2f };
+	scale = { AEGfxGetWinMaxX() * 0.2f, AEGfxGetWinMaxY() * 0.2f };
 	win_min = { AEGfxGetWinMinX(), AEGfxGetWinMinY() };
 	win_max = { AEGfxGetWinMaxX(), AEGfxGetWinMaxY() };
 
