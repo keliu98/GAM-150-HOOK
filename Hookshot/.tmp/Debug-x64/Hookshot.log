@@ -1,4 +1,5 @@
 ﻿  newrendersystem.cpp
+C:\Users\kerr_\Documents\GitHub\GAM-150-HOOK\Hookshot\Code\newrendersystem.cpp(180,9): warning C4101: 'render': unreferenced local variable
 .tmp\Debug-x64\camera.obj : warning LNK4042: object specified more than once; extras ignored
 .tmp\Debug-x64\collision.obj : warning LNK4042: object specified more than once; extras ignored
 .tmp\Debug-x64\GameStateManager.obj : warning LNK4042: object specified more than once; extras ignored

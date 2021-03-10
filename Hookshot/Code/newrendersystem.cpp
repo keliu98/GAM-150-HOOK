@@ -74,6 +74,7 @@ AEGfxTexture* load_texture(const char* image)
 //WEI_WEN: PLS LIU KE I AM LEAVING THIS TO YOU
 //!!!!!!Need to change this to that it becomes specific ie load walls texture only when neccessary. cause right now its loading all textures!!!!
 //for example we dont want to load wall texture for main menu 
+
 void load_render()
 {
 	load_square_mesh();
@@ -85,15 +86,13 @@ void load_render()
 
 void load_healthbar()
 {
-	load_square_mesh();
 
 	health_texture = load_texture("../Images/health.png");
-	std::cout << "load health\n";
+
 }
 
 void load_dirt_render()
 {
-	load_square_mesh();
 
 	wall_texture = load_texture("../Images/Dirt1.png");
 
@@ -101,14 +100,12 @@ void load_dirt_render()
 
 void load_texture_render()
 {
-	load_square_mesh();
 
 	hook_texture = load_texture("../Images/Dirt1.png");
 }
 
 void load_character_render()
 {
-	load_square_mesh();
 
 	character_texture = load_texture("../Images/Snowman.png");
 
@@ -116,7 +113,6 @@ void load_character_render()
 
 void load_hook_render()
 {
-	load_square_mesh();
 
 	hook_texture = load_texture("../Images/Dirt1.png");
 }
@@ -124,7 +120,6 @@ void load_hook_render()
 void load_enemy_texture()
 {
 
-	load_square_mesh();
 
 	enemy_texture = load_texture("../Images/Starfish.png");
 }
@@ -180,6 +175,7 @@ void update_render_hook()
 
 void update_health()
 {
+	Render render;	
 	
 }
 
