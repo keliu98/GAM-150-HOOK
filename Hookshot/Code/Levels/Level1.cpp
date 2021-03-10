@@ -74,50 +74,50 @@ void Level1_Initialize()
 
 void Level1_Update()
 {
-	// Handling Input
-	AEInputUpdate();
-	Input_g_mode();
-
 	Flag = CheckInstanceBinaryMapCollision(character->pos, character->scale);
 
-	if (Flag == COLLISION_RIGHT)
-	{
-		SnapToCell(&character->pos.x);
-		character->velocity.x = 0;
-		Flag -= COLLISION_RIGHT;
-		printf("RIGHT POS: %f, %f\n", character->pos.x, character->pos.y);
-	}
-
-	if (Flag == COLLISION_LEFT)
-	{
-		SnapToCell(&character->pos.x);
-		character->velocity.x = 0;
-		Flag -= COLLISION_LEFT;
-		printf("LEFT POS: %f, %f\n", character->pos.x, character->pos.y);
-	}
-
-	if (Flag == COLLISION_TOP)
-	{
-		SnapToCell(&character->pos.y);
-		character->velocity.y = 0;
-		Flag -= COLLISION_TOP;
-		// printf("POS: %d, %d\n", character->pos.x, character->pos.y);
-	}
-
-	if (Flag == COLLISION_BOTTOM)
-	{
-		SnapToCell(&character->pos.y);
-		character->velocity.y = 0;
-		Flag -= COLLISION_BOTTOM;
-		// printf("POS: %d, %d\n", character->pos.x, character->pos.y);
-	}
+	// Handling Input
+	AEInputUpdate();
+	Input_g_mode(Flag);
 
 	//Updating the physics of the game e.g acceleration, velocity, gravity
-	physics_update();
+	physics_update(Flag);
 
 	camera_update(character->pos, character->velocity, character->scale);
 	//For Debuging Camera
 	//draw_static_obj();
+
+	//if (Flag == COLLISION_RIGHT)
+	//{
+	//	SnapToCell(&character->pos.x);
+	//	character->velocity.x = 0;
+	//	Flag -= COLLISION_RIGHT;
+	//	printf("RIGHT POS: %f, %f\n", character->pos.x, character->pos.y);
+	//}
+
+	//if (Flag == COLLISION_LEFT)
+	//{
+	//	SnapToCell(&character->pos.x);
+	//	character->velocity.x = 0;
+	//	Flag -= COLLISION_LEFT;
+	//	printf("LEFT POS: %f, %f\n", character->pos.x, character->pos.y);
+	//}
+
+	//if (Flag == COLLISION_TOP)
+	//{
+	//	SnapToCell(&character->pos.y);
+	//	character->velocity.y = 0;
+	//	Flag -= COLLISION_TOP;
+	//	printf("TOP POS: %f, %f\n", character->pos.x, character->pos.y);
+	//}
+
+	//if (Flag == COLLISION_BOTTOM)
+	//{
+	//	SnapToCell(&character->pos.y);
+	//	character->velocity.y = 0;
+	//	Flag -= COLLISION_BOTTOM;
+	//	printf("BOTTOM POS: %f, %f\n", character->pos.x, character->pos.y);
+	//}
 }
 
 void Level1_Draw()
@@ -128,11 +128,11 @@ void Level1_Draw()
 	update_render_character();
 
 	//For Debuging Camera
-	// draw_cam_bounding_box(character->pos, character->pos);
+	draw_cam_bounding_box(character->pos, character->pos);
 
 	// debugging hotspot
-	draw_cam_bounding_box({ character->pos.x + character->scale / 4, character->pos.y - character->scale / 2 },
-		{ character->pos.x - character->scale / 4, character->pos.y + character->scale / 2 });
+	/*draw_cam_bounding_box({ character->pos.x + character->scale / 4, character->pos.y - character->scale / 2 },
+		{ character->pos.x - character->scale / 4, character->pos.y + character->scale / 2 });*/
 
 	//Temporary for exiting the system
 	if (AEInputCheckTriggered(AEVK_ESCAPE) || 0 == AESysDoesWindowExist())
