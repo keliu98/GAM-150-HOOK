@@ -146,9 +146,6 @@ void update_render_walls()
 	}
 
 
-
-
-
 }
 
 void update_render_character()
@@ -178,6 +175,12 @@ void update_render_hook()
 
 		draw_render(render);
 	}
+}
+
+
+void update_health()
+{
+	
 }
 
 void update_render_enemy()
