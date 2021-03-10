@@ -74,7 +74,9 @@ void Level1_Initialize()
 
 void Level1_Update()
 {
-	Flag = CheckInstanceBinaryMapCollision(character->pos, character->scale);
+	Flag = CheckInstanceBinaryMapCollision(character->pos, character->scale, character->velocity);
+	for (Enemy& enemy : enemies)
+		CheckInstanceBinaryMapCollision(enemy.pos, enemy.scale, enemy.velocity);
 
 	// Handling Input
 	AEInputUpdate();
@@ -87,29 +89,6 @@ void Level1_Update()
 	//For Debuging Camera
 	//draw_static_obj();
 
-	//if (Flag == COLLISION_RIGHT)
-	//{
-	//	SnapToCell(&character->pos.x);
-	//	character->velocity.x = 0;
-	//	Flag -= COLLISION_RIGHT;
-	//	printf("RIGHT POS: %f, %f\n", character->pos.x, character->pos.y);
-	//}
-
-	//if (Flag == COLLISION_LEFT)
-	//{
-	//	SnapToCell(&character->pos.x);
-	//	character->velocity.x = 0;
-	//	Flag -= COLLISION_LEFT;
-	//	printf("LEFT POS: %f, %f\n", character->pos.x, character->pos.y);
-	//}
-
-	//if (Flag == COLLISION_TOP)
-	//{
-	//	SnapToCell(&character->pos.y);
-	//	character->velocity.y = 0;
-	//	Flag -= COLLISION_TOP;
-	//	printf("TOP POS: %f, %f\n", character->pos.x, character->pos.y);
-	//}
 
 	//if (Flag == COLLISION_BOTTOM)
 	//{
@@ -128,7 +107,7 @@ void Level1_Draw()
 	update_render_character();
 
 	//For Debuging Camera
-	draw_cam_bounding_box(character->pos, character->pos);
+	// draw_cam_bounding_box(character->pos, character->pos);
 
 	// debugging hotspot
 	/*draw_cam_bounding_box({ character->pos.x + character->scale / 4, character->pos.y - character->scale / 2 },

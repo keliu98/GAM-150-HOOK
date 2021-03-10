@@ -36,7 +36,7 @@ Character* create_character(AEVec2 pos)
 	Character* character = new Character{
 		{0,0},		// AABB  aabb;
 
-		32.0f,		// float scale;
+		40.0f,		// float scale;
 
 		{0,0},		//AEVec2 transform;
 		pos,		// AEVec2 pos;
