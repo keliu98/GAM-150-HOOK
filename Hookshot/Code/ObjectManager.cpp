@@ -3,6 +3,8 @@
 Character* character;
 Hook* hook;
 Button* button_1;
+std::vector<Wall> walls;
+std::vector<Enemy> enemies;
 
 Hook* create_hook() {
 	Hook* hook = new Hook{
@@ -11,6 +13,8 @@ Hook* create_hook() {
 		{not_firing}, //int hook_state
 
 		{0,0},		  //AEVec2 transform
+
+		{4.0},		  //float scale;
 
 		{0,0},        //AEVec2 head_pos
 		{0,0},        //AEVec2 center_pos
@@ -27,16 +31,15 @@ Hook* create_hook() {
 	return hook;
 }
 
-Character* create_character()
+Character* create_character(AEVec2 pos)
 {
 	Character* character = new Character{
-		{0,0},		// Index spawn_index;
 		{0,0},		// AABB  aabb;
 
 		32.0f,		// float scale;
 
 		{0,0},		//AEVec2 transform;
-		{0,0},		// AEVec2 pos;
+		pos,		// AEVec2 pos;
 		{0,0},		// AEVec2 accel;
 		{0,0},		// AEVec2 velocity;
 
@@ -55,6 +58,7 @@ Character* create_character()
 Button* create_button()
 {
 	Button* button = new Button{
+		{0,0},
 		40.0f,			//scale
 		{0,0},		//AEVec2 transform;
 		{0,0},		// AEVec2 pos;
@@ -64,19 +68,24 @@ Button* create_button()
 }
 
 
-std::vector<Enemy> create_enemy(std::vector<Enemy>& enemies)
+void create_enemy(int enemy_type, AEVec2 pos)
 {
 	// create single enemy
-	Enemy* enemy = new Enemy;
+	Enemy enemy;
+	
+	//TODO intialise values
+	enemy.scale = 32.0f;
+	enemy.dir = 0.0f;
+	enemy.pos = pos;
+	enemy.type = enemy_type;
 
-	// init values here
+	enemy.knockback.y = create_vel_height(30.0f, GRAVITY);
+	enemy.knockback.x = 200.0f;
 
-	enemies.push_back(*enemy);
+	enemy.velocity.x = 0;
+	enemy.velocity.y = 0;
 
-	// load enemy graphic here? (Use render system)
-
-	// return vector
-	return enemies;
+	enemies.push_back(enemy);
 }
 
 // When enemy is defeated by players
@@ -94,14 +103,14 @@ void destory_enemy(std::vector<Enemy>& enemies, int index)
 	}
 }
 
-void free_object(Character* character, Hook* hook) // std::vector<Enemy>& enemies, 
+void free_object(Character* character, Hook* hook, std::vector<Wall> walls)
 {
-	//for (int i{0}; i < enemies.size(); ++i)
-	//{
-	//	// remove first element
-	//	delete &enemies[i];
-	//	enemies.erase(enemies.begin());
-	//}
+	for (int i{0}; i < walls.size(); ++i)
+	{
+		// remove first element
+		//delete & walls[i];
+		walls.erase(walls.begin());
+	}
 	
 	delete hook;
 	delete character;
@@ -109,20 +118,16 @@ void free_object(Character* character, Hook* hook) // std::vector<Enemy>& enemie
 
 
 // Question: Use vector or array? Cause wall can be nullpointer.
-//std::vector<Wall> create_wall (std::vector<Wall>& walls, int type, float scale, AEVec2 pos)
-//{
-//	// create a wall
-//	Wall *wall = new Wall;
-//
-//	// init values
-//	wall->type = type;
-//	wall->scale = scale;
-//	wall->position = pos;
-//	walls.push_back(*wall);
-//
-//	// load wall graphic here?
-//
-//	// return vector
-//	return walls;
-//}
+void create_wall(int type, float scale, AEVec2 pos)
+{
+	// create a wall
+	// Wall *wall = new Wall;
+	Wall wall;
+
+	// init values
+	wall.type = type;
+	wall.scale = scale;
+	wall.position = pos;
+	walls.push_back(wall);
+}
 

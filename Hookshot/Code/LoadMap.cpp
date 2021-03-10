@@ -14,6 +14,7 @@ written consent of DigiPen Institute of Technology is prohibited.
 /******************************************************************************/
 #include "LoadMap.h"
 
+
 int ImportMapDataFromTxt(const char* FileName)
 {
 	std::ifstream read_file;
@@ -23,10 +24,10 @@ int ImportMapDataFromTxt(const char* FileName)
 	if (read_file)
 	{
 		std::getline(read_file, file_input);
-		map_width = (int)file_input.back() - 48;
+		map_width = std::stoi(file_input.substr(file_input.find_first_of(" ")));
 
 		std::getline(read_file, file_input);
-		map_height = (int)file_input.back() - 48;
+		map_height = std::stoi(file_input.substr(file_input.find_first_of(" ")));
 
 		map_data = new int* [map_height];
 		binary_collision_array = new int* [map_height];
@@ -83,7 +84,7 @@ void FreeMapData(void)
 
 void PrintRetrievedInformation(void)
 {
-	std::cout << "Map:" << std::endl;
+	std::cout << "Map: " << map_width << " x " << map_height << std::endl;
 
 	for (int x = 0; x < map_height; ++x)
 	{
@@ -118,4 +119,68 @@ int	GetCellValue(int X, int Y)
 	return 0;
 }
 
+//WEI WEN: We will need to change this to intialse level, so that we can reset the positions of all the characters ?
+//void IntializeLevel()
+//{
+//	float wall_scale = 20.0f;
+//	AEVec2 wall_pos = { AEGfxGetWinMinX() + wall_scale, AEGfxGetWinMinY() + wall_scale }; // store bottom left of the position
+//
+//	AEVec2 init_pos = wall_pos;
+//	for (int x = 0; x < map_height; ++x)
+//	{
+//		// std::cout << x << " | ";
+//		for (int y = 0; y < map_width; ++y)
+//		{
+//			if (binary_collision_array[x][y] == 1)
+//			{
+//				create_wall(TEMP_WALL, wall_scale * 2, wall_pos);
+//			}
+//
+//			wall_pos.x += (wall_scale * 2);
+//		}
+//		wall_pos.y += (wall_scale * 2);
+//		wall_pos.x = init_pos.x;
+//	}
+//
+//	//WEI WEN: Egi need ya to translate the position of where the character is on the map data into the creating the characters at the specific spot. Probably need to change it so that
+//	//the function create character takes in the position. 
+//	character = create_character();
+//	hook = create_hook();
+//	create_enemy(TEMP_ENEMY, {0.0f, 0.0f});
+//}
+
+void IntializeLevel()
+{
+	float wall_scale = 20.0f;
+	// AEVec2 pos = { AEGfxGetWinMinX() + wall_scale, AEGfxGetWinMinY() + wall_scale }; // store bottom left of the position
+	AEVec2 pos = { wall_scale,  wall_scale };
+
+	AEVec2 init_pos = pos;
+	for (int x = 0; x < map_height; ++x)
+	{
+		// std::cout << x << " | ";
+		for (int y = 0; y < map_width; ++y)
+		{
+			// type 1 = wall
+			if (map_data[x][y] == 1)
+			{
+				create_wall(TEMP_WALL, wall_scale * 2, pos);
+			}
+			// ty[e 2 = character
+			if (map_data[x][y] == 2)
+			{
+				character = create_character(pos);
+				hook = create_hook();
+			}
+			// type 3 = enemy
+			if (map_data[x][y] == 3)
+			{
+				create_enemy(TEMP_ENEMY, pos);
+			}
+			pos.x += (wall_scale * 2);
+		}
+		pos.y += (wall_scale * 2);
+		pos.x = init_pos.x;
+	}
+}
 

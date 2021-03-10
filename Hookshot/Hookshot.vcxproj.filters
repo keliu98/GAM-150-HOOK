@@ -35,7 +35,7 @@
     <ClCompile Include="Code\menu.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Code\testrender.cpp">
+    <ClCompile Include="Code\newrendersystem.cpp">
       <Filter>Source files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -79,7 +79,7 @@
     <ClInclude Include="Code\menu.h">
       <Filter>Header files</Filter>
     </ClInclude>
-    <ClInclude Include="Code\testrender.h">
+    <ClInclude Include="Code\newrendersystem.h">
       <Filter>Header files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -94,21 +94,47 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <None Include="bin\Alpha_Engine.dll" />
-    <None Include="bin\Alpha_EngineD.dll" />
-    <None Include="bin\freetype.dll" />
-  </ItemGroup>
-  <ItemGroup>
+    <Image Include="Images\Dirt1.png" />
+    <Image Include="Images\Snowman.png" />
+    <Image Include="Images\Starfish.png" />
     <Image Include="bin\PlanetTexture.png" />
     <Image Include="bin\Title.png" />
     <Image Include="bin\YellowTexture.png" />
-    <Image Include="bin\blockspng.png" />
-    <Image Include="bin\testimageCopy.png" />
+    <Image Include="Images\health.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Levels\leveldesign.txt" />
+    <Text Include=".tmp\Debug-x64\Hookshot.Build.CppClean.log" />
+    <Text Include=".tmp\Debug-x64\Hookshot.log" />
+    <Text Include=".tmp\Debug-x64\Hookshot.vcxproj.FileListAbsolute.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Alpha_Engine.dll" />
+    <None Include="bin\Alpha_EngineD.dll" />
+    <None Include="bin\freetype.dll" />
+    <None Include=".vs\Hookshot\v16\Browse.VC.db" />
+    <None Include=".tmp\Debug-x64\Hookshot.exe.recipe" />
+    <None Include=".tmp\Debug-x64\level1.obj.enc" />
+    <None Include=".tmp\Debug-x64\loadmap.obj.enc" />
+    <None Include=".tmp\Debug-x64\menu.obj.enc" />
+    <None Include=".tmp\Debug-x64\vc142.idb" />
+    <None Include=".tmp\Debug-x64\vc142.pdb" />
   </ItemGroup>
   <ItemGroup>
     <Font Include="bin\Roboto-Regular.ttf" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="levels\leveldesign.txt" />
+    <Object Include=".tmp\Debug-x64\camera.obj" />
+    <Object Include=".tmp\Debug-x64\collision.obj" />
+    <Object Include=".tmp\Debug-x64\GameStateManager.obj" />
+    <Object Include=".tmp\Debug-x64\Hook.obj" />
+    <Object Include=".tmp\Debug-x64\Input.obj" />
+    <Object Include=".tmp\Debug-x64\Level1.obj" />
+    <Object Include=".tmp\Debug-x64\LoadMap.obj" />
+    <Object Include=".tmp\Debug-x64\main.obj" />
+    <Object Include=".tmp\Debug-x64\menu.obj" />
+    <Object Include=".tmp\Debug-x64\ObjectManager.obj" />
+    <Object Include=".tmp\Debug-x64\pch.obj" />
+    <Object Include=".tmp\Debug-x64\physics.obj" />
   </ItemGroup>
 </Project>

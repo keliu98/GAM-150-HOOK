@@ -16,6 +16,10 @@ Technology is prohibited.
 
 #include "pch.h"
 
+//Flags
+const unsigned int	FLAG_ACTIVE = 0x00000001;
+const unsigned int	FLAG_VISIBLE = 0x00000002;
+const unsigned int	FLAG_NON_COLLIDABLE = 0x00000004;
 
 const int	COLLISION_LEFT = 0x00000001;	//0001
 const int	COLLISION_RIGHT = 0x00000002;	//0010
@@ -46,7 +50,7 @@ struct Hotspot
 }typedef Hotspot;
 
 // check binary map collision
-int	CheckInstanceBinaryMapCollision(float PosX, float PosY, float scaleX, float scaleY);
+int	CheckInstanceBinaryMapCollision(AEVec2 pos, float scale);
 
 // snap object back to cell if there is collision
 void SnapToCell(float* Coordinate);
@@ -57,3 +61,10 @@ void SnapToCell(float* Coordinate);
 */
 /**************************************************************************/
 bool CollisionIntersection_RectRect(const struct AABB& aabb1, const AEVec2& vel1, const struct AABB& aabb2, const AEVec2& vel2);
+
+/**************************************************************************/
+/*!
+	A collision test function to see if a point object and rectangle object collide together.
+*/
+/**************************************************************************/
+bool CollisionIntersection_PointRect(const AEVec2 point1, const AABB& aabb2);

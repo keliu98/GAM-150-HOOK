@@ -1,165 +1,147 @@
 #include "../pch.h"
 
+const unsigned int	GAME_OBJ_INST_NUM_MAX = 2048;	//The total number of different game object instances
+
+
 //Declaration of Variables.
 AEGfxVertexList* pMesh1 = 0;
-AEGfxVertexList* pMesh2;
-AEGfxTexture* pTex2;
-//AEGfxTexture* pTex3;
-AEGfxVertexList* pMesh3;
+AEVec2* char_prev_pos;
+int Flag;
 
 void Level1_Load()
 {
 	//../Code/Levels/Exported.txt
-	if (ImportMapDataFromTxt("../Code/Levels/Map_1.txt"))
-	{	
-		PrintRetrievedInformation();
+	if (ImportMapDataFromTxt("../Levels/leveldesign.txt"))
+	{
+		// For debugging map binary data
+		// PrintRetrievedInformation();
 	}
 
-	// Will need to create a seperate file for the meshes.
-	// Informing the library that we're about to start adding triangles
-	
-	AEGfxMeshStart();
+	//loading texture etc
+	load_render();
 
-	// 2 triangle at a time
-	// X, Y, Color, texU, texV
-	
-	AEGfxTriAdd(
-		-0.5f, 0.5f, 0x00FF00FF, 0.0f, 1.0f,
-		-0.5f, -0.5f, 0x00FFFF00, 1.0f, 1.0f,
-		0.5f, 0.5f, 0x0000FFFF, 0.0f, 0.0f);
+	// loading wall texture
+	load_dirt_render();
 
-	AEGfxTriAdd(
-		0.5f, 0.5f, 0x00FFFFFF, 1.0f, 1.0f,
-		0.5f, -0.5f, 0x00FFFFFF, 1.0f, 0.0f,
-		-0.5f, 0.5f, 0x00FFFFFF, 0.0f, 0.0f);
+	// loading character texture
+	load_character_render();
 
-	// Saving the mesh (list of triangles) in pMesh1
-	
-	pMesh1 = AEGfxMeshEnd();
-	AE_ASSERT_MESG(pMesh1, "Failed to create mesh 1!!");
-	
-	//load_hookmesh();
-	load_mesh();
+	// load enemy_texture
+	load_enemy_texture();
+
+	// load hook_texture
+	load_hook_render();
+
+	// load health_texture
+	load_healthbar();
 
 }
 
 void Level1_Initialize()
 {
-	character = create_character();
-	hook = create_hook();
+	//Translate the map data into the gameworld by creating objects
+	IntializeLevel();
 
-
-	physics_intialize();
+	//Intialize camera
 	camera_init(character->pos);
 
+	//Intialise physic
+	physics_intialize();
+	
 
 
+
+	std::cout << "    ";
+	for (int x{ 0 }; x < 60; ++x)
+	{
+		if (x > 9)
+			std::cout << x << " ";
+		else
+			std::cout << x << "  ";
+	}
+	std::cout << std::endl;
+	std::cout << std::endl;
+
+	for (int y{ 0 }; y < 25; ++y)
+	{ 
+		if (y > 9)
+			std::cout << y << " | ";
+		else
+			std::cout << " " << y << " | ";
+		
+		for (int x{ 0 }; x < 60; ++x)
+			std::cout << GetCellValue(x, y) << "  ";
+		std::cout << std::endl;
+	}
 }
 
 void Level1_Update()
 {
-	float delta_time = g_dt;
-
-
-	//-------------------------START OF INPUT------------------------------
-
 	// Handling Input
 	AEInputUpdate();
-	/*
-	//Temporary for doing physics.cpp
-	if (AEInputCheckCurr(AEVK_A))
-
-	{
-		AEVec2 dir = {-1.0f, 0.0f};
-		set_accel_to_vel(character->velocity, dir, CHARACTER_ACCEL_HORI);
-	}
-
-	if (AEInputCheckCurr(AEVK_D))
-	{
-		AEVec2 dir = {1.0f, 0.0f};
-		set_accel_to_vel(character->velocity, dir, CHARACTER_ACCEL_HORI);
-	}
-
-	if (AEInputCheckTriggered(AEVK_W) && hook->flag == false)
-	{
-		character->velocity.y += CHAR_HEIGHT_VEL;
-	}*/
-
 	Input_g_mode();
 
+	Flag = CheckInstanceBinaryMapCollision(character->pos, character->scale);
 
+	if (Flag == COLLISION_RIGHT)
+	{
+		std::cout << "FLAG: " << Flag << "\n";
+		character->pos = *char_prev_pos;
+		SnapToCell(&character->pos.x);
+		character->velocity.x = 0;
+		Flag -= COLLISION_RIGHT;
+		// printf("POS: %d, %d\n", character->pos.x, character->pos.y);
+	}
 
-	//-------------------------END OF INPUT------------------------------
-	
+	if (Flag == COLLISION_LEFT)
+	{
+		std::cout << "FLAG: " << Flag << "\n";
+		character->pos = *char_prev_pos;
+		SnapToCell(&character->pos.x);
+		character->velocity.x = 0;
+		Flag -= COLLISION_LEFT;
+		// printf("POS: %d, %d\n", character->pos.x, character->pos.y);
+	}
+
+	if (Flag == COLLISION_TOP)
+	{
+		character->pos = *char_prev_pos;
+		SnapToCell(&character->pos.y);
+		character->velocity.y = 0;
+		Flag -= COLLISION_TOP;
+		// printf("POS: %d, %d\n", character->pos.x, character->pos.y);
+	}
+
+	if (Flag == COLLISION_BOTTOM)
+	{
+		character->pos = *char_prev_pos;
+		SnapToCell(&character->pos.y);
+		character->velocity.y = 0;
+		Flag -= COLLISION_BOTTOM;
+		// printf("POS: %d, %d\n", character->pos.x, character->pos.y);
+	}
+
+	//Updating the physics of the game e.g acceleration, velocity, gravity
 	physics_update();
 
 	camera_update(character->pos, character->velocity, character->scale);
 		//For Debuging Camera
-		draw_cam_bounding_box();
-		draw_static_obj();
+		//draw_cam_bounding_box();
+		//draw_static_obj();
+
+	char_prev_pos = &character->pos;
 }
 
 void Level1_Draw()
 {
-	AEMtx33	trans, scale, rot;
+	update_render_walls();
+	update_render_hook();
+	update_render_enemy();
+	update_render_character();
 
-
-
-	//---------for drawing the character--------------
-	// Compute the scaling matrix
-	
-	
-
-	AEMtx33Scale(&scale, character->scale, character->scale);
-
-	// Compute the translation matrix
-	AEMtx33Trans(&trans, character->pos.x, character->pos.y);
-
-	AEMtx33Concat(&character->transform, &trans, &scale);
-
-	// Will need to create a seperate function for drawing all the objects.
-	// Drawing object 1
-	
-	AEGfxSetRenderMode(AE_GFX_RM_COLOR);
-	// No texture for object 1
-	AEGfxTextureSet(NULL, 0, 0);
-	// No tint
-	AEGfxSetTintColor(1.0f, 1.0f, 1.0f, 1.0f);
-	// Transforing the picture based on its matrix
-	AEGfxSetTransform(character->transform.m);
-	// Drawing the mesh (list of triangles)
-	AEGfxMeshDraw(pMesh1, AE_GFX_MDM_TRIANGLES);
-	
-	load_texture("blockspng.png");
-	draw_render1(character->pos, pMesh1, pTex2);
-
-
-
-	//---------for drawing the hook------------
-
-	if (hook->flag == true)
-	{
-		//Scale it by the length of the hook
-		AEMtx33Scale(&scale, hook->curr_len, 4.0f);
-		// Compute the translation matrix
-		AEMtx33Trans(&trans, hook->center_pos.x, hook->center_pos.y);
-		//Rotate it by the angle hooked
-		AEMtx33Rot(&rot, hook->pivot_angle);
-
-		AEMtx33Concat(&hook->transform, &rot, &scale);
-		AEMtx33Concat(&hook->transform, &trans, &hook->transform);
-
-		AEGfxSetRenderMode(AE_GFX_RM_COLOR);
-		// No texture for object 1
-		AEGfxTextureSet(NULL, 0, 0);
-		// Transforing the picture based on its matrix
-		AEGfxSetTransform(hook->transform.m);
-		// Drawing the mesh (list of triangles)
-		AEGfxMeshDraw(pMesh1, AE_GFX_MDM_TRIANGLES);
-	}
-
-
-
+	// debugging hotspot
+	draw_cam_bounding_box({ character->pos.x + character->scale / 4, character->pos.y - character->scale / 2 },
+		{ character->pos.x - character->scale / 4, character->pos.y + character->scale / 2 });
 
 	//Temporary for exiting the system
 	if (AEInputCheckTriggered(AEVK_ESCAPE) || 0 == AESysDoesWindowExist())
@@ -170,14 +152,11 @@ void Level1_Draw()
 void Level1_Free()
 {
 	FreeMapData();
-	free_object(character, hook);
-	AEGfxMeshFree(pMesh1);
-	free_render(pMesh2, pTex2);
-	//free_render(pMesh2, pTex3);
+	free_object(character, hook, walls);
 }
 
 //  Called if change state and State is NOT reset. ie Change levels. Do not unload if reseting.
 void Level1_Unload()
 {
-	
+	unload_render();
 }

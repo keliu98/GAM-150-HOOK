@@ -33,7 +33,7 @@ void draw_static_obj();
 /// <summary>
 ///		This is for debugging to draw the camera bounding box.
 /// </summary>
-void draw_cam_bounding_box();
+void draw_cam_bounding_box(AEVec2 point1 = bounding_box.min, AEVec2 point2 = bounding_box.max);
 
 /// <summary>
 ///		This function set the camera inital position. 
