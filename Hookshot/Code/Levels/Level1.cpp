@@ -19,6 +19,19 @@ void Level1_Load()
 
 	//loading texture etc
 	load_render();
+
+	// loading wall texture
+	load_dirt_render();
+
+	// loading character texture
+	load_character_render();
+
+	// load enemy_texture
+	load_enemy_texture();
+
+	// load hook_texture
+	load_hook_render();
+
 }
 
 void Level1_Initialize()
@@ -32,6 +45,9 @@ void Level1_Initialize()
 	//Intialise physic
 	physics_intialize();
 	
+
+
+
 	std::cout << "    ";
 	for (int x{ 0 }; x < 60; ++x)
 	{

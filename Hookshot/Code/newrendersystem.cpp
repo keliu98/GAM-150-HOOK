@@ -77,9 +77,7 @@ void load_render()
 
 	//load texture for wall
 	
-	character_texture = load_texture("../Images/Snowman.png");
-
-	enemy_texture = load_texture("../Images/Starfish.png");
+	//enemy_texture = load_texture("../Images/Starfish.png");
 }
 
 void load_dirt_render()
@@ -105,6 +103,12 @@ void load_character_render()
 
 }
 
+void load_hook_render()
+{
+	load_square_mesh();
+
+	hook_texture = load_texture("../Images/Dirt1.png");
+}
 
 void load_enemy_texture()
 {
