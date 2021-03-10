@@ -93,7 +93,7 @@ void camera_update(AEVec2 character_pos, AEVec2 velocity, float character_scale)
 	AEVec2Sub(&bounding_box.min, &center, &dist);
 
 	// move left 
-	if (velocity.x < 0.01f)
+	if (velocity.x < 0.01f) 
 	{
 		if ((character_pos.x - character_scale) < bounding_box.min.x)
 		{

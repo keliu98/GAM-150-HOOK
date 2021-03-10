@@ -57,7 +57,7 @@ void physics_update(int Flag)
 
 
 	//!!!!!!!!!!!!!!!! Temporary wall collision NEED TO CHANGE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-	if (Flag == COLLISION_BOTTOM)
+	if (character->velocity.y < 0.01f && Flag == COLLISION_BOTTOM)
 	{
 		// character->pos.y = 0.1f;
 		SnapToCell(&character->pos.y);
