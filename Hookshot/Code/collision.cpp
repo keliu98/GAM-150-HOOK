@@ -19,7 +19,7 @@ static const int GRID_SCALE = 40;
 
 void SnapToCell(float* Coordinate)
 {
-	*Coordinate = (int)(*Coordinate) + 1.0f;
+	*Coordinate = (int)(*Coordinate) + 0.5f;
 }
 
 int	CheckInstanceBinaryMapCollision(AEVec2 pos, float scale)
@@ -55,11 +55,11 @@ int	CheckInstanceBinaryMapCollision(AEVec2 pos, float scale)
 		GetCellValue((int)item.left.point_2.x / GRID_SCALE, (int)item.left.point_2.y / GRID_SCALE))
 	{
 		flag += COLLISION_LEFT;
-		std::cout << (int)item.left.point_1.x << ", " << (int)item.left.point_1.y << ": ";
-		std::cout << GetCellValue((int)item.left.point_1.x, (int)item.left.point_1.y) << std::endl;
-		std::cout << (int)item.left.point_2.x << ", " << (int)item.left.point_2.y << ": ";
-		std::cout << GetCellValue((int)item.left.point_2.x, (int)item.left.point_2.y) << std::endl;
-		std::cout << "LEFT\n\n";
+		//std::cout << (int)item.left.point_1.x / GRID_SCALE << ", " << (int)item.left.point_1.y / GRID_SCALE << ": ";
+		//std::cout << GetCellValue((int)item.left.point_1.x / GRID_SCALE, (int)item.left.point_1.y / GRID_SCALE) << std::endl;
+		//std::cout << (int)item.left.point_2.x /GRID_SCALE << ", " << (int)item.left.point_2.y / GRID_SCALE<< ": ";
+		//std::cout << GetCellValue((int)item.left.point_2.x / GRID_SCALE, (int)item.left.point_2.y / GRID_SCALE) << std::endl;
+		//std::cout << "LEFT\n\n";
 	}
 	if (GetCellValue((int)item.top.point_1.x / GRID_SCALE, (int)item.top.point_1.y / GRID_SCALE) ||
 		GetCellValue((int)item.top.point_2.x / GRID_SCALE, (int)item.top.point_2.y / GRID_SCALE))

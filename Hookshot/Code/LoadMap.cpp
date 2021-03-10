@@ -164,7 +164,7 @@ void IntializeLevel()
 			// type 1 = wall
 			if (map_data[x][y] == 1)
 			{
-				create_wall(TEMP_WALL, wall_scale * 2, pos);
+				create_wall(TEMP_WALL, 40, pos);
 			}
 			// ty[e 2 = character
 			if (map_data[x][y] == 2)

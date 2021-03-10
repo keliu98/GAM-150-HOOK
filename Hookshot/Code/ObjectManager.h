@@ -143,7 +143,7 @@ struct Enemy {
 Hook* create_hook();
 
 // Create character
-Character* create_character(AEVec2 pos = {0, 0});
+Character* create_character(AEVec2 pos);
 
 // Create Buttons
 Button* create_button();

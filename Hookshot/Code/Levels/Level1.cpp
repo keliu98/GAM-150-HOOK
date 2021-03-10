@@ -66,27 +66,22 @@ void Level1_Update()
 
 	if (Flag == COLLISION_RIGHT)
 	{
-		std::cout << "FLAG: " << Flag << "\n";
-		character->pos = *char_prev_pos;
 		SnapToCell(&character->pos.x);
 		character->velocity.x = 0;
 		Flag -= COLLISION_RIGHT;
-		// printf("POS: %d, %d\n", character->pos.x, character->pos.y);
+		printf("RIGHT POS: %f, %f\n", character->pos.x, character->pos.y);
 	}
 
 	if (Flag == COLLISION_LEFT)
 	{
-		std::cout << "FLAG: " << Flag << "\n";
-		character->pos = *char_prev_pos;
 		SnapToCell(&character->pos.x);
 		character->velocity.x = 0;
 		Flag -= COLLISION_LEFT;
-		// printf("POS: %d, %d\n", character->pos.x, character->pos.y);
+		printf("LEFT POS: %f, %f\n", character->pos.x, character->pos.y);
 	}
 
 	if (Flag == COLLISION_TOP)
 	{
-		character->pos = *char_prev_pos;
 		SnapToCell(&character->pos.y);
 		character->velocity.y = 0;
 		Flag -= COLLISION_TOP;
@@ -95,7 +90,6 @@ void Level1_Update()
 
 	if (Flag == COLLISION_BOTTOM)
 	{
-		character->pos = *char_prev_pos;
 		SnapToCell(&character->pos.y);
 		character->velocity.y = 0;
 		Flag -= COLLISION_BOTTOM;
@@ -106,11 +100,8 @@ void Level1_Update()
 	physics_update();
 
 	camera_update(character->pos, character->velocity, character->scale);
-		//For Debuging Camera
-		//draw_cam_bounding_box();
-		//draw_static_obj();
-
-	char_prev_pos = &character->pos;
+	//For Debuging Camera
+	//draw_static_obj();
 }
 
 void Level1_Draw()
@@ -119,6 +110,9 @@ void Level1_Draw()
 	update_render_hook();
 	update_render_enemy();
 	update_render_character();
+
+	//For Debuging Camera
+	// draw_cam_bounding_box(character->pos, character->pos);
 
 	// debugging hotspot
 	draw_cam_bounding_box({ character->pos.x + character->scale / 4, character->pos.y - character->scale / 2 },
