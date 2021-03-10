@@ -115,7 +115,7 @@ void draw_render1(AEVec2 Position, AEGfxVertexList* pMesh1, AEGfxTexture* pTex1)
 	if (counter < 120)
 		AEGfxTextureSet(pTex1st, objtexX, objtexY);		// Same object, different texture
 	else if (counter < 240)
-		AEGfxTextureSet(pTex2nd, objtexX, objtexY);		// Same object, different texture
+		AEGfxTextureSet(pTex2nd, objtexX, objtexY);		// Same object, different texture		
 	else
 	{
 		AEGfxTextureSet(pTex1st, objtexX, objtexY);		// Same object, different texture

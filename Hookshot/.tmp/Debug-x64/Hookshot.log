@@ -1,6 +1,2 @@
-<<<<<<< Updated upstream
-﻿  Level1.cpp
-  Hookshot.vcxproj -> C:\Users\kerr_\Documents\GitHub\GAM-150-HOOK\Hookshot\\bin\Debug-x64\Hookshot.exe
-=======
-﻿  Hookshot.vcxproj -> C:\Users\kerr_\Documents\GitHub\GAM-150-HOOK\Hookshot\\bin\Debug-x64\Hookshot.exe
->>>>>>> Stashed changes
+﻿  testrender.cpp
+C:\Users\kerr_\Documents\GitHub\GAM-150-HOOK\Hookshot\Code\testrender.cpp(121,2): error C2181: illegal else without matching if
