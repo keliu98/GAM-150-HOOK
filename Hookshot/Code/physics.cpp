@@ -53,10 +53,10 @@ void physics_update(int Flag)
 
 	//Gravity only when jumping.
 	AEVec2 gravity_dir{ 0.0f, -1.0f };
-	if (character->char_state == jumping)
-	{
+	//if (character->char_state == jumping) // char floating in the air -> need to do sth
+	//{
 		set_accel_to_vel(character->velocity, gravity_dir, GRAVITY);
-	}
+	//}
 
 
 	//!!!!!!!!!!!!!!!! Temporary wall collision NEED TO CHANGE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!

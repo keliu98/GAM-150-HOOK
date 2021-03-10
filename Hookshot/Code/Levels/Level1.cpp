@@ -107,7 +107,7 @@ void Level1_Draw()
 	update_render_character();
 
 	//For Debuging Camera
-	// draw_cam_bounding_box(character->pos, character->pos);
+	draw_cam_bounding_box(character->pos, character->pos);
 
 	// debugging hotspot
 	/*draw_cam_bounding_box({ character->pos.x + character->scale / 4, character->pos.y - character->scale / 2 },
