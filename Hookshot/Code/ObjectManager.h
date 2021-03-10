@@ -9,7 +9,7 @@ struct Hook;
 extern Hook* hook;
 
 struct Button;
-extern Button* button_1;
+extern std::vector<Button> buttons;
 
 //Extern list to use for walls and enemies
 struct Wall;
@@ -39,6 +39,13 @@ enum hook_state
 	not_firing,
 	firing,
 	tethered
+};
+
+enum button_type
+{
+	TEMP,
+	TITLE,
+	OPTION1
 };
 
 enum wall_type
@@ -100,10 +107,12 @@ struct Character {
 };
 
 struct Button {
-	AABB  aabb;
+	
 	float scale;
+	int type;
 	AEMtx33 transform;
 	AEVec2 pos;
+	AABB  aabb;
 };
 
 
@@ -146,7 +155,7 @@ Hook* create_hook();
 Character* create_character(AEVec2 pos);
 
 // Create Buttons
-Button* create_button();
+void create_button(int button_type, AEVec2 pos, float scale);
 
 // Inserts a enemy into the vecot list enemies
 void create_enemy(int enemy_type, AEVec2 pos);
@@ -156,6 +165,9 @@ void create_wall(int type, float scale, AEVec2 pos);
 
 // When enemy is defeated by players (pass in enemy vec and index to delete)
 void destory_enemy(std::vector<Enemy>&, int index); 
+ 
+//Free buttons
+void free_button(std::vector<Button> buttons);
 
 // Free all object
 void free_object(Character* character, Hook* hook, std::vector<Wall> walls);

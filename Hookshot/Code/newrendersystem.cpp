@@ -21,6 +21,8 @@ AEGfxTexture* hook_texture;
 //Pointer to the hook texture
 AEGfxTexture* enemy_texture;
 
+AEGfxTexture* button_texture;
+
 struct Render
 {
 	AEVec2 pos;
@@ -82,22 +84,20 @@ void load_render()
 
 void load_dirt_render()
 {
-	load_square_mesh();
-
 	wall_texture = load_texture("../Images/Dirt1.png");
 
 }
 
 void load_texture_render()
 {
-	load_square_mesh();
+
 
 	hook_texture = load_texture("../Images/Dirt1.png");
 }
 
 void load_character_render()
 {
-	load_square_mesh();
+	
 
 	character_texture = load_texture("../Images/Snowman.png");
 
@@ -105,7 +105,6 @@ void load_character_render()
 
 void load_hook_render()
 {
-	load_square_mesh();
 
 	hook_texture = load_texture("../Images/Dirt1.png");
 }
@@ -113,9 +112,15 @@ void load_hook_render()
 void load_enemy_texture()
 {
 
-	load_square_mesh();
 
 	enemy_texture = load_texture("../Images/Starfish.png");
+}
+
+void load_button_texture()
+{
+
+
+	button_texture = load_texture("../Images/Title.png");
 }
 
 void update_render_walls()
@@ -138,6 +143,23 @@ void update_render_walls()
 
 
 
+}
+
+void update_render_buttons()
+{
+	Render render;
+
+	for (Button const& button : buttons)
+	{
+		render.pos = button.pos;
+		render.x_scale = button.scale;
+		render.y_scale = button.scale;
+		render.pMesh = square_mesh;
+		render.pTexture = button_texture;
+		render.dir = 0;
+
+		draw_render(render);
+	}
 }
 
 void update_render_character()
@@ -225,6 +247,7 @@ void unload_render()
 		if (texturelist[i] != nullptr)
 		{
 			AEGfxTextureUnload(texturelist[i]);
+			texturelist[i] = nullptr;
 		}
 	}
 

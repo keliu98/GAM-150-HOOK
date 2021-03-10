@@ -2,7 +2,7 @@
 
 Character* character;
 Hook* hook;
-Button* button_1;
+std::vector<Button> buttons;
 std::vector<Wall> walls;
 std::vector<Enemy> enemies;
 
@@ -55,16 +55,15 @@ Character* create_character(AEVec2 pos)
 }
 
 
-Button* create_button()
+void create_button(int type, AEVec2 pos, float scale)
 {
-	Button* button = new Button{
-		{0,0},
-		40.0f,			//scale
-		{0,0},		//AEVec2 transform;
-		{0,0},		// AEVec2 pos;
+	Button button;
 
-	};
-	return button;
+	// init values
+	button.type = type;
+	button.scale = scale;
+	button.pos = pos;
+	buttons.push_back(button);
 }
 
 
@@ -114,6 +113,17 @@ void free_object(Character* character, Hook* hook, std::vector<Wall> walls)
 	
 	delete hook;
 	delete character;
+}
+
+void free_button(std::vector<Button> buttons)
+{
+	for (int i{ 0 }; i < buttons.size(); ++i)
+	{
+		// remove first element
+		//delete & walls[i];
+		buttons.erase(buttons.begin());
+	}
+
 }
 
 
