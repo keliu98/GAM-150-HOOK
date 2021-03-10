@@ -57,7 +57,7 @@ void physics_update()
 
 
 	//!!!!!!!!!!!!!!!! Temporary wall collision NEED TO CHANGE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-	if (character->pos.y < 0.0f)
+	if (character->pos.y < -0.0f)
 	{
 		character->pos.y = 0.1f;
 		character->velocity.y = 0;

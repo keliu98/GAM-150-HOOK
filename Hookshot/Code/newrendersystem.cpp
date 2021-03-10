@@ -18,6 +18,9 @@ AEGfxTexture* character_texture;
 //Pointer to the hook texture
 AEGfxTexture* hook_texture;
 
+//Pointer to the hook texture
+AEGfxTexture* enemy_texture;
+
 struct Render
 {
 	AEVec2 pos;
@@ -74,9 +77,9 @@ void load_render()
 
 	//load texture for wall
 	wall_texture = load_texture("../Images/Dirt1.png");
-	character_texture = load_texture("../Images/Dirt1.png");
+	character_texture = load_texture("../Images/Snowman.png");
 	hook_texture = load_texture("../Images/Dirt1.png");
-
+	enemy_texture = load_texture("../Images/Starfish.png");
 }
 
 void update_render_walls()
@@ -134,7 +137,7 @@ void update_render_enemy()
 		render.x_scale = enemy.scale;
 		render.y_scale = enemy.scale;
 		render.pMesh = square_mesh;
-		render.pTexture = wall_texture; //TO CHANGE !!!!, render based on the enemy type and its state
+		render.pTexture = enemy_texture; //TO CHANGE !!!!, render based on the enemy type and its state
 		render.dir = 0;
 
 		draw_render(render);

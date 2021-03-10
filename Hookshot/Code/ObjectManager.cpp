@@ -31,7 +31,7 @@ Hook* create_hook() {
 	return hook;
 }
 
-Character* create_character()
+Character* create_character(AEVec2 pos)
 {
 	Character* character = new Character{
 		{0,0},		// AABB  aabb;
@@ -39,7 +39,7 @@ Character* create_character()
 		32.0f,		// float scale;
 
 		{0,0},		//AEVec2 transform;
-		{0,0},		// AEVec2 pos;
+		pos,		// AEVec2 pos;
 		{0,0},		// AEVec2 accel;
 		{0,0},		// AEVec2 velocity;
 

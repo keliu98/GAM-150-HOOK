@@ -1,15 +1,20 @@
 #include "../pch.h"
 
+const unsigned int	GAME_OBJ_INST_NUM_MAX = 2048;	//The total number of different game object instances
+
+
 //Declaration of Variables.
 AEGfxVertexList* pMesh1 = 0;
-
+AEVec2* char_prev_pos;
+int Flag;
 
 void Level1_Load()
 {
 	//../Code/Levels/Exported.txt
 	if (ImportMapDataFromTxt("../Levels/leveldesign.txt"))
 	{
-		PrintRetrievedInformation();
+		// For debugging map binary data
+		// PrintRetrievedInformation();
 	}
 
 	//loading texture etc
@@ -21,13 +26,34 @@ void Level1_Initialize()
 	//Translate the map data into the gameworld by creating objects
 	IntializeLevel();
 
-	//Intialise physic
-	physics_intialize();
-
 	//Intialize camera
 	camera_init(character->pos);
 
+	//Intialise physic
+	physics_intialize();
 	
+	std::cout << "    ";
+	for (int x{ 0 }; x < 60; ++x)
+	{
+		if (x > 9)
+			std::cout << x << " ";
+		else
+			std::cout << x << "  ";
+	}
+	std::cout << std::endl;
+	std::cout << std::endl;
+
+	for (int y{ 0 }; y < 25; ++y)
+	{ 
+		if (y > 9)
+			std::cout << y << " | ";
+		else
+			std::cout << " " << y << " | ";
+		
+		for (int x{ 0 }; x < 60; ++x)
+			std::cout << GetCellValue(x, y) << "  ";
+		std::cout << std::endl;
+	}
 }
 
 void Level1_Update()
@@ -35,7 +61,47 @@ void Level1_Update()
 	// Handling Input
 	AEInputUpdate();
 	Input_g_mode();
-	
+
+	Flag = CheckInstanceBinaryMapCollision(character->pos, character->scale);
+
+	if (Flag == COLLISION_RIGHT)
+	{
+		std::cout << "FLAG: " << Flag << "\n";
+		character->pos = *char_prev_pos;
+		SnapToCell(&character->pos.x);
+		character->velocity.x = 0;
+		Flag -= COLLISION_RIGHT;
+		// printf("POS: %d, %d\n", character->pos.x, character->pos.y);
+	}
+
+	if (Flag == COLLISION_LEFT)
+	{
+		std::cout << "FLAG: " << Flag << "\n";
+		character->pos = *char_prev_pos;
+		SnapToCell(&character->pos.x);
+		character->velocity.x = 0;
+		Flag -= COLLISION_LEFT;
+		// printf("POS: %d, %d\n", character->pos.x, character->pos.y);
+	}
+
+	if (Flag == COLLISION_TOP)
+	{
+		character->pos = *char_prev_pos;
+		SnapToCell(&character->pos.y);
+		character->velocity.y = 0;
+		Flag -= COLLISION_TOP;
+		// printf("POS: %d, %d\n", character->pos.x, character->pos.y);
+	}
+
+	if (Flag == COLLISION_BOTTOM)
+	{
+		character->pos = *char_prev_pos;
+		SnapToCell(&character->pos.y);
+		character->velocity.y = 0;
+		Flag -= COLLISION_BOTTOM;
+		// printf("POS: %d, %d\n", character->pos.x, character->pos.y);
+	}
+
 	//Updating the physics of the game e.g acceleration, velocity, gravity
 	physics_update();
 
@@ -44,15 +110,19 @@ void Level1_Update()
 		//draw_cam_bounding_box();
 		//draw_static_obj();
 
+	char_prev_pos = &character->pos;
 }
 
 void Level1_Draw()
 {
 	update_render_walls();
-	update_render_character();
 	update_render_hook();
 	update_render_enemy();
+	update_render_character();
 
+	// debugging hotspot
+	draw_cam_bounding_box({ character->pos.x + character->scale / 4, character->pos.y - character->scale / 2 },
+		{ character->pos.x - character->scale / 4, character->pos.y + character->scale / 2 });
 
 	//Temporary for exiting the system
 	if (AEInputCheckTriggered(AEVK_ESCAPE) || 0 == AESysDoesWindowExist())
