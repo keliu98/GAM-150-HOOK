@@ -76,9 +76,45 @@ void load_render()
 	load_square_mesh();
 
 	//load texture for wall
+	
+	//enemy_texture = load_texture("../Images/Starfish.png");
+}
+
+void load_dirt_render()
+{
+	load_square_mesh();
+
 	wall_texture = load_texture("../Images/Dirt1.png");
-	character_texture = load_texture("../Images/Snowman.png");
+
+}
+
+void load_texture_render()
+{
+	load_square_mesh();
+
 	hook_texture = load_texture("../Images/Dirt1.png");
+}
+
+void load_character_render()
+{
+	load_square_mesh();
+
+	character_texture = load_texture("../Images/Snowman.png");
+
+}
+
+void load_hook_render()
+{
+	load_square_mesh();
+
+	hook_texture = load_texture("../Images/Dirt1.png");
+}
+
+void load_enemy_texture()
+{
+
+	load_square_mesh();
+
 	enemy_texture = load_texture("../Images/Starfish.png");
 }
 
@@ -97,6 +133,11 @@ void update_render_walls()
 
 		draw_render(render);
 	}
+
+
+
+
+
 }
 
 void update_render_character()
