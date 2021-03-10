@@ -49,7 +49,7 @@ void load_square_mesh()
 	AEGfxTriAdd(
 		0.5, -0.5, 0x00FFFFFF, 1.0f, 1.0f,
 		0.5, 0.5, 0x00FFFFFF, 1.0f, 0.0f,
-		-0.5, 0.5, 0x00FFFFFF, 0.0f, 0.0f);
+		-0.5, 0.5, 0x00FFFFFF, 0.0f, 0.0f);	
 
 
 	square_mesh = AEGfxMeshEnd();
