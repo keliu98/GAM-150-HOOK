@@ -143,6 +143,13 @@ void update_render_walls()
 
 }
 
+
+void update_health()
+{
+	Render render;
+	
+}
+
 void update_render_character()
 {
 	Render render;
@@ -173,11 +180,6 @@ void update_render_hook()
 }
 
 
-void update_health()
-{
-	Render render;	
-	
-}
 
 void update_render_enemy()
 {
@@ -240,4 +242,7 @@ void unload_render()
 
 	//free mesh
 	AEGfxMeshFree(square_mesh);
+	
+
+
 }

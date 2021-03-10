@@ -5,6 +5,7 @@ Hook* hook;
 Button* button_1;
 std::vector<Wall> walls;
 std::vector<Enemy> enemies;
+//Character* lives;
 
 Hook* create_hook() {
 	Hook* hook = new Hook{
