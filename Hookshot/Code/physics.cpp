@@ -41,6 +41,7 @@ void physics_update(int Flag)
 		//Update position based on arc on hook, if the player is outside the range, pull it back.
 		hook_char_pos_update();
 
+
 		//hook friction, lesser than normal friction
 		//character->velocity.x = character->velocity.x * 0.995f;
 	}
@@ -62,11 +63,10 @@ void physics_update(int Flag)
 	//!!!!!!!!!!!!!!!! Temporary wall collision NEED TO CHANGE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	if (character->velocity.y < 0.01f && Flag == COLLISION_BOTTOM)
 	{
-		// character->pos.y = 0.1f;
-		SnapToCell(&character->pos.y);
+		SnapToCell(&character->pos, Flag);
 		character->velocity.y = 0;
 		character->char_state = idle;
-		Flag -= COLLISION_BOTTOM;
+		//Flag -= COLLISION_BOTTOM;
 	}
 
 

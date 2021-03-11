@@ -74,7 +74,7 @@ void create_enemy(int enemy_type, AEVec2 pos)
 	Enemy enemy;
 	
 	//TODO intialise values
-	enemy.scale = 32.0f;
+	enemy.scale = 40.0f;
 	enemy.dir = 0.0f;
 	enemy.pos = pos;
 	enemy.type = enemy_type;

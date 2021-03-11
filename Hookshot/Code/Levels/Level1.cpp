@@ -45,38 +45,13 @@ void Level1_Initialize()
 	//Intialise physic
 	physics_intialize();
 	
-
-
-
-	std::cout << "    ";
-	for (int x{ 0 }; x < 60; ++x)
-	{
-		if (x > 9)
-			std::cout << x << " ";
-		else
-			std::cout << x << "  ";
-	}
-	std::cout << std::endl;
-	std::cout << std::endl;
-
-	for (int y{ 0 }; y < 25; ++y)
-	{ 
-		if (y > 9)
-			std::cout << y << " | ";
-		else
-			std::cout << " " << y << " | ";
-		
-		for (int x{ 0 }; x < 60; ++x)
-			std::cout << GetCellValue(x, y) << "  ";
-		std::cout << std::endl;
-	}
 }
 
 void Level1_Update()
 {
-	Flag = CheckInstanceBinaryMapCollision(character->pos, character->scale, character->velocity);
+	Flag = CheckInstanceBinaryMapCollision(character->pos, character->velocity);
 	for (Enemy& enemy : enemies)
-		CheckInstanceBinaryMapCollision(enemy.pos, enemy.scale, enemy.velocity);
+		CheckInstanceBinaryMapCollision(enemy.pos, enemy.velocity);
 
 	// Handling Input
 	AEInputUpdate();

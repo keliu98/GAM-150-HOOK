@@ -50,10 +50,10 @@ struct Hotspot
 }typedef Hotspot;
 
 // check binary map collision
-int	CheckInstanceBinaryMapCollision(AEVec2& pos, float scale, AEVec2& velocity);
+int	CheckInstanceBinaryMapCollision(AEVec2& pos, AEVec2& velocity);
 
 // snap object back to cell if there is collision
-void SnapToCell(float* Coordinate);
+void SnapToCell(AEVec2* Coordinate, int flag);
 
 /**************************************************************************/
 /*!

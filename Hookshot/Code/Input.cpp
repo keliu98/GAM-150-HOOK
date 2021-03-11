@@ -5,6 +5,7 @@ void Input_g_mode(int Flag) {
 
 	//Keyboard
 	if (Flag != COLLISION_LEFT && AEInputCheckCurr(AEVK_A))
+		// || (hook->hook_state == tethered && Flag != COLLISION_BOTTOM)
 	{
 		AEVec2 dir = { -1.0f, 0.0f };
 		set_accel_to_vel(character->velocity, dir, CHARACTER_ACCEL_HORI);
@@ -16,7 +17,8 @@ void Input_g_mode(int Flag) {
 		set_accel_to_vel(character->velocity, dir, CHARACTER_ACCEL_HORI);
 	}
 
-	if (Flag != COLLISION_TOP && (AEInputCheckTriggered(AEVK_W) || AEInputCheckTriggered(AEVK_SPACE)) && hook->flag == false)
+	if (Flag != COLLISION_TOP && (AEInputCheckTriggered(AEVK_W) ||
+		AEInputCheckTriggered(AEVK_SPACE)) && hook->flag == false)
 	{
 		if (character->char_state != jumping)
 		{
