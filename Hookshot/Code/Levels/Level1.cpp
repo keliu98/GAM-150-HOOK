@@ -14,7 +14,7 @@ void Level1_Load()
 	if (ImportMapDataFromTxt("../Levels/leveldesign.txt"))
 	{
 		// For debugging map binary data
-		// PrintRetrievedInformation();
+		PrintRetrievedInformation();
 	}
 
 	//loading texture etc

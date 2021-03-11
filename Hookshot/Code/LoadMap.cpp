@@ -60,6 +60,17 @@ int ImportMapDataFromTxt(const char* FileName)
 					}
 					// std::cout << "Map["<< x << ", " << y << "]:" << map_data[x][y] << " | ";
 				}
+				else
+				{
+					map_data[x][y] = (int)c;
+					binary_collision_array[x1][y] = map_data[x][y];
+					normalize_map_data[x1][y] = map_data[x][y];
+
+					if (map_data[x][y] != 1)
+					{
+						binary_collision_array[x1][y] = 0;
+					}
+				}
 			}
 			--x1;
 		}
@@ -152,14 +163,14 @@ void IntializeLevel()
 			{
 				create_wall(TEMP_WALL, 40, pos);
 			}
-			// ty[e 2 = character
-			if (normalize_map_data[x][y] == 2)
+			// type 2 = character
+			if (normalize_map_data[x][y] == 'C')
 			{
 				character = create_character(pos);
 				hook = create_hook();
 			}
 			// type 3 = enemy
-			if (normalize_map_data[x][y] == 3)
+			if (normalize_map_data[x][y] == 'E')
 			{
 				create_enemy(TEMP_ENEMY, pos);
 			}

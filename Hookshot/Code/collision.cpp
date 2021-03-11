@@ -50,7 +50,7 @@ int	CheckInstanceBinaryMapCollision(AEVec2& pos, AEVec2& velocity)
 {
 	int flag = 0;
 	Hotspot item;
-
+	
 	item.right.point_1 = { pos.x + GRID_SCALE / 2 , pos.y + GRID_SCALE / 4 };
 	item.right.point_2 = { pos.x + GRID_SCALE / 2 , pos.y - GRID_SCALE / 4 };
 
