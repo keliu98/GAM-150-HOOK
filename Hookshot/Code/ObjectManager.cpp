@@ -1,7 +1,8 @@
 #include "ObjectManager.h"
-
+#include "collision.h"
 Character* character;
 Hook* hook;
+Button* button;
 std::vector<Button> buttons;
 std::vector<Wall> walls;
 std::vector<Enemy> enemies;
@@ -58,12 +59,14 @@ Character* create_character(AEVec2 pos)
 void create_button(int type, AEVec2 pos, float scale)
 {
 	Button button;
-
+	
 	// init values
 	button.type = type;
 	button.scale = scale;
 	button.pos = pos;
+	create_AABB(button.aabb, button.pos, button.scale);
 	buttons.push_back(button);
+	
 }
 
 
@@ -85,6 +88,7 @@ void create_enemy(int enemy_type, AEVec2 pos)
 	enemy.velocity.y = 0;
 
 	enemies.push_back(enemy);
+
 }
 
 // When enemy is defeated by players

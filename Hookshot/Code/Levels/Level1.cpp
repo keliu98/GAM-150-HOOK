@@ -1,5 +1,5 @@
 #include "../pch.h"
-
+#include "../collision.h"
 const unsigned int	GAME_OBJ_INST_NUM_MAX = 2048;	//The total number of different game object instances
 
 
@@ -135,8 +135,7 @@ void Level1_Draw()
 		{ character->pos.x - character->scale / 4, character->pos.y + character->scale / 2 });
 
 	//Temporary for exiting the system
-	if (AEInputCheckTriggered(AEVK_ESCAPE) || 0 == AESysDoesWindowExist())
-		next = GS_QUIT;
+	
 }
 
 // Called if change state, for everything including reset

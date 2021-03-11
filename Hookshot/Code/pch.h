@@ -28,7 +28,7 @@
 #include "GameStateList.h"
 #include "GameStateManager.h"
 #include "camera.h"
-#include "collision.h"
+//#include "collision.h"
 #include "newrendersystem.h"
 #include "LoadMap.h"
 

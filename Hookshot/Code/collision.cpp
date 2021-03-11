@@ -200,7 +200,7 @@ bool CollisionIntersection_RectRect(const AABB& aabb1, const AEVec2& vel1, const
 	// Step 5: Otherwise the rectangles intersect
 	return (x_col && y_col);
 }
-
+	
 bool CollisionIntersection_PointRect(const AEVec2 point1, const AABB& aabb2)
 {
 	//static collision
@@ -212,5 +212,15 @@ bool CollisionIntersection_PointRect(const AEVec2 point1, const AABB& aabb2)
 		return true;
 	}
 
-	return false;	
+	return false;
+}
+
+
+//add this during merge
+void create_AABB(AABB& aabb, AEVec2 const& pos, float scale)
+{
+	aabb.min.x = pos.x - (scale / 2);
+	aabb.min.y = pos.y - (scale / 2);
+	aabb.max.x = pos.x + (scale / 2);
+	aabb.max.y = pos.y + (scale / 2);
 }

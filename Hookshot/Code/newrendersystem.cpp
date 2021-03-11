@@ -21,7 +21,7 @@ AEGfxTexture* hook_texture;
 //Pointer to the hook texture
 AEGfxTexture* enemy_texture;
 
-AEGfxTexture* button_texture;
+AEGfxTexture* button_texture;//add this during merge
 
 struct Render
 {
@@ -120,7 +120,7 @@ void load_button_texture()
 {
 
 
-	button_texture = load_texture("../Images/Title.png");
+	button_texture = load_texture("../Images/Title.png");//change this during merge
 }
 
 void update_render_walls()
@@ -145,7 +145,7 @@ void update_render_walls()
 
 }
 
-void update_render_buttons()
+void update_render_buttons()//change this during merge
 {
 	Render render;
 
@@ -247,7 +247,7 @@ void unload_render()
 		if (texturelist[i] != nullptr)
 		{
 			AEGfxTextureUnload(texturelist[i]);
-			texturelist[i] = nullptr;
+			texturelist[i] = nullptr;//change this during merge
 		}
 	}
 

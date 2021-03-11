@@ -16,6 +16,8 @@
 ***/
 
 #include "pch.h"
+#include "collision.h"
+//#include "ObjectManager.h"
 
 static float SWING_ACCELERATION = 300;
 static float HOOK_SPEED = 20;

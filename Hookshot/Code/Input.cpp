@@ -1,5 +1,5 @@
 #include"pch.h"
-
+#include"collision.h"
 void Input_g_mode() {
 	float CHARACTER_ACCEL_HORI = 500.0f;
 
@@ -25,6 +25,12 @@ void Input_g_mode() {
 		}
 	}
 
+	if (AEInputCheckTriggered(AEVK_ESCAPE) || 0 == AESysDoesWindowExist())
+	{
+	}
+
+
+
 
 	//Mouse Press and position
 	int cursor_x;
@@ -49,4 +55,34 @@ void Input_g_mode() {
 		release_hook();
 	}
 
+}
+
+//For interracting with the main menu
+void Input_menu_mode()
+{
+	int cursor_x;
+	int cursor_y;
+
+	//temporary input, will need to translate as the camera moves ....
+	AEInputGetCursorPosition(&cursor_x, &cursor_y);
+
+	//centering the cursor_positiond
+
+	translate_cursor(cursor_x, cursor_y);
+
+	AEVec2 mouse_pos{ static_cast <float>(cursor_x), static_cast <float>(cursor_y) };
+	//TODO create AABB for button-> dont put it here, can just intialse it with the AABB as the button is static. 
+
+	for (Button& button : buttons)
+	{
+		if (AEInputCheckTriggered(AEVK_LBUTTON) && CollisionIntersection_PointRect(mouse_pos, button.aabb))
+		{
+			if (button.type == TITLE) {
+				next = GS_LEVEL1;
+			}
+			//TODO is what happens after you click -> e.g changing to different screen or etc
+		}
+
+
+	}
 }
