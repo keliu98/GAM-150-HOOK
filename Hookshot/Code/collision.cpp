@@ -70,7 +70,6 @@ int	CheckInstanceBinaryMapCollision(AEVec2& pos, AEVec2& velocity)
 		flag += COLLISION_RIGHT;
 		velocity.x = 0;
 		SnapToCell(&pos, flag);
-		release_hook();
 		//std::cout << (int)item.right.point_1.x / 40 << ", " << (int)item.right.point_1.y / 40<< ": ";
 		//std::cout << GetCellValue((int)item.right.point_1.x / 40, (int)item.right.point_1.y / 40) << std::endl;
 		//std::cout << (int)item.right.point_2.x / 40 << ", " << (int)item.right.point_2.y / 40 << ": ";

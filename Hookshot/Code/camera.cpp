@@ -64,7 +64,7 @@ void draw_cam_bounding_box(AEVec2 point1, AEVec2 point2)
 
 void camera_init(AEVec2 character_pos) {
 	center = character_pos;
-	scale = { AEGfxGetWinMaxX() * 0.2f, AEGfxGetWinMaxY() * 0.2f };
+	scale = { AEGfxGetWinMaxX() * 0.1f, AEGfxGetWinMaxY() * 0.1f };
 	win_min = { AEGfxGetWinMinX(), AEGfxGetWinMinY() };
 	win_max = { AEGfxGetWinMaxX(), AEGfxGetWinMaxY() };
 

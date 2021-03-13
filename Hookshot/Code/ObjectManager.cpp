@@ -5,6 +5,7 @@ Hook* hook;
 Button* button_1;
 std::vector<Wall> walls;
 std::vector<Enemy> enemies;
+AEVec2* end_position;
 
 Hook* create_hook() {
 	Hook* hook = new Hook{
@@ -67,6 +68,11 @@ Button* create_button()
 	return button;
 }
 
+AEVec2* create_ending_point(AEVec2 pos)
+{
+	AEVec2* end_position = new AEVec2{ pos };
+	return end_position;
+}
 
 void create_enemy(int enemy_type, AEVec2 pos)
 {
@@ -114,6 +120,7 @@ void free_object(Character* character, Hook* hook, std::vector<Wall> walls)
 	
 	delete hook;
 	delete character;
+	delete end_position;
 }
 
 

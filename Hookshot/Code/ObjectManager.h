@@ -18,6 +18,8 @@ extern std::vector<Wall> walls;
 struct Enemy;
 extern std::vector<Enemy> enemies;
 
+extern AEVec2* end_position;
+
 //-----------------------------------------------------------
 
 struct AABB {
@@ -138,6 +140,7 @@ struct Enemy {
 	AEVec2 knockback;
 };
 
+
 // --------------------------FUNCTIONS FROM OBJECTMANAGER.CPP---------------------------------------------
 // Create hook
 Hook* create_hook();
@@ -156,6 +159,9 @@ void create_wall(int type, float scale, AEVec2 pos);
 
 // When enemy is defeated by players (pass in enemy vec and index to delete)
 void destory_enemy(std::vector<Enemy>&, int index); 
+
+// Store the ending point
+AEVec2* create_ending_point(AEVec2 pos);
 
 // Free all object
 void free_object(Character* character, Hook* hook, std::vector<Wall> walls);

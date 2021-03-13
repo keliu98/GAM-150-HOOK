@@ -5,16 +5,16 @@ const unsigned int	GAME_OBJ_INST_NUM_MAX = 2048;	//The total number of different
 
 //Declaration of Variables.
 AEGfxVertexList* pMesh1 = 0;
-AEVec2* char_prev_pos;
 int Flag;
+static bool game_end;
 
 void Level1_Load()
 {
 	//../Code/Levels/Exported.txt
-	if (ImportMapDataFromTxt("../Levels/leveldesign.txt"))
+	if (ImportMapDataFromTxt("../Levels/Level_1.txt"))
 	{
 		// For debugging map binary data
-		PrintRetrievedInformation();
+		// PrintRetrievedInformation();
 	}
 
 	//loading texture etc
@@ -44,34 +44,53 @@ void Level1_Initialize()
 
 	//Intialise physic
 	physics_intialize();
+
+	game_end = false;
 	
 }
 
 void Level1_Update()
 {
-	Flag = CheckInstanceBinaryMapCollision(character->pos, character->velocity);
-	for (Enemy& enemy : enemies)
-		CheckInstanceBinaryMapCollision(enemy.pos, enemy.velocity);
+	if (!game_end)
+	{
+		Flag = CheckInstanceBinaryMapCollision(character->pos, character->velocity);
+		for (Enemy& enemy : enemies)
+			CheckInstanceBinaryMapCollision(enemy.pos, enemy.velocity);
 
-	// Handling Input
-	AEInputUpdate();
-	Input_g_mode(Flag);
+		// Handling Input
+		AEInputUpdate();
+		Input_g_mode(Flag);
 
-	//Updating the physics of the game e.g acceleration, velocity, gravity
-	physics_update(Flag);
+		//Updating the physics of the game e.g acceleration, velocity, gravity
+		physics_update(Flag);
 
-	camera_update(character->pos, character->velocity, character->scale);
-	//For Debuging Camera
-	//draw_static_obj();
+		camera_update(character->pos, character->velocity, character->scale);
+		//For Debuging Camera
+		//draw_static_obj();
 
 
-	//if (Flag == COLLISION_BOTTOM)
-	//{
-	//	SnapToCell(&character->pos.y);
-	//	character->velocity.y = 0;
-	//	Flag -= COLLISION_BOTTOM;
-	//	printf("BOTTOM POS: %f, %f\n", character->pos.x, character->pos.y);
-	//}
+		//if (Flag == COLLISION_BOTTOM)
+		//{
+		//	SnapToCell(&character->pos.y);
+		//	character->velocity.y = 0;
+		//	Flag -= COLLISION_BOTTOM;
+		//	printf("BOTTOM POS: %f, %f\n", character->pos.x, character->pos.y);
+		//}
+
+		// ending position is always top right, so will need to caculate bottom left
+		if (character->pos.x <= end_position->x && character->pos.x >= (end_position->x - 40 * 4) &&
+			character->pos.y <= end_position->y && character->pos.y >= (end_position->y - 40 * 4))
+		{
+			game_end = true;
+		}
+	}
+
+	else
+	{
+		// For now character will not be able to move.
+		// show end screen or next lvl
+
+	}
 }
 
 void Level1_Draw()

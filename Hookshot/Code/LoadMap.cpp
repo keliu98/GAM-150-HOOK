@@ -174,6 +174,11 @@ void IntializeLevel()
 			{
 				create_enemy(TEMP_ENEMY, pos);
 			}
+			// Ending point
+			if (normalize_map_data[x][y] == 2)
+			{
+				end_position = create_ending_point(pos);
+			}
 			pos.x += (wall_scale * 2);
 		}
 		pos.y += (wall_scale * 2);
