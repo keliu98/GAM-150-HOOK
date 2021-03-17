@@ -17,26 +17,40 @@ Technology is prohibited.
 
 static const int GRID_SCALE = 40;
 
+void UpdateCollision()
+{
+	character->grid_collision_flag = CheckInstanceBinaryMapCollision(character->pos, character->velocity);
+
+	std::cout << character->grid_collision_flag << "\n";
+
+	if (character->velocity.y < 0.01f && (character->grid_collision_flag & COLLISION_BOTTOM ) == COLLISION_BOTTOM)
+		character->char_state = idle;
+
+	for (Enemy& enemy : enemies)
+		CheckInstanceBinaryMapCollision(enemy.pos, enemy.velocity);
+}
+
 void SnapToCell(AEVec2* Coordinate, int Flag)
 {
 	// *Coordinate = (int)((*Coordinate)) + 0.5f;
+	
 
-	if (Flag == COLLISION_TOP)
+	if ((Flag & COLLISION_TOP) == COLLISION_TOP)
 	{
 		int character_y_index = (int)((Coordinate->y / GRID_SCALE) - 0.5f);
 		Coordinate->y = (float)(character_y_index * GRID_SCALE + (GRID_SCALE / 2));
 	}
-	if (Flag == COLLISION_BOTTOM)
+	if ((Flag & COLLISION_BOTTOM) == COLLISION_BOTTOM)
 	{
 		int character_y_index = (int)((Coordinate->y / GRID_SCALE) + 0.5f);
 		Coordinate->y = (float)(character_y_index * GRID_SCALE + (GRID_SCALE / 2));
 	}
-	if (Flag == COLLISION_LEFT)
+	if ((Flag & COLLISION_LEFT) == COLLISION_LEFT)
 	{
 		int character_x_index = (int)((Coordinate->x / GRID_SCALE) + 0.5f);
 		Coordinate->x = (float)(character_x_index * GRID_SCALE + (GRID_SCALE / 2));
 	}
-	if (Flag == COLLISION_RIGHT)
+	if ((Flag & COLLISION_RIGHT) == COLLISION_RIGHT)
 	{
 		int character_x_index = (int)((Coordinate->x / GRID_SCALE) - 0.5f);
 		Coordinate->x = (float)(character_x_index * GRID_SCALE + (GRID_SCALE / 2));
@@ -64,6 +78,18 @@ int	CheckInstanceBinaryMapCollision(AEVec2& pos, AEVec2& velocity)
 	item.bottom.point_2 = { pos.x + GRID_SCALE / 4, pos.y - GRID_SCALE / 2 };
 
 	// check collision
+	if (GetCellValue((int)item.bottom.point_1.x / GRID_SCALE, (int)item.bottom.point_1.y / GRID_SCALE) ||
+		GetCellValue((int)item.bottom.point_2.x / GRID_SCALE, (int)item.bottom.point_2.y / GRID_SCALE))
+	{
+		flag += COLLISION_BOTTOM;
+		velocity.y = 0.0f;
+		SnapToCell(&pos, flag);
+		//std::cout << (int)item.bottom.point_1.x / GRID_SCALE << ", " << (int)item.bottom.point_1.y / GRID_SCALE << ": ";
+		//std::cout << GetCellValue((int)item.bottom.point_1.x / GRID_SCALE, (int)item.bottom.point_1.y / GRID_SCALE) << std::endl;
+		//std::cout << (int)item.bottom.point_2.x /GRID_SCALE << ", " << (int)item.bottom.point_2.y / GRID_SCALE<< ": ";
+		//std::cout << GetCellValue((int)item.bottom.point_2.x / GRID_SCALE, (int)item.bottom.point_2.y / GRID_SCALE) << std::endl;
+	}
+
 	if (GetCellValue((int)item.right.point_1.x / GRID_SCALE, (int)item.right.point_1.y / GRID_SCALE) ||
 		GetCellValue((int)item.right.point_2.x / GRID_SCALE, (int)item.right.point_2.y / GRID_SCALE))
 	{
@@ -102,17 +128,7 @@ int	CheckInstanceBinaryMapCollision(AEVec2& pos, AEVec2& velocity)
 		//std::cout << GetCellValue((int)item.top.point_2.x, (int)item.top.point_2.y) << std::endl;
 		//std::cout << "TOP\n\n";
 	}
-	if (GetCellValue((int)item.bottom.point_1.x / GRID_SCALE, (int)item.bottom.point_1.y / GRID_SCALE) ||
-		GetCellValue((int)item.bottom.point_2.x / GRID_SCALE, (int)item.bottom.point_2.y / GRID_SCALE))
-	{
-		flag += COLLISION_BOTTOM;
-		velocity.y = 0.0f ;
-		//std::cout << (int)item.bottom.point_1.x / GRID_SCALE << ", " << (int)item.bottom.point_1.y / GRID_SCALE << ": ";
-		//std::cout << GetCellValue((int)item.bottom.point_1.x / GRID_SCALE, (int)item.bottom.point_1.y / GRID_SCALE) << std::endl;
-		//std::cout << (int)item.bottom.point_2.x /GRID_SCALE << ", " << (int)item.bottom.point_2.y / GRID_SCALE<< ": ";
-		//std::cout << GetCellValue((int)item.bottom.point_2.x / GRID_SCALE, (int)item.bottom.point_2.y / GRID_SCALE) << std::endl;
-		//std::cout << "BOTTOM\n\n";
-	}
+
 
 	return flag;
 }

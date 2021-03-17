@@ -41,14 +41,14 @@ void fire_hook(int cursor_x, int cursor_y)
 	//About to fire
 	if (hook->hook_state == not_firing)
 	{
-		//Set flag to active
-		hook->flag = true;
+//Set flag to active
+hook->flag = true;
 
-		//Setting the pivot pos to the mouse cusor
-		AEVec2Set(&hook->pivot_pos, static_cast<float>(cursor_x), static_cast<float>(cursor_y));
+//Setting the pivot pos to the mouse cusor
+AEVec2Set(&hook->pivot_pos, static_cast<float>(cursor_x), static_cast<float>(cursor_y));
 
-		//setting the mode
-		hook->hook_state = firing;
+//setting the mode
+hook->hook_state = firing;
 	}
 
 	//Fired and trying to tether 
@@ -70,42 +70,42 @@ void fire_hook(int cursor_x, int cursor_y)
 
 		//~~~~~~~~~~!!!!!!TODO REPLACE WITH THE COLLISION EVENTUALLY TO DETECT IF IT HIT A WALL AND ENEMY!!!!!~~~~~~~~~~~~~
 		//Collision with enemy, to be reworked and place in enemy code.													//
-																														
-				for (Enemy& enemy : enemies)																			//
-				{
-					enemy.aabb.min.x = enemy.pos.x - (enemy.scale / 2);													//
-					enemy.aabb.min.y = enemy.pos.y - (enemy.scale / 2);													
-					enemy.aabb.max.x = enemy.pos.x + (enemy.scale / 2);													//
-					enemy.aabb.max.y = enemy.pos.y + (enemy.scale / 2);
 
-					//BUG: why nand ???????????????
-					if (CollisionIntersection_PointRect(hook->head_pos, enemy.aabb))									//
-					{
-						std::cout << "collisiom ";
-						AEVec2 knockback_dir;
-						AEVec2Sub(&knockback_dir, &hook->head_pos, &character->pos);									//
-						AEVec2Normalize(&knockback_dir, &knockback_dir);
-						AEVec2Scale(&knockback_dir, &knockback_dir, enemy.knockback.x);
-						//for a jumping up effect.
-						knockback_dir.y += enemy.knockback.y;															//
-						enemy.velocity = knockback_dir;
-																														//
-						hook->max_len = hook->curr_len;
-						hook->pivot_pos = hook->head_pos;
-					}
+		for (Enemy& enemy : enemies)																			//
+		{
+			enemy.aabb.min.x = enemy.pos.x - (enemy.scale / 2);													//
+			enemy.aabb.min.y = enemy.pos.y - (enemy.scale / 2);
+			enemy.aabb.max.x = enemy.pos.x + (enemy.scale / 2);													//
+			enemy.aabb.max.y = enemy.pos.y + (enemy.scale / 2);
 
-																														//
-				}
+			//BUG: why nand ???????????????
+			if (CollisionIntersection_PointRect(hook->head_pos, enemy.aabb))									//
+			{
+				std::cout << "hook - enemy collison";
+				AEVec2 knockback_dir;
+				AEVec2Sub(&knockback_dir, &hook->head_pos, &character->pos);									//
+				AEVec2Normalize(&knockback_dir, &knockback_dir);
+				AEVec2Scale(&knockback_dir, &knockback_dir, enemy.knockback.x);
+				//for a jumping up effect.
+				knockback_dir.y += enemy.knockback.y;															//
+				enemy.velocity = knockback_dir;
+				//
+				hook->max_len = hook->curr_len;
+				hook->pivot_pos = hook->head_pos;
+			}
 
-				//Wall collision																						//
-				for (Wall& wall : walls)
-				{
-					//TODO wall collision																				//
-				}
-																														//
-		//~~~~~~~~~~!!!!!!TODO REPLACE WITH THE COLLISION EVENTUALLY TO DETECT IF IT HIT A WALL AND ENEMY!!!!!~~~~~~~~~~~~~
+			//
+		}
 
-		//Reaching the selected point
+		//Wall collision																						//
+		for (Wall& wall : walls)
+		{
+			//TODO wall collision																				//
+		}
+		//
+//~~~~~~~~~~!!!!!!TODO REPLACE WITH THE COLLISION EVENTUALLY TO DETECT IF IT HIT A WALL AND ENEMY!!!!!~~~~~~~~~~~~~
+
+//Reaching the selected point
 		if (hook->curr_len > hook->max_len)
 		{
 			//need to set head_pos to pivot_pos -> current_length
@@ -140,9 +140,18 @@ void fire_hook(int cursor_x, int cursor_y)
 
 		//Scaling the new velocity direction with the old velocity magnitude
 		AEVec2Scale(&dir_vec_arc, &dir_vec_arc, magnitude);
-		character->velocity = dir_vec_arc;
 
-
+		//Changing the velocity, to prevent glitching into the ground, need to ensure that it is not touching the ground.
+		if ((character->grid_collision_flag & COLLISION_BOTTOM) != COLLISION_BOTTOM)
+		{
+			character->velocity = dir_vec_arc;
+		}
+		else
+		{
+			character->velocity.x = 0;
+			character->velocity.y = 0;
+		}
+		
 		//NOTE TO SELF TO ADJUST LENGTH OF HOOK NEED TO CHANGE BOTH
 		//hook->max_len -= 2;
 		//hook->curr_len -= 2;
@@ -176,23 +185,27 @@ void release_hook()
 //Function for transalating the character position to stay within the arc, "pulling it back in". Called in physics.cpp
 void hook_char_pos_update()
 {
-	float distance = AEVec2Distance(&hook->pivot_pos, &character->pos);
-
-	if (distance > hook->max_len || distance < hook->max_len)
+	if ((character->grid_collision_flag & COLLISION_BOTTOM) != COLLISION_BOTTOM)
 	{
-		//Getting the distance to translate it by, only need to translate it by exceeding distance
-		distance = distance - hook->max_len;
+		float distance = AEVec2Distance(&hook->pivot_pos, &character->pos);
 
-		//Creating the directional vector
-		AEVec2 dir_vec;
-		AEVec2FromAngle(&dir_vec, hook->pivot_angle);
+		if (distance > hook->max_len || distance < hook->max_len)
+		{
+			//Getting the distance to translate it by, only need to translate it by exceeding distance
+			distance = distance - hook->max_len;
 
-		//Scaling the directional vector by the distance
-		AEVec2Scale(&dir_vec, &dir_vec, distance);
+			//Creating the directional vector
+			AEVec2 dir_vec;
+			AEVec2FromAngle(&dir_vec, hook->pivot_angle);
 
-		//Setting the position
-		AEVec2Add(&character->pos, &character->pos, &dir_vec);
+			//Scaling the directional vector by the distance
+			AEVec2Scale(&dir_vec, &dir_vec, distance);
+
+			//Setting the position
+			AEVec2Add(&character->pos, &character->pos, &dir_vec);
+		}
 	}
+
 }
 
 float calculate_angle(AEVec2& pos1, AEVec2& pos2)

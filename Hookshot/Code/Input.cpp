@@ -1,23 +1,23 @@
 #include"pch.h"
 
-void Input_g_mode(int Flag) {
+void Input_g_mode() {
 	float CHARACTER_ACCEL_HORI = 500.0f;
 
 	//Keyboard
-	if (Flag != COLLISION_LEFT && AEInputCheckCurr(AEVK_A))
+	if (character->grid_collision_flag != COLLISION_LEFT && AEInputCheckCurr(AEVK_A))
 		// || (hook->hook_state == tethered && Flag != COLLISION_BOTTOM)
 	{
 		AEVec2 dir = { -1.0f, 0.0f };
 		set_accel_to_vel(character->velocity, dir, CHARACTER_ACCEL_HORI);
 	}
 
-	if (Flag != COLLISION_RIGHT && AEInputCheckCurr(AEVK_D))
+	if (character->grid_collision_flag != COLLISION_RIGHT && AEInputCheckCurr(AEVK_D))
 	{
 		AEVec2 dir = { 1.0f, 0.0f };
 		set_accel_to_vel(character->velocity, dir, CHARACTER_ACCEL_HORI);
 	}
 
-	if (Flag != COLLISION_TOP && (AEInputCheckTriggered(AEVK_W) ||
+	if (character->grid_collision_flag != COLLISION_TOP && (AEInputCheckTriggered(AEVK_W) ||
 		AEInputCheckTriggered(AEVK_SPACE)) && hook->flag == false)
 	{
 		if (character->char_state != jumping)
@@ -25,6 +25,11 @@ void Input_g_mode(int Flag) {
 			character->velocity.y += CHAR_HEIGHT_VEL;
 			character->char_state = jumping;
 		}
+	}
+
+	if (AEInputCheckCurr(AEVK_R))
+	{
+		next = GS_RESTART;
 	}
 
 

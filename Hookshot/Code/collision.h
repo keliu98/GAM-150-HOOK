@@ -49,6 +49,9 @@ struct Hotspot
 	Corners bottom;
 }typedef Hotspot;
 
+// Updates the Collision
+void UpdateCollision();
+
 // check binary map collision
 int	CheckInstanceBinaryMapCollision(AEVec2& pos, AEVec2& velocity);
 

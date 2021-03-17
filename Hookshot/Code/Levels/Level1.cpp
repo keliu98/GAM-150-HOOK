@@ -53,16 +53,16 @@ void Level1_Update()
 {
 	if (!game_end)
 	{
-		Flag = CheckInstanceBinaryMapCollision(character->pos, character->velocity);
-		for (Enemy& enemy : enemies)
-			CheckInstanceBinaryMapCollision(enemy.pos, enemy.velocity);
 
 		// Handling Input
 		AEInputUpdate();
-		Input_g_mode(Flag);
+		Input_g_mode();
 
 		//Updating the physics of the game e.g acceleration, velocity, gravity
-		physics_update(Flag);
+		physics_update();
+
+		// Updating the Collision
+		UpdateCollision();
 
 		camera_update(character->pos, character->velocity, character->scale);
 		//For Debuging Camera
@@ -115,12 +115,13 @@ void Level1_Draw()
 // Called if change state, for everything including reset
 void Level1_Free()
 {
-	FreeMapData();
+
 	free_object(character, hook, walls);
 }
 
 //  Called if change state and State is NOT reset. ie Change levels. Do not unload if reseting.
 void Level1_Unload()
 {
+	FreeMapData();
 	unload_render();
 }

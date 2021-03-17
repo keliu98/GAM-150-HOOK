@@ -95,6 +95,8 @@ struct Character {
 
 	int char_state;
 
+	int grid_collision_flag;
+
 	int lives;
 	int damage;
 
