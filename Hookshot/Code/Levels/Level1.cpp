@@ -61,7 +61,6 @@ void Level1_Update()
 		//draw_static_obj();
 
 	CheckWinLose();
-
 }
 
 void Level1_Draw()
