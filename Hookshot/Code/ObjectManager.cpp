@@ -1,5 +1,6 @@
 #include "ObjectManager.h"
-#include "collision.h"
+
+int lives = 3;
 Character* character;
 Hook* hook;
 Button* button;
@@ -8,6 +9,7 @@ std::vector<Button> buttons;
 std::vector < Health > heart;
 std::vector<Wall> walls;
 std::vector<Enemy> enemies;
+AEVec2* end_position;
 
 Hook* create_hook() {
 	Hook* hook = new Hook{
@@ -39,7 +41,7 @@ Character* create_character(AEVec2 pos)
 	Character* character = new Character{
 		{0,0},		// AABB  aabb;
 
-		32.0f,		// float scale;
+		40.0f,		// float scale;
 
 		{0,0},		//AEVec2 transform;
 		pos,		// AEVec2 pos;
@@ -51,7 +53,7 @@ Character* create_character(AEVec2 pos)
 
 		1,			// int char_state;
 
-		3,			// int lives;
+		3,			// int health;
 		0,			// int damage;
 	};
 	return character;
@@ -83,6 +85,11 @@ void create_health(int type, AEVec2 pos, float scale)
 	buttons.push_back(button);
 }
 
+AEVec2* create_ending_point(AEVec2 pos)
+{
+	AEVec2* end_position = new AEVec2{ pos };
+	return end_position;
+}
 
 
 
@@ -92,7 +99,7 @@ void create_enemy(int enemy_type, AEVec2 pos)
 	Enemy enemy;
 	
 	//TODO intialise values
-	enemy.scale = 32.0f;
+	enemy.scale = 40.0f;
 	enemy.dir = 0.0f;
 	enemy.pos = pos;
 	enemy.type = enemy_type;
@@ -122,17 +129,33 @@ void destory_enemy(std::vector<Enemy>& enemies, int index)
 	}
 }
 
-void free_object(Character* character, Hook* hook, std::vector<Wall> walls)
+void free_objects()
 {
+	walls.clear();
+	walls.shrink_to_fit();
+
+	std::cout << walls.size() << '\n';
+	std::cout << walls.capacity() << '\n';
+
 	for (int i{0}; i < walls.size(); ++i)
 	{
 		// remove first element
 		//delete & walls[i];
 		walls.erase(walls.begin());
+		std::cout << i << '\n';
+	}
+
+	for (int i{ 0 }; i < enemies.size(); ++i)
+	{
+		// remove first element
+		//delete & walls[i];
+		enemies.erase(enemies.begin());
+		
 	}
 	
 	delete hook;
 	delete character;
+	delete end_position;
 }
 
 void free_button(std::vector<Button> buttons)

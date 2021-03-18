@@ -90,29 +90,22 @@ void load_dirt_render()
 
 void load_texture_render()
 {
-
-
 	hook_texture = load_texture("../Images/Dirt1.png");
 }
 
 void load_character_render()
 {
-	
-
 	character_texture = load_texture("../Images/Snowman.png");
 
 }
 
 void load_hook_render()
 {
-
 	hook_texture = load_texture("../Images/Dirt1.png");
 }
 
 void load_enemy_texture()
 {
-
-
 	enemy_texture = load_texture("../Images/Starfish.png");
 }
 

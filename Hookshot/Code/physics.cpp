@@ -41,28 +41,22 @@ void physics_update()
 		//Update position based on arc on hook, if the player is outside the range, pull it back.
 		hook_char_pos_update();
 
-		//hook friction, lesser than normal friction
-		//character->velocity.x = character->velocity.x * 0.995f;
+
+		//Hook friction, lesser than normal friction
+		character->velocity.x = character->velocity.x * 0.995f;
 	}
 	else
 	{
-		//Horizontal Friction. 
+		//Normal Character Horizontal Friction. 
 		character->velocity.x = character->velocity.x * 0.97f;
 
 	}
 
-	//Gravity.
+	//Gravity only when jumping.
 	AEVec2 gravity_dir{ 0.0f, -1.0f };
-	set_accel_to_vel(character->velocity, gravity_dir, GRAVITY);
+	if ((character->grid_collision_flag & COLLISION_BOTTOM) != COLLISION_BOTTOM)
+		set_accel_to_vel(character->velocity, gravity_dir, GRAVITY);
 
-
-	//!!!!!!!!!!!!!!!! Temporary wall collision NEED TO CHANGE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-	if (character->pos.y < -0.0f)
-	{
-		character->pos.y = 0.1f;
-		character->velocity.y = 0;
-		character->char_state = idle;
-	}
 
 
 //------------------Updating Enemy physics---------------------
@@ -86,10 +80,6 @@ void physics_update()
 			enemy.velocity.y = 0;
 		}
 	}
-
-
-
-
 }
 
 //Calculates and sets the velocity of the object using an flat acceleration value and a normalised direction vector. 

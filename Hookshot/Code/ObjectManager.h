@@ -18,6 +18,12 @@ extern std::vector<Wall> walls;
 struct Enemy;
 extern std::vector<Enemy> enemies;
 
+//Extern position of end goal
+extern AEVec2* end_position;
+
+//Extern total lives
+extern int lives;
+
 //-----------------------------------------------------------
 
 struct AABB {
@@ -26,12 +32,16 @@ struct AABB {
 };
 
 enum char_state {
-	moving_left,
-	moving_right,
+	//jumping left
+	//jumping right
+	//moving right
+	//moving left
+	//swing left
+	//swing right 
+	//idle
+
 	jumping,
-	falling,
-	idle,
-	onhook
+	not_jumping,
 };
 
 enum hook_state
@@ -100,7 +110,9 @@ struct Character {
 
 	int char_state;
 
-	int lives;
+	int grid_collision_flag;
+
+	int health;
 	int damage;
 
 	Hook* hook;
@@ -153,11 +165,12 @@ struct Enemy {
 
 	int type;
 
-	int lives;
+	int health;
 	int damage;
 
 	AEVec2 knockback;
 };
+
 
 // --------------------------FUNCTIONS FROM OBJECTMANAGER.CPP---------------------------------------------
 // Create hook
@@ -181,7 +194,10 @@ void destory_enemy(std::vector<Enemy>&, int index);
 //Free buttons
 void free_button(std::vector<Button> buttons);
 
+// Store the ending point
+AEVec2* create_ending_point(AEVec2 pos);
+
 // Free all object
-void free_object(Character* character, Hook* hook, std::vector<Wall> walls);
+void free_objects();
 // -------------------------------------------------------------------------------------------------------
 

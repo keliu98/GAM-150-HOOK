@@ -4,13 +4,14 @@ void Input_g_mode() {
 	float CHARACTER_ACCEL_HORI = 500.0f;
 
 	//Keyboard
-	if (AEInputCheckCurr(AEVK_A))
+	if (character->grid_collision_flag != COLLISION_LEFT && AEInputCheckCurr(AEVK_A))
+		// || (hook->hook_state == tethered && Flag != COLLISION_BOTTOM)
 	{
 		AEVec2 dir = { -1.0f, 0.0f };
 		set_accel_to_vel(character->velocity, dir, CHARACTER_ACCEL_HORI);
 	}
 
-	if (AEInputCheckCurr(AEVK_D))
+	if (character->grid_collision_flag != COLLISION_RIGHT && AEInputCheckCurr(AEVK_D))
 	{
 		AEVec2 dir = { 1.0f, 0.0f };
 		set_accel_to_vel(character->velocity, dir, CHARACTER_ACCEL_HORI);
@@ -26,7 +27,8 @@ void Input_g_mode() {
 			std::cout << TOTAL_LIVES;
 	}
 
-	if ((AEInputCheckTriggered(AEVK_W) || AEInputCheckTriggered(AEVK_SPACE)) && hook->flag == false)
+	if (character->grid_collision_flag != COLLISION_TOP && (AEInputCheckTriggered(AEVK_W) ||
+		AEInputCheckTriggered(AEVK_SPACE)) && hook->flag == false)
 	{
 		if (character->char_state != jumping)
 		{
@@ -35,9 +37,11 @@ void Input_g_mode() {
 		}
 	}
 
-	if (AEInputCheckTriggered(AEVK_ESCAPE) || 0 == AESysDoesWindowExist())
+	if (AEInputCheckCurr(AEVK_R))
 	{
+		next = GS_RESTART;
 	}
+
 
 	//Mouse Press and position
 	int cursor_x;
