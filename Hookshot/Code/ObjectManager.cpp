@@ -1,5 +1,6 @@
 #include "ObjectManager.h"
 
+int lives = 3;
 Character* character;
 Hook* hook;
 Button* button_1;
@@ -49,7 +50,7 @@ Character* create_character(AEVec2 pos)
 
 		1,			// int char_state;
 
-		3,			// int lives;
+		3,			// int health;
 		0,			// int damage;
 	};
 	return character;

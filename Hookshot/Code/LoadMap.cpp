@@ -78,7 +78,6 @@ int ImportMapDataFromTxt(const char* FileName)
 		read_file.close();
 		return 1;
 	}
-
 	return 0;
 }
 
@@ -172,12 +171,12 @@ void IntializeLevel()
 			// type 3 = enemy
 			if (normalize_map_data[x][y] == 'E')
 			{
-				//create_enemy(TEMP_ENEMY, pos);
+				create_enemy(TEMP_ENEMY, pos);
 			}
 			// Ending point
 			if (normalize_map_data[x][y] == 2)
 			{
-				//end_position = create_ending_point(pos);
+				end_position = create_ending_point(pos);
 			}
 			pos.x += (wall_scale * 2);
 		}
@@ -189,6 +188,32 @@ void IntializeLevel()
 
 	std::cout << walls.size() << '\n';
 	std::cout << walls.capacity() << '\n';
+}
+
+void CheckWinLose()
+{
+	// ending position is always top right, so will need to caculate bottom left
+	if (character->pos.x <= end_position->x && character->pos.x >= (end_position->x - 40 * 4) &&
+		character->pos.y <= end_position->y && character->pos.y >= (end_position->y - 40 * 4))
+	{
+		//TO CHANGE TO NEXT LEVEL
+		next = GS_RESTART;
+	}
+
+	//TODO when character->pos.y < map_height * grid , --lives 
+	if (0)
+	{
+
+	}
+
+	if (lives == 0)
+	{
+		//TO CHANGE TO GAMEOVER, Lives is intialised when game is started. Do not declare lives in load or intialise as it will get reseted.
+		lives = 3;
+		next = GS_RESTART;
+		
+	}
+	//if (character->pos.y <  )
 }
 
 

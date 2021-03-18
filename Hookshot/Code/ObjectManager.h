@@ -18,7 +18,11 @@ extern std::vector<Wall> walls;
 struct Enemy;
 extern std::vector<Enemy> enemies;
 
+//Extern position of end goal
 extern AEVec2* end_position;
+
+//Extern total lives
+extern int lives;
 
 //-----------------------------------------------------------
 
@@ -28,6 +32,14 @@ struct AABB {
 };
 
 enum char_state {
+	//jumping left
+	//jumping right
+	//moving right
+	//moving left
+	//swing left
+	//swing right 
+	//idle
+
 	jumping,
 	not_jumping,
 };
@@ -93,7 +105,7 @@ struct Character {
 
 	int grid_collision_flag;
 
-	int lives;
+	int health;
 	int damage;
 
 	Hook* hook;
@@ -132,7 +144,7 @@ struct Enemy {
 
 	int type;
 
-	int lives;
+	int health;
 	int damage;
 
 	AEVec2 knockback;
