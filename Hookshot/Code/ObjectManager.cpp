@@ -3,7 +3,9 @@
 Character* character;
 Hook* hook;
 Button* button;
+Health* health;
 std::vector<Button> buttons;
+std::vector < Health > heart;
 std::vector<Wall> walls;
 std::vector<Enemy> enemies;
 
@@ -16,7 +18,7 @@ Hook* create_hook() {
 		{0,0},		  //AEVec2 transform
 
 		{4.0},		  //float scale;
-
+		
 		{0,0},        //AEVec2 head_pos
 		{0,0},        //AEVec2 center_pos
 		{0,0},        //AEVec2 tail_pos
@@ -68,6 +70,20 @@ void create_button(int type, AEVec2 pos, float scale)
 	buttons.push_back(button);
 	
 }
+
+void create_health(int type, AEVec2 pos, float scale)
+{
+	Button button;
+
+	// init values
+	button.type = type;
+	button.scale = scale;
+	button.pos = pos;
+	create_AABB(button.aabb, button.pos, button.scale);
+	buttons.push_back(button);
+}
+
+
 
 
 void create_enemy(int enemy_type, AEVec2 pos)

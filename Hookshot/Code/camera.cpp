@@ -143,6 +143,10 @@ void camera_update(AEVec2 character_pos, AEVec2 velocity, float character_scale)
 //FUNCTION TO TRANSLATE THE CURSOR POSITION WHEN THE CAMERA MOVES AS WELL.
 void translate_cursor(int& cursor_x, int& cursor_y)
 {
+	//centering the cursor_position
+	cursor_x = cursor_x - WINDOW_WIDTH / 2;
+	cursor_y = (cursor_y - WINDOW_HEIGHT / 2) * -1;
+
 	cursor_x += static_cast <int>(center.x);
 	cursor_y += static_cast <int>(center.y);
 }

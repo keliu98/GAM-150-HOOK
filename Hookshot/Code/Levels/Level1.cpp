@@ -32,6 +32,9 @@ void Level1_Load()
 	// load hook_texture
 	load_hook_render();
 
+	if (TOTAL_LIVES <= 0) {
+		TOTAL_LIVES = 3;
+	}
 }
 
 void Level1_Initialize()
@@ -77,7 +80,7 @@ void Level1_Update()
 	// Handling Input
 	AEInputUpdate();
 	Input_g_mode();
-
+	
 	Flag = CheckInstanceBinaryMapCollision(character->pos, character->scale);
 
 	if (Flag == COLLISION_RIGHT)
@@ -118,6 +121,22 @@ void Level1_Update()
 	camera_update(character->pos, character->velocity, character->scale);
 	//For Debuging Camera
 	//draw_static_obj();
+	AEVec2 dir = { -1.0f, 0.0f };
+	//enermy AI
+	for (size_t i =0;i< enemies.size(); i++)
+	{
+		
+		set_vel_to_pos(enemies[i].pos, enemies[i].velocity);
+
+		//Gravity.
+		set_accel_to_vel(enemies[i].velocity, dir, 200.0f);
+
+		//Horizontal Friction. 
+		//enemy.velocity.x = enemy.velocity.x * 0.97f;
+
+		//!!!!!!!!!!!!!!!! Temporary wall collision NEED TO CHANGE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+		
+	}
 }
 
 void Level1_Draw()

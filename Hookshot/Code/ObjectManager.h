@@ -108,11 +108,23 @@ struct Character {
 
 struct Button {
 	
-	float scale;
+	float scale; //image scale
+
+	//width
+	//height 
+
 	int type;
 	AEMtx33 transform;
 	AEVec2 pos;
 	AABB  aabb;
+};
+
+struct Health {
+	size_t total;
+	float scale;
+	int type;
+	AEMtx33 transform;
+	AEVec2 pos;
 };
 
 

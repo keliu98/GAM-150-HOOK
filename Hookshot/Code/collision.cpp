@@ -209,6 +209,7 @@ bool CollisionIntersection_PointRect(const AEVec2 point1, const AABB& aabb2)
 		point1.y > aabb2.min.y &&
 		point1.y < aabb2.max.y)
 	{
+		printf("true");
 		return true;
 	}
 
@@ -217,6 +218,7 @@ bool CollisionIntersection_PointRect(const AEVec2 point1, const AABB& aabb2)
 
 
 //add this during merge
+//need to change to x_width and y_height.
 void create_AABB(AABB& aabb, AEVec2 const& pos, float scale)
 {
 	aabb.min.x = pos.x - (scale / 2);
