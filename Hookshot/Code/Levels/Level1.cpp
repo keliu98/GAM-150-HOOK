@@ -16,6 +16,10 @@ void Level1_Load()
 		// For debugging map binary data
 		// PrintRetrievedInformation();
 	}
+	else
+	{
+		next = GS_QUIT;
+	}
 
 	//loading texture etc
 	load_render();
@@ -78,11 +82,11 @@ void Level1_Update()
 		//}
 
 		// ending position is always top right, so will need to caculate bottom left
-		if (character->pos.x <= end_position->x && character->pos.x >= (end_position->x - 40 * 4) &&
-			character->pos.y <= end_position->y && character->pos.y >= (end_position->y - 40 * 4))
-		{
-			game_end = true;
-		}
+		//if (character->pos.x <= end_position->x && character->pos.x >= (end_position->x - 40 * 4) &&
+		//	character->pos.y <= end_position->y && character->pos.y >= (end_position->y - 40 * 4))
+		//{
+		//	game_end = true;
+		//}
 	}
 
 	else
@@ -115,8 +119,7 @@ void Level1_Draw()
 // Called if change state, for everything including reset
 void Level1_Free()
 {
-
-	free_object(character, hook, walls);
+	free_objects();
 }
 
 //  Called if change state and State is NOT reset. ie Change levels. Do not unload if reseting.

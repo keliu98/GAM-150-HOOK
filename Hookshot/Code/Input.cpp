@@ -40,10 +40,6 @@ void Input_g_mode() {
 	//temporary input, will need to translate as the camera moves ....
 	AEInputGetCursorPosition(&cursor_x, &cursor_y);
 
-	//centering the cursor_position
-	cursor_x = cursor_x - WINDOW_WIDTH / 2;
-	cursor_y = (cursor_y - WINDOW_HEIGHT / 2) * -1;
-
 	translate_cursor(cursor_x, cursor_y);
 
 	if (AEInputCheckCurr(AEVK_LBUTTON))

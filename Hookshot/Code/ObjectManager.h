@@ -28,12 +28,8 @@ struct AABB {
 };
 
 enum char_state {
-	moving_left,
-	moving_right,
 	jumping,
-	falling,
-	idle,
-	onhook
+	not_jumping,
 };
 
 enum hook_state
@@ -166,6 +162,6 @@ void destory_enemy(std::vector<Enemy>&, int index);
 AEVec2* create_ending_point(AEVec2 pos);
 
 // Free all object
-void free_object(Character* character, Hook* hook, std::vector<Wall> walls);
+void free_objects();
 // -------------------------------------------------------------------------------------------------------
 

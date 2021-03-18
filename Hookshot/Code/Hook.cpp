@@ -41,14 +41,14 @@ void fire_hook(int cursor_x, int cursor_y)
 	//About to fire
 	if (hook->hook_state == not_firing)
 	{
-//Set flag to active
-hook->flag = true;
+		//Set flag to active
+		hook->flag = true;
 
-//Setting the pivot pos to the mouse cusor
-AEVec2Set(&hook->pivot_pos, static_cast<float>(cursor_x), static_cast<float>(cursor_y));
+		//Setting the pivot pos to the mouse cusor
+		AEVec2Set(&hook->pivot_pos, static_cast<float>(cursor_x), static_cast<float>(cursor_y));
 
-//setting the mode
-hook->hook_state = firing;
+		//setting the mode
+		hook->hook_state = firing;
 	}
 
 	//Fired and trying to tether 

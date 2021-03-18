@@ -172,18 +172,23 @@ void IntializeLevel()
 			// type 3 = enemy
 			if (normalize_map_data[x][y] == 'E')
 			{
-				create_enemy(TEMP_ENEMY, pos);
+				//create_enemy(TEMP_ENEMY, pos);
 			}
 			// Ending point
 			if (normalize_map_data[x][y] == 2)
 			{
-				end_position = create_ending_point(pos);
+				//end_position = create_ending_point(pos);
 			}
 			pos.x += (wall_scale * 2);
 		}
 		pos.y += (wall_scale * 2);
 		pos.x = init_pos.x;
 	}
+
+	walls.shrink_to_fit();
+
+	std::cout << walls.size() << '\n';
+	std::cout << walls.capacity() << '\n';
 }
 
 

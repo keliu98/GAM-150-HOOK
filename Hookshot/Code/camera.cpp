@@ -78,8 +78,8 @@ void camera_init(AEVec2 character_pos) {
 	AEVec2Add(&bounding_box.max, &center, &dist);
 	AEVec2Sub(&bounding_box.min, &center, &dist);
 
-	printf("dist pos: %f, %f", dist.x, dist.y);
-	printf("camera pos: %f, %f", center.x, center.y);
+	printf("dist pos: %f, %f\n", dist.x, dist.y);
+	printf("camera pos: %f, %f\n", center.x, center.y);
 	// set camera at character position
 	AEGfxSetCamPosition(center.x, center.y);
 }
@@ -143,6 +143,10 @@ void camera_update(AEVec2 character_pos, AEVec2 velocity, float character_scale)
 //FUNCTION TO TRANSLATE THE CURSOR POSITION WHEN THE CAMERA MOVES AS WELL.
 void translate_cursor(int& cursor_x, int& cursor_y)
 {
+	//centering the cursor_position
+	cursor_x = cursor_x - WINDOW_WIDTH / 2;
+	cursor_y = (cursor_y - WINDOW_HEIGHT / 2) * -1;
+
 	cursor_x += static_cast <int>(center.x);
 	cursor_y += static_cast <int>(center.y);
 }

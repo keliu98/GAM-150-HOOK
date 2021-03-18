@@ -109,13 +109,28 @@ void destory_enemy(std::vector<Enemy>& enemies, int index)
 	}
 }
 
-void free_object(Character* character, Hook* hook, std::vector<Wall> walls)
+void free_objects()
 {
+	walls.clear();
+	walls.shrink_to_fit();
+
+	std::cout << walls.size() << '\n';
+	std::cout << walls.capacity() << '\n';
+
 	for (int i{0}; i < walls.size(); ++i)
 	{
 		// remove first element
 		//delete & walls[i];
 		walls.erase(walls.begin());
+		std::cout << i << '\n';
+	}
+
+	for (int i{ 0 }; i < enemies.size(); ++i)
+	{
+		// remove first element
+		//delete & walls[i];
+		enemies.erase(enemies.begin());
+		
 	}
 	
 	delete hook;
