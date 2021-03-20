@@ -31,6 +31,7 @@
 #include "collision.h"
 #include "newrendersystem.h"
 #include "LoadMap.h"
+#include "enemy.h"
 
 
 #endif //PCH_H

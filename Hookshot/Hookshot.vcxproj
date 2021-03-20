@@ -90,6 +90,7 @@
   <ItemGroup>
     <ClCompile Include="Code\camera.cpp" />
     <ClCompile Include="Code\collision.cpp" />
+    <ClCompile Include="Code\enemy.cpp" />
     <ClCompile Include="Code\GameStateManager.cpp" />
     <ClCompile Include="Code\Hook.cpp" />
     <ClCompile Include="Code\Input.cpp" />
@@ -105,6 +106,7 @@
   <ItemGroup>
     <ClInclude Include="Code\camera.h" />
     <ClInclude Include="Code\collision.h" />
+    <ClInclude Include="Code\enemy.h" />
     <ClInclude Include="Code\GameStateList.h" />
     <ClInclude Include="Code\GameStateManager.h" />
     <ClInclude Include="Code\Hook.h" />

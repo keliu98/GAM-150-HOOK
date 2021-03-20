@@ -55,7 +55,10 @@ Character* create_character(AEVec2 pos)
 
 		3,			// int health;
 		0,			// int damage;
+		0,			//Iframe (0: vulnerable, 1: invincible)
+		0,			//damage counter
 	};
+	create_AABB(character->aabb, character->pos, character->scale);
 	return character;
 }
 
@@ -109,8 +112,14 @@ void create_enemy(int enemy_type, AEVec2 pos)
 
 	enemy.velocity.x = 0;
 	enemy.velocity.y = 0;
-
+	enemy.jump_state = not_jumping;
+	enemy.d_switch = 0;
+	enemy.health = 3;
+	enemy.Iframe = 0; // 1 = invincible, 0=vulnerable
+	
 	enemies.push_back(enemy);
+	
+	
 
 }
 

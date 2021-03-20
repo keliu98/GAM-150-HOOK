@@ -66,11 +66,10 @@ void Level1_Update()
 	//enermy AI
 	for (size_t i =0;i< enemies.size(); i++)
 	{
-		
-		set_vel_to_pos(enemies[i].pos, enemies[i].velocity);
+		skitter_AI(i);
 
-		//Gravity.
-		set_accel_to_vel(enemies[i].velocity, dir, 200.0f);
+
+		
 
 		//Horizontal Friction. 
 		//enemy.velocity.x = enemy.velocity.x * 0.97f;
@@ -106,6 +105,7 @@ void Level1_Draw()
 void Level1_Free()
 {
 	free_objects();
+
 }
 
 //  Called if change state and State is NOT reset. ie Change levels. Do not unload if reseting.

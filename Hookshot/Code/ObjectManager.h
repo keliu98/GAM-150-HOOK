@@ -8,6 +8,9 @@ extern Character* character;
 struct Hook;
 extern Hook* hook;
 
+//extern size_t count = 0;
+
+
 struct Button;
 extern std::vector<Button> buttons;
 
@@ -116,6 +119,8 @@ struct Character {
 	int damage;
 
 	Hook* hook;
+	int Iframe;
+	int counter;
 };
 
 struct Button {
@@ -169,6 +174,10 @@ struct Enemy {
 	int damage;
 
 	AEVec2 knockback;
+	int jump_state;
+	int grid_collision_flag;
+	int d_switch;
+	int Iframe;
 };
 
 

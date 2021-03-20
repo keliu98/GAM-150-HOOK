@@ -75,14 +75,18 @@ void fire_hook(int cursor_x, int cursor_y)
 
 		for (Enemy& enemy : enemies)																			//
 		{
-			enemy.aabb.min.x = enemy.pos.x - (enemy.scale / 2);													//
-			enemy.aabb.min.y = enemy.pos.y - (enemy.scale / 2);
-			enemy.aabb.max.x = enemy.pos.x + (enemy.scale / 2);													//
-			enemy.aabb.max.y = enemy.pos.y + (enemy.scale / 2);
-
+			//enemy.aabb.min.x = enemy.pos.x - (enemy.scale / 2);													//
+			//enemy.aabb.min.y = enemy.pos.y - (enemy.scale / 2);
+			//enemy.aabb.max.x = enemy.pos.x + (enemy.scale / 2);													//
+			//enemy.aabb.max.y = enemy.pos.y + (enemy.scale / 2);
+			create_AABB(enemy.aabb, enemy.pos, enemy.scale);
 			//BUG: why nand ???????????????
 			if (CollisionIntersection_PointRect(hook->head_pos, enemy.aabb))									//
 			{
+				//new code here
+				if(enemy.Iframe == 0)
+				enemy.health -= 1;
+				//new code here
 				std::cout << "hook - enemy collison";
 				AEVec2 knockback_dir;
 				AEVec2Sub(&knockback_dir, &hook->head_pos, &character->pos);									//
@@ -94,8 +98,14 @@ void fire_hook(int cursor_x, int cursor_y)
 				//
 				hook->max_len = hook->curr_len;
 				hook->pivot_pos = hook->head_pos;
+				enemy.Iframe = 1;
+				
 			}
 
+			if (!(CollisionIntersection_PointRect(hook->head_pos, enemy.aabb)))
+			{
+				enemy.Iframe = 0;
+			}
 			//
 		}
 

@@ -25,8 +25,20 @@ void UpdateCollision()
 	if (character->velocity.y < 0.01f && (character->grid_collision_flag & COLLISION_BOTTOM ) == COLLISION_BOTTOM)
 		character->char_state = not_jumping;
 
-	for (Enemy& enemy : enemies)
-		CheckInstanceBinaryMapCollision(enemy.pos, enemy.velocity);
+	for (Enemy& enemy : enemies) {
+		enemy.grid_collision_flag = CheckInstanceBinaryMapCollision(enemy.pos, enemy.velocity);
+		SnapToCell(&enemy.pos, enemy.grid_collision_flag);
+		//jump logic
+		if (enemy.velocity.y < 0.01f && (enemy.grid_collision_flag & COLLISION_BOTTOM) == COLLISION_BOTTOM)
+		{
+			enemy.jump_state = not_jumping;
+			/*if (enemy.Iframe == 1) {
+				enemy.Iframe = 0;
+			}*/
+		}
+		//damage logic
+			
+	}
 }
 
 void SnapToCell(AEVec2* Coordinate, int Flag)
@@ -139,6 +151,7 @@ bool CollisionIntersection_RectRect(const AABB& aabb1, const AEVec2& vel1, const
 		aabb1.max.x > aabb2.min.x &&
 		aabb1.max.y > aabb2.min.y)
 	{
+		std::cout << "check";
 		return true;
 	}
 

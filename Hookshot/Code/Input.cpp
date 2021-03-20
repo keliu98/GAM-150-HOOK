@@ -42,6 +42,11 @@ void Input_g_mode() {
 		next = GS_RESTART;
 	}
 
+	if (AEInputCheckCurr(AEVK_H))
+	{
+		std::cout << character->aabb.max.x;
+	}
+
 
 	//Mouse Press and position
 	int cursor_x;

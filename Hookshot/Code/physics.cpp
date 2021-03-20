@@ -80,6 +80,7 @@ void physics_update()
 			enemy.velocity.y = 0;
 		}
 	}
+
 }
 
 //Calculates and sets the velocity of the object using an flat acceleration value and a normalised direction vector. 
