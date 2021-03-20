@@ -1,7 +1,7 @@
 #pragma once
 #include "pch.h"
 
-void physics_update();
+void physics_update(int Flag);
 void physics_intialize();
 
 void set_accel_to_vel(AEVec2& vel, AEVec2 dir, float const accel);

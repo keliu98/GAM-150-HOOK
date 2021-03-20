@@ -12,17 +12,32 @@ AEGfxVertexList* square_mesh;
 //Pointer to the wall texture
 AEGfxTexture* wall_texture;
 
-//Pointer to the character texture
+//Pointer to the character texture running right
 AEGfxTexture* character_texture;
+
+//Pointer to the character texture running left
+AEGfxTexture* character_texture1;
+
+//Pointer to the character texture jumping left
+AEGfxTexture* character_texture2;
+
+//Pointer to the character texture jumping left
+AEGfxTexture* character_texture3;
+
+//Pointer to the character texture throw left
+AEGfxTexture* character_texture4;
+
+//Pointer to the character texture throw right
+AEGfxTexture* character_texture5;
 
 //Pointer to the hook texture
 AEGfxTexture* hook_texture;
 
-//Pointer to the enemy texture
+//Pointer to the hook texture
 AEGfxTexture* enemy_texture;
 
-//Pointer to the health texture
-AEGfxTexture* health_texture;
+// counter to swap textures;
+int counter = 0;
 
 struct Render
 {
@@ -33,6 +48,18 @@ struct Render
 	float dir;
 	float x_scale;
 	float y_scale;
+
+	float x_offset{0};
+	float y_offset{0};
+
+	float x_offset1{ 0 };
+	float y_offset1{ 0 };
+
+	float x_offset2{ 0 };
+	float y_offset2{ 0 };
+
+	float x_offset3{ 0 };
+	float y_offset3{ 0 };
 
 	AEMtx33 transform;
 };
@@ -45,19 +72,23 @@ void load_square_mesh()
 	AEGfxMeshStart();
 
 	AEGfxTriAdd(
-		-0.5, -0.5, 0x00FF00FF, 0.0f, 1.0f,
-		0.5, -0.5, 0x00FFFF00, 1.0f, 1.0f,
-		-0.5, 0.5, 0x0000FFFF, 0.0f, 0.0f);
+		0.5, 0.5, 0x00FFFFFF, 0.5f, 0.0f,
+		-0.5, 0.5, 0x00FFFFFF, 0.0f, 0.0f,
+		-0.5, -0.5, 0x00FFFFFF, 0.0f, 0.5f);
 
 	AEGfxTriAdd(
-		0.5, -0.5, 0x00FFFFFF, 1.0f, 1.0f,
-		0.5, 0.5, 0x00FFFFFF, 1.0f, 0.0f,
-		-0.5, 0.5, 0x00FFFFFF, 0.0f, 0.0f);
+		-0.5, -0.5, 0x00FF00FF, 0.0f, 0.5f,
+		0.5, -0.5, 0x00FFFF00, 0.5f, 0.5f,
+		0.5, 0.5, 0x0000FFFF, 0.5f, 0.0f);
+
+
 
 
 	square_mesh = AEGfxMeshEnd();
 	AE_ASSERT_MESG(square_mesh, "Failed to create mesh 1!!");
 }
+
+
 
 
 AEGfxTexture* load_texture(const char* image)
@@ -74,7 +105,6 @@ AEGfxTexture* load_texture(const char* image)
 //WEI_WEN: PLS LIU KE I AM LEAVING THIS TO YOU
 //!!!!!!Need to change this to that it becomes specific ie load walls texture only when neccessary. cause right now its loading all textures!!!!
 //for example we dont want to load wall texture for main menu 
-
 void load_render()
 {
 	load_square_mesh();
@@ -84,43 +114,66 @@ void load_render()
 	//enemy_texture = load_texture("../Images/Starfish.png");
 }
 
-void load_healthbar()
-{
-
-	health_texture = load_texture("../Images/health.png");
-
-}
-
 void load_dirt_render()
 {
-
 	wall_texture = load_texture("../Images/Dirt1.png");
 
 }
 
 void load_texture_render()
 {
-
 	hook_texture = load_texture("../Images/Dirt1.png");
 }
 
-void load_character_render()
+void load_character_render_right()
 {
-
-	character_texture = load_texture("../Images/Snowman.png");
+	// run in the right direction
+	character_texture = load_texture("../Images/4testimages.png");
 
 }
 
+void load_character_render_left()
+{
+	// run in the left direction
+	character_texture1 = load_texture("../Images/4testimagesreverse.png");
+}
+
+void load_character_render_jumpleft()
+{
+	// jump in the left direction
+	character_texture2 = load_texture("../Images/4testimagesjumpleft.png");
+
+}
+
+void load_character_render_jumpright()
+{
+	// jump in the right direction
+	character_texture3 = load_texture("../Images/4testimagesjump.png");
+
+}
+
+void load_character_render_shootleft()
+{
+	// shoot hook in left direction
+	character_texture4 = load_texture("../Images/4testimagesthrowleft.png");
+
+}
+
+void load_character_render_shootright()
+{
+	// shoot hook in right direction
+	character_texture5 = load_texture("../Images/4testimagesthrow.png");
+
+}
+
+
 void load_hook_render()
 {
-
 	hook_texture = load_texture("../Images/Dirt1.png");
 }
 
 void load_enemy_texture()
 {
-
-
 	enemy_texture = load_texture("../Images/Starfish.png");
 }
 
@@ -141,13 +194,7 @@ void update_render_walls()
 	}
 
 
-}
 
-
-void update_health()
-{
-	Render render;
-	
 }
 
 void update_render_character()
@@ -157,10 +204,69 @@ void update_render_character()
 	render.x_scale = character->scale;
 	render.y_scale = character->scale;
 	render.pMesh = square_mesh;
-	render.pTexture = character_texture;
+	render.pTexture = character_texture;	//load character running right/left
 	render.dir = 0; //TO update base on character movement
 
-	draw_render(render);
+	if (AEInputCheckCurr(AEVK_D))
+	{
+		render.pTexture = character_texture;	// load character run right
+		render.x_offset = 0.0;
+		render.y_offset = 0.0;
+
+		render.x_offset1 = 0.5;
+		render.y_offset1 = 0.0;
+
+		render.x_offset2 = 0.0;
+		render.y_offset2 = 0.5;
+
+		render.x_offset3 = 0.5;
+		render.y_offset3 = 0.5;
+
+		draw_render(render);
+	}
+
+	 if (AEInputCheckCurr(AEVK_A))
+	{
+		render.pTexture = character_texture1;	// load character run left
+
+		render.x_offset = 0.0;
+		render.y_offset = 0.0;
+
+		render.x_offset1 = 0.5;
+		render.y_offset1 = 0.0;
+
+		render.x_offset2 = 0.0;
+		render.y_offset2 = 0.5;
+
+		render.x_offset3 = 0.5;
+		render.y_offset3 = 0.5;
+
+		draw_render(render);
+	
+	}
+	 if (AEInputCheckCurr(AEVK_W))
+	 {
+		 render.pTexture = character_texture2;	// load character jump right
+
+		 render.x_offset = 0.0;
+		 render.y_offset = 0.0;
+
+		 render.x_offset1 = 0.5;
+		 render.y_offset1 = 0.0;
+
+		 render.x_offset2 = 0.0;
+		 render.y_offset2 = 0.5;
+
+		 render.x_offset3 = 0.5;
+		 render.y_offset3 = 0.5;
+
+		 draw_render(render);
+	 }
+	 /*
+	
+	 */
+	 	
+
 }
 
 void update_render_hook()
@@ -179,8 +285,6 @@ void update_render_hook()
 	}
 }
 
-
-
 void update_render_enemy()
 {
 	Render render;
@@ -192,8 +296,9 @@ void update_render_enemy()
 		render.pMesh = square_mesh;
 		render.pTexture = enemy_texture; //TO CHANGE !!!!, render based on the enemy type and its state
 		render.dir = 0;
-
+		
 		draw_render(render);
+		
 	}
 }
 
@@ -221,7 +326,25 @@ void draw_render(Render &render)
 	// No tint
 	AEGfxSetTintColor(1.0f, 1.0f, 1.0f, 1.0f);
 	// Set texture
-	AEGfxTextureSet(render.pTexture, 0.0f, 0.0f); // Same object, different texture
+	AEGfxTextureSet(render.pTexture, render.x_offset, render.y_offset);  // Same object, different texture
+	++counter;
+	if (counter < 240 )
+		AEGfxTextureSet(render.pTexture, render.x_offset1, render.y_offset1);  // Same object, different texture
+	else if ( counter < 480 )
+		AEGfxTextureSet(render.pTexture, render.x_offset2, render.y_offset2);  // Same object, different texture
+	else if ( counter < 720 )
+		AEGfxTextureSet(render.pTexture, render.x_offset3, render.y_offset3);  // Same object, different texture
+	else if ( counter < 960 )
+		AEGfxTextureSet(render.pTexture, render.x_offset2, render.y_offset2);  // Same object, different texture
+	else
+	{
+		AEGfxTextureSet(render.pTexture, render.x_offset, render.y_offset);  // Same object, different texture
+		counter = 0;
+	}
+	
+
+
+
 	// Set transformation matrix
 	AEGfxSetTransform(render.transform.m);
 	// Draw the mesh
@@ -242,7 +365,4 @@ void unload_render()
 
 	//free mesh
 	AEGfxMeshFree(square_mesh);
-	
-
-
 }

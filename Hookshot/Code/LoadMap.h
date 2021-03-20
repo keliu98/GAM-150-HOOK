@@ -31,6 +31,8 @@ in MapData is 1, it represents a collision cell, any other value is a non-collis
 cell*/
 static int** binary_collision_array;
 
+static int** normalize_map_data;
+
 // import map from text file
 int ImportMapDataFromTxt(const char* FileName);
 
@@ -45,5 +47,6 @@ int	GetCellValue(int X, int Y);
 
 //loading of the level
 void IntializeLevel();
+
 
 // std::vector<Wall*> loadLevel();

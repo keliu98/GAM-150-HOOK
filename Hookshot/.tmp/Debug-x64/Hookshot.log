@@ -1,16 +1,2 @@
 ﻿  newrendersystem.cpp
-C:\Users\kerr_\Documents\GitHub\GAM-150-HOOK\Hookshot\Code\newrendersystem.cpp(149,9): warning C4101: 'render': unreferenced local variable
-  LINK : C:\Users\kerr_\Documents\GitHub\GAM-150-HOOK\Hookshot\\bin\Debug-x64\Hookshot.exe not found or not built by the last incremental link; performing full link
-.tmp\Debug-x64\camera.obj : warning LNK4042: object specified more than once; extras ignored
-.tmp\Debug-x64\collision.obj : warning LNK4042: object specified more than once; extras ignored
-.tmp\Debug-x64\GameStateManager.obj : warning LNK4042: object specified more than once; extras ignored
-.tmp\Debug-x64\Hook.obj : warning LNK4042: object specified more than once; extras ignored
-.tmp\Debug-x64\Input.obj : warning LNK4042: object specified more than once; extras ignored
-.tmp\Debug-x64\Level1.obj : warning LNK4042: object specified more than once; extras ignored
-.tmp\Debug-x64\LoadMap.obj : warning LNK4042: object specified more than once; extras ignored
-.tmp\Debug-x64\main.obj : warning LNK4042: object specified more than once; extras ignored
-.tmp\Debug-x64\menu.obj : warning LNK4042: object specified more than once; extras ignored
-.tmp\Debug-x64\ObjectManager.obj : warning LNK4042: object specified more than once; extras ignored
-.tmp\Debug-x64\pch.obj : warning LNK4042: object specified more than once; extras ignored
-.tmp\Debug-x64\physics.obj : warning LNK4042: object specified more than once; extras ignored
   Hookshot.vcxproj -> C:\Users\kerr_\Documents\GitHub\GAM-150-HOOK\Hookshot\\bin\Debug-x64\Hookshot.exe

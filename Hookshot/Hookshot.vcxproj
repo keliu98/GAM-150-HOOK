@@ -119,48 +119,38 @@
     <ClInclude Include="Code\physics.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="bin\Alpha_Engine.dll" />
+    <None Include="bin\Alpha_EngineD.dll" />
+    <None Include="bin\freetype.dll" />
+    <None Include="Images\4testimages.psd" />
+    <None Include="Images\4testimagesjump.psd" />
+    <None Include="Images\4testimagesjumpleft.psd" />
+    <None Include="Images\4testimagesreverse.psd" />
+    <None Include="Images\4testimagesthrow.psd" />
+    <None Include="Images\4testimagesthrowleft.psd" />
+  </ItemGroup>
+  <ItemGroup>
     <Image Include="bin\PlanetTexture.png" />
     <Image Include="bin\Title.png" />
     <Image Include="bin\YellowTexture.png" />
+    <Image Include="Images\4testimages - Copy.png" />
+    <Image Include="Images\4testimages.png" />
+    <Image Include="Images\4testimagesjump.png" />
+    <Image Include="Images\4testimagesjumpleft.png" />
+    <Image Include="Images\4testimagesreverse.png" />
+    <Image Include="Images\4testimagesthrow.png" />
+    <Image Include="Images\4testimagesthrowleft.png" />
+    <Image Include="Images\courageous-boy-game-sprites_7814-471.jpg" />
     <Image Include="Images\Dirt1.png" />
     <Image Include="Images\health.png" />
     <Image Include="Images\Snowman.png" />
     <Image Include="Images\Starfish.png" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include=".tmp\Debug-x64\Hookshot.Build.CppClean.log" />
-    <Text Include=".tmp\Debug-x64\Hookshot.log" />
-    <Text Include=".tmp\Debug-x64\Hookshot.vcxproj.FileListAbsolute.txt" />
-    <Text Include="Levels\leveldesign.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include=".tmp\Debug-x64\Hookshot.exe.recipe" />
-    <None Include=".tmp\Debug-x64\level1.obj.enc" />
-    <None Include=".tmp\Debug-x64\loadmap.obj.enc" />
-    <None Include=".tmp\Debug-x64\menu.obj.enc" />
-    <None Include=".tmp\Debug-x64\vc142.idb" />
-    <None Include=".tmp\Debug-x64\vc142.pdb" />
-    <None Include=".vs\Hookshot\v16\Browse.VC.db" />
-    <None Include="bin\Alpha_Engine.dll" />
-    <None Include="bin\Alpha_EngineD.dll" />
-    <None Include="bin\freetype.dll" />
-  </ItemGroup>
-  <ItemGroup>
     <Font Include="bin\Roboto-Regular.ttf" />
   </ItemGroup>
   <ItemGroup>
-    <Object Include=".tmp\Debug-x64\camera.obj" />
-    <Object Include=".tmp\Debug-x64\collision.obj" />
-    <Object Include=".tmp\Debug-x64\GameStateManager.obj" />
-    <Object Include=".tmp\Debug-x64\Hook.obj" />
-    <Object Include=".tmp\Debug-x64\Input.obj" />
-    <Object Include=".tmp\Debug-x64\Level1.obj" />
-    <Object Include=".tmp\Debug-x64\LoadMap.obj" />
-    <Object Include=".tmp\Debug-x64\main.obj" />
-    <Object Include=".tmp\Debug-x64\menu.obj" />
-    <Object Include=".tmp\Debug-x64\ObjectManager.obj" />
-    <Object Include=".tmp\Debug-x64\pch.obj" />
-    <Object Include=".tmp\Debug-x64\physics.obj" />
+    <Text Include="levels\leveldesign.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
