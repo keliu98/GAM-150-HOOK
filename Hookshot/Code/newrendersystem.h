@@ -8,6 +8,8 @@ void load_dirt_render();
 
 void load_dirt_render();
 
+void load_texture_charrender();
+
 void load_texture_render();
 
 void load_character_render_right();

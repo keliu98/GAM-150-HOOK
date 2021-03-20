@@ -23,11 +23,20 @@ void Level1_Load()
 	// loading wall texture
 	load_dirt_render();
 
+	//loading character texture at static
+	//load_texture_charrender();
+
 	// loading character texture to right
 	load_character_render_right();
 
 	// loading character texture to left
 	load_character_render_left();
+
+	// loading character texture to left
+	load_character_render_jumpleft();
+
+	// loading character texture to right
+	load_character_render_jumpright();
 
 	// load enemy_texture
 	load_enemy_texture();

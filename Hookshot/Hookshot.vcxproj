@@ -135,6 +135,7 @@
     <Image Include="bin\YellowTexture.png" />
     <Image Include="Images\4testimages - Copy.png" />
     <Image Include="Images\4testimages.png" />
+    <Image Include="Images\4testimagescopy.png" />
     <Image Include="Images\4testimagesjump.png" />
     <Image Include="Images\4testimagesjumpleft.png" />
     <Image Include="Images\4testimagesreverse.png" />

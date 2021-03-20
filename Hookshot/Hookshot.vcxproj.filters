@@ -120,6 +120,7 @@
     <Image Include="Images\4testimagesjumpleft.png" />
     <Image Include="Images\4testimagesthrow.png" />
     <Image Include="Images\4testimagesthrowleft.png" />
+    <Image Include="Images\4testimagescopy.png" />
   </ItemGroup>
   <ItemGroup>
     <Font Include="bin\Roboto-Regular.ttf" />

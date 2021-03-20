@@ -12,6 +12,9 @@ AEGfxVertexList* square_mesh;
 //Pointer to the wall texture
 AEGfxTexture* wall_texture;
 
+//Pointer to the character texture at static
+AEGfxTexture* character_texturestatic;
+
 //Pointer to the character texture running right
 AEGfxTexture* character_texture;
 
@@ -120,10 +123,19 @@ void load_dirt_render()
 
 }
 
+
+
 void load_texture_render()
 {
 	hook_texture = load_texture("../Images/Dirt1.png");
 }
+
+
+void load_texture_charrender()
+{
+	character_texturestatic = load_texture("../Images/4textimagescopy.png");
+}
+
 
 void load_character_render_right()
 {
@@ -131,6 +143,7 @@ void load_character_render_right()
 	character_texture = load_texture("../Images/4testimages.png");
 
 }
+
 
 void load_character_render_left()
 {
@@ -204,8 +217,9 @@ void update_render_character()
 	render.x_scale = character->scale;
 	render.y_scale = character->scale;
 	render.pMesh = square_mesh;
-	render.pTexture = character_texture;	//load character running right/left
+	render.pTexture = character_texture1;	//load character running right/left
 	render.dir = 0; //TO update base on character movement
+
 
 	if (AEInputCheckCurr(AEVK_D))
 	{
@@ -244,7 +258,7 @@ void update_render_character()
 		draw_render(render);
 	
 	}
-	 if (AEInputCheckCurr(AEVK_W))
+	 if (AEInputCheckTriggered(AEVK_W))
 	 {
 		 render.pTexture = character_texture2;	// load character jump right
 
@@ -262,9 +276,7 @@ void update_render_character()
 
 		 draw_render(render);
 	 }
-	 /*
 	
-	 */
 	 	
 
 }
