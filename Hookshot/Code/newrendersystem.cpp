@@ -483,7 +483,10 @@ void draw_render(Render &render)
 	AEGfxSetTransform(render.transform.m);
 	// Draw the mesh
 	AEGfxMeshDraw(render.pMesh, AE_GFX_MDM_TRIANGLES);
-
+	
+	//For the texture to blend into the game.
+	AEGfxSetTransparency(1.0f);
+	AEGfxSetBlendMode(AE_GFX_BM_BLEND);
 }
 
 void unload_render()
