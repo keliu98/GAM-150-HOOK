@@ -22,6 +22,9 @@ AEGfxTexture* hook_texture;
 //Pointer to the hook texture
 AEGfxTexture* enemy_texture;
 
+// Pointer to button
+AEGfxTexture* button_texture;
+
 //Pointer to background
 AEGfxTexture* bg;
 
