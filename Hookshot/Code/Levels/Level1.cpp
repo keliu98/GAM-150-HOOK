@@ -17,7 +17,7 @@ void Level1_Load()
 	load_render();
 
 	//load bg
-	//load_bg_render();
+	load_bg_render();
 
 	// loading wall texture
 	load_dirt_render();
@@ -92,7 +92,7 @@ void Level1_Update()
 
 void Level1_Draw()
 {
-	//update_render_bg();
+	update_render_bg();
 	update_render_walls();
 	update_render_hook();
 	update_render_enemy();

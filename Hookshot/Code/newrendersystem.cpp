@@ -28,6 +28,7 @@ AEGfxTexture* button_texture;
 //Pointer to background
 AEGfxTexture* bg;
 
+
 struct Render
 {
 	AEVec2 pos;
@@ -122,11 +123,13 @@ void load_enemy_texture()
 
 void update_render_bg()
 {
-	// can be a walk and zoom in effect
 	Render render;
+	static float scale_x = 800.0f, scale_y = 700.0f;
+
+	// make it translate left a bit -? for later
 	render.pos = center_point();
-	render.x_scale  = AEGfxGetWinMaxX() + 150.0f;
-	render.y_scale = AEGfxGetWinMaxX() + 10.0f;
+	render.x_scale  = scale_x;
+	render.y_scale = scale_y;
 	render.pMesh = square_mesh;
 	render.pTexture = bg;
 	render.dir = 0;
@@ -137,8 +140,7 @@ void update_render_bg()
 void load_button_texture()
 {
 
-
-	button_texture = load_texture("../Images/Title.png");//change this during merge
+	button_texture = load_texture("../Images/Title.png"); //change this during merge
 }
 
 void update_render_walls()
