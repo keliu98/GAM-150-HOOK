@@ -22,10 +22,9 @@ void menu_Initialize()
 }
 
 void menu_Update() {
-	AEInputUpdate();
 	Input_menu_mode();
-	std::cout << buttons[0].pos.x << " " << buttons[0].pos.y << "\n";
-	std::cout << buttons[0].aabb.min.x << " " << buttons[0].aabb.min.y << "\n";
+	//std::cout << buttons[0].pos.x << " " << buttons[0].pos.y << "\n";
+	//std::cout << buttons[0].aabb.min.x << " " << buttons[0].aabb.min.y << "\n";
 }
 
 void menu_Draw() {

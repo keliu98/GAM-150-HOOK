@@ -16,6 +16,8 @@ Technology is prohibited.
 
 #include "pch.h"
 #include "ObjectManager.h"
+extern const int GRID_SCALE;
+
 //Flags
 const unsigned int	FLAG_ACTIVE = 0x00000001;
 const unsigned int	FLAG_VISIBLE = 0x00000002;

@@ -45,8 +45,6 @@ void Level1_Initialize()
 	//Intialize camera
 	camera_init(character->pos);
 
-	
-
 	//Intialise physic
 	physics_intialize();
 
@@ -56,7 +54,6 @@ void Level1_Update()
 {
 
 	// Handling Input
-	AEInputUpdate();
 	Input_g_mode();
 
 	//Updating the physics of the game e.g acceleration, velocity, gravity
@@ -75,14 +72,6 @@ void Level1_Update()
 	{
 		create_AABB(enemies[i].aabb, enemies[i].pos, enemies[i].scale);
 		skitter_AI(i);
-
-
-		
-
-		//Horizontal Friction. 
-		//enemy.velocity.x = enemy.velocity.x * 0.97f;
-
-		//!!!!!!!!!!!!!!!! Temporary wall collision NEED TO CHANGE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 		
 	}
 		//draw_static_obj();

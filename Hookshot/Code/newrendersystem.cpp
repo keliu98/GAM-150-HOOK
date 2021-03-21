@@ -228,7 +228,6 @@ void update_render_enemy()
 
 void draw_render(Render &render)
 {
-
 	AEMtx33	trans, scale, rot;
 
 	// Compute the scalling matrix
@@ -255,6 +254,9 @@ void draw_render(Render &render)
 	// Draw the mesh
 	AEGfxMeshDraw(render.pMesh, AE_GFX_MDM_TRIANGLES);
 
+	//For the texture to blend into the game.
+	AEGfxSetTransparency(1.0f);
+	AEGfxSetBlendMode(AE_GFX_BM_BLEND);
 }
 
 void unload_render()

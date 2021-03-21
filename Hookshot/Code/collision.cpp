@@ -15,7 +15,7 @@ Technology is prohibited.
 
 #include "collision.h"
 
-static const int GRID_SCALE = 40;
+const int GRID_SCALE = 40;
 
 void UpdateCollision()
 {
@@ -268,7 +268,6 @@ bool CollisionIntersection_PointRect(const AEVec2 point1, const AABB& aabb2)
 		point1.y > aabb2.min.y &&
 		point1.y < aabb2.max.y)
 	{
-		printf("true");
 		return true;
 	}
 
