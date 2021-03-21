@@ -36,23 +36,32 @@ void skitter_AI(size_t i) {
 		enemies[i].cliff_check.x = enemies[i].pos.x-1.0f;
 		enemies[i].cliff_check.x = enemies[i].pos.y-1.0f;
 
-		AEVec2 bottom_left = { enemies[i].pos.x - GRID_SCALE / 4, enemies[i].pos.y - GRID_SCALE / 2 };
-		AEVec2 bottom_right = { enemies[i].pos.x + GRID_SCALE / 4, enemies[i].pos.y - GRID_SCALE / 2 };
+		AEVec2 bottom_left = { enemies[i].pos.x - GRID_SCALE / 2, enemies[i].pos.y - GRID_SCALE / 2 };
+		AEVec2 bottom_right = { enemies[i].pos.x + GRID_SCALE / 2, enemies[i].pos.y - GRID_SCALE / 2 };
 
 		//For checking if the character needs to change direction. If cell value returns 1 means there a floor.
 
 		//heading left, bottom left is empty, need to change direction
-		if (GetCellValue((int)bottom_left.x / GRID_SCALE, (int)(bottom_left.y / GRID_SCALE) + 1))
-		{
-			enemies[i].velocity.x = enemies[i].velocity.x * -1; 
-		}
-
-		//else if (GetCellValue((int)bottom_left.x / GRID_SCALE, (int)bottom_left.y / GRID_SCALE) &&
-		//	!GetCellValue((int)bottom_right.x / GRID_SCALE, (int)bottom_right.y / GRID_SCALE))
+		//std::cout << enemies[i].grid_collision_flag << "\n";
+		//std::cout << character->grid_collision_flag << "\n";
+		int left_hotspot = GetCellValue((int)bottom_left.x / GRID_SCALE, (int)(bottom_left.y / GRID_SCALE));
+		int right_hotspot = GetCellValue((int)bottom_right.x / GRID_SCALE, (int)(bottom_right.y / GRID_SCALE));
+		//std::cout << "left_hotspot: " << left_hotspot << " right_hotspot: " << right_hotspot << "\n";
+		//if (left_hotspot == 0)
 		//{
-		//	enemies[i].velocity.x = enemies[i].velocity.x * -1;
+		//	enemies[i].d_switch = 1;
 		//}
-		
+		//else if (right_hotspot == 0)
+		//{
+		//	enemies[i].d_switch = 0;
+		//}
+
+		////else if (GetCellValue((int)bottom_left.x / GRID_SCALE, (int)bottom_left.y / GRID_SCALE) &&
+		////	!GetCellValue((int)bottom_right.x / GRID_SCALE, (int)bottom_right.y / GRID_SCALE))
+		////{
+		////	enemies[i].velocity.x = enemies[i].velocity.x * -1;
+		////}
+		//
 
 
 
@@ -60,17 +69,13 @@ void skitter_AI(size_t i) {
 
 	if (character->counter == 0 && (CollisionIntersection_RectRect(character->aabb, character->velocity, enemies[i].aabb, enemies[i].velocity))) {
 		--character->health;
-		//knockback here
 		calculate_knockback(character->pos, enemies[i].pos, character->velocity, character->knockback);
 
 		character->counter = 180;
-		std::cout << character->health;
-		//std::cout << "check";
 
 	}
 	if (character->counter > 0) {
 		--character->counter;
-		//std::cout << character->counter;
 	}
 
 	if (character->health == 0) {
@@ -84,16 +89,17 @@ void skitter_AI(size_t i) {
 	if (enemies[i].d_switch == 1)
 		enemy_move_R(i);
 
-	if ((enemies[i].grid_collision_flag == COLLISION_LEFT)
-		|| !GetCellValue((int)enemies[i].cliff_check.x/40, (int) enemies[i].cliff_check.y/40))
+	if (enemies[i].grid_collision_flag == COLLISION_LEFT)
+		//|| (left_hotspot == 0 && right_hotspot == 1))
 	{
-		
 		enemies[i].d_switch = 1;
+		std::cout << "dir change left \n";
 	}
-	if ((enemies[i].grid_collision_flag == COLLISION_RIGHT)
-		|| !GetCellValue(((int)enemies[i].cliff_check.x)/40, ((int)enemies[i].cliff_check.y)/40))
+	if (enemies[i].grid_collision_flag == COLLISION_RIGHT)
+		//|| (right_hotspot == 0 && left_hotspot == 0))
 	{
 		enemies[i].d_switch = 0;
+		std::cout << "dir change right \n";
 	}
 
 	if (enemies[i].health <= 0)

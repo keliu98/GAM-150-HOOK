@@ -39,6 +39,8 @@ void UpdateCollision()
 		//damage logic
 			
 	}
+
+	create_AABB(character->aabb, character->pos, character->scale);
 }
 
 void SnapToCell(AEVec2* Coordinate, int Flag)
@@ -56,7 +58,7 @@ void SnapToCell(AEVec2* Coordinate, int Flag)
 	if ((Flag & COLLISION_BOTTOM) == COLLISION_BOTTOM)
 	{
 		character_y_index = (int)((Coordinate->y / GRID_SCALE) + 0.5f);
-		Coordinate->y = (float)(character_y_index * GRID_SCALE + (GRID_SCALE / 2));
+		Coordinate->y = (float)(character_y_index * GRID_SCALE + (GRID_SCALE / 2) - 2.5f);
 	}
 	if ((Flag & COLLISION_LEFT) == COLLISION_LEFT)
 	{

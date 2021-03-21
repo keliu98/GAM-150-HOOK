@@ -224,6 +224,14 @@ void CheckWinLose()
 
 	}
 
+	if (character->health == 0)
+	{
+		//TO CHANGE TO GAMEOVER, Lives is intialised when game is started. Do not declare lives in load or intialise as it will get reseted.
+		lives -= 1;
+		next = GS_RESTART;
+
+	}
+
 	if (lives == 0)
 	{
 		//TO CHANGE TO GAMEOVER, Lives is intialised when game is started. Do not declare lives in load or intialise as it will get reseted.

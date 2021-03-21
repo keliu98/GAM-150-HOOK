@@ -66,8 +66,8 @@ void Level1_Update()
 	//For Debuging Camera
 	//draw_static_obj();
 	AEVec2 dir = { -1.0f, 0.0f };
+
 	//enermy AI
-	create_AABB(character->aabb, character->pos, character->scale);
 	for (size_t i =0;i< enemies.size(); i++)
 	{
 		create_AABB(enemies[i].aabb, enemies[i].pos, enemies[i].scale);
@@ -94,8 +94,10 @@ void Level1_Draw()
 	draw_cam_bounding_box(character->pos, character->pos);
 
 	// print lives
-	sprintf_s(text, "Lives: %d", character->health);
-	PrintText(text, NORMAL, { -0.9f, -0.9f });
+	sprintf_s(text, "Health: %d", character->health);
+	PrintText(text, NORMAL, { -0.9f, -0.85f });
+	sprintf_s(text, "Lives: %d", lives);
+	PrintText(text, NORMAL, { -0.9f, -0.95f });
 
 	// debugging hotspot
 	/*draw_cam_bounding_box({ character->pos.x + character->scale / 4, character->pos.y - character->scale / 2 },
