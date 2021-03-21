@@ -9,7 +9,7 @@ struct Hook;
 extern Hook* hook;
 
 struct Button;
-extern Button* button_1;
+extern std::vector<Button> buttons;
 
 //Extern list to use for walls and enemies
 struct Wall;
@@ -17,6 +17,12 @@ extern std::vector<Wall> walls;
 
 struct Enemy;
 extern std::vector<Enemy> enemies;
+
+//Extern position of end goal
+extern AEVec2* end_position;
+
+//Extern total lives
+extern int lives;
 
 //-----------------------------------------------------------
 
@@ -26,12 +32,16 @@ struct AABB {
 };
 
 enum char_state {
-	moving_left,
-	moving_right,
+	//jumping left
+	//jumping right
+	//moving right
+	//moving left
+	//swing left
+	//swing right 
+	//idle
+
 	jumping,
-	falling,
-	idle,
-	onhook
+	not_jumping,
 };
 
 enum hook_state
@@ -39,6 +49,13 @@ enum hook_state
 	not_firing,
 	firing,
 	tethered
+};
+
+enum button_type
+{
+	TEMP,
+	TITLE,
+	OPTION1
 };
 
 enum wall_type
@@ -93,15 +110,31 @@ struct Character {
 
 	int char_state;
 
-	int lives;
+	int grid_collision_flag;
+
+	int health;
 	int damage;
 
 	Hook* hook;
 };
 
 struct Button {
+	
+	float scale; //image scale
+
+	//width
+	//height 
+
+	int type;
+	AEMtx33 transform;
+	AEVec2 pos;
 	AABB  aabb;
+};
+
+struct Health {
+	size_t total;
 	float scale;
+	int type;
 	AEMtx33 transform;
 	AEVec2 pos;
 };
@@ -132,11 +165,12 @@ struct Enemy {
 
 	int type;
 
-	int lives;
+	int health;
 	int damage;
 
 	AEVec2 knockback;
 };
+
 
 // --------------------------FUNCTIONS FROM OBJECTMANAGER.CPP---------------------------------------------
 // Create hook
@@ -146,7 +180,7 @@ Hook* create_hook();
 Character* create_character(AEVec2 pos);
 
 // Create Buttons
-Button* create_button();
+void create_button(int button_type, AEVec2 pos, float scale);
 
 // Inserts a enemy into the vecot list enemies
 void create_enemy(int enemy_type, AEVec2 pos);
@@ -156,8 +190,14 @@ void create_wall(int type, float scale, AEVec2 pos);
 
 // When enemy is defeated by players (pass in enemy vec and index to delete)
 void destory_enemy(std::vector<Enemy>&, int index); 
+ 
+//Free buttons
+void free_button(std::vector<Button> buttons);
+
+// Store the ending point
+AEVec2* create_ending_point(AEVec2 pos);
 
 // Free all object
-void free_object(Character* character, Hook* hook, std::vector<Wall> walls);
+void free_objects();
 // -------------------------------------------------------------------------------------------------------
 

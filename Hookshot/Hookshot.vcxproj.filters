@@ -82,6 +82,63 @@
     <ClInclude Include="Code\newrendersystem.h">
       <Filter>Header files</Filter>
     </ClInclude>
+    <ClInclude Include="Extern\AlphaEngine_V3.08\include\3DPipelineTools.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="Extern\AlphaEngine_V3.08\include\AECollision_Part2.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="Extern\AlphaEngine_V3.08\include\AECollision_Part3.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="Extern\AlphaEngine_V3.08\include\AEEngine.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="Extern\AlphaEngine_V3.08\include\AEExport.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="Extern\AlphaEngine_V3.08\include\AEFrameRateController.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="Extern\AlphaEngine_V3.08\include\AEGameStateMgr.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="Extern\AlphaEngine_V3.08\include\AEGraphics.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="Extern\AlphaEngine_V3.08\include\AEInput.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="Extern\AlphaEngine_V3.08\include\AELineSegment2.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="Extern\AlphaEngine_V3.08\include\AEMath.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="Extern\AlphaEngine_V3.08\include\AEMtx33.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="Extern\AlphaEngine_V3.08\include\AESystem.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="Extern\AlphaEngine_V3.08\include\AETypes.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="Extern\AlphaEngine_V3.08\include\AEUtil.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="Extern\AlphaEngine_V3.08\include\AEVec2.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="Extern\AlphaEngine_V3.08\include\Matrix4.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="Extern\AlphaEngine_V3.08\include\Point4.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="Extern\AlphaEngine_V3.08\include\Vector4.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Source files">
@@ -94,38 +151,61 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <None Include="bin\Alpha_Engine.dll" />
-    <None Include="bin\Alpha_EngineD.dll" />
-    <None Include="bin\freetype.dll" />
-    <None Include="Images\4testimages.psd" />
-    <None Include="Images\4testimagesjump.psd" />
-    <None Include="Images\4testimagesreverse.psd" />
-    <None Include="Images\4testimagesjumpleft.psd" />
-    <None Include="Images\4testimagesthrow.psd" />
-    <None Include="Images\4testimagesthrowleft.psd" />
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="bin\PlanetTexture.png" />
-    <Image Include="bin\Title.png" />
-    <Image Include="bin\YellowTexture.png" />
+    <Image Include="Images\4testimages.png" />
+    <Image Include="Images\4testimagescopy.png" />
+    <Image Include="Images\4testimagesjump.png" />
+    <Image Include="Images\4testimagesjumpleft.png" />
+    <Image Include="Images\4testimagesreverse.png" />
+    <Image Include="Images\4testimagesthrow.png" />
+    <Image Include="Images\4testimagesthrowleft.png" />
+    <Image Include="Images\courageous-boy-game-sprites_7814-471.jpg" />
     <Image Include="Images\Dirt1.png" />
     <Image Include="Images\health.png" />
     <Image Include="Images\Snowman.png" />
     <Image Include="Images\Starfish.png" />
-    <Image Include="Images\4testimages.png" />
-    <Image Include="Images\4testimages - Copy.png" />
-    <Image Include="Images\4testimagesreverse.png" />
-    <Image Include="Images\4testimagesjump.png" />
-    <Image Include="Images\courageous-boy-game-sprites_7814-471.jpg" />
-    <Image Include="Images\4testimagesjumpleft.png" />
-    <Image Include="Images\4testimagesthrow.png" />
-    <Image Include="Images\4testimagesthrowleft.png" />
-    <Image Include="Images\4testimagescopy.png" />
+    <Image Include="Images\Title.png" />
+    <Image Include="bin\PlanetTexture.png" />
+    <Image Include="bin\Title.png" />
+    <Image Include="bin\YellowTexture.png" />
+    <Image Include="Images\4testimagesstart.png" />
+    <Image Include="Images\4testimageswining.png" />
+    <Image Include="Images\4testimageswiningleft.png" />
+    <Image Include="Images\4testimageswiningright.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\4testimages.psd" />
+    <None Include="Images\4testimagesjump.psd" />
+    <None Include="Images\4testimagesjumpleft.psd" />
+    <None Include="Images\4testimagesreverse.psd" />
+    <None Include="Images\4testimagesthrow.psd" />
+    <None Include="Images\4testimagesthrowleft.psd" />
+    <None Include="bin\Alpha_Engine.dll" />
+    <None Include="bin\Alpha_EngineD.dll" />
+    <None Include="bin\freetype.dll" />
+    <None Include="bin\Debug-x64\Hookshot.exe" />
+    <None Include="bin\Debug-x64\Hookshot.ilk" />
+    <None Include="bin\Debug-x64\Hookshot.pdb" />
+    <None Include="Extern\AlphaEngine_V3.08\lib\Alpha_Engine.dll" />
+    <None Include="Extern\AlphaEngine_V3.08\lib\Alpha_EngineD.dll" />
+    <None Include="Extern\AlphaEngine_V3.08\lib\freetype.dll" />
+    <None Include=".vs\Hookshot\v16\Browse.VC.db" />
+    <None Include=".vs\Hookshot\v16\Browse.VC.db-shm" />
+    <None Include=".vs\Hookshot\v16\Browse.VC.db-wal" />
+    <None Include="Images\4testimagesstart.psd" />
+    <None Include="Images\4testimageswining.psd" />
+    <None Include="Images\4testimageswiningleft.psd" />
+    <None Include="Images\4testimageswiningright.psd" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="levels\Level_1.txt" />
+    <Text Include="levels\Level_Design.txt" />
+    <Text Include="levels\leveldesign.txt" />
   </ItemGroup>
   <ItemGroup>
     <Font Include="bin\Roboto-Regular.ttf" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="levels\leveldesign.txt" />
+    <Library Include="Extern\AlphaEngine_V3.08\lib\Alpha_Engine.lib" />
+    <Library Include="Extern\AlphaEngine_V3.08\lib\Alpha_EngineD.lib" />
   </ItemGroup>
 </Project>

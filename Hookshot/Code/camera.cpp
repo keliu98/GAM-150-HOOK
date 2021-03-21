@@ -14,9 +14,9 @@ written consent of DigiPen Institute of Technology is prohibited.
 
 #include "camera.h"
 
-static AEVec2 center;
-AEVec2 scale, win_min, win_max, dist;
+static AEVec2 center, win_min, win_max, dist;
 static int counter = 0;
+static bool loadOnce = false;
 
 void draw_static_obj()
 {
@@ -63,24 +63,41 @@ void draw_cam_bounding_box(AEVec2 point1, AEVec2 point2)
 }
 
 void camera_init(AEVec2 character_pos) {
-	center = character_pos;
-	scale = { AEGfxGetWinMaxX() * 0.2f, AEGfxGetWinMaxY() * 0.2f };
-	win_min = { AEGfxGetWinMinX(), AEGfxGetWinMinY() };
-	win_max = { AEGfxGetWinMaxX(), AEGfxGetWinMaxY() };
 
-	// set bounding box min
-	AEVec2Add( &bounding_box.min, &win_min,  &scale);
-	// set boundng box max
-	AEVec2Sub(&bounding_box.max, &win_max, &scale);
+	center = character_pos;
+	//AEVec2Zero(&dist);
+	//AEVec2Zero(&win_min);
+	//AEVec2Zero(&win_max);
+
+	win_min = { AEGfxGetWinMinX() * 0.5f, AEGfxGetWinMinY() * 0.5f };
+	win_max = { AEGfxGetWinMaxX() * 0.5f, AEGfxGetWinMaxY() * 0.5f };
+
+	//// set bounding box min
+	//AEVec2Add( &bounding_box.min, &win_min,  &scale);
+	//// set boundng box max
+	//AEVec2Sub(&bounding_box.max, &win_max, &scale);
+
 	// find distance
-	AEVec2Sub(&dist, &bounding_box.max, &center);
+	if (!loadOnce)
+	{
+		AEVec2Sub(&dist, &center, &bounding_box.max);
+		if (dist.x < 0)
+			dist.x = dist.x * -1;
+		if (dist.y < 0)
+			dist.y = dist.y * -1;
+		loadOnce = true;
+		printf("once\n");
+	}
+
+
 	// update bounding box to character position
 	AEVec2Add(&bounding_box.max, &center, &dist);
 	AEVec2Sub(&bounding_box.min, &center, &dist);
 
-	printf("dist pos: %f, %f", dist.x, dist.y);
-	printf("camera pos: %f, %f", center.x, center.y);
+	printf("dist pos: %f, %f\n", dist.x, dist.y);
+	printf("camera pos: %f, %f\n", center.x, center.y);
 	// set camera at character position
+
 	AEGfxSetCamPosition(center.x, center.y);
 }
 
@@ -143,6 +160,10 @@ void camera_update(AEVec2 character_pos, AEVec2 velocity, float character_scale)
 //FUNCTION TO TRANSLATE THE CURSOR POSITION WHEN THE CAMERA MOVES AS WELL.
 void translate_cursor(int& cursor_x, int& cursor_y)
 {
+	//centering the cursor_position
+	cursor_x = cursor_x - WINDOW_WIDTH / 2;
+	cursor_y = (cursor_y - WINDOW_HEIGHT / 2) * -1;
+
 	cursor_x += static_cast <int>(center.x);
 	cursor_y += static_cast <int>(center.y);
 }

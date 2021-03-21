@@ -60,6 +60,17 @@ int ImportMapDataFromTxt(const char* FileName)
 					}
 					// std::cout << "Map["<< x << ", " << y << "]:" << map_data[x][y] << " | ";
 				}
+				else
+				{
+					map_data[x][y] = (int)c;
+					binary_collision_array[x1][y] = map_data[x][y];
+					normalize_map_data[x1][y] = map_data[x][y];
+
+					if (map_data[x][y] != 1)
+					{
+						binary_collision_array[x1][y] = 0;
+					}
+				}
 			}
 			--x1;
 		}
@@ -67,7 +78,6 @@ int ImportMapDataFromTxt(const char* FileName)
 		read_file.close();
 		return 1;
 	}
-
 	return 0;
 }
 
@@ -153,21 +163,57 @@ void IntializeLevel()
 				create_wall(TEMP_WALL, 40, pos);
 			}
 			// type 2 = character
-			if (normalize_map_data[x][y] == 2)
+			if (normalize_map_data[x][y] == 'C')
 			{
 				character = create_character(pos);
 				hook = create_hook();
 			}
 			// type 3 = enemy
-			if (normalize_map_data[x][y] == 3)
+			if (normalize_map_data[x][y] == 'E')
 			{
 				create_enemy(TEMP_ENEMY, pos);
+			}
+			// Ending point
+			if (normalize_map_data[x][y] == 2)
+			{
+				end_position = create_ending_point(pos);
 			}
 			pos.x += (wall_scale * 2);
 		}
 		pos.y += (wall_scale * 2);
 		pos.x = init_pos.x;
 	}
+
+	walls.shrink_to_fit();
+
+	std::cout << walls.size() << '\n';
+	std::cout << walls.capacity() << '\n';
+}
+
+void CheckWinLose()
+{
+	// ending position is always top right, so will need to caculate bottom left
+	if (character->pos.x <= end_position->x && character->pos.x >= (end_position->x - 40 * 4) &&
+		character->pos.y <= end_position->y && character->pos.y >= (end_position->y - 40 * 4))
+	{
+		//TO CHANGE TO NEXT LEVEL
+		next = GS_RESTART;
+	}
+
+	//TODO when character->pos.y < map_height * grid , --lives 
+	if (0)
+	{
+
+	}
+
+	if (lives == 0)
+	{
+		//TO CHANGE TO GAMEOVER, Lives is intialised when game is started. Do not declare lives in load or intialise as it will get reseted.
+		lives = 3;
+		next = GS_RESTART;
+		
+	}
+	//if (character->pos.y <  )
 }
 
 

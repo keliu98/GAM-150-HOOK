@@ -1,20 +1,16 @@
 #include "../pch.h"
 
-const unsigned int	GAME_OBJ_INST_NUM_MAX = 2048;	//The total number of different game object instances
-
-
-//Declaration of Variables.
-AEGfxVertexList* pMesh1 = 0;
-AEVec2* char_prev_pos;
-int Flag;
-
 void Level1_Load()
 {
 	//../Code/Levels/Exported.txt
-	if (ImportMapDataFromTxt("../Levels/leveldesign.txt"))
+	if (ImportMapDataFromTxt("../Levels/Level_1.txt"))
 	{
 		// For debugging map binary data
 		// PrintRetrievedInformation();
+	}
+	else
+	{
+		next = GS_QUIT;
 	}
 
 	//loading texture etc
@@ -23,20 +19,32 @@ void Level1_Load()
 	// loading wall texture
 	load_dirt_render();
 
-	//loading character texture at static
-	//load_texture_charrender();
+	// loading character texture
+	load_character_render();
 
-	// loading character texture to right
+	//load_character render actions run to the right
 	load_character_render_right();
 
-	// loading character texture to left
+	// load character render actions run to the left
 	load_character_render_left();
 
-	// loading character texture to left
+	// load character render actions jump facing right direction
 	load_character_render_jumpleft();
 
-	// loading character texture to right
+	// load character render actions jump facing right direction
 	load_character_render_jumpright();
+
+	// load character render shoot hook to right
+	load_character_render_shootleft();
+
+	// load character rendeer shoot hook to left
+	load_character_render_shootright();
+
+	// load character swinging left on the hook
+	load_character_render_swingleft();
+	
+	// load character swinging right on the hook
+	load_character_render_swingright();
 
 	// load enemy_texture
 	load_enemy_texture();
@@ -44,6 +52,9 @@ void Level1_Load()
 	// load hook_texture
 	load_hook_render();
 
+	if (TOTAL_LIVES <= 0) {
+		TOTAL_LIVES = 3;
+	}
 }
 
 void Level1_Initialize()
@@ -56,59 +67,44 @@ void Level1_Initialize()
 
 	//Intialise physic
 	physics_intialize();
-	
 
-
-
-	std::cout << "    ";
-	for (int x{ 0 }; x < 60; ++x)
-	{
-		if (x > 9)
-			std::cout << x << " ";
-		else
-			std::cout << x << "  ";
-	}
-	std::cout << std::endl;
-	std::cout << std::endl;
-
-	for (int y{ 0 }; y < 25; ++y)
-	{ 
-		if (y > 9)
-			std::cout << y << " | ";
-		else
-			std::cout << " " << y << " | ";
-		
-		for (int x{ 0 }; x < 60; ++x)
-			std::cout << GetCellValue(x, y) << "  ";
-		std::cout << std::endl;
-	}
 }
 
 void Level1_Update()
 {
-	Flag = CheckInstanceBinaryMapCollision(character->pos, character->scale, character->velocity);
-	for (Enemy& enemy : enemies)
-		CheckInstanceBinaryMapCollision(enemy.pos, enemy.scale, enemy.velocity);
 
 	// Handling Input
 	AEInputUpdate();
-	Input_g_mode(Flag);
+	Input_g_mode();
 
 	//Updating the physics of the game e.g acceleration, velocity, gravity
-	physics_update(Flag);
+	physics_update();
+
+	// Updating the Collision
+	UpdateCollision();
 
 	camera_update(character->pos, character->velocity, character->scale);
 	//For Debuging Camera
 	//draw_static_obj();
+	AEVec2 dir = { -1.0f, 0.0f };
+	//enermy AI
+	for (size_t i =0;i< enemies.size(); i++)
+	{
+		
+		set_vel_to_pos(enemies[i].pos, enemies[i].velocity);
 
+		//Gravity.
+		set_accel_to_vel(enemies[i].velocity, dir, 200.0f);
 
-	//if (Flag == COLLISION_BOTTOM)
-	//{
-	//	SnapToCell(&character->pos.y);
-	//	character->velocity.y = 0;
-	//	Flag -= COLLISION_BOTTOM;
-	//	printf("BOTTOM POS: %f, %f\n", character->pos.x, character->pos.y);
-	//}
+		//Horizontal Friction. 
+		//enemy.velocity.x = enemy.velocity.x * 0.97f;
+
+		//!!!!!!!!!!!!!!!! Temporary wall collision NEED TO CHANGE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+		
+	}
+		//draw_static_obj();
+
+	CheckWinLose();
 }
 
 void Level1_Draw()
@@ -126,19 +122,19 @@ void Level1_Draw()
 		{ character->pos.x - character->scale / 4, character->pos.y + character->scale / 2 });*/
 
 	//Temporary for exiting the system
-	if (AEInputCheckTriggered(AEVK_ESCAPE) || 0 == AESysDoesWindowExist())
+	if (AEInputCheckTriggered(AEVK_ESCAPE))
 		next = GS_QUIT;
 }
 
 // Called if change state, for everything including reset
 void Level1_Free()
 {
-	FreeMapData();
-	free_object(character, hook, walls);
+	free_objects();
 }
 
 //  Called if change state and State is NOT reset. ie Change levels. Do not unload if reseting.
 void Level1_Unload()
 {
+	FreeMapData();
 	unload_render();
 }

@@ -27,7 +27,7 @@ void physics_intialize()
 	CHAR_HEIGHT_VEL = create_vel_height(CHAR_HEIGHT, GRAVITY);
 }
 
-void physics_update(int Flag)
+void physics_update()
 {
 
 //------------------Updating Character physics---------------------
@@ -41,33 +41,22 @@ void physics_update(int Flag)
 		//Update position based on arc on hook, if the player is outside the range, pull it back.
 		hook_char_pos_update();
 
-		//hook friction, lesser than normal friction
-		//character->velocity.x = character->velocity.x * 0.995f;
+
+		//Hook friction, lesser than normal friction
+		character->velocity.x = character->velocity.x * 0.995f;
 	}
 	else
 	{
-		//Horizontal Friction. 
+		//Normal Character Horizontal Friction. 
 		character->velocity.x = character->velocity.x * 0.97f;
 
 	}
 
 	//Gravity only when jumping.
 	AEVec2 gravity_dir{ 0.0f, -1.0f };
-	//if (character->char_state == jumping) // char floating in the air -> need to do sth
-	//{
+	if ((character->grid_collision_flag & COLLISION_BOTTOM) != COLLISION_BOTTOM)
 		set_accel_to_vel(character->velocity, gravity_dir, GRAVITY);
-	//}
 
-
-	//!!!!!!!!!!!!!!!! Temporary wall collision NEED TO CHANGE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-	if (character->velocity.y < 0.01f && Flag == COLLISION_BOTTOM)
-	{
-		// character->pos.y = 0.1f;
-		SnapToCell(&character->pos.y);
-		character->velocity.y = 0;
-		character->char_state = idle;
-		Flag -= COLLISION_BOTTOM;
-	}
 
 
 //------------------Updating Enemy physics---------------------

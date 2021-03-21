@@ -17,41 +17,83 @@ Technology is prohibited.
 
 static const int GRID_SCALE = 40;
 
-void SnapToCell(float* Coordinate)
+void UpdateCollision()
 {
-	*Coordinate = (int)((*Coordinate)) + 0.5f;
+	character->grid_collision_flag = CheckInstanceBinaryMapCollision(character->pos, character->velocity);
+	SnapToCell(&character->pos, character->grid_collision_flag);
 
-	// Collision for top (make it generalized -> after engine proof)
-	//int character_y_index = (int)((character->pos.y / GRID_SCALE) - 0.5f);
-	//character->pos.y = (float)(character_y_index * GRID_SCALE + (GRID_SCALE / 2));
+	if (character->velocity.y < 0.01f && (character->grid_collision_flag & COLLISION_BOTTOM ) == COLLISION_BOTTOM)
+		character->char_state = not_jumping;
+
+	for (Enemy& enemy : enemies)
+		CheckInstanceBinaryMapCollision(enemy.pos, enemy.velocity);
 }
 
-int	CheckInstanceBinaryMapCollision(AEVec2& pos, float scale, AEVec2& velocity)
+void SnapToCell(AEVec2* Coordinate, int Flag)
+{
+	// *Coordinate = (int)((*Coordinate)) + 0.5f;
+	
+	int character_x_index = 0;
+	int character_y_index = 0;
+
+	if ((Flag & COLLISION_TOP) == COLLISION_TOP)
+	{
+		character_y_index = (int)((Coordinate->y / GRID_SCALE) - 0.5f);
+		Coordinate->y = (float)(character_y_index * GRID_SCALE + (GRID_SCALE / 2));
+	}
+	if ((Flag & COLLISION_BOTTOM) == COLLISION_BOTTOM)
+	{
+		character_y_index = (int)((Coordinate->y / GRID_SCALE) + 0.5f);
+		Coordinate->y = (float)(character_y_index * GRID_SCALE + (GRID_SCALE / 2));
+	}
+	if ((Flag & COLLISION_LEFT) == COLLISION_LEFT)
+	{
+		character_x_index = (int)((Coordinate->x / GRID_SCALE) + 0.5f);
+		Coordinate->x = (float)(character_x_index * GRID_SCALE + (GRID_SCALE / 2));
+	}
+	if ((Flag & COLLISION_RIGHT) == COLLISION_RIGHT)
+	{
+		character_x_index = (int)((Coordinate->x / GRID_SCALE) - 0.5f);
+		Coordinate->x = (float)(character_x_index * GRID_SCALE + (GRID_SCALE / 2));
+	}
+}
+
+int	CheckInstanceBinaryMapCollision(AEVec2& pos, AEVec2& velocity)
 {
 	int flag = 0;
 	Hotspot item;
+	
+	item.right.point_1 = { pos.x + GRID_SCALE / 2 , pos.y + GRID_SCALE / 4 };
+	item.right.point_2 = { pos.x + GRID_SCALE / 2 , pos.y - GRID_SCALE / 4 };
 
-	item.right.point_1 = { pos.x + scale / 2 , pos.y + scale / 4 };
-	item.right.point_2 = { pos.x + scale / 2 , pos.y - scale / 4 };
+	item.left.point_1 = { pos.x - GRID_SCALE / 2, pos.y + GRID_SCALE / 4 };
+	item.left.point_2 = { pos.x - GRID_SCALE / 2, pos.y - GRID_SCALE / 4 };
 
-	item.left.point_1 = { pos.x - scale / 2, pos.y + scale / 4 };
-	item.left.point_2 = { pos.x - scale / 2, pos.y - scale / 4 };
+	item.top.point_1 = { pos.x - GRID_SCALE / 4, pos.y + GRID_SCALE / 2 };
+	item.top.point_2 = { pos.x + GRID_SCALE / 4, pos.y + GRID_SCALE / 2 };
 
-	item.top.point_1 = { pos.x - scale / 4, pos.y + scale / 2 };
-	item.top.point_2 = { pos.x + scale / 4, pos.y + scale / 2 };
+	item.bottom.point_1 = { pos.x - GRID_SCALE / 4, pos.y - GRID_SCALE / 2 };
+	item.bottom.point_2 = { pos.x + GRID_SCALE / 4, pos.y - GRID_SCALE / 2 };
 
-	item.bottom.point_1 = { pos.x - scale / 4, pos.y - scale / 2 };
-	item.bottom.point_2 = { pos.x + scale / 4, pos.y - scale / 2 };
+	// check collision
+	if (GetCellValue((int)item.bottom.point_1.x / GRID_SCALE, (int)item.bottom.point_1.y / GRID_SCALE) ||
+		GetCellValue((int)item.bottom.point_2.x / GRID_SCALE, (int)item.bottom.point_2.y / GRID_SCALE))
+	{
+		flag += COLLISION_BOTTOM;
+		velocity.y = 0.0f;
+		//SnapToCell(&pos, flag);
+		//std::cout << (int)item.bottom.point_1.x / GRID_SCALE << ", " << (int)item.bottom.point_1.y / GRID_SCALE << ": ";
+		//std::cout << GetCellValue((int)item.bottom.point_1.x / GRID_SCALE, (int)item.bottom.point_1.y / GRID_SCALE) << std::endl;
+		//std::cout << (int)item.bottom.point_2.x /GRID_SCALE << ", " << (int)item.bottom.point_2.y / GRID_SCALE<< ": ";
+		//std::cout << GetCellValue((int)item.bottom.point_2.x / GRID_SCALE, (int)item.bottom.point_2.y / GRID_SCALE) << std::endl;
+	}
 
-	// check collision 76, 148: 0
-	// 1, 3
 	if (GetCellValue((int)item.right.point_1.x / GRID_SCALE, (int)item.right.point_1.y / GRID_SCALE) ||
 		GetCellValue((int)item.right.point_2.x / GRID_SCALE, (int)item.right.point_2.y / GRID_SCALE))
 	{
 		flag += COLLISION_RIGHT;
-		pos.x -= 0.5f;
 		velocity.x = 0;
-		SnapToCell(&pos.x);
+		//SnapToCell(&pos, flag);
 		//std::cout << (int)item.right.point_1.x / 40 << ", " << (int)item.right.point_1.y / 40<< ": ";
 		//std::cout << GetCellValue((int)item.right.point_1.x / 40, (int)item.right.point_1.y / 40) << std::endl;
 		//std::cout << (int)item.right.point_2.x / 40 << ", " << (int)item.right.point_2.y / 40 << ": ";
@@ -62,9 +104,9 @@ int	CheckInstanceBinaryMapCollision(AEVec2& pos, float scale, AEVec2& velocity)
 		GetCellValue((int)item.left.point_2.x / GRID_SCALE, (int)item.left.point_2.y / GRID_SCALE))
 	{
 		flag += COLLISION_LEFT;
-		pos.x += 0.5f;
 		velocity.x = 0;
-		SnapToCell(&pos.x);
+		//SnapToCell(&pos, flag);
+		//release_hook();
 		//std::cout << (int)item.left.point_1.x / GRID_SCALE << ", " << (int)item.left.point_1.y / GRID_SCALE << ": ";
 		//std::cout << GetCellValue((int)item.left.point_1.x / GRID_SCALE, (int)item.left.point_1.y / GRID_SCALE) << std::endl;
 		//std::cout << (int)item.left.point_2.x /GRID_SCALE << ", " << (int)item.left.point_2.y / GRID_SCALE<< ": ";
@@ -75,27 +117,16 @@ int	CheckInstanceBinaryMapCollision(AEVec2& pos, float scale, AEVec2& velocity)
 		GetCellValue((int)item.top.point_2.x / GRID_SCALE, (int)item.top.point_2.y / GRID_SCALE))
 	{
 		flag += COLLISION_TOP;
-		pos.y -= 0.5f;
-		velocity.y = 0;
-		SnapToCell(&pos.x);
-
+		velocity = { 0.0f, -0.01f };
+		//SnapToCell(&pos, flag);
+		//release_hook();
 		//std::cout << (int)item.top.point_1.x << ", " << (int)item.top.point_1.y << ": ";
 		//std::cout << GetCellValue((int)item.top.point_1.x, (int)item.top.point_1.y) << std::endl;
 		//std::cout << (int)item.top.point_2.x << ", " << (int)item.top.point_2.y << ": ";
 		//std::cout << GetCellValue((int)item.top.point_2.x, (int)item.top.point_2.y) << std::endl;
 		//std::cout << "TOP\n\n";
 	}
-	if (GetCellValue((int)item.bottom.point_1.x / GRID_SCALE, (int)item.bottom.point_1.y / GRID_SCALE) ||
-		GetCellValue((int)item.bottom.point_2.x / GRID_SCALE, (int)item.bottom.point_2.y / GRID_SCALE))
-	{
-		flag += COLLISION_BOTTOM;
-		velocity.y = 0;
-		//std::cout << (int)item.bottom.point_1.x / GRID_SCALE << ", " << (int)item.bottom.point_1.y / GRID_SCALE << ": ";
-		//std::cout << GetCellValue((int)item.bottom.point_1.x / GRID_SCALE, (int)item.bottom.point_1.y / GRID_SCALE) << std::endl;
-		//std::cout << (int)item.bottom.point_2.x /GRID_SCALE << ", " << (int)item.bottom.point_2.y / GRID_SCALE<< ": ";
-		//std::cout << GetCellValue((int)item.bottom.point_2.x / GRID_SCALE, (int)item.bottom.point_2.y / GRID_SCALE) << std::endl;
-		//std::cout << "BOTTOM\n\n";
-	}
+
 
 	return flag;
 }
@@ -215,7 +246,7 @@ bool CollisionIntersection_RectRect(const AABB& aabb1, const AEVec2& vel1, const
 	// Step 5: Otherwise the rectangles intersect
 	return (x_col && y_col);
 }
-
+	
 bool CollisionIntersection_PointRect(const AEVec2 point1, const AABB& aabb2)
 {
 	//static collision
@@ -224,8 +255,20 @@ bool CollisionIntersection_PointRect(const AEVec2 point1, const AABB& aabb2)
 		point1.y > aabb2.min.y &&
 		point1.y < aabb2.max.y)
 	{
+		printf("true");
 		return true;
 	}
 
-	return false;	
+	return false;
+}
+
+
+//add this during merge
+//need to change to x_width and y_height.
+void create_AABB(AABB& aabb, AEVec2 const& pos, float scale)
+{
+	aabb.min.x = pos.x - (scale / 2);
+	aabb.min.y = pos.y - (scale / 2);
+	aabb.max.x = pos.x + (scale / 2);
+	aabb.max.y = pos.y + (scale / 2);
 }
