@@ -255,15 +255,18 @@ void update_render_buttons()//change this during merge
 
 void update_render_character()
 {
+	
+
 	Render render;
 	render.pos = character->pos;
 	render.x_scale = character->scale;
 	render.y_scale = character->scale;
 	render.pMesh = square_mesh;
 	render.pTexture = character_texture;
-	render.dir = 0; //TO update base on character movement
+	render.dir = 0;							//TO update base on character movement
 
 	draw_render(render);
+
 
 	if (AEInputCheckCurr(AEVK_D))
 	{
@@ -281,6 +284,28 @@ void update_render_character()
 		render.y_offset3 = 0.5;
 
 		draw_render(render);
+
+		if (AEInputCheckCurr(AEVK_W))
+		{
+			render.pTexture = character_texture3;	// load character jump right
+			render.x_offset = 0.0;
+			render.y_offset = 0.0;
+
+			render.x_offset1 = 0.5;
+			render.y_offset1 = 0.0;
+
+			render.x_offset2 = 0.0;
+			render.y_offset2 = 0.5;
+
+			render.x_offset3 = 0.5;
+			render.y_offset3 = 0.5;
+
+			draw_render(render);
+
+
+		}
+
+
 	}
 	
 	if (AEInputCheckCurr(AEVK_A))
@@ -299,8 +324,29 @@ void update_render_character()
 		render.y_offset3 = 0.5;
 
 		draw_render(render);
-	}
 
+		if (AEInputCheckCurr(AEVK_W))
+		{
+			render.pTexture = character_texture2;	// load character jump left
+			render.x_offset = 0.0;
+			render.y_offset = 0.0;
+
+			render.x_offset1 = 0.5;
+			render.y_offset1 = 0.0;
+
+			render.x_offset2 = 0.0;
+			render.y_offset2 = 0.5;
+
+			render.x_offset3 = 0.5;
+			render.y_offset3 = 0.5;
+
+			draw_render(render);
+
+
+		}
+
+	}
+	
 	if ((AEInputCheckCurr(AEVK_W) && AEInputCheckCurr(AEVK_D)) || AEInputCheckCurr(AEVK_W))
 	{
 		render.pTexture = character_texture3;	// load character jump right
@@ -318,6 +364,7 @@ void update_render_character()
 
 		draw_render(render);
 
+		AEGfxSetBlendMode(AE_GFX_BM_BLEND);
 
 		if (AEInputCheckTriggered(AEVK_LBUTTON) && AEInputCheckCurr(AEVK_D))
 		{
@@ -341,7 +388,7 @@ void update_render_character()
 
 		}
 	}
-
+	/*
 	if ((AEInputCheckCurr(AEVK_W) && AEInputCheckCurr(AEVK_A)) || AEInputCheckCurr(AEVK_W))
 	{
 		render.pTexture = character_texture2;	// load character jump left
@@ -401,8 +448,8 @@ void update_render_character()
 
 
 	}
+	*/
 
-	
 
 
 }
@@ -478,12 +525,16 @@ void draw_render(Render &render)
 		AEGfxTextureSet(render.pTexture, render.x_offset, render.y_offset);  // Same object, different texture
 		counter = 0;
 	}
+
+
+	
 	
 	// Set transformation matrix
 	AEGfxSetTransform(render.transform.m);
 	// Draw the mesh
 	AEGfxMeshDraw(render.pMesh, AE_GFX_MDM_TRIANGLES);
 
+	
 }
 
 void unload_render()
