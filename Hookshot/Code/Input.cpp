@@ -44,7 +44,10 @@ void Input_g_mode() {
 
 	if (AEInputCheckCurr(AEVK_H))
 	{
-		std::cout << character->aabb.max.x;
+		//std::cout << enemies[0].cliff_check.x <<"\n";
+		//std::cout << enemies[0].pos.x << "\n";
+		std::cout << GetCellValue(int(enemies[0].cliff_check.x), int(enemies[0].cliff_check.y));
+
 	}
 
 
@@ -85,7 +88,7 @@ void Input_menu_mode()
 
 	for (Button& button : buttons)
 	{
-		if ( CollisionIntersection_PointRect(mouse_pos, button.aabb) && AEInputCheckTriggered(AEVK_LBUTTON))
+		if ( CollisionIntersection_PointRect(mouse_pos, button.aabb) && AEInputCheckTriggered(AEVK_LBUTTON)|| AEInputCheckReleased(AEVK_RETURN))
 		{
 			if (button.type == TITLE) {
 				next = GS_LEVEL1;

@@ -58,7 +58,6 @@ Character* create_character(AEVec2 pos)
 		0,			//Iframe (0: vulnerable, 1: invincible)
 		0,			//damage counter
 	};
-	create_AABB(character->aabb, character->pos, character->scale);
 	return character;
 }
 
@@ -84,7 +83,6 @@ void create_health(int type, AEVec2 pos, float scale)
 	button.type = type;
 	button.scale = scale;
 	button.pos = pos;
-	create_AABB(button.aabb, button.pos, button.scale);
 	buttons.push_back(button);
 }
 
@@ -116,7 +114,7 @@ void create_enemy(int enemy_type, AEVec2 pos)
 	enemy.d_switch = 0;
 	enemy.health = 3;
 	enemy.Iframe = 0; // 1 = invincible, 0=vulnerable
-	
+	enemy.cliff_check = pos;
 	enemies.push_back(enemy);
 	
 	

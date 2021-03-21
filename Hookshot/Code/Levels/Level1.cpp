@@ -41,6 +41,8 @@ void Level1_Initialize()
 	//Intialize camera
 	camera_init(character->pos);
 
+	
+
 	//Intialise physic
 	physics_intialize();
 
@@ -64,8 +66,10 @@ void Level1_Update()
 	//draw_static_obj();
 	AEVec2 dir = { -1.0f, 0.0f };
 	//enermy AI
+	create_AABB(character->aabb, character->pos, character->scale);
 	for (size_t i =0;i< enemies.size(); i++)
 	{
+		create_AABB(enemies[i].aabb, enemies[i].pos, enemies[i].scale);
 		skitter_AI(i);
 
 

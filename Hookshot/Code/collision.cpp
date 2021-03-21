@@ -151,7 +151,7 @@ bool CollisionIntersection_RectRect(const AABB& aabb1, const AEVec2& vel1, const
 		aabb1.max.x > aabb2.min.x &&
 		aabb1.max.y > aabb2.min.y)
 	{
-		std::cout << "check";
+		//std::cout << "check";
 		return true;
 	}
 

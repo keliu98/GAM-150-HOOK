@@ -41,6 +41,9 @@
     <ClCompile Include="Code\enemy.cpp">
       <Filter>Source files</Filter>
     </ClCompile>
+    <ClCompile Include="Code\levelUI.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Code\camera.h">
@@ -86,6 +89,9 @@
       <Filter>Header files</Filter>
     </ClInclude>
     <ClInclude Include="Code\enemy.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\levelUI.h">
       <Filter>Header files</Filter>
     </ClInclude>
   </ItemGroup>

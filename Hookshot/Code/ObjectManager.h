@@ -112,15 +112,14 @@ struct Character {
 	float gravity;
 
 	int char_state;
-
-	int grid_collision_flag;
-
 	int health;
 	int damage;
 
 	Hook* hook;
 	int Iframe;
 	int counter;
+
+	int grid_collision_flag;
 };
 
 struct Button {
@@ -163,6 +162,7 @@ struct Enemy {
 	AEMtx33 transform;
 
 	AEVec2 pos;
+	AEVec2 cliff_check;
 	AEVec2 velocity;
 
 	float jump_height;

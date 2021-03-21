@@ -79,7 +79,7 @@ void fire_hook(int cursor_x, int cursor_y)
 			//enemy.aabb.min.y = enemy.pos.y - (enemy.scale / 2);
 			//enemy.aabb.max.x = enemy.pos.x + (enemy.scale / 2);													//
 			//enemy.aabb.max.y = enemy.pos.y + (enemy.scale / 2);
-			create_AABB(enemy.aabb, enemy.pos, enemy.scale);
+			//create_AABB(enemy.aabb, enemy.pos, enemy.scale);
 			//BUG: why nand ???????????????
 			if (CollisionIntersection_PointRect(hook->head_pos, enemy.aabb))									//
 			{
