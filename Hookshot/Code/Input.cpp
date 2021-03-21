@@ -3,6 +3,8 @@
 void Input_g_mode() {
 	float CHARACTER_ACCEL_HORI = 500.0f;
 
+	AEInputUpdate();
+
 	//Keyboard
 	if (character->grid_collision_flag != COLLISION_LEFT && AEInputCheckCurr(AEVK_A))
 		// || (hook->hook_state == tethered && Flag != COLLISION_BOTTOM)
@@ -75,6 +77,8 @@ void Input_g_mode() {
 //For interracting with the main menu
 void Input_menu_mode()
 {
+	AEInputUpdate();
+
 	int cursor_x;
 	int cursor_y;
 

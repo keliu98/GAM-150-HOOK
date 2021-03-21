@@ -120,6 +120,7 @@ struct Character {
 	int counter;
 
 	int grid_collision_flag;
+	AEVec2 knockback;
 };
 
 struct Button {

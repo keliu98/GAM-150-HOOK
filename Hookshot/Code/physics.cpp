@@ -128,5 +128,19 @@ float create_vel_height(float height, float gravity)
 	return sqrt(2 * gravity * height);
 }
 
+//Calculates the knockback. The direction is based on two position and it changes depending the velocity of the object depending on the knockback strength.
+void calculate_knockback(AEVec2& pos1, AEVec2& pos2, AEVec2& velocity, AEVec2 knockback)
+{
+	//Getting the direction of the knockback
+	AEVec2 knockback_dir;
+	AEVec2Sub(&knockback_dir, &pos1, &pos2);
+	AEVec2Normalize(&knockback_dir, &knockback_dir);
 
+	//Scaling the x-dir knockback by knockback.x
+	AEVec2Scale(&knockback_dir, &knockback_dir, knockback.x);
+
+	//Scaling the y-dir knockback by knockback.y for a jumping up effect.
+	knockback_dir.y += knockback.y;
+	velocity = knockback_dir;
+}
 

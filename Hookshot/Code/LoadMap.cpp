@@ -204,9 +204,8 @@ void IntializeLevel()
 	}
 
 	walls.shrink_to_fit();
+	enemies.shrink_to_fit();
 
-	std::cout << walls.size() << '\n';
-	std::cout << walls.capacity() << '\n';
 }
 
 void CheckWinLose()

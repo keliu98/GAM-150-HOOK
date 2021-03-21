@@ -58,6 +58,10 @@ Character* create_character(AEVec2 pos)
 		0,			//Iframe (0: vulnerable, 1: invincible)
 		0,			//damage counter
 	};
+
+	character->knockback.y = create_vel_height(20.0f, GRAVITY);
+	character->knockback.x = 350.0f;
+
 	return character;
 }
 
@@ -117,8 +121,7 @@ void create_enemy(int enemy_type, AEVec2 pos)
 	enemy.cliff_check = pos;
 	enemies.push_back(enemy);
 	
-	
-
+	std::cout << "enemy created\n";
 }
 
 // When enemy is defeated by players
@@ -139,26 +142,7 @@ void destory_enemy(std::vector<Enemy>& enemies, int index)
 void free_objects()
 {
 	walls.clear();
-	walls.shrink_to_fit();
-
-	std::cout << walls.size() << '\n';
-	std::cout << walls.capacity() << '\n';
-
-	for (int i{0}; i < walls.size(); ++i)
-	{
-		// remove first element
-		//delete & walls[i];
-		walls.erase(walls.begin());
-		std::cout << i << '\n';
-	}
-
-	for (int i{ 0 }; i < enemies.size(); ++i)
-	{
-		// remove first element
-		//delete & walls[i];
-		enemies.erase(enemies.begin());
-		
-	}
+	enemies.clear();
 	
 	delete hook;
 	delete character;
