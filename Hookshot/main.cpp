@@ -40,6 +40,7 @@ float	 g_dt;
 double	 g_appTime;
 int      WINDOW_WIDTH = 800;
 int      WINDOW_HEIGHT = 600;
+size_t   TOTAL_LIVES = 3;
 
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	_In_opt_ HINSTANCE hPrevInstance,

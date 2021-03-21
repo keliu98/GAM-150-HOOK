@@ -135,7 +135,7 @@ void PrintRetrievedInformation(void)
 	}
 }
 
-int	GetCellValue(int X, int Y)
+/*int	GetCellValue(int X, int Y)
 {
 	// Check within
 	if ((X >= 0 && X < map_width) && ((Y >= 0 && Y < map_height)))
@@ -144,6 +144,16 @@ int	GetCellValue(int X, int Y)
 	}
 
 	return 0;
+}*/
+
+int GetCellValue(int X, int Y)
+{
+	if (X > (map_width - 1) || X<0 || Y >(map_height - 1) || Y < 0) {//if value is out of bound return 0
+		return 0;
+	}
+	else {
+		 return binary_collision_array[Y][X]; //else return the Value of the collision
+	}
 }
 
 void IntializeLevel()
@@ -174,6 +184,7 @@ void IntializeLevel()
 			if (normalize_map_data[x][y] == 'C')
 			{
 				character = create_character(pos);
+				//create_AABB(character->aabb, character->pos, character->scale);
 				hook = create_hook();
 			}
 			// type 3 = enemy

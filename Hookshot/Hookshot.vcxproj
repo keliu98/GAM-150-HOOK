@@ -90,6 +90,7 @@
   <ItemGroup>
     <ClCompile Include="Code\camera.cpp" />
     <ClCompile Include="Code\collision.cpp" />
+    <ClCompile Include="Code\enemy.cpp" />
     <ClCompile Include="Code\GameStateManager.cpp" />
     <ClCompile Include="Code\Hook.cpp" />
     <ClCompile Include="Code\Input.cpp" />
@@ -100,17 +101,20 @@
     <ClCompile Include="Code\ObjectManager.cpp" />
     <ClCompile Include="Code\pch.cpp" />
     <ClCompile Include="Code\physics.cpp" />
+    <ClCompile Include="Code\levelUI.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Code\camera.h" />
     <ClInclude Include="Code\collision.h" />
+    <ClInclude Include="Code\enemy.h" />
     <ClInclude Include="Code\GameStateList.h" />
     <ClInclude Include="Code\GameStateManager.h" />
     <ClInclude Include="Code\Hook.h" />
     <ClInclude Include="Code\Input.h" />
     <ClInclude Include="Code\Levels\Level1.h" />
     <ClInclude Include="Code\extern.h" />
+    <ClInclude Include="Code\levelUI.h" />
     <ClInclude Include="Code\LoadMap.h" />
     <ClInclude Include="Code\menu.h" />
     <ClInclude Include="Code\newrendersystem.h" />

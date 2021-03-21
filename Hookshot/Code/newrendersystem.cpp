@@ -131,6 +131,12 @@ void update_render_bg()
 	draw_render(render);
 }
 
+void load_button_texture()
+{
+
+
+	button_texture = load_texture("../Images/Title.png");//change this during merge
+}
 
 void update_render_walls()
 {
@@ -146,6 +152,23 @@ void update_render_walls()
 			render.pTexture = wall_texture_top;
 		else
 			render.pTexture = wall_texture_bot;
+		render.dir = 0;
+
+		draw_render(render);
+	}
+}
+
+void update_render_buttons()//change this during merge
+{
+	Render render;
+
+	for (Button const& button : buttons)
+	{
+		render.pos = button.pos;
+		render.x_scale = button.scale;
+		render.y_scale = button.scale;
+		render.pMesh = square_mesh;
+		render.pTexture = button_texture;
 		render.dir = 0;
 
 		draw_render(render);
@@ -237,6 +260,7 @@ void unload_render()
 		if (texturelist[i] != nullptr)
 		{
 			AEGfxTextureUnload(texturelist[i]);
+			texturelist[i] = nullptr;//change this during merge
 		}
 	}
 

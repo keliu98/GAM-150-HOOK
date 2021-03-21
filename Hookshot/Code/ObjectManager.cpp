@@ -3,7 +3,10 @@
 int lives = 3;
 Character* character;
 Hook* hook;
-Button* button_1;
+Button* button;
+Health* health;
+std::vector<Button> buttons;
+std::vector < Health > heart;
 std::vector<Wall> walls;
 std::vector<Enemy> enemies;
 AEVec2* end_position;
@@ -17,7 +20,7 @@ Hook* create_hook() {
 		{0,0},		  //AEVec2 transform
 
 		{4.0},		  //float scale;
-
+		
 		{0,0},        //AEVec2 head_pos
 		{0,0},        //AEVec2 center_pos
 		{0,0},        //AEVec2 tail_pos
@@ -52,21 +55,35 @@ Character* create_character(AEVec2 pos)
 
 		3,			// int health;
 		0,			// int damage;
+		0,			//Iframe (0: vulnerable, 1: invincible)
+		0,			//damage counter
 	};
 	return character;
 }
 
 
-Button* create_button()
+void create_button(int type, AEVec2 pos, float scale)
 {
-	Button* button = new Button{
-		{0,0},
-		40.0f,			//scale
-		{0,0},		//AEVec2 transform;
-		{0,0},		// AEVec2 pos;
+	Button button;
+	
+	// init values
+	button.type = type;
+	button.scale = scale;
+	button.pos = pos;
+	create_AABB(button.aabb, button.pos, button.scale);
+	buttons.push_back(button);
+	
+}
 
-	};
-	return button;
+void create_health(int type, AEVec2 pos, float scale)
+{
+	Button button;
+
+	// init values
+	button.type = type;
+	button.scale = scale;
+	button.pos = pos;
+	buttons.push_back(button);
 }
 
 AEVec2* create_ending_point(AEVec2 pos)
@@ -74,6 +91,8 @@ AEVec2* create_ending_point(AEVec2 pos)
 	AEVec2* end_position = new AEVec2{ pos };
 	return end_position;
 }
+
+
 
 void create_enemy(int enemy_type, AEVec2 pos)
 {
@@ -91,8 +110,15 @@ void create_enemy(int enemy_type, AEVec2 pos)
 
 	enemy.velocity.x = 0;
 	enemy.velocity.y = 0;
-
+	enemy.jump_state = not_jumping;
+	enemy.d_switch = 0;
+	enemy.health = 3;
+	enemy.Iframe = 0; // 1 = invincible, 0=vulnerable
+	enemy.cliff_check = pos;
 	enemies.push_back(enemy);
+	
+	
+
 }
 
 // When enemy is defeated by players
@@ -137,6 +163,17 @@ void free_objects()
 	delete hook;
 	delete character;
 	delete end_position;
+}
+
+void free_button(std::vector<Button> buttons)
+{
+	for (int i{ 0 }; i < buttons.size(); ++i)
+	{
+		// remove first element
+		//delete & walls[i];
+		buttons.erase(buttons.begin());
+	}
+
 }
 
 

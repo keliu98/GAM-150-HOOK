@@ -15,7 +15,7 @@ Technology is prohibited.
 #pragma once
 
 #include "pch.h"
-
+#include "ObjectManager.h"
 //Flags
 const unsigned int	FLAG_ACTIVE = 0x00000001;
 const unsigned int	FLAG_VISIBLE = 0x00000002;
@@ -63,6 +63,7 @@ void SnapToCell(AEVec2* Coordinate, int flag);
 	A collision test function to see if two rectangle object collide together.
 */
 /**************************************************************************/
+
 bool CollisionIntersection_RectRect(const struct AABB& aabb1, const AEVec2& vel1, const struct AABB& aabb2, const AEVec2& vel2);
 
 /**************************************************************************/
@@ -70,4 +71,8 @@ bool CollisionIntersection_RectRect(const struct AABB& aabb1, const AEVec2& vel1
 	A collision test function to see if a point object and rectangle object collide together.
 */
 /**************************************************************************/
-bool CollisionIntersection_PointRect(const AEVec2 point1, const AABB& aabb2);
+bool CollisionIntersection_PointRect(const AEVec2 point1, const struct AABB& aabb2);
+
+void create_AABB(struct AABB& aabb, AEVec2 const& pos, float scale);
+
+

@@ -25,8 +25,20 @@ void UpdateCollision()
 	if (character->velocity.y < 0.01f && (character->grid_collision_flag & COLLISION_BOTTOM ) == COLLISION_BOTTOM)
 		character->char_state = not_jumping;
 
-	for (Enemy& enemy : enemies)
-		CheckInstanceBinaryMapCollision(enemy.pos, enemy.velocity);
+	for (Enemy& enemy : enemies) {
+		enemy.grid_collision_flag = CheckInstanceBinaryMapCollision(enemy.pos, enemy.velocity);
+		SnapToCell(&enemy.pos, enemy.grid_collision_flag);
+		//jump logic
+		if (enemy.velocity.y < 0.01f && (enemy.grid_collision_flag & COLLISION_BOTTOM) == COLLISION_BOTTOM)
+		{
+			enemy.jump_state = not_jumping;
+			/*if (enemy.Iframe == 1) {
+				enemy.Iframe = 0;
+			}*/
+		}
+		//damage logic
+			
+	}
 }
 
 void SnapToCell(AEVec2* Coordinate, int Flag)
@@ -139,6 +151,7 @@ bool CollisionIntersection_RectRect(const AABB& aabb1, const AEVec2& vel1, const
 		aabb1.max.x > aabb2.min.x &&
 		aabb1.max.y > aabb2.min.y)
 	{
+		//std::cout << "check";
 		return true;
 	}
 
@@ -246,7 +259,7 @@ bool CollisionIntersection_RectRect(const AABB& aabb1, const AEVec2& vel1, const
 	// Step 5: Otherwise the rectangles intersect
 	return (x_col && y_col);
 }
-
+	
 bool CollisionIntersection_PointRect(const AEVec2 point1, const AABB& aabb2)
 {
 	//static collision
@@ -255,8 +268,20 @@ bool CollisionIntersection_PointRect(const AEVec2 point1, const AABB& aabb2)
 		point1.y > aabb2.min.y &&
 		point1.y < aabb2.max.y)
 	{
+		printf("true");
 		return true;
 	}
 
-	return false;	
+	return false;
+}
+
+
+//add this during merge
+//need to change to x_width and y_height.
+void create_AABB(AABB& aabb, AEVec2 const& pos, float scale)
+{
+	aabb.min.x = pos.x - (scale / 2);
+	aabb.min.y = pos.y - (scale / 2);
+	aabb.max.x = pos.x + (scale / 2);
+	aabb.max.y = pos.y + (scale / 2);
 }

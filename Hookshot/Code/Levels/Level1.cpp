@@ -31,6 +31,9 @@ void Level1_Load()
 	// load hook_texture
 	load_hook_render();
 
+	if (TOTAL_LIVES <= 0) {
+		TOTAL_LIVES = 3;
+	}
 }
 
 void Level1_Initialize()
@@ -41,6 +44,8 @@ void Level1_Initialize()
 
 	//Intialize camera
 	camera_init(character->pos);
+
+	
 
 	//Intialise physic
 	physics_intialize();
@@ -62,6 +67,24 @@ void Level1_Update()
 
 	camera_update(character->pos, character->velocity, character->scale);
 	//For Debuging Camera
+	//draw_static_obj();
+	AEVec2 dir = { -1.0f, 0.0f };
+	//enermy AI
+	create_AABB(character->aabb, character->pos, character->scale);
+	for (size_t i =0;i< enemies.size(); i++)
+	{
+		create_AABB(enemies[i].aabb, enemies[i].pos, enemies[i].scale);
+		skitter_AI(i);
+
+
+		
+
+		//Horizontal Friction. 
+		//enemy.velocity.x = enemy.velocity.x * 0.97f;
+
+		//!!!!!!!!!!!!!!!! Temporary wall collision NEED TO CHANGE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+		
+	}
 		//draw_static_obj();
 
 	CheckWinLose();
@@ -91,6 +114,7 @@ void Level1_Draw()
 void Level1_Free()
 {
 	free_objects();
+
 }
 
 //  Called if change state and State is NOT reset. ie Change levels. Do not unload if reseting.
