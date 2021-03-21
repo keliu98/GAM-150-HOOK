@@ -16,6 +16,9 @@ void Level1_Load()
 	//loading texture etc
 	load_render();
 
+	//load bg
+	//load_bg_render();
+
 	// loading wall texture
 	load_dirt_render();
 
@@ -32,6 +35,7 @@ void Level1_Load()
 
 void Level1_Initialize()
 {
+
 	//Translate the map data into the gameworld by creating objects
 	IntializeLevel();
 
@@ -65,6 +69,7 @@ void Level1_Update()
 
 void Level1_Draw()
 {
+	//update_render_bg();
 	update_render_walls();
 	update_render_hook();
 	update_render_enemy();

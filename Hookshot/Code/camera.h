@@ -47,6 +47,9 @@ void camera_init(AEVec2 character_pos);
 /// <param name="character_pos"></param>
 void camera_update(AEVec2 character_pos, AEVec2 velocity, float scale);
 
+// Get center camera value
+const AEVec2 center_point();
+
 
 //ADDED IN NEW FUNCTION TO TRANSLATE CURSOR - WEI WEN
 void translate_cursor(int& cursor_x, int& cursor_y);

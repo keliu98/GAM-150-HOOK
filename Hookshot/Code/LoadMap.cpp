@@ -150,6 +150,7 @@ void IntializeLevel()
 {
 	float wall_scale = 20.0f;
 	AEVec2 pos = { wall_scale,  wall_scale }; // store bottom left of the position
+	int check_x = 0;
 
 	AEVec2 init_pos = pos;
 	for (int x = 0; x < map_height; ++x)
@@ -160,7 +161,14 @@ void IntializeLevel()
 			// type 1 = wall
 			if (normalize_map_data[x][y] == 1)
 			{
-				create_wall(TEMP_WALL, 40, pos);
+				check_x = x + 1;
+				if (check_x < map_height && normalize_map_data[check_x][y] != 1)
+				{
+					create_wall(1, 40, pos); //top
+				}
+					
+				else
+					create_wall(2, 40, pos); //bot
 			}
 			// type 2 = character
 			if (normalize_map_data[x][y] == 'C')

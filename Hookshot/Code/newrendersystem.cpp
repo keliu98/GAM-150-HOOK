@@ -10,7 +10,8 @@ int texture_count;
 AEGfxVertexList* square_mesh;
 
 //Pointer to the wall texture
-AEGfxTexture* wall_texture;
+AEGfxTexture* wall_texture_top;
+AEGfxTexture* wall_texture_bot;
 
 //Pointer to the character texture
 AEGfxTexture* character_texture;
@@ -20,6 +21,9 @@ AEGfxTexture* hook_texture;
 
 //Pointer to the hook texture
 AEGfxTexture* enemy_texture;
+
+//Pointer to background
+AEGfxTexture* bg;
 
 struct Render
 {
@@ -80,10 +84,16 @@ void load_render()
 	//enemy_texture = load_texture("../Images/Starfish.png");
 }
 
+
+void load_bg_render()
+{
+	bg = load_texture("../Images/Test.png");
+}
+
 void load_dirt_render()
 {
-	wall_texture = load_texture("../Images/Dirt1.png");
-
+	wall_texture_top = load_texture("../Images/Floor1.png");
+	wall_texture_bot = load_texture("../Images/Floor2.png");
 }
 
 void load_texture_render()
@@ -104,8 +114,23 @@ void load_hook_render()
 
 void load_enemy_texture()
 {
-	enemy_texture = load_texture("../Images/Starfish.png");
+	enemy_texture = load_texture("../Images/skitter.png");
 }
+
+void update_render_bg()
+{
+	// can be a walk and zoom in effect
+	Render render;
+	render.pos = center_point();
+	render.x_scale  = AEGfxGetWinMaxX() + 150.0f;
+	render.y_scale = AEGfxGetWinMaxX() + 10.0f;
+	render.pMesh = square_mesh;
+	render.pTexture = bg;
+	render.dir = 0;
+
+	draw_render(render);
+}
+
 
 void update_render_walls()
 {
@@ -117,16 +142,14 @@ void update_render_walls()
 		render.x_scale = wall.scale;
 		render.y_scale = wall.scale;
 		render.pMesh = square_mesh;
-		render.pTexture = wall_texture;
+		if (wall.type == 1)
+			render.pTexture = wall_texture_top;
+		else
+			render.pTexture = wall_texture_bot;
 		render.dir = 0;
 
 		draw_render(render);
 	}
-
-
-
-
-
 }
 
 void update_render_character()

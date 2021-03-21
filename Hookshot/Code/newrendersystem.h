@@ -4,7 +4,7 @@
 
 //AEGfxVertexList* load_mesh(float size); //player
 
-void load_dirt_render(); 
+void load_bg_render();
 
 void load_dirt_render();
 
@@ -16,6 +16,7 @@ void load_enemy_texture();
 
 AEGfxTexture* load_texture(const char* image);
 
+void update_render_bg();
 void update_render_walls();
 void update_render_character();
 void update_render_hook();
