@@ -31,9 +31,6 @@ void Level1_Load()
 	// load hook_texture
 	load_hook_render();
 
-	if (TOTAL_LIVES <= 0) {
-		TOTAL_LIVES = 3;
-	}
 }
 
 void Level1_Initialize()
@@ -63,8 +60,7 @@ void Level1_Update()
 	UpdateCollision();
 
 	camera_update(character->pos, character->velocity, character->scale);
-	//For Debuging Camera
-	//draw_static_obj();
+
 	AEVec2 dir = { -1.0f, 0.0f };
 
 	//enermy AI
@@ -91,7 +87,7 @@ void Level1_Draw()
 	update_render_character();
 
 	//For Debuging Camera
-	draw_cam_bounding_box(character->pos, character->pos);
+	draw_cam_bounding_box();
 
 	// print lives
 	sprintf_s(text, "Health: %d", character->health);
@@ -99,9 +95,6 @@ void Level1_Draw()
 	sprintf_s(text, "Lives: %d", lives);
 	PrintText(text, NORMAL, { -0.9f, -0.95f });
 
-	// debugging hotspot
-	/*draw_cam_bounding_box({ character->pos.x + character->scale / 4, character->pos.y - character->scale / 2 },
-		{ character->pos.x - character->scale / 4, character->pos.y + character->scale / 2 });*/
 
 	//Temporary for exiting the system
 	if (AEInputCheckTriggered(AEVK_ESCAPE))

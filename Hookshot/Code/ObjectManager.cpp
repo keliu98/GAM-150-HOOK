@@ -121,7 +121,7 @@ void create_enemy(int enemy_type, AEVec2 pos)
 	enemy.cliff_check = pos;
 	enemies.push_back(enemy);
 	
-	std::cout << "enemy created\n";
+	//std::cout << "enemy created\n";
 }
 
 // When enemy is defeated by players

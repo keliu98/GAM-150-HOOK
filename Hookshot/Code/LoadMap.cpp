@@ -209,7 +209,8 @@ void IntializeLevel()
 }
 
 void CheckWinLose()
-{
+{	
+	//REACHING THE GOAL
 	// ending position is always top right, so will need to caculate bottom left
 	if (character->pos.x <= end_position->x && character->pos.x >= (end_position->x - 40 * 4) &&
 		character->pos.y <= end_position->y && character->pos.y >= (end_position->y - 40 * 4))
@@ -218,28 +219,28 @@ void CheckWinLose()
 		next = GS_RESTART;
 	}
 
-	//TODO when character->pos.y < map_height * grid , --lives 
+	//FALLING OUTSIDE MAP
+	//TODO when character->pos.y < map_height * grid , --lives, bascially outside of map
 	if (0)
 	{
 
 	}
 
+	//HEATH REDUCED TO ZERO
 	if (character->health == 0)
 	{
-		//TO CHANGE TO GAMEOVER, Lives is intialised when game is started. Do not declare lives in load or intialise as it will get reseted.
-		lives -= 1;
-		next = GS_RESTART;
-
+		lives -= 1; //reduce lives
+		next = GS_RESTART; //restart level
 	}
 
+	//LIVES REDUCED TO ZERO
 	if (lives == 0)
 	{
-		//TO CHANGE TO GAMEOVER, Lives is intialised when game is started. Do not declare lives in load or intialise as it will get reseted.
-		lives = 3;
-		next = GS_RESTART;
+		//Lives is intialised when game is started. Do not declare lives in load or intialise as it will get reseted.
+		lives = 3; //reset lives
+		next = GS_RESTART; //TO CHANGE TO GAMEOVER
 		
 	}
-	//if (character->pos.y <  )
 }
 
 

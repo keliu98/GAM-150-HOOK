@@ -48,7 +48,7 @@ void physics_update()
 	else
 	{
 		//Normal Character Horizontal Friction. 
-		character->velocity.x = character->velocity.x * 0.97f;
+		character->velocity.x = character->velocity.x * 0.95f;
 
 	}
 
@@ -72,13 +72,6 @@ void physics_update()
 
 		//Horizontal Friction. 
 		enemy.velocity.x = enemy.velocity.x * 0.97f;
-
-		//!!!!!!!!!!!!!!!! Temporary wall collision NEED TO CHANGE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-		if (enemy.pos.y < 0.0f)
-		{
-			enemy.pos.y = 0.1f;
-			enemy.velocity.y = 0;
-		}
 	}
 
 }

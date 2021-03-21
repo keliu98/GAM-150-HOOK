@@ -65,7 +65,7 @@ void draw_cam_bounding_box(AEVec2 point1, AEVec2 point2)
 void camera_init(AEVec2 character_pos) {
 
 	center = character_pos;
-	cam_max = { character_pos.x + (40.0f * 7), AEGfxGetWinMaxY() + (40.0f * 4) };
+	cam_max = { character_pos.x + (40.0f * 4), AEGfxGetWinMaxY() + (40.0f * 4) };
 
 	// find distance
 	if (!loadOnce)

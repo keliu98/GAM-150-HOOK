@@ -18,16 +18,6 @@ void Input_g_mode() {
 		AEVec2 dir = { 1.0f, 0.0f };
 		set_accel_to_vel(character->velocity, dir, CHARACTER_ACCEL_HORI);
 	}
-	//Debug lives code
-	if (AEInputCheckTriggered(AEVK_G))
-	{
-		TOTAL_LIVES--;
-		if (TOTAL_LIVES == 0) {
-			next = GS_MENU;
-		}
-		else
-			std::cout << TOTAL_LIVES;
-	}
 
 	if (character->grid_collision_flag != COLLISION_TOP && (AEInputCheckTriggered(AEVK_W) ||
 		AEInputCheckTriggered(AEVK_SPACE)) && hook->flag == false)

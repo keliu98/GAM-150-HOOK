@@ -5,18 +5,14 @@ AEVec2 dirL = { -1.0f, 0.0f };
 AEVec2 dirR = { 1.0f, 0.0f };
 AEVec2 idle = { 0.0f, 0.0f };
 
-void enemy_move_L(size_t i) {
-	--enemies[i].cliff_check.x;
-	--enemies[i].cliff_check.y;
-	set_vel_to_pos(enemies[i].pos, enemies[i].velocity);
-	set_accel_to_vel(enemies[i].velocity, dirL, 200.0f);
+void enemy_move_L(size_t i) 
+{
+	set_accel_to_vel(enemies[i].velocity, dirL, 400.0f);
 }
 
-void enemy_move_R(size_t i) {
-	--enemies[i].cliff_check.x;
-	++enemies[i].cliff_check.y;
-	set_vel_to_pos(enemies[i].pos, enemies[i].velocity);
-	set_accel_to_vel(enemies[i].velocity, dirR, 200.0f);
+void enemy_move_R(size_t i) 
+{
+	set_accel_to_vel(enemies[i].velocity, dirR, 400.0f);
 }
 
 void enemy_idle(size_t i) {
@@ -36,36 +32,12 @@ void skitter_AI(size_t i) {
 		enemies[i].cliff_check.x = enemies[i].pos.x-1.0f;
 		enemies[i].cliff_check.x = enemies[i].pos.y-1.0f;
 
+		//For checking if the character needs to change direction. If cell value returns 1 means there a floor.
 		AEVec2 bottom_left = { enemies[i].pos.x - GRID_SCALE / 2, enemies[i].pos.y - GRID_SCALE / 2 };
 		AEVec2 bottom_right = { enemies[i].pos.x + GRID_SCALE / 2, enemies[i].pos.y - GRID_SCALE / 2 };
 
-		//For checking if the character needs to change direction. If cell value returns 1 means there a floor.
-
-		//heading left, bottom left is empty, need to change direction
-		//std::cout << enemies[i].grid_collision_flag << "\n";
-		//std::cout << character->grid_collision_flag << "\n";
 		int left_hotspot = GetCellValue((int)bottom_left.x / GRID_SCALE, (int)(bottom_left.y / GRID_SCALE));
 		int right_hotspot = GetCellValue((int)bottom_right.x / GRID_SCALE, (int)(bottom_right.y / GRID_SCALE));
-		//std::cout << "left_hotspot: " << left_hotspot << " right_hotspot: " << right_hotspot << "\n";
-		//if (left_hotspot == 0)
-		//{
-		//	enemies[i].d_switch = 1;
-		//}
-		//else if (right_hotspot == 0)
-		//{
-		//	enemies[i].d_switch = 0;
-		//}
-
-		////else if (GetCellValue((int)bottom_left.x / GRID_SCALE, (int)bottom_left.y / GRID_SCALE) &&
-		////	!GetCellValue((int)bottom_right.x / GRID_SCALE, (int)bottom_right.y / GRID_SCALE))
-		////{
-		////	enemies[i].velocity.x = enemies[i].velocity.x * -1;
-		////}
-		//
-
-
-
-		//std::cout << GetCellValue(int(enemies[i].cliff_check.x), int(enemies[i].cliff_check.y))<<"\n";
 
 	if (character->counter == 0 && (CollisionIntersection_RectRect(character->aabb, character->velocity, enemies[i].aabb, enemies[i].velocity))) {
 		--character->health;
@@ -89,17 +61,17 @@ void skitter_AI(size_t i) {
 	if (enemies[i].d_switch == 1)
 		enemy_move_R(i);
 
-	if (enemies[i].grid_collision_flag == COLLISION_LEFT)
-		//|| (left_hotspot == 0 && right_hotspot == 1))
+	if (((enemies[i].grid_collision_flag & COLLISION_LEFT) == COLLISION_LEFT) 
+		|| (left_hotspot == 0))
 	{
+		enemies[i].velocity.x *= -1;
 		enemies[i].d_switch = 1;
-		std::cout << "dir change left \n";
 	}
-	if (enemies[i].grid_collision_flag == COLLISION_RIGHT)
-		//|| (right_hotspot == 0 && left_hotspot == 0))
+	if (((enemies[i].grid_collision_flag & COLLISION_RIGHT) == COLLISION_RIGHT)
+		|| (right_hotspot == 0))
 	{
+		enemies[i].velocity.x *= -1;
 		enemies[i].d_switch = 0;
-		std::cout << "dir change right \n";
 	}
 
 	if (enemies[i].health <= 0)
@@ -117,7 +89,6 @@ void update_hook_attack()
 			if (enemy.Iframe == 0)
 				enemy.health -= 1;
 			//new code here
-			std::cout << "hook - enemy collison";
 			calculate_knockback(hook->head_pos, character->pos, enemy.velocity, enemy.knockback);
 
 			hook->max_len = hook->curr_len;
