@@ -41,6 +41,8 @@ double	 g_appTime;
 int      WINDOW_WIDTH = 800;
 int      WINDOW_HEIGHT = 600;
 size_t   TOTAL_LIVES = 3;
+char	 font;
+char	 font_italic;
 
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	_In_opt_ HINSTANCE hPrevInstance,
@@ -59,6 +61,10 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	//Intialise System
 	// Using custom window procedure
 	AESysInit(hInstance, nCmdShow, WINDOW_WIDTH, WINDOW_HEIGHT, 1, 60, true, NULL);
+
+	// init font id:
+	font = AEGfxCreateFont("../Fonts/Pixel Digivolve.otf", 24);
+	font_italic = AEGfxCreateFont("../Fonts/Pixel Digivolve Italic.otf", 16);
 
 	// Changing the window title
 	AESysSetWindowTitle("My New Demo!");
@@ -121,6 +127,10 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
         current = next;
     }
     
+	// Destory font ID
+	AEGfxDestroyFont(font);
+	AEGfxDestroyFont(font_italic);
+
 	// free the system
 	AESysExit();
 

@@ -42,7 +42,7 @@ void skitter_AI(size_t i) {
 		//For checking if the character needs to change direction. If cell value returns 1 means there a floor.
 
 		//heading left, bottom left is empty, need to change direction
-		if (GetCellValue((int)bottom_left.x / GRID_SCALE, (int)(bottom_left.y / GRID_SCALE) + 1.0f))
+		if (GetCellValue((int)bottom_left.x / GRID_SCALE, (int)(bottom_left.y / GRID_SCALE) + 1))
 		{
 			enemies[i].velocity.x = enemies[i].velocity.x * -1; 
 		}

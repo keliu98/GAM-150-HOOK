@@ -32,7 +32,7 @@
 #include "newrendersystem.h"
 #include "LoadMap.h"
 #include "enemy.h"
-//#include "levelUI"
+#include "levelUI.h"
 
 
 #endif //PCH_H

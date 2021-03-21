@@ -15,3 +15,6 @@ extern float    CHAR_HEIGHT_VEL;
 
 extern const float GRAVITY;
 
+extern char		font;
+extern char		font_italic;
+

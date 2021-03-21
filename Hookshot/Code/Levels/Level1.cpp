@@ -81,6 +81,9 @@ void Level1_Update()
 
 void Level1_Draw()
 {
+	static char text[100];
+	memset(text, 0, 100 * sizeof(char));
+
 	update_render_bg();
 	update_render_walls();
 	update_render_hook();
@@ -89,6 +92,10 @@ void Level1_Draw()
 
 	//For Debuging Camera
 	draw_cam_bounding_box(character->pos, character->pos);
+
+	// print lives
+	sprintf_s(text, "Lives: %d", character->health);
+	PrintText(text, NORMAL, { -0.9f, -0.9f });
 
 	// debugging hotspot
 	/*draw_cam_bounding_box({ character->pos.x + character->scale / 4, character->pos.y - character->scale / 2 },
