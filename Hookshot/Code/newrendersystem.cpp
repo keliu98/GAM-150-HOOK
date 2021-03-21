@@ -164,7 +164,7 @@ void load_character_render_jumpleft()
 void load_character_render_jumpright()
 {
 	// jump in the right direction
-	character_texture3 = load_texture("../Images/4testimagesjump.png");
+	character_texture3 = load_texture("../Images/4testimagesjump.png");		//image jump right
 
 }
 
@@ -301,7 +301,7 @@ void update_render_character()
 		draw_render(render);
 	}
 
-	if (AEInputCheckCurr(AEVK_W) && AEInputCheckCurr(AEVK_D) )
+	if ((AEInputCheckCurr(AEVK_W) && AEInputCheckCurr(AEVK_D)) || AEInputCheckCurr(AEVK_W))
 	{
 		render.pTexture = character_texture3;	// load character jump right
 		render.x_offset = 0.0;
@@ -342,7 +342,7 @@ void update_render_character()
 		}
 	}
 
-	if (AEInputCheckCurr(AEVK_W) && AEInputCheckCurr(AEVK_A))
+	if ((AEInputCheckCurr(AEVK_W) && AEInputCheckCurr(AEVK_A)) || AEInputCheckCurr(AEVK_W))
 	{
 		render.pTexture = character_texture2;	// load character jump left
 		render.x_offset = 0.0;
