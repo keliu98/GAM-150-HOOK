@@ -146,7 +146,8 @@
     <Image Include="Images\4testimagesjump.png" />
     <Image Include="Images\4testimagesjumpleft.png" />
     <Image Include="Images\4testimagesreverse.png" />
-    <Image Include="Images\4testimagesstart.png" />
+    <Image Include="Images\4testimagesstartleft.png" />
+    <Image Include="Images\4testimagesstartright.png" />
     <Image Include="Images\4testimagesthrow.png" />
     <Image Include="Images\4testimagesthrowleft.png" />
     <Image Include="Images\4testimageswining.png" />

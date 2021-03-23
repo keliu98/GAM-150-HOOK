@@ -154,7 +154,6 @@
     <Image Include="Images\4testimages.png" />
     <Image Include="Images\4testimagescopy.png" />
     <Image Include="Images\4testimagesjump.png" />
-    <Image Include="Images\4testimagesjumpleft.png" />
     <Image Include="Images\4testimagesreverse.png" />
     <Image Include="Images\4testimagesthrow.png" />
     <Image Include="Images\4testimagesthrowleft.png" />
@@ -167,10 +166,12 @@
     <Image Include="bin\PlanetTexture.png" />
     <Image Include="bin\Title.png" />
     <Image Include="bin\YellowTexture.png" />
-    <Image Include="Images\4testimagesstart.png" />
     <Image Include="Images\4testimageswining.png" />
     <Image Include="Images\4testimageswiningleft.png" />
     <Image Include="Images\4testimageswiningright.png" />
+    <Image Include="Images\4testimagesjumpleft.png" />
+    <Image Include="Images\4testimagesstartright.png" />
+    <Image Include="Images\4testimagesstartleft.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Images\4testimages.psd" />

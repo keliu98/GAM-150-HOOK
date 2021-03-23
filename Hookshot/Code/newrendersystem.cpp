@@ -12,8 +12,11 @@ AEGfxVertexList* square_mesh;
 //Pointer to the wall texture
 AEGfxTexture* wall_texture;
 
-//Pointer to the character texture at static
+//Pointer to the character texture at static right
 AEGfxTexture* character_texture;
+
+//Pointer to the character texture at static left
+AEGfxTexture* character_texture00;
 
 //Pointer to the character texture running right
 AEGfxTexture* character_texture0;
@@ -135,7 +138,13 @@ void load_texture_render()
 
 void load_character_render()
 {
-	character_texture = load_texture("../Images/4testimagesstart.png");
+	character_texture = load_texture("../Images/4testimagesstartright.png");
+
+}
+
+void load_character_left()
+{
+	character_texture00 = load_texture("../Images/4testimagesstartleft.png");
 
 }
 
@@ -260,10 +269,22 @@ void update_render_character()
 	render.x_scale = character->scale;
 	render.y_scale = character->scale;
 	render.pMesh = square_mesh;
-	render.pTexture = character_texture;
+	if (AEInputCheckPrev(AEVK_D))
+	{
+		render.pTexture = character_texture;	// load character face right
+	}
+	else if (AEInputCheckPrev(AEVK_A))
+	{
+		render.pTexture = character_texture00;	// load character face left
+	}
+	else 
+	{
+		render.pTexture = character_texture;	// load character face right
+	}
+	//render.pTexture = character_texture;
 	render.dir = 0; //TO update base on character movement
 
-	draw_render(render);
+	//draw_render(render);
 
 	if (AEInputCheckCurr(AEVK_D))
 	{
@@ -280,7 +301,22 @@ void update_render_character()
 		render.x_offset3 = 0.5;
 		render.y_offset3 = 0.5;
 
-		draw_render(render);
+		if (AEInputCheckCurr(AEVK_W))
+		{
+			render.pTexture = character_texture3;	// load character jump right
+			render.x_offset = 0.0;
+			render.y_offset = 0.0;
+
+			render.x_offset1 = 0.5;
+			render.y_offset1 = 0.0;
+
+			render.x_offset2 = 0.0;
+			render.y_offset2 = 0.5;
+
+			render.x_offset3 = 0.5;
+			render.y_offset3 = 0.5;
+		}
+		
 	}
 	
 	if (AEInputCheckCurr(AEVK_A))
@@ -298,30 +334,9 @@ void update_render_character()
 		render.x_offset3 = 0.5;
 		render.y_offset3 = 0.5;
 
-		draw_render(render);
-	}
-
-	if ((AEInputCheckCurr(AEVK_W) && AEInputCheckCurr(AEVK_D)) || AEInputCheckCurr(AEVK_W))
-	{
-		render.pTexture = character_texture3;	// load character jump right
-		render.x_offset = 0.0;
-		render.y_offset = 0.0;
-
-		render.x_offset1 = 0.5;
-		render.y_offset1 = 0.0;
-
-		render.x_offset2 = 0.0;
-		render.y_offset2 = 0.5;
-
-		render.x_offset3 = 0.5;
-		render.y_offset3 = 0.5;
-
-		draw_render(render);
-
-
-		if (AEInputCheckTriggered(AEVK_LBUTTON) && AEInputCheckCurr(AEVK_D))
+		if (AEInputCheckCurr(AEVK_W))
 		{
-			render.pTexture = character_texture5;	// load character shootright
+			render.pTexture = character_texture2;	// load character jump left
 			render.x_offset = 0.0;
 			render.y_offset = 0.0;
 
@@ -333,18 +348,30 @@ void update_render_character()
 
 			render.x_offset3 = 0.5;
 			render.y_offset3 = 0.5;
-
-			std::cout << "swinging right while on hook\n";
-
-			draw_render(render);
-
-
 		}
+		
+		
 	}
 
-	if ((AEInputCheckCurr(AEVK_W) && AEInputCheckCurr(AEVK_A)) || AEInputCheckCurr(AEVK_W))
+	if (AEInputCheckCurr(AEVK_W))
 	{
-		render.pTexture = character_texture2;	// load character jump left
+		render.pTexture = character_texture3;	// load character run right
+		render.x_offset = 0.0;
+		render.y_offset = 0.0;
+
+		render.x_offset1 = 0.5;
+		render.y_offset1 = 0.0;
+
+		render.x_offset2 = 0.0;
+		render.y_offset2 = 0.5;
+
+		render.x_offset3 = 0.5;
+		render.y_offset3 = 0.5;
+	}
+
+	if (AEInputCheckCurr(AEVK_LBUTTON))
+	{
+		render.pTexture = character_texture5;	// load character shootleft
 		render.x_offset = 0.0;
 		render.y_offset = 0.0;
 
@@ -357,11 +384,9 @@ void update_render_character()
 		render.x_offset3 = 0.5;
 		render.y_offset3 = 0.5;
 
-		draw_render(render);
-
-		if (AEInputCheckTriggered(AEVK_LBUTTON) && AEInputCheckCurr(AEVK_A))
+		if (AEInputCheckCurr(AEVK_D))
 		{
-			render.pTexture = character_texture6;	// load character shootright
+			render.pTexture = character_texture6;	// load character swing right
 			render.x_offset = 0.0;
 			render.y_offset = 0.0;
 
@@ -373,37 +398,28 @@ void update_render_character()
 
 			render.x_offset3 = 0.5;
 			render.y_offset3 = 0.5;
-
-			std::cout << "swinging left while on hook\n";
-			draw_render(render);
 		}
+		else if (AEInputCheckCurr(AEVK_A))
+		{
+			render.pTexture = character_texture7;	// load character swing right
+			render.x_offset = 0.0;
+			render.y_offset = 0.0;
 
+			render.x_offset1 = 0.5;
+			render.y_offset1 = 0.0;
+
+			render.x_offset2 = 0.0;
+			render.y_offset2 = 0.5;
+
+			render.x_offset3 = 0.5;
+			render.y_offset3 = 0.5;
+		}
 	}
-
-
-
-	if (AEInputCheckCurr(AEVK_LBUTTON) && AEInputCheckCurr(AEVK_A))
-	{
-		render.pTexture = character_texture4;	// load character shootleft
-		render.x_offset = 0.0;
-		render.y_offset = 0.0;
-
-		render.x_offset1 = 0.5;
-		render.y_offset1 = 0.0;
-
-		render.x_offset2 = 0.0;
-		render.y_offset2 = 0.5;
-
-		render.x_offset3 = 0.5;
-		render.y_offset3 = 0.5;
-
-		draw_render(render);
-
-
-	}
-
 	
-
+	
+	//render.pTexture = character_texture00;	// load character face left
+	
+draw_render(render);
 
 }
 
@@ -465,13 +481,13 @@ void draw_render(Render &render)
 	// Set texture
 	AEGfxTextureSet(render.pTexture, render.x_offset, render.y_offset);  // Same object, different texture
 	++counter;
-	if (counter < 240)
+	if (counter < 6)
 		AEGfxTextureSet(render.pTexture, render.x_offset1, render.y_offset1);  // Same object, different texture
-	else if (counter < 480)
+	else if (counter < 12)
 		AEGfxTextureSet(render.pTexture, render.x_offset2, render.y_offset2);  // Same object, different texture
-	else if (counter < 720)
+	else if (counter < 18)
 		AEGfxTextureSet(render.pTexture, render.x_offset3, render.y_offset3);  // Same object, different texture
-	else if (counter < 960)
+	else if (counter < 24)
 		AEGfxTextureSet(render.pTexture, render.x_offset2, render.y_offset2);  // Same object, different texture
 	else
 	{
