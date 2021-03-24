@@ -229,7 +229,8 @@ void CheckWinLose()
 	//HEATH REDUCED TO ZERO
 	if (character->health == 0)
 	{
-		lives -= 1; //reduce lives
+		lives --; //reduce lives
+		std::cout << "test";
 		next = GS_RESTART; //restart level
 	}
 
@@ -237,8 +238,8 @@ void CheckWinLose()
 	if (lives == 0)
 	{
 		//Lives is intialised when game is started. Do not declare lives in load or intialise as it will get reseted.
-		lives = 3; //reset lives
-		next = GS_RESTART; //TO CHANGE TO GAMEOVER
+		//lives = 3; //reset lives
+		next = GS_MENU; //TO CHANGE TO GAMEOVER
 		
 	}
 }

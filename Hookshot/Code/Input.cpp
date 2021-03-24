@@ -31,7 +31,7 @@ void Input_g_mode() {
 
 	if (AEInputCheckCurr(AEVK_R))
 	{
-		next = GS_RESTART;
+		next = GS_MENU;
 	}
 
 	if (AEInputCheckCurr(AEVK_H))
@@ -52,17 +52,28 @@ void Input_g_mode() {
 
 	translate_cursor(cursor_x, cursor_y);
 
-	if (AEInputCheckCurr(AEVK_LBUTTON))
+	if (AEInputCheckTriggered(AEVK_LBUTTON) && ammo > 0) {
+		ammoD--;
+		std::cout << ammo;
+	}
+
+	if (AEInputCheckCurr(AEVK_LBUTTON) && ammo > 0)
 	{
 		fire_hook(cursor_x, cursor_y);
+
 	}
 
 	if (AEInputCheckReleased(AEVK_LBUTTON))
 	{
+		if (ammo > 0) {
+			ammo--;
+		}
 		release_hook();
 	}
 
 }
+
+
 
 //For interracting with the main menu
 void Input_menu_mode()
@@ -82,7 +93,7 @@ void Input_menu_mode()
 
 	for (Button& button : buttons)
 	{
-		if ( CollisionIntersection_PointRect(mouse_pos, button.aabb) && AEInputCheckTriggered(AEVK_LBUTTON)|| AEInputCheckReleased(AEVK_RETURN))
+		if (CollisionIntersection_PointRect(mouse_pos, button.aabb) && AEInputCheckTriggered(AEVK_LBUTTON) || AEInputCheckReleased(AEVK_RETURN))
 		{
 			if (button.type == TITLE) {
 				next = GS_LEVEL1;

@@ -22,8 +22,12 @@ void UpdateCollision()
 	character->grid_collision_flag = CheckInstanceBinaryMapCollision(character->pos, character->velocity);
 	SnapToCell(&character->pos, character->grid_collision_flag);
 
-	if (character->velocity.y < 0.01f && (character->grid_collision_flag & COLLISION_BOTTOM ) == COLLISION_BOTTOM)
+	if (character->velocity.y < 0.01f && (character->grid_collision_flag & COLLISION_BOTTOM) == COLLISION_BOTTOM)
+	{
 		character->char_state = not_jumping;
+		ammo = 3;
+		ammoD = 3;
+	}
 
 	for (Enemy& enemy : enemies) {
 		enemy.grid_collision_flag = CheckInstanceBinaryMapCollision(enemy.pos, enemy.velocity);
@@ -37,7 +41,7 @@ void UpdateCollision()
 			}*/
 		}
 		//damage logic
-			
+
 	}
 
 	create_AABB(character->aabb, character->pos, character->scale);
@@ -46,7 +50,7 @@ void UpdateCollision()
 void SnapToCell(AEVec2* Coordinate, int Flag)
 {
 	// *Coordinate = (int)((*Coordinate)) + 0.5f;
-	
+
 	int character_x_index = 0;
 	int character_y_index = 0;
 
@@ -76,7 +80,7 @@ int	CheckInstanceBinaryMapCollision(AEVec2& pos, AEVec2& velocity)
 {
 	int flag = 0;
 	Hotspot item;
-	
+
 	item.right.point_1 = { pos.x + GRID_SCALE / 2 , pos.y + GRID_SCALE / 4 };
 	item.right.point_2 = { pos.x + GRID_SCALE / 2 , pos.y - GRID_SCALE / 4 };
 
@@ -261,7 +265,7 @@ bool CollisionIntersection_RectRect(const AABB& aabb1, const AEVec2& vel1, const
 	// Step 5: Otherwise the rectangles intersect
 	return (x_col && y_col);
 }
-	
+
 bool CollisionIntersection_PointRect(const AEVec2 point1, const AABB& aabb2)
 {
 	//static collision

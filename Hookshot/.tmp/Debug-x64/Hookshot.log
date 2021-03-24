@@ -1,17 +1,2 @@
-﻿  GameStateManager.cpp
-  Hook.cpp
-  Input.cpp
-  Level1.cpp
-  LoadMap.cpp
-  ObjectManager.cpp
-  camera.cpp
-  collision.cpp
-  enemy.cpp
-  levelUI.cpp
-  menu.cpp
-  newrendersystem.cpp
-  pch.cpp
-  physics.cpp
-  main.cpp
-  Generating Code...
-  Hookshot.vcxproj -> C:\Users\james\Documents\Software Engineering Project\JUMPS\GAM-150-HOOK\Hookshot\\bin\Debug-x64\Hookshot.exe
+﻿  Input.cpp
+  Hookshot.vcxproj -> C:\Users\lauyo\OneDrive\Documents\GitHub\GAM-150-HOOK\Hookshot\bin\Debug-x64\Hookshot.exe

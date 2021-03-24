@@ -24,8 +24,11 @@ extern std::vector<Enemy> enemies;
 //Extern position of end goal
 extern AEVec2* end_position;
 
-//Extern total lives
+
 extern int lives;
+extern int ammo;
+extern int ammoD;
+
 
 //-----------------------------------------------------------
 
@@ -95,6 +98,7 @@ struct Hook {
 	AEVec2 pivot_pos;
 	float arc_tan;
 	float pivot_angle;
+	
 };
 
 
