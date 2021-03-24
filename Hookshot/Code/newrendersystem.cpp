@@ -107,7 +107,7 @@ void load_texture_render()
 
 void load_character_render()
 {
-	character_texture = load_texture("../Images/Snowman.png");
+	character_texture = load_texture("../Images/Character.png");
 
 }
 

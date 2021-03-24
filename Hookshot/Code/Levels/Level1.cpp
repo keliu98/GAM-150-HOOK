@@ -94,7 +94,7 @@ void Level1_Draw()
 	PrintText(text, NORMAL, { -0.9f, -0.85f });
 	sprintf_s(text, "Lives: %d", lives);
 	PrintText(text, NORMAL, { -0.9f, -0.95f });
-	sprintf_s(text, "Ammo: %d/3", ammoD);
+	sprintf_s(text, "Shots: %d/3", ammoD);
 	PrintText(text, NORMAL, { 0.4f, -0.95f });
 	
 
