@@ -51,7 +51,7 @@ void skitter_AI(size_t i) {
 	}
 
 	if (character->health == 0) {
-		character->health = 3;
+		//character->health = 3;
 		next=GS_RESTART;
 	}
 

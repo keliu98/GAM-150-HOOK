@@ -1,6 +1,8 @@
 #include "ObjectManager.h"
 
 int lives = 3;
+int ammo =3;
+int ammoD = 3;
 Character* character;
 Hook* hook;
 Button* button;
