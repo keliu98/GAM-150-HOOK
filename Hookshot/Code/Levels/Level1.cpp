@@ -87,7 +87,7 @@ void Level1_Draw()
 	update_render_character();
 
 	//For Debuging Camera
-	draw_cam_bounding_box();
+	// draw_cam_bounding_box();
 
 	// print lives
 	sprintf_s(text, "Health: %d", character->health);

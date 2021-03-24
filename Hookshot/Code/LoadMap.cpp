@@ -216,7 +216,7 @@ void CheckWinLose()
 		character->pos.y <= end_position->y && character->pos.y >= (end_position->y - 40 * 4))
 	{
 		//TO CHANGE TO NEXT LEVEL
-		next = GS_RESTART;
+		next = GS_MENU;
 	}
 
 	//FALLING OUTSIDE MAP
@@ -238,7 +238,7 @@ void CheckWinLose()
 	if (lives == 0)
 	{
 		//Lives is intialised when game is started. Do not declare lives in load or intialise as it will get reseted.
-		//lives = 3; //reset lives
+		lives = 3; //reset lives
 		next = GS_MENU; //TO CHANGE TO GAMEOVER
 		
 	}

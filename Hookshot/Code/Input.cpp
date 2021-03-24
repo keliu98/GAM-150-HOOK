@@ -54,7 +54,7 @@ void Input_g_mode() {
 
 	if (AEInputCheckTriggered(AEVK_LBUTTON) && ammo > 0) {
 		ammoD--;
-		std::cout << ammo;
+		// std::cout << ammo;
 	}
 
 	if (AEInputCheckCurr(AEVK_LBUTTON) && ammo > 0)

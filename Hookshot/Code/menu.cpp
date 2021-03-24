@@ -29,11 +29,7 @@ void menu_Update() {
 }
 
 void menu_Draw() {
-	
 	update_render_buttons();//change this during merge
-
-
-
 }
 
 void menu_Free() {

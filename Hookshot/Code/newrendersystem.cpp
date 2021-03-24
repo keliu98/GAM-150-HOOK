@@ -89,6 +89,12 @@ void load_render()
 }
 
 
+void load_button_texture()
+{
+
+	button_texture = load_texture("../Images/Title.png"); //change this during merge
+}
+
 void load_bg_render()
 {
 	bg = load_texture("../Images/Background_2.png");
@@ -135,12 +141,6 @@ void update_render_bg()
 	render.dir = 0;
 
 	draw_render(render);
-}
-
-void load_button_texture()
-{
-
-	button_texture = load_texture("../Images/Title.png"); //change this during merge
 }
 
 void update_render_walls()
@@ -268,6 +268,7 @@ void unload_render()
 		{
 			AEGfxTextureUnload(texturelist[i]);
 			texturelist[i] = nullptr;//change this during merge
+			texture_count--;
 		}
 	}
 
