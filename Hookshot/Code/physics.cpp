@@ -57,6 +57,7 @@ void physics_update()
 	if ((character->grid_collision_flag & COLLISION_BOTTOM) != COLLISION_BOTTOM)
 		set_accel_to_vel(character->velocity, gravity_dir, GRAVITY);
 
+//------------------Updating Enemy physics---------------------
 
 
 //------------------Updating Enemy physics---------------------
