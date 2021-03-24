@@ -31,6 +31,8 @@ void Level1_Load()
 	// load hook_texture
 	load_hook_render();
 
+	// load dppr
+	load_door_texture();
 }
 
 void Level1_Initialize()
@@ -71,7 +73,6 @@ void Level1_Update()
 		
 	}
 		//draw_static_obj();
-
 	CheckWinLose();
 }
 
@@ -81,13 +82,14 @@ void Level1_Draw()
 	memset(text, 0, 100 * sizeof(char));
 
 	update_render_bg();
+	update_render_door();
 	update_render_walls();
 	update_render_hook();
 	update_render_enemy();
 	update_render_character();
 
 	//For Debuging Camera
-	// draw_cam_bounding_box();
+	draw_cam_bounding_box({ end_position->x - 40 * 4, end_position->y - 40 * 4 }, *end_position );
 
 	// print lives
 	sprintf_s(text, "Health: %d", character->health);

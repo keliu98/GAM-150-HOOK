@@ -14,8 +14,11 @@ void load_character_render();
 
 void load_enemy_texture();
 
+void load_door_texture();
+
 AEGfxTexture* load_texture(const char* image);
 
+void update_render_door();
 void update_render_bg();
 void update_render_walls();
 void update_render_buttons();

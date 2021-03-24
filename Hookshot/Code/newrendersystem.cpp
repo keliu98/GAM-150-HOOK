@@ -28,6 +28,9 @@ AEGfxTexture* button_texture;
 //Pointer to background
 AEGfxTexture* bg;
 
+//Pointer to door
+AEGfxTexture* door;
+
 
 struct Render
 {
@@ -126,6 +129,29 @@ void load_enemy_texture()
 {
 	enemy_texture = load_texture("../Images/skitter.png");
 }
+
+void load_door_texture()
+{
+	door = load_texture("../Images/Door.png");
+}
+
+void update_render_door()
+{
+	Render render;
+	static float scale_x = 40.0f * 5.0f, scale_y = 40.0f * 6.0f;
+	static AEVec2 door_pos = *end_position;
+
+	// make it translate left a bit -? for later
+	render.pos = { door_pos.x - (40.0f * 2.0f), door_pos.y - (40.0f * 2.0f) };
+	render.x_scale = scale_x;
+	render.y_scale = scale_y;
+	render.pMesh = square_mesh;
+	render.pTexture = door;
+	render.dir = 0;
+
+	draw_render(render);
+}
+
 
 void update_render_bg()
 {
