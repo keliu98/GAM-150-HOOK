@@ -329,10 +329,10 @@ void update_render_character()
 	{
 		render.pTexture = character_texture;	// load character face right
 	}
-	else if (AEInputCheckReleased(AEVK_A))
-	{
-		render.pTexture = character_texture00;	// load character face left
-	}
+	//else if (AEInputCheckReleased(AEVK_A))
+	//{
+	//	render.pTexture = character_texture00;	// load character face left
+	//}
 	else
 	{
 		render.pTexture = character_texture;	// load character face right
