@@ -91,18 +91,18 @@ void load_render()
 
 void load_bg_render()
 {
-	bg = load_texture("../Images/Test.png");
+	bg = load_texture("../Images/Background_2.png");
 }
 
 void load_dirt_render()
 {
-	wall_texture_top = load_texture("../Images/Floor1.png");
-	wall_texture_bot = load_texture("../Images/Floor2.png");
+	wall_texture_top = load_texture("../Images/Floor1_3.png");
+	wall_texture_bot = load_texture("../Images/Floor2_2.png");
 }
 
 void load_texture_render()
 {
-	hook_texture = load_texture("../Images/Dirt1.png");
+	hook_texture = load_texture("../Images/Floor2_2.png");
 }
 
 void load_character_render()
@@ -113,7 +113,7 @@ void load_character_render()
 
 void load_hook_render()
 {
-	hook_texture = load_texture("../Images/Dirt1.png");
+	hook_texture = load_texture("../Images/Floor2_2.png");
 }
 
 void load_enemy_texture()
@@ -124,7 +124,7 @@ void load_enemy_texture()
 void update_render_bg()
 {
 	Render render;
-	static float scale_x = 800.0f, scale_y = 700.0f;
+	static float scale_x = 800.0f, scale_y = 600.0f;
 
 	// make it translate left a bit -? for later
 	render.pos = center_point();
