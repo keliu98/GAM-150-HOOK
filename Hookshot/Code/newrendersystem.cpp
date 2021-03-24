@@ -138,7 +138,7 @@ void load_texture_render()
 
 void load_character_render()
 {
-	character_texture = load_texture("../Images/4testimagesstartright.png");
+	character_texture = load_texture("../Images/4testimagesstart.png");
 
 }
 
@@ -152,7 +152,7 @@ void load_character_left()
 void load_character_render_right()
 {
 	// run in the right direction
-	character_texture0 = load_texture("../Images/4testimages.png");
+	character_texture0 = load_texture("../Images/4testimagesfortest.png");
 
 }
 
@@ -160,7 +160,7 @@ void load_character_render_right()
 void load_character_render_left()
 {
 	// run in the left direction
-	character_texture1 = load_texture("../Images/4testimagesreverse.png");
+	character_texture1 = load_texture("../Images/4testimagesfortest left.png");
 }
 
 void load_character_render_jumpleft()
@@ -188,7 +188,7 @@ void load_character_render_shootleft()
 void load_character_render_shootright()
 {
 	// shoot hook in right direction
-	character_texture5 = load_texture("../Images/4testimagesthrow.png");
+	character_texture5 = load_texture("../Images/4testimagesreverse.png");
 	
 }
 
@@ -273,7 +273,7 @@ void update_render_character()
 	{
 		render.pTexture = character_texture;	// load character face right
 	}
-	else if (AEInputCheckPrev(AEVK_A))
+	else if (AEInputCheckReleased(AEVK_A))
 	{
 		render.pTexture = character_texture00;	// load character face left
 	}
@@ -371,7 +371,7 @@ void update_render_character()
 
 	if (AEInputCheckCurr(AEVK_LBUTTON))
 	{
-		render.pTexture = character_texture5;	// load character shootleft
+		render.pTexture = character_texture5;	// load character shoot
 		render.x_offset = 0.0;
 		render.y_offset = 0.0;
 
@@ -401,7 +401,7 @@ void update_render_character()
 		}
 		else if (AEInputCheckCurr(AEVK_A))
 		{
-			render.pTexture = character_texture7;	// load character swing right
+			render.pTexture = character_texture7;	// load character swing left
 			render.x_offset = 0.0;
 			render.y_offset = 0.0;
 
@@ -414,6 +414,9 @@ void update_render_character()
 			render.x_offset3 = 0.5;
 			render.y_offset3 = 0.5;
 		}
+
+
+
 	}
 	
 	

@@ -172,6 +172,13 @@
     <Image Include="Images\4testimagesjumpleft.png" />
     <Image Include="Images\4testimagesstartright.png" />
     <Image Include="Images\4testimagesstartleft.png" />
+    <Image Include="Images\4testimagesstart.png" />
+    <Image Include="Images\4testimagesleft.png" />
+    <Image Include="Images\4testimagesfortest.png" />
+    <Image Include="Images\4testimages - Copy.png" />
+    <Image Include="Images\4testimagesfortest - Copy.png" />
+    <Image Include="Images\4testimagesjump - Copy.png" />
+    <Image Include="Images\4testimagesfortest left.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Images\4testimages.psd" />
@@ -196,6 +203,10 @@
     <None Include="Images\4testimageswining.psd" />
     <None Include="Images\4testimageswiningleft.psd" />
     <None Include="Images\4testimageswiningright.psd" />
+    <None Include="Images\4testimagesfortest.psd" />
+    <None Include="Images\4testimages - Copy.psd" />
+    <None Include="Images\4testimagesfortest - Copy.psd" />
+    <None Include="Images\4testimagesjump - Copy.psd" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="levels\Level_1.txt" />
