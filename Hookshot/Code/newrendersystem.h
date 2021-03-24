@@ -25,3 +25,13 @@ void update_render_enemy();
 
 void load_render();
 void unload_render();
+
+
+void load_character_render_right();
+void load_character_render_left();
+void load_character_render_jumpleft();
+void load_character_render_jumpright();
+void load_character_render_shootleft();
+void load_character_render_shootright();
+void load_character_render_swingleft();
+void load_character_render_swingright();
