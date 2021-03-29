@@ -50,7 +50,6 @@ void UpdateCollision()
 void SnapToCell(AEVec2* Coordinate, int Flag)
 {
 	// *Coordinate = (int)((*Coordinate)) + 0.5f;
-
 	int character_x_index = 0;
 	int character_y_index = 0;
 
@@ -80,6 +79,9 @@ int	CheckInstanceBinaryMapCollision(AEVec2& pos, AEVec2& velocity)
 {
 	int flag = 0;
 	Hotspot item;
+	
+	item.right.point_1 = { pos.x + GRID_SCALE / 2 , pos.y + GRID_SCALE / 4 };
+	item.right.point_2 = { pos.x + GRID_SCALE / 2 , pos.y - GRID_SCALE / 4 };
 
 	item.right.point_1 = { pos.x + GRID_SCALE / 2 , pos.y + GRID_SCALE / 4 };
 	item.right.point_2 = { pos.x + GRID_SCALE / 2 , pos.y - GRID_SCALE / 4 };
@@ -265,7 +267,23 @@ bool CollisionIntersection_RectRect(const AABB& aabb1, const AEVec2& vel1, const
 	// Step 5: Otherwise the rectangles intersect
 	return (x_col && y_col);
 }
+	
+bool CollisionIntersection_PointRect(const AEVec2 point1, const AABB& aabb2)
+{
+	//static collision
+	if (point1.x > aabb2.min.x &&
+		point1.x < aabb2.max.x &&
+		point1.y > aabb2.min.y &&
+		point1.y < aabb2.max.y)
+	{
+		printf("true");
+		return true;
+	}
 
+	return false;
+}
+
+/*
 bool CollisionIntersection_PointRect(const AEVec2 point1, const AABB& aabb2)
 {
 	//static collision
@@ -279,7 +297,7 @@ bool CollisionIntersection_PointRect(const AEVec2 point1, const AABB& aabb2)
 
 	return false;
 }
-
+*/
 
 //add this during merge
 //need to change to x_width and y_height.

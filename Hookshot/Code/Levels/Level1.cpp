@@ -25,6 +25,30 @@ void Level1_Load()
 	// loading character texture
 	load_character_render();
 
+	//load_character render actions run to the right
+	load_character_render_right();
+
+	// load character render actions run to the left
+	load_character_render_left();
+
+	// load character render actions jump facing right direction
+	load_character_render_jumpleft();
+
+	// load character render actions jump facing right direction
+	load_character_render_jumpright();
+
+	// load character render shoot hook to right
+	load_character_render_shootleft();
+
+	// load character rendeer shoot hook to left
+	load_character_render_shootright();
+
+	// load character swinging left on the hook
+	load_character_render_swingleft();
+	
+	// load character swinging right on the hook
+	load_character_render_swingright();
+
 	// load enemy_texture
 	load_enemy_texture();
 
@@ -127,6 +151,9 @@ void Level1_Draw()
 	PrintText(text, NORMAL, { 0.4f, -0.95f });
 	
 
+	// debugging hotspot
+	/*draw_cam_bounding_box({ character->pos.x + character->scale / 4, character->pos.y - character->scale / 2 },
+		{ character->pos.x - character->scale / 4, character->pos.y + character->scale / 2 });*/
 
 	//Temporary for exiting the system
 	if (AEInputCheckTriggered(AEVK_ESCAPE))
@@ -137,7 +164,6 @@ void Level1_Draw()
 void Level1_Free()
 {
 	free_objects();
-
 }
 
 //  Called if change state and State is NOT reset. ie Change levels. Do not unload if reseting.
