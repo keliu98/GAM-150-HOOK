@@ -244,6 +244,7 @@ void CheckWinLose()
 	}
 }
 
+/*
 void IntializeLevel()
 {
 	float wall_scale = 20.0f;
@@ -287,7 +288,8 @@ void IntializeLevel()
 	std::cout << walls.size() << '\n';
 	std::cout << walls.capacity() << '\n';
 }
-
+*/
+/*
 void CheckWinLose()
 {
 	// ending position is always top right, so will need to caculate bottom left
@@ -313,5 +315,5 @@ void CheckWinLose()
 	}
 	//if (character->pos.y <  )
 }
-
+*/
 

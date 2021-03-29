@@ -283,7 +283,7 @@ bool CollisionIntersection_PointRect(const AEVec2 point1, const AABB& aabb2)
 	return false;
 }
 
-
+/*
 bool CollisionIntersection_PointRect(const AEVec2 point1, const AABB& aabb2)
 {
 	//static collision
@@ -297,7 +297,7 @@ bool CollisionIntersection_PointRect(const AEVec2 point1, const AABB& aabb2)
 
 	return false;
 }
-
+*/
 
 //add this during merge
 //need to change to x_width and y_height.

@@ -51,7 +51,7 @@ AEGfxTexture* hook_texture;
 AEGfxTexture* enemy_texture;
 
 // Pointer to button
-AEGfxTexture* button_texture;
+//AEGfxTexture* button_texture;
 
 //Pointer to background
 AEGfxTexture* bg;
@@ -158,11 +158,13 @@ void load_texture_render()
 	hook_texture = load_texture("../Images/Floor2_2.png");
 }
 
+/*
 void load_character_render()
 {
 	character_texture = load_texture("../Images/Character.png");
 
 }
+*/
 
 void load_hook_render()
 {
