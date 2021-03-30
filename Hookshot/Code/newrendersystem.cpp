@@ -53,6 +53,27 @@ AEGfxTexture* character_texture6;
 //Pointer to the character texture swing right
 AEGfxTexture* character_texture7;
 
+<<<<<<< HEAD
+=======
+
+//Pointer to the hook texture
+AEGfxTexture* hook_texture;
+
+//Pointer to the hook texture
+AEGfxTexture* enemy_texture;
+
+// Pointer to button
+AEGfxTexture* button_texture;
+
+//Pointer to background
+AEGfxTexture* bg;
+
+//Pointer to door
+AEGfxTexture* door;
+
+AEGfxTexture* button_texture;//add this during merge
+
+>>>>>>> parent of c5493f8 (comment)
 // counter to swap textures;
 int counter = 0;
 
@@ -166,6 +187,14 @@ void load_texture_render()
 	hook_texture = load_texture("../Images/Floor2_2.png");
 }
 
+<<<<<<< HEAD
+=======
+void load_character_render()
+{
+	character_texture = load_texture("../Images/Character.png");
+
+}
+>>>>>>> parent of c5493f8 (comment)
 
 void load_hook_render()
 {

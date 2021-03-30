@@ -266,6 +266,10 @@ bool CollisionIntersection_RectRect(const AABB& aabb1, const AEVec2& vel1, const
 	return (x_col && y_col);
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> parent of c5493f8 (comment)
 bool CollisionIntersection_PointRect(const AEVec2 point1, const AABB& aabb2)
 {
 	//static collision
