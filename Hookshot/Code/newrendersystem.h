@@ -4,6 +4,19 @@
 
 //AEGfxVertexList* load_mesh(float size); //player
 
+struct Render
+{
+	AEVec2 pos;
+	AEGfxVertexList* pMesh;
+	AEGfxTexture* pTexture;
+
+	float dir;
+	float x_scale;
+	float y_scale;
+
+	AEMtx33 transform;
+};
+
 void load_bg_render();
 
 void load_dirt_render();

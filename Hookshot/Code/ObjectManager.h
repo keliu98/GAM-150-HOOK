@@ -57,13 +57,6 @@ enum hook_state
 	tethered
 };
 
-enum button_type
-{
-	TEMP,
-	TITLE,
-	OPTION1
-};
-
 enum wall_type
 {
 	TEMP_WALL,
@@ -129,15 +122,13 @@ struct Character {
 
 struct Button {
 	
-	float scale; //image scale
-
-	//width
-	//height 
-
-	int type;
+	AEVec2 scale;
+	int state;
 	AEMtx33 transform;
 	AEVec2 pos;
 	AABB  aabb;
+	bool  highlight;
+	char* string;
 };
 
 struct Health {
@@ -194,7 +185,7 @@ Hook* create_hook();
 Character* create_character(AEVec2 pos);
 
 // Create Buttons
-void create_button(int button_type, AEVec2 pos, float scale);
+void create_button(int state, AEVec2 pos, float scale_x, float scale_y);
 
 // Inserts a enemy into the vecot list enemies
 void create_enemy(int enemy_type, AEVec2 pos);
