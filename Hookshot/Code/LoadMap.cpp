@@ -245,7 +245,10 @@ void CheckWinLose()
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> parent of c5493f8 (comment)
 void IntializeLevel()
 {
 	float wall_scale = 20.0f;
@@ -316,5 +319,8 @@ void CheckWinLose()
 	//if (character->pos.y <  )
 }
 
+<<<<<<< HEAD
+>>>>>>> parent of c5493f8 (comment)
+=======
 >>>>>>> parent of c5493f8 (comment)
 

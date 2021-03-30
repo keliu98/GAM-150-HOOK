@@ -188,12 +188,18 @@ void load_texture_render()
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> parent of c5493f8 (comment)
 void load_character_render()
 {
 	character_texture = load_texture("../Images/Character.png");
 
 }
+<<<<<<< HEAD
+>>>>>>> parent of c5493f8 (comment)
+=======
 >>>>>>> parent of c5493f8 (comment)
 
 void load_hook_render()
