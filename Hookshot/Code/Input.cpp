@@ -102,5 +102,30 @@ void Input_menu_mode()
 		}
 	}
 
-
+	// -------------------------------GUIDES-----------------------------
+	// open guide
+	if (AEInputCheckReleased(AEVK_I))
+	{
+		openGuide = true;
+		std::cout << "MENU OPENED.\n";
+	}
+	// close guide
+	if (openGuide && AEInputCheckReleased(AEVK_ESCAPE))
+	{
+		openGuide = false;
+	}
+	// while guide is open check for next or previous
+	if (openGuide)
+	{
+		// next
+		if (guidePage >= 0 && guidePage < 3 && AEInputCheckReleased(AEVK_D))
+		{
+			++guidePage;
+		}
+		// previous
+		if (guidePage > 0 && guidePage < 4 && AEInputCheckReleased(AEVK_A))
+		{
+			--guidePage;
+		}
+	}
 }

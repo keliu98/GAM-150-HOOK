@@ -31,6 +31,9 @@ AEGfxTexture* bg;
 //Pointer to door
 AEGfxTexture* door;
 
+//Pointer to door
+AEGfxTexture* guides;
+
 
 struct Render
 {
@@ -133,6 +136,26 @@ void load_enemy_texture()
 void load_door_texture()
 {
 	door = load_texture("../Images/Door.png");
+}
+
+void load_guide_texture()
+{
+	guides = load_texture("../Images/Guides.png");
+}
+
+void update_render_guide(float x, float y)
+{
+	Render render;
+
+	// make it translate left a bit -? for later
+	render.pos = {x, y};
+	render.x_scale = 1600.0f;
+	render.y_scale = 1200.0f;
+	render.pMesh = square_mesh;
+	render.pTexture = guides;
+	render.dir = 0;
+
+	draw_render(render);
 }
 
 void update_render_door()

@@ -1,6 +1,9 @@
 
 #pragma once
 
+extern bool openGuide;
+extern int guidePage;
+
 void menu_Load();
 
 void menu_Initialize();
