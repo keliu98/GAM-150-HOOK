@@ -16,24 +16,20 @@ void menu_Initialize()
 	//change this during merge
 	AEVec2 pos{ 0.0f, 0.0f };
 	create_button(TITLE, pos, 600.0f);//change this during merge
+	AEGfxSetCamPosition(0, 0); // reset cam pos
 	//AEVec2 pos2{ -300.0f, -300.0f };
 	//create_button(TITLE, pos2, 600.0f);//change this during merge
 	
 }
 
 void menu_Update() {
-	AEInputUpdate();
 	Input_menu_mode();
-	std::cout << buttons[0].pos.x << " " << buttons[0].pos.y << "\n";
-	std::cout << buttons[0].aabb.min.x << " " << buttons[0].aabb.min.y << "\n";
+	//std::cout << buttons[0].pos.x << " " << buttons[0].pos.y << "\n";
+	//std::cout << buttons[0].aabb.min.x << " " << buttons[0].aabb.min.y << "\n";
 }
 
 void menu_Draw() {
-	
 	update_render_buttons();//change this during merge
-
-
-
 }
 
 void menu_Free() {

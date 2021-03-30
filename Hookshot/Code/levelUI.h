@@ -1,0 +1,14 @@
+//#pragma once
+#include "pch.h"
+
+#ifndef LEVELUI_H
+#define LEVELUI_H
+enum font_type
+{
+	NORMAL,
+	ITALIC,
+};
+
+void PrintText(char* message, int type, AEVec2 position);
+
+#endif

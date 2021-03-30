@@ -8,6 +8,9 @@ extern Character* character;
 struct Hook;
 extern Hook* hook;
 
+//extern size_t count = 0;
+
+
 struct Button;
 extern std::vector<Button> buttons;
 
@@ -21,8 +24,11 @@ extern std::vector<Enemy> enemies;
 //Extern position of end goal
 extern AEVec2* end_position;
 
-//Extern total lives
+
 extern int lives;
+extern int ammo;
+extern int ammoD;
+
 
 //-----------------------------------------------------------
 
@@ -92,6 +98,7 @@ struct Hook {
 	AEVec2 pivot_pos;
 	float arc_tan;
 	float pivot_angle;
+	
 };
 
 
@@ -109,13 +116,15 @@ struct Character {
 	float gravity;
 
 	int char_state;
-
-	int grid_collision_flag;
-
 	int health;
 	int damage;
 
 	Hook* hook;
+	int Iframe;
+	int counter;
+
+	int grid_collision_flag;
+	AEVec2 knockback;
 };
 
 struct Button {
@@ -158,6 +167,7 @@ struct Enemy {
 	AEMtx33 transform;
 
 	AEVec2 pos;
+	AEVec2 cliff_check;
 	AEVec2 velocity;
 
 	float jump_height;
@@ -169,6 +179,10 @@ struct Enemy {
 	int damage;
 
 	AEVec2 knockback;
+	int jump_state;
+	int grid_collision_flag;
+	int d_switch;
+	int Iframe;
 };
 
 

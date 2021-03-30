@@ -15,24 +15,42 @@ Technology is prohibited.
 
 #include "collision.h"
 
-static const int GRID_SCALE = 40;
+const int GRID_SCALE = 40;
 
 void UpdateCollision()
 {
 	character->grid_collision_flag = CheckInstanceBinaryMapCollision(character->pos, character->velocity);
 	SnapToCell(&character->pos, character->grid_collision_flag);
 
-	if (character->velocity.y < 0.01f && (character->grid_collision_flag & COLLISION_BOTTOM ) == COLLISION_BOTTOM)
+	if (character->velocity.y < 0.01f && (character->grid_collision_flag & COLLISION_BOTTOM) == COLLISION_BOTTOM)
+	{
 		character->char_state = not_jumping;
+		ammo = 3;
+		ammoD = 3;
+	}
 
-	for (Enemy& enemy : enemies)
-		CheckInstanceBinaryMapCollision(enemy.pos, enemy.velocity);
+	for (Enemy& enemy : enemies) {
+		enemy.grid_collision_flag = CheckInstanceBinaryMapCollision(enemy.pos, enemy.velocity);
+		SnapToCell(&enemy.pos, enemy.grid_collision_flag);
+		//jump logic
+		if (enemy.velocity.y < 0.01f && (enemy.grid_collision_flag & COLLISION_BOTTOM) == COLLISION_BOTTOM)
+		{
+			enemy.jump_state = not_jumping;
+			/*if (enemy.Iframe == 1) {
+				enemy.Iframe = 0;
+			}*/
+		}
+		//damage logic
+
+	}
+
+	create_AABB(character->aabb, character->pos, character->scale);
 }
 
 void SnapToCell(AEVec2* Coordinate, int Flag)
 {
 	// *Coordinate = (int)((*Coordinate)) + 0.5f;
-	
+
 	int character_x_index = 0;
 	int character_y_index = 0;
 
@@ -44,7 +62,7 @@ void SnapToCell(AEVec2* Coordinate, int Flag)
 	if ((Flag & COLLISION_BOTTOM) == COLLISION_BOTTOM)
 	{
 		character_y_index = (int)((Coordinate->y / GRID_SCALE) + 0.5f);
-		Coordinate->y = (float)(character_y_index * GRID_SCALE + (GRID_SCALE / 2));
+		Coordinate->y = (float)(character_y_index * GRID_SCALE + (GRID_SCALE / 2) - 2.5f);
 	}
 	if ((Flag & COLLISION_LEFT) == COLLISION_LEFT)
 	{
@@ -62,7 +80,7 @@ int	CheckInstanceBinaryMapCollision(AEVec2& pos, AEVec2& velocity)
 {
 	int flag = 0;
 	Hotspot item;
-	
+
 	item.right.point_1 = { pos.x + GRID_SCALE / 2 , pos.y + GRID_SCALE / 4 };
 	item.right.point_2 = { pos.x + GRID_SCALE / 2 , pos.y - GRID_SCALE / 4 };
 
@@ -139,6 +157,7 @@ bool CollisionIntersection_RectRect(const AABB& aabb1, const AEVec2& vel1, const
 		aabb1.max.x > aabb2.min.x &&
 		aabb1.max.y > aabb2.min.y)
 	{
+		//std::cout << "check";
 		return true;
 	}
 
@@ -246,7 +265,8 @@ bool CollisionIntersection_RectRect(const AABB& aabb1, const AEVec2& vel1, const
 	// Step 5: Otherwise the rectangles intersect
 	return (x_col && y_col);
 }
-	
+
+
 bool CollisionIntersection_PointRect(const AEVec2 point1, const AABB& aabb2)
 {
 	//static collision
@@ -255,7 +275,6 @@ bool CollisionIntersection_PointRect(const AEVec2 point1, const AABB& aabb2)
 		point1.y > aabb2.min.y &&
 		point1.y < aabb2.max.y)
 	{
-		printf("true");
 		return true;
 	}
 

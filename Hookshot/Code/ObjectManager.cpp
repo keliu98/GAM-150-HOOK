@@ -1,6 +1,8 @@
 #include "ObjectManager.h"
 
 int lives = 3;
+int ammo =3;
+int ammoD = 3;
 Character* character;
 Hook* hook;
 Button* button;
@@ -55,7 +57,13 @@ Character* create_character(AEVec2 pos)
 
 		3,			// int health;
 		0,			// int damage;
+		0,			//Iframe (0: vulnerable, 1: invincible)
+		0,			//damage counter
 	};
+
+	character->knockback.y = create_vel_height(20.0f, GRAVITY);
+	character->knockback.x = 350.0f;
+
 	return character;
 }
 
@@ -81,7 +89,6 @@ void create_health(int type, AEVec2 pos, float scale)
 	button.type = type;
 	button.scale = scale;
 	button.pos = pos;
-	create_AABB(button.aabb, button.pos, button.scale);
 	buttons.push_back(button);
 }
 
@@ -109,9 +116,14 @@ void create_enemy(int enemy_type, AEVec2 pos)
 
 	enemy.velocity.x = 0;
 	enemy.velocity.y = 0;
-
+	enemy.jump_state = not_jumping;
+	enemy.d_switch = 0;
+	enemy.health = 3;
+	enemy.Iframe = 0; // 1 = invincible, 0=vulnerable
+	enemy.cliff_check = pos;
 	enemies.push_back(enemy);
-
+	
+	//std::cout << "enemy created\n";
 }
 
 // When enemy is defeated by players
@@ -132,26 +144,7 @@ void destory_enemy(std::vector<Enemy>& enemies, int index)
 void free_objects()
 {
 	walls.clear();
-	walls.shrink_to_fit();
-
-	std::cout << walls.size() << '\n';
-	std::cout << walls.capacity() << '\n';
-
-	for (int i{0}; i < walls.size(); ++i)
-	{
-		// remove first element
-		//delete & walls[i];
-		walls.erase(walls.begin());
-		std::cout << i << '\n';
-	}
-
-	for (int i{ 0 }; i < enemies.size(); ++i)
-	{
-		// remove first element
-		//delete & walls[i];
-		enemies.erase(enemies.begin());
-		
-	}
+	enemies.clear();
 	
 	delete hook;
 	delete character;

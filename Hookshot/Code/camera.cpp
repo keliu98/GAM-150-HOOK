@@ -14,7 +14,7 @@ written consent of DigiPen Institute of Technology is prohibited.
 
 #include "camera.h"
 
-static AEVec2 center, win_min, win_max, dist;
+static AEVec2 center, cam_max, dist;
 static int counter = 0;
 static bool loadOnce = false;
 
@@ -65,28 +65,18 @@ void draw_cam_bounding_box(AEVec2 point1, AEVec2 point2)
 void camera_init(AEVec2 character_pos) {
 
 	center = character_pos;
-	//AEVec2Zero(&dist);
-	//AEVec2Zero(&win_min);
-	//AEVec2Zero(&win_max);
-
-	win_min = { AEGfxGetWinMinX() * 0.5f, AEGfxGetWinMinY() * 0.5f };
-	win_max = { AEGfxGetWinMaxX() * 0.5f, AEGfxGetWinMaxY() * 0.5f };
-
-	//// set bounding box min
-	//AEVec2Add( &bounding_box.min, &win_min,  &scale);
-	//// set boundng box max
-	//AEVec2Sub(&bounding_box.max, &win_max, &scale);
+	cam_max = { character_pos.x + (40.0f * 4), AEGfxGetWinMaxY() + (40.0f * 4) };
 
 	// find distance
 	if (!loadOnce)
 	{
-		AEVec2Sub(&dist, &center, &bounding_box.max);
+		AEVec2Sub(&dist, &center, &cam_max);
 		if (dist.x < 0)
 			dist.x = dist.x * -1;
 		if (dist.y < 0)
 			dist.y = dist.y * -1;
 		loadOnce = true;
-		printf("once\n");
+		//printf("once\n");
 	}
 
 
@@ -94,8 +84,8 @@ void camera_init(AEVec2 character_pos) {
 	AEVec2Add(&bounding_box.max, &center, &dist);
 	AEVec2Sub(&bounding_box.min, &center, &dist);
 
-	printf("dist pos: %f, %f\n", dist.x, dist.y);
-	printf("camera pos: %f, %f\n", center.x, center.y);
+	//printf("dist pos: %f, %f\n", dist.x, dist.y);
+	//printf("camera pos: %f, %f\n", center.x, center.y);
 	// set camera at character position
 
 	AEGfxSetCamPosition(center.x, center.y);
@@ -154,6 +144,11 @@ void camera_update(AEVec2 character_pos, AEVec2 velocity, float character_scale)
 		}
 	}
 
+}
+
+const AEVec2 center_point()
+{
+	return center;
 }
 
 

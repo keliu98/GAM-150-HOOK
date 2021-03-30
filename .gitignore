@@ -9,3 +9,7 @@ Hookshot\bin\Debug-x64
 *.pdb
 *.log
 *.tlog
+*.pdb
+*.idb
+*.obj
+*.exe

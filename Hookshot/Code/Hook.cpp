@@ -70,44 +70,15 @@ void fire_hook(int cursor_x, int cursor_y)
 		//Increasing the hook length
 		hook->curr_len += HOOK_SPEED;
 
-		//~~~~~~~~~~!!!!!!TODO REPLACE WITH THE COLLISION EVENTUALLY TO DETECT IF IT HIT A WALL AND ENEMY!!!!!~~~~~~~~~~~~~
-		//Collision with enemy, to be reworked and place in enemy code.													//
+		update_hook_attack();
 
-		for (Enemy& enemy : enemies)																			//
-		{
-			enemy.aabb.min.x = enemy.pos.x - (enemy.scale / 2);													//
-			enemy.aabb.min.y = enemy.pos.y - (enemy.scale / 2);
-			enemy.aabb.max.x = enemy.pos.x + (enemy.scale / 2);													//
-			enemy.aabb.max.y = enemy.pos.y + (enemy.scale / 2);
-
-			//BUG: why nand ???????????????
-			if (CollisionIntersection_PointRect(hook->head_pos, enemy.aabb))									//
-			{
-				std::cout << "hook - enemy collison";
-				AEVec2 knockback_dir;
-				AEVec2Sub(&knockback_dir, &hook->head_pos, &character->pos);									//
-				AEVec2Normalize(&knockback_dir, &knockback_dir);
-				AEVec2Scale(&knockback_dir, &knockback_dir, enemy.knockback.x);
-				//for a jumping up effect.
-				knockback_dir.y += enemy.knockback.y;															//
-				enemy.velocity = knockback_dir;
-				//
-				hook->max_len = hook->curr_len;
-				hook->pivot_pos = hook->head_pos;
-			}
-
-			//
-		}
-
-		//Wall collision																						//
+		//Wall collision																			
 		for (Wall& wall : walls)
 		{
-			//TODO wall collision																				//
+			//TODO wall collision																				
 		}
-		//
-//~~~~~~~~~~!!!!!!TODO REPLACE WITH THE COLLISION EVENTUALLY TO DETECT IF IT HIT A WALL AND ENEMY!!!!!~~~~~~~~~~~~~
 
-//Reaching the selected point
+		//Reaching the selected point
 		if (hook->curr_len > hook->max_len)
 		{
 			//need to set head_pos to pivot_pos -> current_length

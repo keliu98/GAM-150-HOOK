@@ -6,7 +6,6 @@
 // Globals
 extern float	g_dt;
 extern double	g_appTime;
-extern size_t	TOTAL_LIVES;
 
 extern int      WINDOW_HEIGHT;
 extern int      WINDOW_WIDTH;
@@ -14,4 +13,7 @@ extern int      WINDOW_WIDTH;
 extern float    CHAR_HEIGHT_VEL;
 
 extern const float GRAVITY;
+
+extern char		font;
+extern char		font_italic;
 

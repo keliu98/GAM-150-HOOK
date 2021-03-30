@@ -48,7 +48,7 @@ void physics_update()
 	else
 	{
 		//Normal Character Horizontal Friction. 
-		character->velocity.x = character->velocity.x * 0.97f;
+		character->velocity.x = character->velocity.x * 0.95f;
 
 	}
 
@@ -71,15 +71,9 @@ void physics_update()
 		set_accel_to_vel(enemy.velocity, gravity_dir, GRAVITY);
 
 		//Horizontal Friction. 
-		enemy.velocity.x = enemy.velocity.x * 0.97f;
-
-		//!!!!!!!!!!!!!!!! Temporary wall collision NEED TO CHANGE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-		if (enemy.pos.y < 0.0f)
-		{
-			enemy.pos.y = 0.1f;
-			enemy.velocity.y = 0;
-		}
+		enemy.velocity.x = enemy.velocity.x * 0.95f;
 	}
+
 }
 
 //Calculates and sets the velocity of the object using an flat acceleration value and a normalised direction vector. 
@@ -127,5 +121,19 @@ float create_vel_height(float height, float gravity)
 	return sqrt(2 * gravity * height);
 }
 
+//Calculates the knockback. The direction is based on two position and it changes depending the velocity of the object depending on the knockback strength.
+void calculate_knockback(AEVec2& pos1, AEVec2& pos2, AEVec2& velocity, AEVec2 knockback)
+{
+	//Getting the direction of the knockback
+	AEVec2 knockback_dir;
+	AEVec2Sub(&knockback_dir, &pos1, &pos2);
+	AEVec2Normalize(&knockback_dir, &knockback_dir);
 
+	//Scaling the x-dir knockback by knockback.x
+	AEVec2Scale(&knockback_dir, &knockback_dir, knockback.x);
+
+	//Scaling the y-dir knockback by knockback.y for a jumping up effect.
+	knockback_dir.y += knockback.y;
+	velocity = knockback_dir;
+}
 

@@ -135,7 +135,7 @@ void PrintRetrievedInformation(void)
 	}
 }
 
-int	GetCellValue(int X, int Y)
+/*int	GetCellValue(int X, int Y)
 {
 	// Check within
 	if ((X >= 0 && X < map_width) && ((Y >= 0 && Y < map_height)))
@@ -144,12 +144,23 @@ int	GetCellValue(int X, int Y)
 	}
 
 	return 0;
+}*/
+
+int GetCellValue(int X, int Y)
+{
+	if (X > (map_width - 1) || X<0 || Y >(map_height - 1) || Y < 0) {//if value is out of bound return 0
+		return 0;
+	}
+	else {
+		 return binary_collision_array[Y][X]; //else return the Value of the collision
+	}
 }
 
 void IntializeLevel()
 {
 	float wall_scale = 20.0f;
 	AEVec2 pos = { wall_scale,  wall_scale }; // store bottom left of the position
+	int check_x = 0;
 
 	AEVec2 init_pos = pos;
 	for (int x = 0; x < map_height; ++x)
@@ -160,12 +171,20 @@ void IntializeLevel()
 			// type 1 = wall
 			if (normalize_map_data[x][y] == 1)
 			{
-				create_wall(TEMP_WALL, 40, pos);
+				check_x = x + 1;
+				if (check_x < map_height && normalize_map_data[check_x][y] != 1)
+				{
+					create_wall(1, 40, pos); //top
+				}
+					
+				else
+					create_wall(2, 40, pos); //bot
 			}
 			// type 2 = character
 			if (normalize_map_data[x][y] == 'C')
 			{
 				character = create_character(pos);
+				//create_AABB(character->aabb, character->pos, character->scale);
 				hook = create_hook();
 			}
 			// type 3 = enemy
@@ -185,35 +204,43 @@ void IntializeLevel()
 	}
 
 	walls.shrink_to_fit();
+	enemies.shrink_to_fit();
 
-	std::cout << walls.size() << '\n';
-	std::cout << walls.capacity() << '\n';
 }
 
 void CheckWinLose()
-{
+{	
+	//REACHING THE GOAL
 	// ending position is always top right, so will need to caculate bottom left
 	if (character->pos.x <= end_position->x && character->pos.x >= (end_position->x - 40 * 4) &&
 		character->pos.y <= end_position->y && character->pos.y >= (end_position->y - 40 * 4))
 	{
 		//TO CHANGE TO NEXT LEVEL
-		next = GS_RESTART;
+		next = GS_MENU;
 	}
 
-	//TODO when character->pos.y < map_height * grid , --lives 
+	//FALLING OUTSIDE MAP
+	//TODO when character->pos.y < map_height * grid , --lives, bascially outside of map
 	if (0)
 	{
 
 	}
 
+	//HEATH REDUCED TO ZERO
+	if (character->health == 0)
+	{
+		lives --; //reduce lives
+		std::cout << "test";
+		next = GS_RESTART; //restart level
+	}
+
+	//LIVES REDUCED TO ZERO
 	if (lives == 0)
 	{
-		//TO CHANGE TO GAMEOVER, Lives is intialised when game is started. Do not declare lives in load or intialise as it will get reseted.
-		lives = 3;
-		next = GS_RESTART;
+		//Lives is intialised when game is started. Do not declare lives in load or intialise as it will get reseted.
+		lives = 3; //reset lives
+		next = GS_MENU; //TO CHANGE TO GAMEOVER
 		
 	}
-	//if (character->pos.y <  )
 }
-
 

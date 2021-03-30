@@ -11,4 +11,4 @@ void set_vel_to_pos(AEVec2& pos, AEVec2& vel);
 
 float create_vel_height(float height, float gravity);
 
-
+void calculate_knockback(AEVec2& pos1, AEVec2& pos2, AEVec2& velocity, AEVec2 knockback);
