@@ -67,7 +67,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	font_italic = AEGfxCreateFont("../Fonts/Pixel Digivolve Italic.otf", 16);
 
 	// Changing the window title
-	AESysSetWindowTitle("My New Demo!");
+	AESysSetWindowTitle("Hookshot");
 
 	// reset the system modules
 	AESysReset();
@@ -109,11 +109,22 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 			AESysFrameEnd();
         
 			g_dt = (f32)AEFrameRateControllerGetFrameTime();
-			g_appTime += g_dt;
 
 			if (0 == AESysDoesWindowExist())
 				next = GS_QUIT;
+
+		/*	while (g_dt < 0.16667f)
+			{
+				g_dt += g_dt;
+			}*/
+
+			if (g_dt > 0.166667f)
+				g_dt = 0.166667f;
+			
+			g_appTime += g_dt;
         }
+
+
 
         //Out of the loop = Quit, Restart, Change level
         fpFree();

@@ -72,7 +72,7 @@ void physics_update()
 		set_accel_to_vel(enemy.velocity, gravity_dir, GRAVITY);
 
 		//Horizontal Friction. 
-		enemy.velocity.x = enemy.velocity.x * 0.97f;
+		enemy.velocity.x = enemy.velocity.x * 0.95f;
 	}
 
 }
