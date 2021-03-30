@@ -57,33 +57,6 @@ void Level1_Load()
 
 	// load dppr
 	load_door_texture();
-
-	//---------------------ADDED IN FORM LIU KE MERGE----------------------------------------
-	//load_character render actions run to the right
-	load_character_render_right();
-
-	// load character render actions run to the left
-	load_character_render_left();
-
-	// load character render actions jump facing right direction
-	load_character_render_jumpleft();
-
-	// load character render actions jump facing right direction
-	load_character_render_jumpright();
-
-	// load character render shoot hook to right
-	load_character_render_shootleft();
-
-	// load character rendeer shoot hook to left
-	load_character_render_shootright();
-
-	// load character swinging left on the hook
-	load_character_render_swingleft();
-
-	// load character swinging right on the hook
-	load_character_render_swingright();
-
-	//---------------------ADDED IN FORM LIU KE MERGE----------------------------------------
 }
 
 void Level1_Initialize()
