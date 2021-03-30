@@ -16,22 +16,6 @@ AEGfxTexture* wall_texture_bot;
 //Pointer to the character texture
 AEGfxTexture* character_texture;
 
-//Pointer to the hook texture
-AEGfxTexture* hook_texture;
-
-//Pointer to the hook texture
-AEGfxTexture* enemy_texture;
-
-// Pointer to button
-AEGfxTexture* button_texture;
-
-//Pointer to background
-AEGfxTexture* bg;
-
-//Pointer to door
-AEGfxTexture* door;
-
-
 
 // -------------ADDED CODE FROM LIU KE MERGE------------------------
 //Pointer to the character texture at static left
@@ -53,9 +37,6 @@ AEGfxTexture* character_texture6;
 //Pointer to the character texture swing right
 AEGfxTexture* character_texture7;
 
-<<<<<<< HEAD
-=======
-
 //Pointer to the hook texture
 AEGfxTexture* hook_texture;
 
@@ -71,9 +52,6 @@ AEGfxTexture* bg;
 //Pointer to door
 AEGfxTexture* door;
 
-AEGfxTexture* button_texture;//add this during merge
-
->>>>>>> parent of c5493f8 (comment)
 // counter to swap textures;
 int counter = 0;
 
@@ -186,21 +164,6 @@ void load_texture_render()
 {
 	hook_texture = load_texture("../Images/Floor2_2.png");
 }
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> parent of c5493f8 (comment)
-void load_character_render()
-{
-	character_texture = load_texture("../Images/Character.png");
-
-}
-<<<<<<< HEAD
->>>>>>> parent of c5493f8 (comment)
-=======
->>>>>>> parent of c5493f8 (comment)
 
 void load_hook_render()
 {
@@ -450,6 +413,7 @@ void update_render_character()
 		render.y_offset2 = 0.5;
 		render.x_offset3 = 0.5;
 		render.y_offset3 = 0.5;
+
 		if (AEInputCheckCurr(AEVK_D))
 		{
 			render.pTexture = character_texture6;	// load character swing right
