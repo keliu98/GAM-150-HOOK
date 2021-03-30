@@ -167,6 +167,9 @@ void update_render_bg()
 	render.dir = 0;
 
 	draw_render(render);
+
+	// debug cam
+	// draw_cam_bounding_box(render.pTexture);
 }
 
 void update_render_walls()
@@ -277,6 +280,7 @@ void draw_render(Render &render)
 	AEGfxTextureSet(render.pTexture, 0.0f, 0.0f); // Same object, different texture
 	// Set transformation matrix
 	AEGfxSetTransform(render.transform.m);
+
 	// Draw the mesh
 	AEGfxMeshDraw(render.pMesh, AE_GFX_MDM_TRIANGLES);
 

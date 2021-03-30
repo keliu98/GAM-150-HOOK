@@ -100,7 +100,7 @@ void Input_menu_mode()
 			}
 			//TODO is what happens after you click -> e.g changing to different screen or etc
 		}
-
-
 	}
+
+
 }
