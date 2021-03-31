@@ -24,6 +24,7 @@
 
 #include "ObjectManager.h"
 #include "Levels/Level1.h"
+#include "Levels/newLevel.h"
 #include "menu.h"
 #include "GameStateList.h"
 #include "GameStateManager.h"

@@ -52,12 +52,17 @@ AEGfxTexture* bg;
 //Pointer to door
 AEGfxTexture* door;
 
+
 // counter to swap textures;
 int counter = 0;
 
 //Pointer to square mesh
 AEGfxVertexList* animation_mesh;
 // -------------ADDED CODE FROM LIU KE MERGE------------------------
+
+//Pointer to door
+AEGfxTexture* guides;
+
 
 struct Render
 {
@@ -180,6 +185,7 @@ void load_door_texture()
 	door = load_texture("../Images/Door.png");
 }
 
+
 /*
 void load_character_render()
 {
@@ -239,6 +245,27 @@ void load_character_render_swingleft()
 // -------------ADDED CODE FROM LIU KE MERGE------------------------
 //------------------------------TO GENERALISED AND COMBINED INTO A SINGLE FUNCTION, SWITCH CASE - WEI WEN TO LIU KE----------------------------------------------
 
+void load_guide_texture()
+{
+	guides = load_texture("../Images/Guides.png");
+}
+
+void update_render_guide(float x, float y)
+{
+	Render render;
+
+	// make it translate left a bit -? for later
+	render.pos = {x, y};
+	render.x_scale = 1600.0f;
+	render.y_scale = 1200.0f;
+	render.pMesh = square_mesh;
+	render.pTexture = guides;
+	render.dir = 0;
+
+	draw_render(render);
+}
+
+
 void update_render_door()
 {
 	Render render;
@@ -271,6 +298,9 @@ void update_render_bg()
 	render.dir = 0;
 
 	draw_render(render);
+
+	// debug cam
+	// draw_cam_bounding_box(render.pTexture);
 }
 
 void update_render_walls()
@@ -503,6 +533,7 @@ void draw_render(Render &render)
 	AEGfxTextureSet(render.pTexture, 0.0f, 0.0f); // Same object, different texture
 	// Set transformation matrix
 	AEGfxSetTransform(render.transform.m);
+
 	// Draw the mesh
 	AEGfxMeshDraw(render.pMesh, AE_GFX_MDM_TRIANGLES);
 

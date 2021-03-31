@@ -44,6 +44,12 @@
     <ClCompile Include="Code\levelUI.cpp">
       <Filter>Source files</Filter>
     </ClCompile>
+    <ClCompile Include="Code\newLevel.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Levels\newLevel.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Code\camera.h">
@@ -92,6 +98,12 @@
       <Filter>Header files</Filter>
     </ClInclude>
     <ClInclude Include="Code\levelUI.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\newLevel.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Levels\newLevel.h">
       <Filter>Header files</Filter>
     </ClInclude>
   </ItemGroup>

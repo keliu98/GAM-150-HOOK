@@ -35,37 +35,43 @@ void draw_static_obj()
 	AEGfxMeshFree(pMeshLine);
 }
 
-void draw_cam_bounding_box(AEVec2 point1, AEVec2 point2)
+void draw_cam_bounding_box(AEGfxTexture* texture)
 {
 	// Informing the library that we're about to start adding triangles
 	AEGfxMeshStart();
 
-	//AEGfxVertexAdd(point1.x, point1.y, 0x808080, 0.0f, 0.0f);
-	//AEGfxVertexAdd(point1.x, point2.y, 0x808080, 0.0f, 0.0f);
-	//AEGfxVertexAdd(point2.x, point2.y, 0x808080, 0.0f, 0.0f);
-	//AEGfxVertexAdd(point2.x, point1.y, 0x808080, 0.0f, 0.0f);
-	//AEGfxVertexAdd(point1.x, point1.y, 0x808080, 0.0f, 0.0f);
-
-	AEGfxVertexAdd(bounding_box.min.x, bounding_box.min.y, 0x808080, 0.0f, 0.0f);
-	AEGfxVertexAdd(bounding_box.min.x, bounding_box.max.y, 0x808080, 0.0f, 0.0f);
-	AEGfxVertexAdd(bounding_box.max.x, bounding_box.max.y, 0x808080, 0.0f, 0.0f);
-	AEGfxVertexAdd(bounding_box.max.x, bounding_box.min.y, 0x808080, 0.0f, 0.0f);
-	AEGfxVertexAdd(bounding_box.min.x, bounding_box.min.y, 0x808080, 0.0f, 0.0f);
+	AEGfxVertexAdd(bounding_box.min.x, bounding_box.min.y, 0x000000, 0.0f, 0.0f);
+	AEGfxVertexAdd(bounding_box.min.x, bounding_box.max.y, 0x000000, 0.0f, 0.0f);
+	AEGfxVertexAdd(bounding_box.max.x, bounding_box.max.y, 0x000000, 0.0f, 0.0f);
+	AEGfxVertexAdd(bounding_box.max.x, bounding_box.min.y, 0x000000, 0.0f, 0.0f);
+	AEGfxVertexAdd(bounding_box.min.x, bounding_box.min.y, 0x000000, 0.0f, 0.0f);
 
 	AEGfxVertexList* pMeshLine2 = AEGfxMeshEnd();
 	AE_ASSERT_MESG(pMeshLine2, "Failed to create line mesh!!");
 
-	AEGfxSetRenderMode(AE_GFX_RM_COLOR);
+
+	// Drawing object  - (first) - No tint
+	AEGfxSetRenderMode(AE_GFX_RM_TEXTURE);	// set to texture
+	// No tint
+	AEGfxSetTintColor(1.0f, 1.0f, 1.0f, 1.0f);
+	// Set texture
+	AEGfxTextureSet(texture, 0.0f, 0.0f); // Same object, different texture
+
 	AEGfxSetPosition(0.0f, 0.0f);
 	AEGfxMeshDraw(pMeshLine2, AE_GFX_MDM_LINES_STRIP);
 
+	AEGfxSetTransparency(0.5f);
+	AEGfxSetBlendMode(AE_GFX_BM_BLEND);
+
 	AEGfxMeshFree(pMeshLine2);
+	//printf("BOUNDING BOX: %f, %f\n", bounding_box.min.x, bounding_box.min.y);
+	//printf("BOUNDING BOX: %f, %f\n", bounding_box.max.x, bounding_box.max.y);
 }
 
 void camera_init(AEVec2 character_pos) {
 
 	center = character_pos;
-	cam_max = { character_pos.x + (40.0f * 4), AEGfxGetWinMaxY() + (40.0f * 4) };
+	cam_max = { character_pos.x + (40.0f * 4), character_pos.y + (40.0f * 3) };
 
 	// find distance
 	if (!loadOnce)
@@ -84,8 +90,8 @@ void camera_init(AEVec2 character_pos) {
 	AEVec2Add(&bounding_box.max, &center, &dist);
 	AEVec2Sub(&bounding_box.min, &center, &dist);
 
-	//printf("dist pos: %f, %f\n", dist.x, dist.y);
-	//printf("camera pos: %f, %f\n", center.x, center.y);
+	// printf("dist pos: %f, %f\n", dist.x, dist.y);
+	// printf("camera pos: %f, %f\n", center.x, center.y);
 	// set camera at character position
 
 	AEGfxSetCamPosition(center.x, center.y);
