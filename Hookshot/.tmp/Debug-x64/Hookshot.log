@@ -1,19 +1,2 @@
-﻿  GameStateManager.cpp
-  Hook.cpp
-  Input.cpp
-  Level1.cpp
-  LoadMap.cpp
-  ObjectManager.cpp
-  camera.cpp
-  collision.cpp
-  enemy.cpp
-  levelUI.cpp
-  menu.cpp
-  newrendersystem.cpp
-  pch.cpp
-  physics.cpp
-  main.cpp
-C:\Users\james\Documents\GitHub\GAM-150-HOOK\Hookshot\main.cpp(117,21): warning C4305: '=': truncation from 'double' to 'float'
-  Generating Code...
-  LINK : C:\Users\james\Documents\GitHub\GAM-150-HOOK\Hookshot\\bin\Debug-x64\Hookshot.exe not found or not built by the last incremental link; performing full link
+﻿  LoadMap.cpp
   Hookshot.vcxproj -> C:\Users\james\Documents\GitHub\GAM-150-HOOK\Hookshot\bin\Debug-x64\Hookshot.exe
