@@ -37,6 +37,11 @@ void menu_Draw() {
 
 	update_render_buttons();//change this during merge
 
+	static char text[100];
+	memset(text, 0, 100 * sizeof(char));
+	sprintf_s(text, "PRESS I FOR INSTRUCTIONS\n");
+	PrintText(text, NORMAL, { -0.42f, -0.35f });
+
 	// open guide
 	if (openGuide)
 	{

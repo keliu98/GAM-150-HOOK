@@ -107,7 +107,7 @@ void Input_menu_mode()
 	if (AEInputCheckReleased(AEVK_I))
 	{
 		openGuide = true;
-		std::cout << "MENU OPENED.\n";
+		// std::cout << "MENU OPENED.\n";
 	}
 	// close guide
 	if (openGuide && AEInputCheckReleased(AEVK_ESCAPE))
