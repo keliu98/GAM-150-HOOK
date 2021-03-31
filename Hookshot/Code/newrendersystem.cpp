@@ -23,7 +23,7 @@ AEGfxTexture* hook_texture;
 AEGfxTexture* enemy_texture;
 
 // Pointer to button
-AEGfxTexture* button_texture;
+AEGfxTexture* button_texture[2];
 
 //Pointer to background
 AEGfxTexture* bg;
@@ -98,7 +98,8 @@ void load_render()
 void load_button_texture()
 {
 
-	button_texture = load_texture("../Images/Title.png"); //change this during merge
+	button_texture[0] = load_texture("../Images/Button1.png"); //change this during merge
+	button_texture[1] = load_texture("../Images/Button2.png"); //change this during merge
 }
 
 void load_bg_render()
@@ -222,13 +223,25 @@ void update_render_buttons()//change this during merge
 	for (Button const& button : buttons)
 	{
 		render.pos = button.pos;
-		render.x_scale = button.scale;
-		render.y_scale = button.scale;
+		render.x_scale = button.scale.x;
+		render.y_scale = button.scale.y;
 		render.pMesh = square_mesh;
-		render.pTexture = button_texture;
-		render.dir = 0;
 
+		if (button.highlight == false)
+			render.pTexture = button_texture[0];
+		else
+			render.pTexture = button_texture[1];
+
+		render.dir = 0;
 		draw_render(render);
+
+		//Drawing the font
+		//Need to change the pos of the button into a scale of the windows.
+		AEVec2 windowscale{ 0,0 };
+		static char text[100];
+		memset(text, 0, 100 * sizeof(char));
+		sprintf_s(text, button.string);
+		PrintText(text, NORMAL, windowscale);
 	}
 }
 
