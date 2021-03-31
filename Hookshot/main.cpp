@@ -109,10 +109,17 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 			AESysFrameEnd();
         
 			g_dt = (f32)AEFrameRateControllerGetFrameTime();
-			g_appTime += g_dt;
 
 			if (0 == AESysDoesWindowExist())
 				next = GS_QUIT;
+
+			if (g_dt > 0.166667)
+			{
+				g_dt = 0.1666667;
+				g_appTime += g_dt;
+			}
+
+			g_appTime += g_dt;
         }
 
         //Out of the loop = Quit, Restart, Change level
