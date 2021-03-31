@@ -68,7 +68,7 @@ Character* create_character(AEVec2 pos)
 }
 
 
-void create_button(int state, AEVec2 pos, float scale_x, float scale_y)
+void create_button(int state, const char* string, AEVec2 pos, float scale_x, float scale_y)
 {
 	Button button;
 	
@@ -78,9 +78,12 @@ void create_button(int state, AEVec2 pos, float scale_x, float scale_y)
 	button.scale.y = scale_y;
 	button.pos = pos;
 	create_AABB(button.aabb, button.pos, button.scale.x, button.scale.y);
+	button.string = string;
+	button.highlight = false;
 	buttons.push_back(button);
 }
 
+/*
 void create_health(int type, AEVec2 pos, float scale)
 {
 	Button button;
@@ -90,7 +93,7 @@ void create_health(int type, AEVec2 pos, float scale)
 	button.scale = scale;
 	button.pos = pos;
 	buttons.push_back(button);
-}
+}*/
 
 AEVec2* create_ending_point(AEVec2 pos)
 {

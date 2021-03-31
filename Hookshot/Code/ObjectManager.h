@@ -128,7 +128,7 @@ struct Button {
 	AEVec2 pos;
 	AABB  aabb;
 	bool  highlight;
-	char* string;
+	const char* string;
 };
 
 struct Health {
@@ -185,7 +185,7 @@ Hook* create_hook();
 Character* create_character(AEVec2 pos);
 
 // Create Buttons
-void create_button(int state, AEVec2 pos, float scale_x, float scale_y);
+void create_button(int state, const char* string, AEVec2 pos, float scale_x, float scale_y);
 
 // Inserts a enemy into the vecot list enemies
 void create_enemy(int enemy_type, AEVec2 pos);

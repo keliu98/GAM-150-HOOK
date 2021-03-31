@@ -209,8 +209,13 @@ void update_render_buttons()//change this during merge
 		render.dir = 0;
 		draw_render(render);
 
-
-		PrintText(button.string, int type, AEVec2 position);
+		//Drawing the font
+		//Need to change the pos of the button into a scale of the windows.
+		AEVec2 windowscale{ 0,0 };
+		static char text[100];
+		memset(text, 0, 100 * sizeof(char));
+		sprintf_s(text, button.string);
+		PrintText(text, NORMAL, windowscale);
 	}
 }
 
