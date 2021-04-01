@@ -45,8 +45,8 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(SolutionDir)Extern\AlphaEngine_V3.08\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)Extern\AlphaEngine_V3.08\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)Extern\AlphaEngine_V3.08\include;$(SolutionDir)Extern\fmod\core\inc;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)Extern\AlphaEngine_V3.08\lib;$(SolutionDir)Extern\fmod\core\lib\x64;$(LibraryPath)</LibraryPath>
     <OutDir>$(SolutionDir)\bin\$(Configuration)-$(Platform)\</OutDir>
     <IntDir>$(SolutionDir)\.tmp\$(Configuration)-$(Platform)\</IntDir>
   </PropertyGroup>
@@ -54,8 +54,8 @@
     <LinkIncremental>false</LinkIncremental>
     <OutDir>$(SolutionDir)\bin\$(Configuration)-$(Platform)\</OutDir>
     <IntDir>$(SolutionDir)\.tmp\$(Configuration)-$(Platform)\</IntDir>
-    <IncludePath>$(SolutionDir)Extern\AlphaEngine_V3.08\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)Extern\AlphaEngine_V3.08\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)Extern\AlphaEngine_V3.08\include;$(SolutionDir)Extern\fmod\core\inc;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)Extern\AlphaEngine_V3.08\lib;$(SolutionDir)Extern\fmod\core\lib\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -67,7 +67,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>Alpha_EngineD.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>fmodL_vc.lib;Alpha_EngineD.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -84,7 +84,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>Alpha_Engine.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>fmodL_vc.lib;Alpha_EngineD.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -97,6 +97,7 @@
     <ClCompile Include="Code\Levels\Level1.cpp" />
     <ClCompile Include="Code\LoadMap.cpp" />
     <ClCompile Include="Code\menu.cpp" />
+    <ClCompile Include="Code\music.cpp" />
     <ClCompile Include="Code\newrendersystem.cpp" />
     <ClCompile Include="Code\ObjectManager.cpp" />
     <ClCompile Include="Code\pch.cpp" />
@@ -117,6 +118,7 @@
     <ClInclude Include="Code\levelUI.h" />
     <ClInclude Include="Code\LoadMap.h" />
     <ClInclude Include="Code\menu.h" />
+    <ClInclude Include="Code\music.h" />
     <ClInclude Include="Code\newrendersystem.h" />
     <ClInclude Include="Code\ObjectManager.h" />
     <ClInclude Include="Code\pch.h" />

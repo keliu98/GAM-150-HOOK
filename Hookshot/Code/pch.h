@@ -17,6 +17,7 @@
 #include <memory>
 
 #include "AEEngine.h"
+#include "fmod.hpp"
 #include "physics.h"
 #include "extern.h"
 #include "hook.h"
@@ -33,6 +34,7 @@
 #include "LoadMap.h"
 #include "enemy.h"
 #include "levelUI.h"
+#include "music.h"
 
 
 #endif //PCH_H

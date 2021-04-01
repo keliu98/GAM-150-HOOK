@@ -12,6 +12,7 @@ void menu_Load() {
 	load_render();//change this during merge
 	load_button_texture();//change this during merge
 	load_guide_texture();
+	music_Load();
 }
 
 void menu_Initialize()
@@ -24,7 +25,7 @@ void menu_Initialize()
 	AEGfxSetCamPosition(0, 0); // reset cam pos
 	//AEVec2 pos2{ -300.0f, -300.0f };
 	//create_button(TITLE, pos2, 600.0f);//change this during merge
-	
+	music_Initialize("../Music/bensound-ukulele.mp3");
 }
 
 void menu_Update() {
@@ -66,7 +67,7 @@ void menu_Draw() {
 }
 
 void menu_Free() {
-
+	music_Free();
 }
 
 void menu_Unload() {

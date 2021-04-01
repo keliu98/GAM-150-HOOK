@@ -44,6 +44,9 @@
     <ClCompile Include="Code\levelUI.cpp">
       <Filter>Source files</Filter>
     </ClCompile>
+    <ClCompile Include="Code\music.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Code\camera.h">
@@ -92,6 +95,9 @@
       <Filter>Header files</Filter>
     </ClInclude>
     <ClInclude Include="Code\levelUI.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\music.h">
       <Filter>Header files</Filter>
     </ClInclude>
   </ItemGroup>
