@@ -20,7 +20,10 @@ void menu_Initialize()
 	openGuide = false;
 	//change this during merge
 	AEVec2 pos{ 0.0f, 0.0f };
-	create_button(TITLE, pos, 600.0f);//change this during merge
+	//Creatinf level 1 button
+
+	create_button(GS_LEVEL1, "hi testing testing testing", {0,0}, 100.0f, 30.0f);
+	//change this during merge
 	AEGfxSetCamPosition(0, 0); // reset cam pos
 	//AEVec2 pos2{ -300.0f, -300.0f };
 	//create_button(TITLE, pos2, 600.0f);//change this during merge

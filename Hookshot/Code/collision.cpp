@@ -44,7 +44,7 @@ void UpdateCollision()
 
 	}
 
-	create_AABB(character->aabb, character->pos, character->scale);
+	create_AABB(character->aabb, character->pos, character->scale, character->scale);
 }
 
 void SnapToCell(AEVec2* Coordinate, int Flag)
@@ -284,10 +284,10 @@ bool CollisionIntersection_PointRect(const AEVec2 point1, const AABB& aabb2)
 
 //add this during merge
 //need to change to x_width and y_height.
-void create_AABB(AABB& aabb, AEVec2 const& pos, float scale)
+void create_AABB(AABB& aabb, AEVec2 const& pos, float scale_x, float scale_y)
 {
-	aabb.min.x = pos.x - (scale / 2);
-	aabb.min.y = pos.y - (scale / 2);
-	aabb.max.x = pos.x + (scale / 2);
-	aabb.max.y = pos.y + (scale / 2);
+	aabb.min.x = pos.x - (scale_x / 2);
+	aabb.min.y = pos.y - (scale_y / 2);
+	aabb.max.x = pos.x + (scale_x / 2);
+	aabb.max.y = pos.y + (scale_y / 2);
 }
