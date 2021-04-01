@@ -1,3 +1,2 @@
-﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(1044,5): warning MSB8027: Two or more files with the name of newLevel.cpp will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are Code\Levels\newLevel.cpp, Code\newLevel.cpp.
-  Level1.cpp
-  Hookshot.vcxproj -> C:\Users\kerr_\Documents\GitHub\GAM-150-HOOK\Hookshot\\bin\Debug-x64\Hookshot.exe
+﻿  menu.cpp
+  Hookshot.vcxproj -> C:\Users\egita\Desktop\SiT Stuff\Sem 2\CSD 1450 - Software Development 2\GAM-150-HOOK\Hookshot\\bin\Debug-x64\Hookshot.exe

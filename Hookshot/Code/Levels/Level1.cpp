@@ -99,7 +99,7 @@ void Level1_Update()
 		skitter_AI(i);
 		
 	}
-		//draw_static_obj();
+
 	CheckWinLose();
 }
 

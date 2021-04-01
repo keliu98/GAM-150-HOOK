@@ -38,10 +38,16 @@ void menu_Update() {
 
 void menu_Draw() {
 
-	update_render_buttons();//change this during merge
+	// update_render_buttons();//change this during merge
 
 	static char text[100];
 	memset(text, 0, 100 * sizeof(char));
+	sprintf_s(text, "Hookshot\n");
+	PrintText(text, NORMAL, { -0.42f, 0.0f });
+	sprintf_s(text, "PRESS 1 for Level 1\n");
+	PrintText(text, NORMAL, { -0.42f, -0.15f });
+	sprintf_s(text, "PRESS 2 for Level 2\n");
+	PrintText(text, NORMAL, { -0.42f, -0.25f });
 	sprintf_s(text, "PRESS I FOR INSTRUCTIONS\n");
 	PrintText(text, NORMAL, { -0.42f, -0.35f });
 
@@ -62,7 +68,6 @@ void menu_Draw() {
 			case 3:
 				update_render_guide(-400.0f, 300.0f);
 				break;
-
 		}
 	}
 

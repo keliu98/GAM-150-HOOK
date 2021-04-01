@@ -117,8 +117,10 @@ void Input_menu_mode()
 	}
 
 	// --- NOTE: This is tmp code for user testing ----
-	if (!openGuide && AEInputCheckReleased(AEVK_RETURN))
+	if (!openGuide && AEInputCheckReleased(AEVK_1))
 		next = GS_LEVEL1;
+	if (!openGuide && AEInputCheckReleased(AEVK_2))
+		next = GS_LEVEL2;
 	// -------------------------------------------------
 
 	// -------------------------------GUIDES-----------------------------

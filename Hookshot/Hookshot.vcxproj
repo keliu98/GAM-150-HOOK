@@ -95,10 +95,9 @@
     <ClCompile Include="Code\Hook.cpp" />
     <ClCompile Include="Code\Input.cpp" />
     <ClCompile Include="Code\Levels\Level1.cpp" />
-    <ClCompile Include="Code\Levels\newLevel.cpp" />
     <ClCompile Include="Code\LoadMap.cpp" />
     <ClCompile Include="Code\menu.cpp" />
-    <ClCompile Include="Code\newLevel.cpp" />
+    <ClCompile Include="Code\Level2.cpp" />
     <ClCompile Include="Code\newrendersystem.cpp" />
     <ClCompile Include="Code\ObjectManager.cpp" />
     <ClCompile Include="Code\pch.cpp" />
@@ -116,11 +115,10 @@
     <ClInclude Include="Code\Input.h" />
     <ClInclude Include="Code\Levels\Level1.h" />
     <ClInclude Include="Code\extern.h" />
-    <ClInclude Include="Code\Levels\newLevel.h" />
+    <ClInclude Include="Code\Levels\Level2.h" />
     <ClInclude Include="Code\levelUI.h" />
     <ClInclude Include="Code\LoadMap.h" />
     <ClInclude Include="Code\menu.h" />
-    <ClInclude Include="Code\newLevel.h" />
     <ClInclude Include="Code\newrendersystem.h" />
     <ClInclude Include="Code\ObjectManager.h" />
     <ClInclude Include="Code\pch.h" />

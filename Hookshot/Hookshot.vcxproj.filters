@@ -44,10 +44,7 @@
     <ClCompile Include="Code\levelUI.cpp">
       <Filter>Source files</Filter>
     </ClCompile>
-    <ClCompile Include="Code\newLevel.cpp">
-      <Filter>Source files</Filter>
-    </ClCompile>
-    <ClCompile Include="Code\Levels\newLevel.cpp">
+    <ClCompile Include="Code\Level2.cpp">
       <Filter>Source files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -100,10 +97,7 @@
     <ClInclude Include="Code\levelUI.h">
       <Filter>Header files</Filter>
     </ClInclude>
-    <ClInclude Include="Code\newLevel.h">
-      <Filter>Header files</Filter>
-    </ClInclude>
-    <ClInclude Include="Code\Levels\newLevel.h">
+    <ClInclude Include="Code\Levels\Level2.h">
       <Filter>Header files</Filter>
     </ClInclude>
   </ItemGroup>
