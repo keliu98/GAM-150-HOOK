@@ -95,11 +95,11 @@ void Level1_Update()
 	//enermy AI
 	for (size_t i =0;i< enemies.size(); i++)
 	{
-		create_AABB(enemies[i].aabb, enemies[i].pos, enemies[i].scale);
+		create_AABB(enemies[i].aabb, enemies[i].pos, enemies[i].scale, enemies[i].scale);
 		skitter_AI(i);
 		
 	}
-		//draw_static_obj();
+
 	CheckWinLose();
 }
 

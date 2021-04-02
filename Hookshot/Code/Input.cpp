@@ -87,20 +87,41 @@ void Input_menu_mode()
 	AEInputGetCursorPosition(&cursor_x, &cursor_y);
 
 	translate_cursor(cursor_x, cursor_y);
-
+	// std::cout << cursor_x << " " << cursor_y << "\n";
 	AEVec2 mouse_pos{ static_cast <float>(cursor_x), static_cast <float>(cursor_y) };
 	//TODO create AABB for button-> dont put it here, can just intialse it with the AABB as the button is static. 
 
 	for (Button& button : buttons)
 	{
-		if (CollisionIntersection_PointRect(mouse_pos, button.aabb) && AEInputCheckTriggered(AEVK_LBUTTON) || AEInputCheckReleased(AEVK_RETURN))
+		if (CollisionIntersection_PointRect(mouse_pos, button.aabb))
 		{
-			if (button.type == TITLE) {
-				next = GS_LEVEL1;
+			button.highlight = true;
+
+			if (AEInputCheckTriggered(AEVK_LBUTTON))
+			{
+				switch (button.state)
+				{
+				case GS_LEVEL1:
+					next = GS_LEVEL1;
+					break;
+
+				case GS_RESTART:
+					next = GS_RESTART;
+					break;
+				}
+
 			}
-			//TODO is what happens after you click -> e.g changing to different screen or etc
 		}
+		else
+			button.highlight = false;
 	}
+
+	// --- NOTE: This is tmp code for user testing ----
+	if (!openGuide && AEInputCheckReleased(AEVK_1))
+		next = GS_LEVEL1;
+	if (!openGuide && AEInputCheckReleased(AEVK_2))
+		next = GS_LEVEL2;
+	// -------------------------------------------------
 
 	// -------------------------------GUIDES-----------------------------
 	// open guide
