@@ -33,7 +33,32 @@ void music_Free()
     music_system->release();
 }
 
-//
-//void music_play(int music, bool stopMusic);
-//void music_pause(bool, int);
-//void music_stop(int);
+void music_play(bool play_music) // int music
+{
+    switch (play_music)
+    {
+        case true:
+            channel->setPaused(false);
+            std::cout << "Music: Play\n";
+            break;
+        case false:
+            channel->setPaused(true);
+            std::cout << "Music: Pause\n";
+            break;
+    }
+}
+
+void music_mute(bool mute)
+{
+    switch (mute)
+    {
+    case true:
+        channel->stop();
+        std::cout << "Music: Play\n";
+        break;
+    case false:
+        music_system->playSound(music, 0, false, &channel);
+        std::cout << "Music: Pause\n";
+        break;
+    }
+}
