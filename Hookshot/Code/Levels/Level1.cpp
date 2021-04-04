@@ -34,6 +34,9 @@ void Level1_Load()
 	// load dppr
 	load_door_texture();
 
+	// load buttons texture
+	load_button_texture();
+
 	//---------------------ADDED IN FORM LIU KE MERGE----------------------------------------
 	//load_character render actions run to the right
 	load_character_render_right();
@@ -60,10 +63,12 @@ void Level1_Load()
 	load_character_render_swingright();
 
 	//---------------------ADDED IN FORM LIU KE MERGE----------------------------------------
+
 }
 
 void Level1_Initialize()
 {
+	PAUSE = false;
 
 	//Translate the map data into the gameworld by creating objects
 	IntializeLevel();
@@ -78,29 +83,37 @@ void Level1_Initialize()
 
 void Level1_Update()
 {
-
 	// Handling Input
 	Input_g_mode();
 
-	//Updating the physics of the game e.g acceleration, velocity, gravity
-	physics_update();
-
-	// Updating the Collision
-	UpdateCollision();
-
-	camera_update(character->pos, character->velocity, character->scale);
-
-	AEVec2 dir = { -1.0f, 0.0f };
-
-	//enermy AI
-	for (size_t i =0;i< enemies.size(); i++)
+	if (PAUSE == false)
 	{
-		create_AABB(enemies[i].aabb, enemies[i].pos, enemies[i].scale, enemies[i].scale);
-		skitter_AI(i);
-		
+		//Updating the physics of the game e.g acceleration, velocity, gravity
+		physics_update();
+
+		// Updating the Collision
+		UpdateCollision();
+
+		camera_update(character->pos, character->velocity, character->scale);
+
+		AEVec2 dir = { -1.0f, 0.0f };
+
+		//enermy AI
+		for (size_t i = 0;i < enemies.size(); i++)
+		{
+			create_AABB(enemies[i].aabb, enemies[i].pos, enemies[i].scale, enemies[i].scale);
+			skitter_AI(i);
+
+		}
+
+		CheckWinLose();
 	}
 
-	CheckWinLose();
+	//Updates the pause menu
+	UpdatePauseMenu();
+
+	//Updates the button interaction
+	UpdateButton();
 }
 
 void Level1_Draw()
@@ -114,6 +127,7 @@ void Level1_Draw()
 	update_render_hook();
 	update_render_enemy();
 	update_render_character();
+	update_render_buttons();
 
 	//For Debuging Camera
 	/*draw_cam_bounding_box({ end_position->x - 40 * 4, end_position->y - 40 * 4 }, *end_position );*/

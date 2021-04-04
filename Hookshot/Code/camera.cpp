@@ -165,10 +165,20 @@ void translate_cursor(int& cursor_x, int& cursor_y)
 	cursor_x = cursor_x - WINDOW_WIDTH / 2;
 	cursor_y = (cursor_y - WINDOW_HEIGHT / 2) * -1;
 
+	//For states where camera is not translated e.g menu
 	if (current != GS_MENU)
 	{
 		cursor_x += static_cast <int>(center.x);
 		cursor_y += static_cast <int>(center.y);
+	}
+}
+
+void translate_UI(AEVec2& pos)
+{
+	if (current != GS_MENU)
+	{
+		pos.x += center.x;
+		pos.y += center.y;
 	}
 }
 

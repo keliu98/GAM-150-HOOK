@@ -17,6 +17,7 @@
 #include <memory>
 
 #include "AEEngine.h"
+#include "fmod.hpp"
 #include "physics.h"
 #include "extern.h"
 #include "hook.h"
@@ -25,7 +26,7 @@
 #include "ObjectManager.h"
 #include "Levels/Level1.h"
 #include "Levels/Level2.h"
-#include "Levels/anolevel.h"
+#include "Levels/Level3.h"
 #include "menu.h"
 #include "GameStateList.h"
 #include "GameStateManager.h"
@@ -35,6 +36,7 @@
 #include "LoadMap.h"
 #include "enemy.h"
 #include "levelUI.h"
+#include "music.h"
 
 
 #endif //PCH_H

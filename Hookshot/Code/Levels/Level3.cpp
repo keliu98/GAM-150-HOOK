@@ -1,10 +1,10 @@
 
-#include "pch.h"
+#include "../pch.h"
 
-void Level2_Load()
+void Level3_Load()
 {
 	//../Code/Levels/Exported.txt
-	if (ImportMapDataFromTxt("../Levels/level_2.txt"))
+	if (ImportMapDataFromTxt("../Levels/Level_3.txt"))
 	{
 		// For debugging map binary data
 		// PrintRetrievedInformation();
@@ -17,7 +17,7 @@ void Level2_Load()
 	//loading texture etc
 	load_render();
 
-	//load bg
+	//load bgdddddddddddddddd
 	load_bg_render();
 
 	// loading wall texture
@@ -64,7 +64,8 @@ void Level2_Load()
 }
 
 
-void Level2_Initialize()
+
+void Level3_Initialize()
 {
 
 	//Translate the map data into the gameworld by creating objects
@@ -78,7 +79,7 @@ void Level2_Initialize()
 
 }
 
-void Level2_Update()
+void Level3_Update()
 {
 
 	// Handling Input
@@ -95,7 +96,7 @@ void Level2_Update()
 	AEVec2 dir = { -1.0f, 0.0f };
 
 	//enermy AI
-	for (size_t i = 0;i < enemies.size(); i++)
+	for (size_t i = 0; i < enemies.size(); i++)
 	{
 		create_AABB(enemies[i].aabb, enemies[i].pos, enemies[i].scale, enemies[i].scale);
 		skitter_AI(i);
@@ -105,7 +106,7 @@ void Level2_Update()
 	CheckWinLose();
 }
 
-void Level2_Draw()
+void Level3_Draw()
 {
 	static char text[100];
 	memset(text, 0, 100 * sizeof(char));
@@ -134,18 +135,15 @@ void Level2_Draw()
 }
 
 // Called if change state, for everything including reset
-void Level2_Free()
+void Level3_Free()
 {
 	free_objects();
 
 }
 
 //  Called if change state and State is NOT reset. ie Change levels. Do not unload if reseting.
-void Level2_Unload()
+void Level3_Unload()
 {
 	FreeMapData();
 	unload_render();
 }
-
-
-

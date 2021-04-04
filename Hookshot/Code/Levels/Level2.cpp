@@ -1,10 +1,10 @@
 
-#include "pch.h"
+#include "../pch.h"
 
-void anoLevel_Load()
+void Level2_Load()
 {
 	//../Code/Levels/Exported.txt
-	if (ImportMapDataFromTxt("../Levels/anolevel.txt"))
+	if (ImportMapDataFromTxt("../Levels/level_2.txt"))
 	{
 		// For debugging map binary data
 		// PrintRetrievedInformation();
@@ -64,8 +64,7 @@ void anoLevel_Load()
 }
 
 
-
-void anoLevel_Initialize()
+void Level2_Initialize()
 {
 
 	//Translate the map data into the gameworld by creating objects
@@ -79,7 +78,7 @@ void anoLevel_Initialize()
 
 }
 
-void anoLevel_Update()
+void Level2_Update()
 {
 
 	// Handling Input
@@ -96,7 +95,7 @@ void anoLevel_Update()
 	AEVec2 dir = { -1.0f, 0.0f };
 
 	//enermy AI
-	for (size_t i = 0; i < enemies.size(); i++)
+	for (size_t i = 0;i < enemies.size(); i++)
 	{
 		create_AABB(enemies[i].aabb, enemies[i].pos, enemies[i].scale, enemies[i].scale);
 		skitter_AI(i);
@@ -106,7 +105,7 @@ void anoLevel_Update()
 	CheckWinLose();
 }
 
-void anoLevel_Draw()
+void Level2_Draw()
 {
 	static char text[100];
 	memset(text, 0, 100 * sizeof(char));
@@ -135,15 +134,18 @@ void anoLevel_Draw()
 }
 
 // Called if change state, for everything including reset
-void anoLevel_Free()
+void Level2_Free()
 {
 	free_objects();
 
 }
 
 //  Called if change state and State is NOT reset. ie Change levels. Do not unload if reseting.
-void anoLevel_Unload()
+void Level2_Unload()
 {
 	FreeMapData();
 	unload_render();
 }
+
+
+
