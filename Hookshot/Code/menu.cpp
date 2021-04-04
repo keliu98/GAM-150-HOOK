@@ -38,8 +38,6 @@ void menu_Initialize()
 void menu_Update() {
 	Input_menu_mode();
 	UpdateButton();
-	//std::cout << buttons[0].pos.x << " " << buttons[0].pos.y << "\n";
-	//std::cout << buttons[0].aabb.min.x << " " << buttons[0].aabb.min.y << "\n";
 }
 
 void menu_Draw() {
@@ -49,7 +47,7 @@ void menu_Draw() {
 	static char text[100];
 	memset(text, 0, 100 * sizeof(char));
 	sprintf_s(text, "PRESS I FOR INSTRUCTIONS\n");
-	PrintText(text, NORMAL, { -0.42f, -0.35f });
+	PrintText(text, NORMAL, { -0.42f, -0.85f });
 
 	// open guide
 	if (openGuide)
