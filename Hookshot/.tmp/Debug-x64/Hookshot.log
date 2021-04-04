@@ -1,5 +1,4 @@
 ﻿  Input.cpp
-C:\Users\egita\Desktop\SiT Stuff\Sem 2\CSD 1450 - Software Development 2\GAM-150-HOOK\Hookshot\Code\Input.cpp : fatal error C1041: cannot open program database 'C:\Users\egita\Desktop\SiT Stuff\Sem 2\CSD 1450 - Software Development 2\GAM-150-HOOK\Hookshot\.tmp\Debug-x64\vc142.pdb'; if multiple CL.EXE write to the same .PDB file, please use /FS
-  menu.cpp
-C:\Users\egita\Desktop\SiT Stuff\Sem 2\CSD 1450 - Software Development 2\GAM-150-HOOK\Hookshot\Code\menu.cpp : fatal error C1041: cannot open program database 'C:\Users\egita\Desktop\SiT Stuff\Sem 2\CSD 1450 - Software Development 2\GAM-150-HOOK\Hookshot\.tmp\Debug-x64\vc142.pdb'; if multiple CL.EXE write to the same .PDB file, please use /FS
+  main.cpp
   Generating Code...
+  Hookshot.vcxproj -> C:\Users\egita\Desktop\SiT Stuff\Sem 2\CSD 1450 - Software Development 2\GAM-150-HOOK\Hookshot\\bin\Debug-x64\Hookshot.exe

@@ -62,8 +62,8 @@ void switchbuttonstate(int state)
 	case GS_QUIT:
 		if (confirm_state == false)
 		{
-			create_button(YES, "Yes", { -0.5, 0.0 }, 125.0f, 45.0f);
-			create_button(NO, "No", { 0.2, 0.0 }, 125.0f, 45.0f);
+			create_button(YES, "Yes", { -0.5f, 0.0f }, 125.0f, 45.0f);
+			create_button(NO, "No", { 0.2f, 0.0f }, 125.0f, 45.0f);
 			confirm_state = true;
 		}
 		break;

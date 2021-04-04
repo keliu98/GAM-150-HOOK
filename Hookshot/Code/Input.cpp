@@ -127,8 +127,8 @@ void Input_menu_mode()
 		next = GS_LEVEL1;
 	if (!openGuide && AEInputCheckReleased(AEVK_2))
 		next = GS_LEVEL2;
-	if (!openGuide && AEInputCheckReleased(AEVK_3))
-		next = GS_LEVEL3;
+	//if (!openGuide && AEInputCheckReleased(AEVK_3))
+	//	next = GS_LEVEL3;
 	// -------------------------------------------------
 
 	// -------------------------------GUIDES-----------------------------
