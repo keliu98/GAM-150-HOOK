@@ -111,7 +111,6 @@ void Input_menu_mode()
 		if (CollisionIntersection_PointRect(mouse_pos, button.aabb))
 		{
 			button.highlight = true;
-			std::cout << "button triggered \n";
 
 			if (AEInputCheckTriggered(AEVK_LBUTTON))
 			{

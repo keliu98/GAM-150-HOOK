@@ -41,6 +41,8 @@ void Level1_Load()
 
 void Level1_Initialize()
 {
+	PAUSE = false;
+
 	//Translate the map data into the gameworld by creating objects
 	IntializeLevel();
 
@@ -57,25 +59,28 @@ void Level1_Update()
 	// Handling Input
 	Input_g_mode();
 
-	//Updating the physics of the game e.g acceleration, velocity, gravity
-	physics_update();
-
-	// Updating the Collision
-	UpdateCollision();
-
-	camera_update(character->pos, character->velocity, character->scale);
-
-	AEVec2 dir = { -1.0f, 0.0f };
-
-	//enermy AI
-	for (size_t i =0;i< enemies.size(); i++)
+	if (PAUSE == false)
 	{
-		create_AABB(enemies[i].aabb, enemies[i].pos, enemies[i].scale, enemies[i].scale);
-		skitter_AI(i);
-		
-	}
+		//Updating the physics of the game e.g acceleration, velocity, gravity
+		physics_update();
 
-	CheckWinLose();
+		// Updating the Collision
+		UpdateCollision();
+
+		camera_update(character->pos, character->velocity, character->scale);
+
+		AEVec2 dir = { -1.0f, 0.0f };
+
+		//enermy AI
+		for (size_t i = 0;i < enemies.size(); i++)
+		{
+			create_AABB(enemies[i].aabb, enemies[i].pos, enemies[i].scale, enemies[i].scale);
+			skitter_AI(i);
+
+		}
+
+		CheckWinLose();
+	}
 
 	//Updates the pause menu
 	UpdatePauseMenu();
