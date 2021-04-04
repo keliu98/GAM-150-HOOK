@@ -48,8 +48,10 @@ void menu_Draw() {
 	PrintText(text, NORMAL, { -0.42f, -0.15f });
 	sprintf_s(text, "PRESS 2 for Level 2\n");
 	PrintText(text, NORMAL, { -0.42f, -0.25f });
-	sprintf_s(text, "PRESS I FOR INSTRUCTIONS\n");
+	sprintf_s(text, "PRESS 3 for Level 3\n");
 	PrintText(text, NORMAL, { -0.42f, -0.35f });
+	sprintf_s(text, "PRESS I FOR INSTRUCTIONS\n");
+	PrintText(text, NORMAL, { -0.42f, -0.45f });
 
 	// open guide
 	if (openGuide)

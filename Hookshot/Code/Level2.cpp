@@ -4,7 +4,7 @@
 void Level2_Load()
 {
 	//../Code/Levels/Exported.txt
-	if (ImportMapDataFromTxt("../Levels/Level_2.txt"))
+	if (ImportMapDataFromTxt("../Levels/level_2.txt"))
 	{
 		// For debugging map binary data
 		// PrintRetrievedInformation();
@@ -62,7 +62,6 @@ void Level2_Load()
 
 	//---------------------ADDED IN FORM LIU KE MERGE----------------------------------------
 }
-
 
 
 void Level2_Initialize()

@@ -47,6 +47,9 @@
     <ClCompile Include="Code\Level2.cpp">
       <Filter>Source files</Filter>
     </ClCompile>
+    <ClCompile Include="Code\anolevel.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Code\camera.h">
@@ -98,6 +101,9 @@
       <Filter>Header files</Filter>
     </ClInclude>
     <ClInclude Include="Code\Levels\Level2.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Levels\anolevel.h">
       <Filter>Header files</Filter>
     </ClInclude>
   </ItemGroup>
