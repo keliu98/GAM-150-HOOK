@@ -10,5 +10,7 @@ enum font_type
 };
 
 void PrintText(char* message, int type, AEVec2 position);
+void UpdateButton();
+void switchbuttonstate(int state);
 
 #endif

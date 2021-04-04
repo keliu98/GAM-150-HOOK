@@ -125,7 +125,8 @@ struct Button {
 	AEVec2 scale;
 	int state;
 	AEMtx33 transform;
-	AEVec2 pos;
+	AEVec2 pos_ratio;
+	AEVec2 pos_trans;
 	AABB  aabb;
 	bool  highlight;
 	const char* string;

@@ -87,8 +87,9 @@ void Input_menu_mode()
 	AEInputGetCursorPosition(&cursor_x, &cursor_y);
 
 	translate_cursor(cursor_x, cursor_y);
-	std::cout << cursor_x << " " << cursor_y << "\n";
+	//std::cout << cursor_x << " " << cursor_y << "\n";
 	AEVec2 mouse_pos{ static_cast <float>(cursor_x), static_cast <float>(cursor_y) };
+
 	//TODO create AABB for button-> dont put it here, can just intialse it with the AABB as the button is static. 
 
 	for (Button& button : buttons)
@@ -99,17 +100,7 @@ void Input_menu_mode()
 
 			if (AEInputCheckTriggered(AEVK_LBUTTON))
 			{
-				switch (button.state)
-				{
-				case GS_LEVEL1:
-					next = GS_LEVEL1;
-					break;
-
-				case GS_RESTART:
-					next = GS_RESTART;
-					break;
-				}
-
+				switchbuttonstate(button.state);
 			}
 		}
 

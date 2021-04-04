@@ -196,7 +196,7 @@ void update_render_buttons()//change this during merge
 
 	for (Button const& button : buttons)
 	{
-		render.pos = button.pos;
+		render.pos = button.pos_trans;
 		render.x_scale = button.scale.x;
 		render.y_scale = button.scale.y;
 		render.pMesh = square_mesh;
@@ -211,11 +211,10 @@ void update_render_buttons()//change this during merge
 
 		//Drawing the font
 		//Need to change the pos of the button into a scale of the windows.
-		AEVec2 windowscale{ 0,0 };
 		static char text[100];
 		memset(text, 0, 100 * sizeof(char));
 		sprintf_s(text, button.string);
-		PrintText(text, NORMAL, windowscale);
+		PrintText(text, NORMAL, button.pos_ratio);
 	}
 }
 

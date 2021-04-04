@@ -76,8 +76,7 @@ void create_button(int state, const char* string, AEVec2 pos, float scale_x, flo
 	button.state = state;
 	button.scale.x = scale_x;
 	button.scale.y = scale_y;
-	button.pos = pos;
-	create_AABB(button.aabb, button.pos, button.scale.x, button.scale.y);
+	button.pos_ratio = pos;
 	button.string = string;
 	button.highlight = false;
 	buttons.push_back(button);
