@@ -14,10 +14,11 @@ void menu_Load() {
 	load_guide_texture();
 	music_Load();
 
-	create_button(GS_LEVEL1, "Start Game", { -0.2,-0.2 }, 200.0f, 45.0f);
-	create_button(GS_LEVEL_SELECT, "Select Level", { -0.2,-0.35 }, 200.0f, 45.0f);
-	create_button(GS_CREDITS, "Credits", { -0.2,-0.50 }, 200.0f, 45.0f);
-	create_button(GS_QUIT, "Quit Game", { -0.2,-0.65 }, 200.0f, 45.0f);
+	create_button(GS_LEVEL1, "Start Game", { -0.2f,-0.2f }, 200.0f, 45.0f);
+	create_button(GS_LEVEL_SELECT, "Select Level", { -0.2f,-0.35f }, 200.0f, 45.0f);
+	create_button(GS_INSTRUCTION, "Instructions", { -0.2f,-0.50f }, 200.0f, 45.0f);
+	create_button(GS_CREDITS, "Credits", { -0.2f,-0.65f }, 200.0f, 45.0f);
+	create_button(GS_QUIT, "Quit Game", { -0.2f,-0.80f }, 200.0f, 45.0f);
 }
 
 void menu_Initialize()
@@ -42,13 +43,14 @@ void menu_Update() {
 
 void menu_Draw() {
 
-	// update_render_buttons();//change this during merge
+	update_render_buttons();//change this during merge
 
 	static char text[100];
 	memset(text, 0, 100 * sizeof(char));
-	sprintf_s(text, "PRESS I FOR INSTRUCTIONS\n");
-	PrintText(text, NORMAL, { -0.42f, -0.85f });
+
 	sprintf_s(text, "Hookshot\n");
+	PrintText(text, NORMAL, { -0.15f, 0.2f });
+
 	// PrintText(text, NORMAL, { -0.42f, 0.0f });
 	// sprintf_s(text, "PRESS 1 for Level 1\n");
 	// PrintText(text, NORMAL, { -0.42f, -0.15f });
@@ -56,6 +58,7 @@ void menu_Draw() {
 	// PrintText(text, NORMAL, { -0.42f, -0.25f });
 	// sprintf_s(text, "PRESS 3 for Level 3\n");
 	// PrintText(text, NORMAL, { -0.42f, -0.35f });
+	// sprintf_s(text, "PRESS I FOR INSTRUCTIONS\n");
 
 	// open guide
 	if (openGuide)

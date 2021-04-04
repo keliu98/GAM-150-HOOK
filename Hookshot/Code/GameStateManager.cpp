@@ -78,12 +78,12 @@ void GSM_Update()
 		fpUnload = Level2_Unload;
 		break;
 	case GS_LEVEL3:
-		fpLoad = anoLevel_Load;
-		fpInitialize = anoLevel_Initialize;
-		fpUpdate = anoLevel_Update;
-		fpDraw = anoLevel_Draw;
-		fpFree = anoLevel_Free;
-		fpUnload = anoLevel_Unload;
+		fpLoad = Level3_Load;
+		fpInitialize = Level3_Initialize;
+		fpUpdate = Level3_Update;
+		fpDraw = Level3_Draw;
+		fpFree = Level3_Free;
+		fpUnload = Level3_Unload;
 		break;
 	case GS_RESTART:
 		break;

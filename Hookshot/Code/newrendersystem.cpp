@@ -66,13 +66,13 @@ AEGfxTexture* guides;
 
 struct Render
 {
-	AEVec2 pos;
-	AEGfxVertexList* pMesh;
-	AEGfxTexture* pTexture;
+	AEVec2 pos{0, 0};
+	AEGfxVertexList* pMesh{nullptr};
+	AEGfxTexture* pTexture{nullptr};
 
-	float dir;
-	float x_scale;
-	float y_scale;
+	float dir{0};
+	float x_scale{0};
+	float y_scale{0};
 
 
 	float x_offset{ 0 };
@@ -85,7 +85,7 @@ struct Render
 	float y_offset3{ 0 };
 
 
-	AEMtx33 transform;
+	AEMtx33 transform{0,0};
 };
 
 //Forward Declarations

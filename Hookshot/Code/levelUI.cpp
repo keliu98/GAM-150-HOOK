@@ -72,6 +72,10 @@ void switchbuttonstate(int state)
 		next = GS_RESTART;
 		break;
 
+	case GS_INSTRUCTION:
+		next = GS_INSTRUCTION;
+		break;
+
 	case GS_LEVEL_SELECT:
 		next = GS_LEVEL_SELECT;
 		break;

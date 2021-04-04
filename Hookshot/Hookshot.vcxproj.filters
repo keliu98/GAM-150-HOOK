@@ -1,122 +1,44 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
+    <ClCompile Include="Code\camera.cpp" />
+    <ClCompile Include="Code\collision.cpp" />
+    <ClCompile Include="Code\enemy.cpp" />
+    <ClCompile Include="Code\GameStateManager.cpp" />
+    <ClCompile Include="Code\Hook.cpp" />
+    <ClCompile Include="Code\Input.cpp" />
+    <ClCompile Include="Code\Levels\Level1.cpp" />
+    <ClCompile Include="Code\LoadMap.cpp" />
+    <ClCompile Include="Code\menu.cpp" />
+    <ClCompile Include="Code\music.cpp" />
+    <ClCompile Include="Code\newrendersystem.cpp" />
+    <ClCompile Include="Code\ObjectManager.cpp" />
+    <ClCompile Include="Code\pch.cpp" />
+    <ClCompile Include="Code\physics.cpp" />
+    <ClCompile Include="Code\levelUI.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Code\camera.cpp">
-      <Filter>Source files</Filter>
-    </ClCompile>
-    <ClCompile Include="Code\LoadMap.cpp">
-      <Filter>Source files</Filter>
-    </ClCompile>
-    <ClCompile Include="Code\GameStateManager.cpp">
-      <Filter>Source files</Filter>
-    </ClCompile>
-    <ClCompile Include="Code\collision.cpp">
-      <Filter>Source files</Filter>
-    </ClCompile>
-    <ClCompile Include="Code\Hook.cpp">
-      <Filter>Source files</Filter>
-    </ClCompile>
-    <ClCompile Include="Code\Levels\Level1.cpp">
-      <Filter>Source files</Filter>
-    </ClCompile>
-    <ClCompile Include="Code\pch.cpp">
-      <Filter>Source files</Filter>
-    </ClCompile>
-    <ClCompile Include="Code\physics.cpp">
-      <Filter>Source files</Filter>
-    </ClCompile>
-    <ClCompile Include="Code\ObjectManager.cpp">
-      <Filter>Source files</Filter>
-    </ClCompile>
-    <ClCompile Include="Code\Input.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Code\menu.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Code\newrendersystem.cpp">
-      <Filter>Source files</Filter>
-    </ClCompile>
-    <ClCompile Include="Code\enemy.cpp">
-      <Filter>Source files</Filter>
-    </ClCompile>
-    <ClCompile Include="Code\levelUI.cpp">
-      <Filter>Source files</Filter>
-    </ClCompile>
-    <ClCompile Include="Code\music.cpp">
-    <ClCompile Include="Code\Level2.cpp">
-      <Filter>Source files</Filter>
-    </ClCompile>
-    <ClCompile Include="Code\anolevel.cpp">
-      <Filter>Source files</Filter>
-    </ClCompile>
+    <ClCompile Include="Code\Levels\Level2.cpp" />
+    <ClCompile Include="Code\Levels\Level3.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Code\camera.h">
-      <Filter>Header files</Filter>
-    </ClInclude>
-    <ClInclude Include="Code\collision.h">
-      <Filter>Header files</Filter>
-    </ClInclude>
-    <ClInclude Include="Code\extern.h">
-      <Filter>Header files</Filter>
-    </ClInclude>
-    <ClInclude Include="Code\GameStateList.h">
-      <Filter>Header files</Filter>
-    </ClInclude>
-    <ClInclude Include="Code\GameStateManager.h">
-      <Filter>Header files</Filter>
-    </ClInclude>
-    <ClInclude Include="Code\Hook.h">
-      <Filter>Header files</Filter>
-    </ClInclude>
-    <ClInclude Include="Code\Levels\Level1.h">
-      <Filter>Header files</Filter>
-    </ClInclude>
-    <ClInclude Include="Code\LoadMap.h">
-      <Filter>Header files</Filter>
-    </ClInclude>
-    <ClInclude Include="Code\ObjectManager.h">
-      <Filter>Header files</Filter>
-    </ClInclude>
-    <ClInclude Include="Code\pch.h">
-      <Filter>Header files</Filter>
-    </ClInclude>
-    <ClInclude Include="Code\physics.h">
-      <Filter>Header files</Filter>
-    </ClInclude>
-    <ClInclude Include="Code\Input.h">
-      <Filter>Header files</Filter>
-    </ClInclude>
-    <ClInclude Include="Code\menu.h">
-      <Filter>Header files</Filter>
-    </ClInclude>
-    <ClInclude Include="Code\newrendersystem.h">
-      <Filter>Header files</Filter>
-    </ClInclude>
-    <ClInclude Include="Code\enemy.h">
-      <Filter>Header files</Filter>
-    </ClInclude>
-    <ClInclude Include="Code\levelUI.h">
-      <Filter>Header files</Filter>
-    </ClInclude>
-    <ClInclude Include="Code\music.h">
-    <ClInclude Include="Code\Levels\Level2.h">
-      <Filter>Header files</Filter>
-    </ClInclude>
-    <ClInclude Include="Code\Levels\anolevel.h">
-      <Filter>Header files</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <Filter Include="Source files">
-      <UniqueIdentifier>{4a50b9b7-7e1f-4134-a202-97eccc7ecf83}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Header files">
-      <UniqueIdentifier>{9874461f-e863-44ca-b70a-3defcc117f78}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
+    <ClInclude Include="Code\camera.h" />
+    <ClInclude Include="Code\collision.h" />
+    <ClInclude Include="Code\enemy.h" />
+    <ClInclude Include="Code\GameStateList.h" />
+    <ClInclude Include="Code\GameStateManager.h" />
+    <ClInclude Include="Code\Hook.h" />
+    <ClInclude Include="Code\Input.h" />
+    <ClInclude Include="Code\Levels\Level1.h" />
+    <ClInclude Include="Code\extern.h" />
+    <ClInclude Include="Code\Levels\Level2.h" />
+    <ClInclude Include="Code\levelUI.h" />
+    <ClInclude Include="Code\LoadMap.h" />
+    <ClInclude Include="Code\menu.h" />
+    <ClInclude Include="Code\music.h" />
+    <ClInclude Include="Code\newrendersystem.h" />
+    <ClInclude Include="Code\ObjectManager.h" />
+    <ClInclude Include="Code\pch.h" />
+    <ClInclude Include="Code\physics.h" />
+    <ClInclude Include="Code\Levels\Level3.h" />
   </ItemGroup>
 </Project>
