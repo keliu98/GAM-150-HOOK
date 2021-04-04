@@ -113,11 +113,18 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 			if (0 == AESysDoesWindowExist())
 				next = GS_QUIT;
 
-			if (g_dt > 0.166667f)
-				g_dt = 0.1666667f;
+		/*	while (g_dt < 0.16667f)
+			{
+				g_dt += g_dt;
+			}*/
 
+			if (g_dt > 0.166667f)
+				g_dt = 0.166667f;
+			
 			g_appTime += g_dt;
         }
+
+
 
         //Out of the loop = Quit, Restart, Change level
         fpFree();
