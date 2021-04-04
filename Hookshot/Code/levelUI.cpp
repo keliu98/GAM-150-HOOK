@@ -21,14 +21,29 @@ void UpdateButton()
 {
 	for (Button& button : buttons)
 	{
-		//Translating base on camera TODO
-
 		//Shifting the button position and AABB based on the ratio to screen width and height rather than actual position
 		button.pos_trans.x =  (WINDOW_WIDTH / 2 * button.pos_ratio.x ) + button.scale.x / 2 - 20.0f;
 		button.pos_trans.y = (WINDOW_HEIGHT / 2 * button.pos_ratio.y) + 5.0f;
 
+		//Translating base on camera TODO
+		translate_UI(button.pos_trans);
+
 		//create AABB
 		create_AABB(button.aabb, button.pos_trans, button.scale.x, button.scale.y);
+	}
+}
+
+void UpdatePauseMenu()
+{
+	//If true create the buttons 
+	if (PAUSE == true && buttons.empty())
+	{
+		//Buttons works for display now need to make it so that when it enter pause mode the input is based on the menu input and not game input
+		create_button(GS_RESTART, "Restart Game", { -0.2,-0.2 }, 200.0f, 45.0f);
+	}
+	else if (PAUSE == false && !buttons.empty())
+	{
+		buttons.clear();
 	}
 }
 

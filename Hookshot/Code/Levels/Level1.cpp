@@ -33,11 +33,14 @@ void Level1_Load()
 
 	// load dppr
 	load_door_texture();
+
+	// load buttons texture
+	load_button_texture();
+
 }
 
 void Level1_Initialize()
 {
-
 	//Translate the map data into the gameworld by creating objects
 	IntializeLevel();
 
@@ -51,7 +54,6 @@ void Level1_Initialize()
 
 void Level1_Update()
 {
-
 	// Handling Input
 	Input_g_mode();
 
@@ -72,8 +74,14 @@ void Level1_Update()
 		skitter_AI(i);
 		
 	}
-		//draw_static_obj();
+
 	CheckWinLose();
+
+	//Updates the pause menu
+	UpdatePauseMenu();
+
+	//Updates the button interaction
+	UpdateButton();
 }
 
 void Level1_Draw()
@@ -87,6 +95,7 @@ void Level1_Draw()
 	update_render_hook();
 	update_render_enemy();
 	update_render_character();
+	update_render_buttons();
 
 	//For Debuging Camera
 	draw_cam_bounding_box({ end_position->x - 40 * 4, end_position->y - 40 * 4 }, *end_position );
@@ -98,12 +107,7 @@ void Level1_Draw()
 	PrintText(text, NORMAL, { -0.9f, -0.95f });
 	sprintf_s(text, "Shots: %d/3", ammoD);
 	PrintText(text, NORMAL, { 0.4f, -0.95f });
-	
 
-
-	//Temporary for exiting the system
-	if (AEInputCheckTriggered(AEVK_ESCAPE))
-		next = GS_QUIT;
 }
 
 // Called if change state, for everything including reset

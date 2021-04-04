@@ -51,5 +51,6 @@ void camera_update(AEVec2 character_pos, AEVec2 velocity, float scale);
 const AEVec2 center_point();
 
 
-//ADDED IN NEW FUNCTION TO TRANSLATE CURSOR - WEI WEN
+//ADDED IN NEW FUNCTION TO TRANSLATE CURSOR & UI - WEI WEN
 void translate_cursor(int& cursor_x, int& cursor_y);
+void translate_UI(AEVec2& pos);

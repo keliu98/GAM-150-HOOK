@@ -198,7 +198,7 @@ void create_wall(int type, float scale, AEVec2 pos);
 void destory_enemy(std::vector<Enemy>&, int index); 
  
 //Free buttons
-void free_button(std::vector<Button> buttons);
+void free_button();
 
 // Store the ending point
 AEVec2* create_ending_point(AEVec2 pos);

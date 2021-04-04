@@ -1,10 +1,24 @@
 #include"pch.h"
 #include"collision.h"
+
+bool PAUSE = false;
+
 void Input_g_mode() {
+
 	float CHARACTER_ACCEL_HORI = 500.0f;
 
 	AEInputUpdate();
 
+	if (AEInputCheckTriggered(AEVK_ESCAPE))
+		PAUSE = !PAUSE;
+
+	if (PAUSE == true)
+	{
+		release_hook();
+		Input_menu_mode();
+		return;
+	}
+	
 	//Keyboard
 	if (character->grid_collision_flag != COLLISION_LEFT && AEInputCheckCurr(AEVK_A))
 		// || (hook->hook_state == tethered && Flag != COLLISION_BOTTOM)
@@ -60,7 +74,6 @@ void Input_g_mode() {
 	if (AEInputCheckCurr(AEVK_LBUTTON) && ammo > 0)
 	{
 		fire_hook(cursor_x, cursor_y);
-
 	}
 
 	if (AEInputCheckReleased(AEVK_LBUTTON))
@@ -78,7 +91,8 @@ void Input_g_mode() {
 //For interracting with the main menu
 void Input_menu_mode()
 {
-	AEInputUpdate();
+	if (PAUSE != true)
+		AEInputUpdate();
 
 	int cursor_x;
 	int cursor_y;
@@ -97,10 +111,12 @@ void Input_menu_mode()
 		if (CollisionIntersection_PointRect(mouse_pos, button.aabb))
 		{
 			button.highlight = true;
+			std::cout << "button triggered \n";
 
 			if (AEInputCheckTriggered(AEVK_LBUTTON))
 			{
 				switchbuttonstate(button.state);
+				
 			}
 		}
 

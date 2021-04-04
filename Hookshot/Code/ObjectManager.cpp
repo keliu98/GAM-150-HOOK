@@ -153,15 +153,9 @@ void free_objects()
 	delete end_position;
 }
 
-void free_button(std::vector<Button> buttons)
+void free_button()
 {
-	for (int i{ 0 }; i < buttons.size(); ++i)
-	{
-		// remove first element
-		//delete & walls[i];
-		buttons.erase(buttons.begin());
-	}
-
+	buttons.clear();
 }
 
 
