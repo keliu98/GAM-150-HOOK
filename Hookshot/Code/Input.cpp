@@ -1,10 +1,24 @@
 #include"pch.h"
 #include"collision.h"
+
+bool PAUSE = false;
+
 void Input_g_mode() {
+
 	float CHARACTER_ACCEL_HORI = 500.0f;
 
 	AEInputUpdate();
 
+	if (AEInputCheckTriggered(AEVK_ESCAPE))
+		PAUSE = !PAUSE;
+
+	if (PAUSE == true)
+	{
+		release_hook();
+		Input_menu_mode();
+		return;
+	}
+	
 	//Keyboard
 	if (character->grid_collision_flag != COLLISION_LEFT && AEInputCheckCurr(AEVK_A))
 		// || (hook->hook_state == tethered && Flag != COLLISION_BOTTOM)
@@ -60,7 +74,6 @@ void Input_g_mode() {
 	if (AEInputCheckCurr(AEVK_LBUTTON) && ammo > 0)
 	{
 		fire_hook(cursor_x, cursor_y);
-
 	}
 
 	if (AEInputCheckReleased(AEVK_LBUTTON))
@@ -78,7 +91,8 @@ void Input_g_mode() {
 //For interracting with the main menu
 void Input_menu_mode()
 {
-	AEInputUpdate();
+	if (PAUSE != true)
+		AEInputUpdate();
 
 	int cursor_x;
 	int cursor_y;
@@ -87,8 +101,9 @@ void Input_menu_mode()
 	AEInputGetCursorPosition(&cursor_x, &cursor_y);
 
 	translate_cursor(cursor_x, cursor_y);
-	// std::cout << cursor_x << " " << cursor_y << "\n";
+	//std::cout << cursor_x << " " << cursor_y << "\n";
 	AEVec2 mouse_pos{ static_cast <float>(cursor_x), static_cast <float>(cursor_y) };
+
 	//TODO create AABB for button-> dont put it here, can just intialse it with the AABB as the button is static. 
 
 	for (Button& button : buttons)
@@ -99,17 +114,8 @@ void Input_menu_mode()
 
 			if (AEInputCheckTriggered(AEVK_LBUTTON))
 			{
-				switch (button.state)
-				{
-				case GS_LEVEL1:
-					next = GS_LEVEL1;
-					break;
-
-				case GS_RESTART:
-					next = GS_RESTART;
-					break;
-				}
-
+				switchbuttonstate(button.state);
+				
 			}
 		}
 		else

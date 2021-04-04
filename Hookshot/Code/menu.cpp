@@ -13,6 +13,11 @@ void menu_Load() {
 	load_button_texture();//change this during merge
 	load_guide_texture();
 	music_Load();
+
+	create_button(GS_LEVEL1, "Start Game", { -0.2,-0.2 }, 200.0f, 45.0f);
+	create_button(GS_LEVEL_SELECT, "Select Level", { -0.2,-0.35 }, 200.0f, 45.0f);
+	create_button(GS_CREDITS, "Credits", { -0.2,-0.50 }, 200.0f, 45.0f);
+	create_button(GS_QUIT, "Quit Game", { -0.2,-0.65 }, 200.0f, 45.0f);
 }
 
 void menu_Initialize()
@@ -21,9 +26,8 @@ void menu_Initialize()
 	openGuide = false;
 	//change this during merge
 	AEVec2 pos{ 0.0f, 0.0f };
-	//Creatinf level 1 button
 
-	create_button(GS_LEVEL1, "hi testing testing testing", {0,0}, 100.0f, 30.0f);
+
 	//change this during merge
 	AEGfxSetCamPosition(0, 0); // reset cam pos
 	//AEVec2 pos2{ -300.0f, -300.0f };
@@ -33,6 +37,7 @@ void menu_Initialize()
 
 void menu_Update() {
 	Input_menu_mode();
+	UpdateButton();
 	//std::cout << buttons[0].pos.x << " " << buttons[0].pos.y << "\n";
 	//std::cout << buttons[0].aabb.min.x << " " << buttons[0].aabb.min.y << "\n";
 }
@@ -75,4 +80,5 @@ void menu_Free() {
 
 void menu_Unload() {
 	unload_render();//change this during merge
+	free_button();
 }

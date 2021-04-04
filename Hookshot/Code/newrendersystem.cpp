@@ -225,9 +225,9 @@ void update_render_buttons()//change this during merge
 
 	for (Button const& button : buttons)
 	{
-		render.pos = button.pos;
-		//render.x_scale = button.scale.x;
-		//render.y_scale = button.scale.y;
+		render.pos = button.pos_trans;
+		render.x_scale = button.scale.x;
+		render.y_scale = button.scale.y;
 		render.pMesh = square_mesh;
 		//if (button.highlight == false)
 		//	render.pTexture = button_texture[0];
@@ -250,6 +250,11 @@ void update_render_buttons()//change this during merge
 		//memset(text, 0, 100 * sizeof(char));
 		//sprintf_s(text, button.string);
 		//PrintText(text, NORMAL, windowscale);
+		
+		static char text[100];
+		memset(text, 0, 100 * sizeof(char));
+		sprintf_s(text, button.string);
+		PrintText(text, NORMAL, button.pos_ratio);
 	}
 }
 
