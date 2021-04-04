@@ -75,6 +75,6 @@ bool CollisionIntersection_RectRect(const struct AABB& aabb1, const AEVec2& vel1
 /**************************************************************************/
 bool CollisionIntersection_PointRect(const AEVec2 point1, const struct AABB& aabb2);
 
-void create_AABB(struct AABB& aabb, AEVec2 const& pos, float scale);
+void create_AABB(AABB& aabb, AEVec2 const& pos, float scale_x, float scale_y);
 
 
