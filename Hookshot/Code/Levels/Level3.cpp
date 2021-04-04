@@ -1,9 +1,10 @@
+
 #include "../pch.h"
 
-void newLevel_Load()
+void Level3_Load()
 {
 	//../Code/Levels/Exported.txt
-	if (ImportMapDataFromTxt("../Levels/Level_1.txt"))
+	if (ImportMapDataFromTxt("../Levels/Level_3.txt"))
 	{
 		// For debugging map binary data
 		// PrintRetrievedInformation();
@@ -16,7 +17,7 @@ void newLevel_Load()
 	//loading texture etc
 	load_render();
 
-	//load bg
+	//load bgdddddddddddddddd
 	load_bg_render();
 
 	// loading wall texture
@@ -64,7 +65,7 @@ void newLevel_Load()
 
 
 
-void newLevel_Initialize()
+void Level3_Initialize()
 {
 
 	//Translate the map data into the gameworld by creating objects
@@ -78,7 +79,7 @@ void newLevel_Initialize()
 
 }
 
-void newLevel_Update()
+void Level3_Update()
 {
 
 	// Handling Input
@@ -97,15 +98,15 @@ void newLevel_Update()
 	//enermy AI
 	for (size_t i = 0; i < enemies.size(); i++)
 	{
-		create_AABB(enemies[i].aabb, enemies[i].pos, enemies[i].scale);
+		create_AABB(enemies[i].aabb, enemies[i].pos, enemies[i].scale, enemies[i].scale);
 		skitter_AI(i);
 
 	}
-	//draw_static_obj();
+
 	CheckWinLose();
 }
 
-void newLevel_Draw()
+void Level3_Draw()
 {
 	static char text[100];
 	memset(text, 0, 100 * sizeof(char));
@@ -134,18 +135,15 @@ void newLevel_Draw()
 }
 
 // Called if change state, for everything including reset
-void newLevel_Free()
+void Level3_Free()
 {
 	free_objects();
 
 }
 
 //  Called if change state and State is NOT reset. ie Change levels. Do not unload if reseting.
-void newLevel_Unload()
+void Level3_Unload()
 {
 	FreeMapData();
 	unload_render();
 }
-
-
-
