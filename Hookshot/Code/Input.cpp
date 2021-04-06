@@ -143,29 +143,12 @@ void Input_menu_mode()
 			button.highlight = false;
 	}
 
-	// --- NOTE: This is tmp code for user testing ----
-	if (!openGuide && AEInputCheckReleased(AEVK_1))
-		next = GS_LEVEL1;
-	if (!openGuide && AEInputCheckReleased(AEVK_2))
-		next = GS_LEVEL2;
-	if (!openGuide && AEInputCheckReleased(AEVK_3))
-		next = GS_LEVEL3;
 	// -------------------------------------------------
 
 	// -------------------------------GUIDES-----------------------------
-	// open guide
-	if (AEInputCheckReleased(AEVK_I))
-	{
-		openGuide = true;
-		// std::cout << "MENU OPENED.\n";
-	}
-	// close guide
-	if (openGuide && AEInputCheckReleased(AEVK_ESCAPE))
-	{
-		openGuide = false;
-	}
+
 	// while guide is open check for next or previous
-	if (openGuide)
+	if (display_tutorial)
 	{
 		// next
 		if (guidePage >= 0 && guidePage < 3 && AEInputCheckReleased(AEVK_D))

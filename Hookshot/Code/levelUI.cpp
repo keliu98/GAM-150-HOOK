@@ -96,7 +96,7 @@ void switchbuttonstate(int state)
 	case TUTORIAL:
 		free_button();
 		display_tutorial = true;
-		create_button(GS_RESTART, "Back", { 0.4,-0.80 }, 100.0f, 45.0f);
+		create_button(GS_RESTART, "Back", { -0.9, 0.80 }, 100.0f, 45.0f);
 		break;
 
 	case CREDITS:

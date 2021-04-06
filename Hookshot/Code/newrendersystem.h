@@ -14,11 +14,9 @@ void load_door_texture();
 void load_hook_render();
 void load_button_texture();
 void load_guide_texture();
-//void load_tutorial_render();
 void load_credits_render();
 
 void update_render_guide(float x, float y);
-//void update_render_tutorial();s
 void update_render_door();
 void update_render_bg();
 void update_render_walls();

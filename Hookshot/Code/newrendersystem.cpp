@@ -265,11 +265,6 @@ void load_guide_texture()
 	guides = load_texture("../Images/Guides.png");
 }
 
-// void load_tutorial_render()
-// {
-// 	tutorial = load_texture("../Images/Tutorial.png");
-// }
-
 void update_render_guide(float x, float y)
 {
 	Render render;
@@ -314,22 +309,6 @@ void update_render_credits()
 	render.y_scale = scale_y;
 	render.pMesh = square_mesh;
 	render.pTexture = credits;
-	render.dir = 0;
-
-	draw_render(render);
-}
-
-void update_render_tutorial()
-{
-	Render render;
-	static float scale_x = 800.0f, scale_y = 600.0f;
-
-	// make it translate left a bit -? for later
-	render.pos = { 0,0 };
-	render.x_scale = scale_x;
-	render.y_scale = scale_y;
-	render.pMesh = square_mesh;
-	render.pTexture = tutorial;
 	render.dir = 0;
 
 	draw_render(render);

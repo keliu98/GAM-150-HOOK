@@ -10,9 +10,6 @@ void menu_Load() {
 	load_guide_texture();
 	music_Load();
 	load_credits_render();
-	load_tutorial_render();
-
-
 }
 
 void menu_Initialize()
@@ -62,14 +59,8 @@ void menu_Draw() {
 				break;
 		}
 	}
+
 	update_render_buttons();//change this during merge
-
-	static char text[100];
-	memset(text, 0, 100 * sizeof(char));
-
-	sprintf_s(text, "Hookshot\n");
-	PrintText(text, NORMAL, { -0.15f, 0.2f });
-
 }
 
 void menu_Free() {
