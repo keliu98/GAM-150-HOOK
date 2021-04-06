@@ -2,8 +2,21 @@
 
 static char	font_to_use;
 bool confirm_state = false;
+
+//For buttons to switch
 const int YES = 100;
 const int NO = 101;
+
+const int TUTORIAL = 96;
+const int LEVELSELECT = 97;
+const int CREDITS = 98;
+const int OPTIONS = 99;
+
+//To check if there is a need to display credits and tutorial
+bool display_credits = false;
+bool display_tutorial = false;
+
+
 
 void PrintText(char* message, int type, AEVec2 position)	// italic or norm
 {
@@ -62,18 +75,37 @@ void switchbuttonstate(int state)
 	case GS_QUIT:
 		if (confirm_state == false)
 		{
-			create_button(YES, "Yes", { -0.5, 0.0 }, 125.0f, 45.0f);
-			create_button(NO, "No", { 0.2, 0.0 }, 125.0f, 45.0f);
+			create_button(YES, "Yes", { -0.5, 0.0 }, 100.0f, 45.0f);
+			create_button(NO, "No", { 0.2, 0.0 }, 100.0f, 45.0f);
 			confirm_state = true;
 		}
 		break;
 
-	case GS_CREDITS:
-		next = GS_RESTART;
+
+	case LEVELSELECT:
+		free_button();
+		create_button(GS_LEVEL1, "Level 1", { -0.2,-0.2 }, 200.0f, 45.0f);
+		create_button(GS_LEVEL2, "Level 2", { -0.2,-0.35 }, 200.0f, 45.0f);
+		create_button(GS_LEVEL3, "Level 3", { -0.2,-0.50 }, 200.0f, 45.0f);
+		create_button(GS_LEVEL4, "Level 4", { -0.2,-0.65 }, 200.0f, 45.0f);
+		create_button(GS_LEVEL5, "Level 5", { -0.2,-0.80 }, 200.0f, 45.0f);
+
+		create_button(GS_RESTART, "Back", { 0.4,-0.80 }, 100.0f, 45.0f);
 		break;
 
-	case GS_LEVEL_SELECT:
-		next = GS_LEVEL_SELECT;
+	case TUTORIAL:
+		free_button();
+		display_tutorial = true;
+		create_button(GS_RESTART, "Back", { 0.4,-0.80 }, 100.0f, 45.0f);
+		break;
+
+	case CREDITS:
+		free_button();
+		display_credits = true;
+		create_button(GS_RESTART, "Back", { 0.4,-0.80 }, 100.0f, 45.0f);
+		break;
+
+	case OPTIONS:
 		break;
 
 	case YES:

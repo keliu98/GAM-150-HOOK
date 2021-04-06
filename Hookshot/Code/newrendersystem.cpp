@@ -31,6 +31,12 @@ AEGfxTexture* bg;
 //Pointer to door
 AEGfxTexture* door;
 
+//Pointer to credits texture
+AEGfxTexture* credits;
+
+//Pointer to tutorial texture
+AEGfxTexture* tutorial;
+
 
 struct Render
 {
@@ -136,6 +142,16 @@ void load_door_texture()
 	door = load_texture("../Images/Door.png");
 }
 
+void load_credits_render()
+{
+	credits = load_texture("../Images/Credits.png");
+}
+
+void load_tutorial_render()
+{
+	tutorial = load_texture("../Images/Tutorial.png");
+}
+
 void update_render_door()
 {
 	Render render;
@@ -153,6 +169,37 @@ void update_render_door()
 	draw_render(render);
 }
 
+void update_render_credits()
+{
+	Render render;
+	static float scale_x = 800.0f, scale_y = 600.0f;
+
+	// make it translate left a bit -? for later
+	render.pos = { 0,0 };
+	render.x_scale = scale_x;
+	render.y_scale = scale_y;
+	render.pMesh = square_mesh;
+	render.pTexture = credits;
+	render.dir = 0;
+
+	draw_render(render);
+}
+
+void update_render_tutorial()
+{
+	Render render;
+	static float scale_x = 800.0f, scale_y = 600.0f;
+
+	// make it translate left a bit -? for later
+	render.pos = { 0,0 };
+	render.x_scale = scale_x;
+	render.y_scale = scale_y;
+	render.pMesh = square_mesh;
+	render.pTexture = tutorial;
+	render.dir = 0;
+
+	draw_render(render);
+}
 
 void update_render_bg()
 {
