@@ -52,7 +52,7 @@ void UpdatePauseMenu()
 	if (PAUSE == true && buttons.empty())
 	{
 		//Buttons works for display now need to make it so that when it enter pause mode the input is based on the menu input and not game input
-		create_button(GS_RESTART, "Restart Game", { -0.2,-0.2 }, 200.0f, 45.0f);
+		create_button(GS_RESTART, "Restart Game", { -0.2f,-0.2f }, 200.0f, 45.0f);
 	}
 	else if (PAUSE == false && !buttons.empty())
 	{
@@ -75,8 +75,8 @@ void switchbuttonstate(int state)
 	case GS_QUIT:
 		if (confirm_state == false)
 		{
-			create_button(YES, "Yes", { -0.5, 0.0 }, 100.0f, 45.0f);
-			create_button(NO, "No", { 0.2, 0.0 }, 100.0f, 45.0f);
+			create_button(YES, "Yes", { -0.5f, 0.0f }, 100.0f, 45.0f);
+			create_button(NO, "No", { 0.2f, 0.0f }, 100.0f, 45.0f);
 			confirm_state = true;
 		}
 		break;
@@ -84,25 +84,25 @@ void switchbuttonstate(int state)
 
 	case LEVELSELECT:
 		free_button();
-		create_button(GS_LEVEL1, "Level 1", { -0.2,-0.2 }, 200.0f, 45.0f);
-		create_button(GS_LEVEL2, "Level 2", { -0.2,-0.35 }, 200.0f, 45.0f);
-		create_button(GS_LEVEL3, "Level 3", { -0.2,-0.50 }, 200.0f, 45.0f);
-		create_button(GS_LEVEL4, "Level 4", { -0.2,-0.65 }, 200.0f, 45.0f);
-		create_button(GS_LEVEL5, "Level 5", { -0.2,-0.80 }, 200.0f, 45.0f);
+		create_button(GS_LEVEL1, "Level 1", { -0.2f,-0.2f }, 200.0f, 45.0f);
+		create_button(GS_LEVEL2, "Level 2", { -0.2f,-0.35f }, 200.0f, 45.0f);
+		create_button(GS_LEVEL3, "Level 3", { -0.2f,-0.50f }, 200.0f, 45.0f);
+		create_button(GS_LEVEL4, "Level 4", { -0.2f,-0.65f }, 200.0f, 45.0f);
+		create_button(GS_LEVEL5, "Level 5", { -0.2f,-0.80f }, 200.0f, 45.0f);
 
-		create_button(GS_RESTART, "Back", { 0.4,-0.80 }, 100.0f, 45.0f);
+		create_button(GS_RESTART, "Back", { 0.4f,-0.80f }, 100.0f, 45.0f);
 		break;
 
 	case TUTORIAL:
 		free_button();
 		display_tutorial = true;
-		create_button(GS_RESTART, "Back", { -0.9, 0.80 }, 100.0f, 45.0f);
+		create_button(GS_RESTART, "Back", { -0.9f, 0.80f }, 100.0f, 45.0f);
 		break;
 
 	case CREDITS:
 		free_button();
 		display_credits = true;
-		create_button(GS_RESTART, "Back", { 0.4,-0.80 }, 100.0f, 45.0f);
+		create_button(GS_RESTART, "Back", { 0.4f,-0.80f }, 100.0f, 45.0f);
 		break;
 
 	case OPTIONS:

@@ -154,11 +154,13 @@ void Input_menu_mode()
 		if (guidePage >= 0 && guidePage < 3 && AEInputCheckReleased(AEVK_D))
 		{
 			++guidePage;
+			std::cout << guidePage << std::endl;
 		}
 		// previous
 		if (guidePage > 0 && guidePage < 4 && AEInputCheckReleased(AEVK_A))
 		{
 			--guidePage;
+			std::cout << guidePage << std::endl;
 		}
 	}
 }

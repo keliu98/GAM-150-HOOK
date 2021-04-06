@@ -22,14 +22,14 @@ void menu_Initialize()
 
 	AEGfxSetCamPosition(0, 0); // reset cam pos
 
-	create_button(GS_LEVEL1, "Start Game", { -0.2,-0.10 }, 200.0f, 45.0f);
-	create_button(LEVELSELECT, "Select Level", { -0.2,-0.25 }, 200.0f, 45.0f);
-	create_button(TUTORIAL, "Tutorial", { -0.2,-0.40 }, 200.0f, 45.0f);
+	create_button(GS_LEVEL1, "Start Game", { -0.2f,-0.10f }, 200.0f, 45.0f);
+	create_button(LEVELSELECT, "Select Level", { -0.2f,-0.25f }, 200.0f, 45.0f);
+	create_button(TUTORIAL, "Tutorial", { -0.2f,-0.40f }, 200.0f, 45.0f);
 
-	create_button(OPTIONS, "Options", { -0.2,-0.55 }, 200.0f, 45.0f);
-	create_button(CREDITS, "Credits", { -0.2,-0.70 }, 200.0f, 45.0f);
+	create_button(OPTIONS, "Options", { -0.2f,-0.55f }, 200.0f, 45.0f);
+	create_button(CREDITS, "Credits", { -0.2f,-0.70f }, 200.0f, 45.0f);
 
-	create_button(GS_QUIT, "Quit Game", { -0.2,-0.85 }, 200.0f, 45.0f);
+	create_button(GS_QUIT, "Quit Game", { -0.2f,-0.85f }, 200.0f, 45.0f);
 	
 }
 
@@ -52,10 +52,10 @@ void menu_Draw() {
 				update_render_guide(-400.0f, -270.0f);
 				break;
 			case 2:
-				update_render_guide(400.0f, -270.0f);
+				update_render_guide(400.0f, 250.0f);
 				break;
 			case 3:
-				update_render_guide(-400.0f, -270.0f);
+				update_render_guide(-400.0f, 250.0f);
 				break;
 		}
 	}

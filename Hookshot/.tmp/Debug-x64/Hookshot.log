@@ -1,12 +1,2 @@
 ﻿  levelUI.cpp
-C:\Users\egita\Desktop\SiT Stuff\Sem 2\CSD 1450 - Software Development 2\GAM-150-HOOK\Hookshot\Code\levelUI.cpp(55,73): warning C4305: 'initializing': truncation from 'double' to 'f32'
-C:\Users\egita\Desktop\SiT Stuff\Sem 2\CSD 1450 - Software Development 2\GAM-150-HOOK\Hookshot\Code\levelUI.cpp(79,55): warning C4305: 'initializing': truncation from 'double' to 'f32'
-C:\Users\egita\Desktop\SiT Stuff\Sem 2\CSD 1450 - Software Development 2\GAM-150-HOOK\Hookshot\Code\levelUI.cpp(87,67): warning C4305: 'initializing': truncation from 'double' to 'f32'
-C:\Users\egita\Desktop\SiT Stuff\Sem 2\CSD 1450 - Software Development 2\GAM-150-HOOK\Hookshot\Code\levelUI.cpp(88,68): warning C4305: 'initializing': truncation from 'double' to 'f32'
-C:\Users\egita\Desktop\SiT Stuff\Sem 2\CSD 1450 - Software Development 2\GAM-150-HOOK\Hookshot\Code\levelUI.cpp(89,68): warning C4305: 'initializing': truncation from 'double' to 'f32'
-C:\Users\egita\Desktop\SiT Stuff\Sem 2\CSD 1450 - Software Development 2\GAM-150-HOOK\Hookshot\Code\levelUI.cpp(90,68): warning C4305: 'initializing': truncation from 'double' to 'f32'
-C:\Users\egita\Desktop\SiT Stuff\Sem 2\CSD 1450 - Software Development 2\GAM-150-HOOK\Hookshot\Code\levelUI.cpp(91,68): warning C4305: 'initializing': truncation from 'double' to 'f32'
-C:\Users\egita\Desktop\SiT Stuff\Sem 2\CSD 1450 - Software Development 2\GAM-150-HOOK\Hookshot\Code\levelUI.cpp(93,65): warning C4305: 'initializing': truncation from 'double' to 'f32'
-C:\Users\egita\Desktop\SiT Stuff\Sem 2\CSD 1450 - Software Development 2\GAM-150-HOOK\Hookshot\Code\levelUI.cpp(99,66): warning C4305: 'initializing': truncation from 'double' to 'f32'
-C:\Users\egita\Desktop\SiT Stuff\Sem 2\CSD 1450 - Software Development 2\GAM-150-HOOK\Hookshot\Code\levelUI.cpp(105,65): warning C4305: 'initializing': truncation from 'double' to 'f32'
   Hookshot.vcxproj -> C:\Users\egita\Desktop\SiT Stuff\Sem 2\CSD 1450 - Software Development 2\GAM-150-HOOK\Hookshot\\bin\Debug-x64\Hookshot.exe
