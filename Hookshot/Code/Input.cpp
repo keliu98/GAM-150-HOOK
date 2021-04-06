@@ -2,12 +2,32 @@
 #include"collision.h"
 
 bool PAUSE = false;
+bool FULLSCREEN = false;
+
+static void fullScreen()
+{
+	if (AEInputCheckReleased(AEVK_F))
+	{
+		if (!FULLSCREEN)
+		{
+			FULLSCREEN = true;
+			AEToogleFullScreen(FULLSCREEN);
+		}
+
+		else
+		{
+			FULLSCREEN = false;
+			AEToogleFullScreen(FULLSCREEN);
+		}
+	}
+}
 
 void Input_g_mode() {
 
 	float CHARACTER_ACCEL_HORI = 500.0f;
 
 	AEInputUpdate();
+	fullScreen();
 
 	if (AEInputCheckTriggered(AEVK_ESCAPE))
 		PAUSE = !PAUSE;
@@ -93,6 +113,7 @@ void Input_menu_mode()
 {
 	if (PAUSE != true)
 		AEInputUpdate();
+	fullScreen();
 
 	int cursor_x;
 	int cursor_y;
@@ -158,3 +179,6 @@ void Input_menu_mode()
 		}
 	}
 }
+
+
+

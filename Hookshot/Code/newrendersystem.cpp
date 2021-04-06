@@ -260,8 +260,8 @@ void update_render_guide(float x, float y)
 
 	// make it translate left a bit -? for later
 	render.pos = {x, y};
-	render.x_scale = 1600.0f;
-	render.y_scale = 1200.0f;
+	render.x_scale = (float)(WINDOW_WIDTH * 2);
+	render.y_scale = (float)(WINDOW_HEIGHT * 2 + 50);
 	render.pMesh = square_mesh;
 	render.pTexture = guides;
 	render.dir = 0;
@@ -291,7 +291,7 @@ void update_render_door()
 void update_render_bg()
 {
 	Render render;
-	static float scale_x = 800.0f, scale_y = 600.0f;
+	static float scale_x = (float)WINDOW_WIDTH, scale_y = (float)WINDOW_HEIGHT;
 
 	// make it translate left a bit -? for later
 	render.pos = center_point();

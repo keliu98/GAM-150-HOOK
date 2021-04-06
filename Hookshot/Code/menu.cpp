@@ -66,16 +66,16 @@ void menu_Draw() {
 		switch (guidePage)
 		{
 			case 0:
-				update_render_guide(400.0f, -300.0f);
+				update_render_guide(400.0f, -270.0f);
 				break;
 			case 1:
-				update_render_guide(-400.0f, -300.0f);
+				update_render_guide(-400.0f, -270.0f);
 				break;
 			case 2:
-				update_render_guide(400.0f, 300.0f);
+				update_render_guide(400.0f, -270.0f);
 				break;
 			case 3:
-				update_render_guide(-400.0f, 300.0f);
+				update_render_guide(-400.0f, -270.0f);
 				break;
 		}
 	}

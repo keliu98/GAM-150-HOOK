@@ -39,7 +39,7 @@
 float	 g_dt;
 double	 g_appTime;
 int      WINDOW_WIDTH = 800;
-int      WINDOW_HEIGHT = 600;
+int      WINDOW_HEIGHT = 500;
 size_t   TOTAL_LIVES = 3;
 char	 font;
 char	 font_italic;
@@ -61,7 +61,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	//Intialise System
 	// Using custom window procedure
 	AESysInit(hInstance, nCmdShow, WINDOW_WIDTH, WINDOW_HEIGHT, 1, 60, true, NULL);
-
+	
 	// init font id:
 	font = AEGfxCreateFont("../Fonts/Pixel Digivolve.otf", 24);
 	font_italic = AEGfxCreateFont("../Fonts/Pixel Digivolve Italic.otf", 16);
