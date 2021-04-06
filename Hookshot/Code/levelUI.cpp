@@ -2,19 +2,29 @@
 
 static char	font_to_use;
 bool confirm_state = false;
+bool full_screen = true;
+bool sound = true;
 
 //For buttons to switch
-const int YES = 100;
-const int NO = 101;
+const int CONFIRM_QUIT = 100;
+
+const int PAUSE_MENU = 92;
+const int OPTIONS_INGAME = 93;
+const int FULLSCREEN = 94;
+const int SOUND = 95;
 
 const int TUTORIAL = 96;
 const int LEVELSELECT = 97;
 const int CREDITS = 98;
 const int OPTIONS = 99;
 
+
 //To check if there is a need to display credits and tutorial
 bool display_credits = false;
 bool display_tutorial = false;
+
+
+const float BUTTONSPACE_Y = 0.18f;
 
 
 
@@ -52,7 +62,9 @@ void UpdatePauseMenu()
 	if (PAUSE == true && buttons.empty())
 	{
 		//Buttons works for display now need to make it so that when it enter pause mode the input is based on the menu input and not game input
-		create_button(GS_RESTART, "Restart Game", { -0.2f,-0.2f }, 200.0f, 45.0f);
+		create_button(GS_RESTART, "Restart Lvl", { -0.2f,-0.0f }, 200.0f, 45.0f);
+		create_button(OPTIONS_INGAME, "Options", { -0.2f,-BUTTONSPACE_Y }, 200.0f, 45.0f);
+		create_button(GS_MENU, "Return Menu", { -0.2f, -BUTTONSPACE_Y * 2 }, 200.0f, 45.0f);
 	}
 	else if (PAUSE == false && !buttons.empty())
 	{
@@ -68,27 +80,53 @@ void switchbuttonstate(int state)
 		next = GS_LEVEL1;
 		break;
 
+	case GS_LEVEL2:
+		next = GS_LEVEL2;
+		break;
+
+	case GS_LEVEL3:
+		next = GS_LEVEL3;
+		break;
+
+	case GS_LEVEL4:
+		next = GS_LEVEL4;
+		break;
+
+	case GS_LEVEL5:
+		next = GS_LEVEL5;
+		break;
+
 	case GS_RESTART:
 		next = GS_RESTART;
+		break;
+
+	case GS_MENU:
+		next = GS_MENU;
 		break;
 
 	case GS_QUIT:
 		if (confirm_state == false)
 		{
-			create_button(YES, "Yes", { -0.5f, 0.0f }, 100.0f, 45.0f);
-			create_button(NO, "No", { 0.2f, 0.0f }, 100.0f, 45.0f);
+			create_button(CONFIRM_QUIT, "You Sure ?", { -0.2f, -0.18f * 5 }, 200.0f, 45.0f);
 			confirm_state = true;
 		}
 		break;
 
+	case CONFIRM_QUIT:
+		if (confirm_state == true)
+		{
+			next = GS_QUIT;
+			confirm_state = false;
+		}
+		break;
 
 	case LEVELSELECT:
 		free_button();
-		create_button(GS_LEVEL1, "Level 1", { -0.2f,-0.2f }, 200.0f, 45.0f);
-		create_button(GS_LEVEL2, "Level 2", { -0.2f,-0.35f }, 200.0f, 45.0f);
-		create_button(GS_LEVEL3, "Level 3", { -0.2f,-0.50f }, 200.0f, 45.0f);
-		create_button(GS_LEVEL4, "Level 4", { -0.2f,-0.65f }, 200.0f, 45.0f);
-		create_button(GS_LEVEL5, "Level 5", { -0.2f,-0.80f }, 200.0f, 45.0f);
+		create_button(GS_LEVEL1, "Level 1", { -0.2f, 0.0f }, 200.0f, 45.0f);
+		create_button(GS_LEVEL2, "Level 2", { -0.2f,-BUTTONSPACE_Y}, 200.0f, 45.0f);
+		create_button(GS_LEVEL3, "Level 3", { -0.2f,-BUTTONSPACE_Y * 2 }, 200.0f, 45.0f);
+		create_button(GS_LEVEL4, "Level 4", { -0.2f,-BUTTONSPACE_Y * 3 }, 200.0f, 45.0f);
+		create_button(GS_LEVEL5, "Level 5", { -0.2f,-BUTTONSPACE_Y * 4 }, 200.0f, 45.0f);
 
 		create_button(GS_RESTART, "Back", { 0.4f,-0.80f }, 100.0f, 45.0f);
 		break;
@@ -106,17 +144,52 @@ void switchbuttonstate(int state)
 		break;
 
 	case OPTIONS:
+		free_button();
+		create_button(FULLSCREEN, "Toggle Screen", { -0.25f,0.0f }, 220.0f, 45.0f);
+		create_button(SOUND, "Toggle Music", { -0.25f,-BUTTONSPACE_Y}, 220.0f, 45.0f);
+
+		create_button(GS_RESTART, "Back", { 0.4f,-0.80f }, 100.0f, 45.0f);
 		break;
 
-	case YES:
-		next = GS_QUIT;
+	case OPTIONS_INGAME:
+		free_button();
+		create_button(FULLSCREEN, "Toggle Screen", { -0.25f,0.0f }, 220.0f, 45.0f);
+		create_button(SOUND, "Toggle Music", { -0.25f,-BUTTONSPACE_Y }, 220.0f, 45.0f);
+
+		create_button(PAUSE_MENU, "Back", { 0.4f,-0.80f }, 100.0f, 45.0f);
 		break;
 
-	case NO:
-		confirm_state = false;
-		buttons.erase(buttons.end() - 1);
-		buttons.erase(buttons.end() - 1);
+	case PAUSE_MENU:
+		free_button();
+		create_button(GS_RESTART, "Restart Lvl", { -0.2f,-0.0f }, 200.0f, 45.0f);
+		create_button(OPTIONS_INGAME, "Options", { -0.2f,-BUTTONSPACE_Y }, 200.0f, 45.0f);
+		create_button(GS_MENU, "Return Menu", { -0.2f, -BUTTONSPACE_Y * 2 }, 200.0f, 45.0f);
 		break;
+
+	case FULLSCREEN:
+		if (full_screen == true)
+		{
+			AEToogleFullScreen(false);
+			full_screen = false;
+		}
+		else
+		{
+			AEToogleFullScreen(true);
+			full_screen = true;
+		}
+		break;
+
+	case SOUND:
+		//TODO TURN ON AND OFF SOUND
+		if (sound == true)
+		{
+
+		}
+		else
+		{
+
+		}
+
 
 	}//End of switch case
 }

@@ -2,14 +2,13 @@
 
 int guidePage;
 
-//TODO~!!! FREE MEMORY AND CREATE BUTTONS ARRAY, pointer to a list of buttons
-
 void menu_Load() {
 	load_render();//change this during merge
 	load_button_texture();//change this during merge
 	load_guide_texture();
 	music_Load();
 	load_credits_render();
+	music_Initialize("../Music/bensound-ukulele.mp3");
 }
 
 void menu_Initialize()
@@ -17,24 +16,28 @@ void menu_Initialize()
 	guidePage = 0;
 	display_credits = false;
 	display_tutorial = false;
-
-	music_Initialize("../Music/bensound-ukulele.mp3");
+	confirm_state = false;
 
 	AEGfxSetCamPosition(0, 0); // reset cam pos
 
-	create_button(GS_LEVEL1, "Start Game", { -0.2f,-0.10f }, 200.0f, 45.0f);
-	create_button(LEVELSELECT, "Select Level", { -0.2f,-0.25f }, 200.0f, 45.0f);
-	create_button(TUTORIAL, "Tutorial", { -0.2f,-0.40f }, 200.0f, 45.0f);
+	create_button(GS_LEVEL1, "Start Game", { -0.2f,-0.0f }, 200.0f, 45.0f);
+	create_button(LEVELSELECT, "Select Level", { -0.2f, -BUTTONSPACE_Y }, 200.0f, 45.0f);
+	create_button(TUTORIAL, "Tutorial", { -0.2f, -BUTTONSPACE_Y * 2 }, 200.0f, 45.0f);
 
-	create_button(OPTIONS, "Options", { -0.2f,-0.55f }, 200.0f, 45.0f);
-	create_button(CREDITS, "Credits", { -0.2f,-0.70f }, 200.0f, 45.0f);
+	create_button(OPTIONS, "Options", { -0.2f, -BUTTONSPACE_Y * 3 }, 200.0f, 45.0f);
+	create_button(CREDITS, "Credits", { -0.2f, -BUTTONSPACE_Y * 4 }, 200.0f, 45.0f);
 
-	create_button(GS_QUIT, "Quit Game", { -0.2f,-0.85f }, 200.0f, 45.0f);
+	create_button(GS_QUIT, "Quit Game", { -0.2f, -BUTTONSPACE_Y * 5 }, 200.0f, 45.0f);
 	
 }
 
 void menu_Update() {
+
+	//Handling input
+	AEInputUpdate();
 	Input_menu_mode();
+
+	//Updating buttons position and translating
 	UpdateButton();
 }
 
@@ -60,14 +63,14 @@ void menu_Draw() {
 		}
 	}
 
-	update_render_buttons();//change this during merge
+	update_render_buttons();
 }
 
 void menu_Free() {
-	music_Free();
 	free_button();
 }
 
 void menu_Unload() {
 	unload_render();//change this during merge
+	music_Free();
 }

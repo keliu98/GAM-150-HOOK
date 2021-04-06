@@ -84,6 +84,7 @@ void Level1_Initialize()
 void Level1_Update()
 {
 	// Handling Input
+	AEInputUpdate();
 	Input_g_mode();
 
 	if (PAUSE == false)
@@ -145,6 +146,7 @@ void Level1_Draw()
 void Level1_Free()
 {
 	free_objects();
+	free_button();
 }
 
 //  Called if change state and State is NOT reset. ie Change levels. Do not unload if reseting.

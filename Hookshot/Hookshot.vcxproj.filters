@@ -1,44 +1,126 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="Code\camera.cpp" />
-    <ClCompile Include="Code\collision.cpp" />
-    <ClCompile Include="Code\enemy.cpp" />
-    <ClCompile Include="Code\GameStateManager.cpp" />
-    <ClCompile Include="Code\Hook.cpp" />
-    <ClCompile Include="Code\Input.cpp" />
-    <ClCompile Include="Code\Levels\Level1.cpp" />
-    <ClCompile Include="Code\LoadMap.cpp" />
-    <ClCompile Include="Code\menu.cpp" />
-    <ClCompile Include="Code\music.cpp" />
-    <ClCompile Include="Code\newrendersystem.cpp" />
-    <ClCompile Include="Code\ObjectManager.cpp" />
-    <ClCompile Include="Code\pch.cpp" />
-    <ClCompile Include="Code\physics.cpp" />
-    <ClCompile Include="Code\levelUI.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="Code\Levels\Level2.cpp" />
-    <ClCompile Include="Code\Levels\Level3.cpp" />
+    <ClCompile Include="Code\camera.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\collision.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\enemy.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\GameStateManager.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Hook.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Input.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Levels\Level1.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Levels\Level3.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Levels\Level2.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\levelUI.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\LoadMap.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\menu.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\music.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\newrendersystem.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\ObjectManager.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\physics.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\pch.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Code\camera.h" />
-    <ClInclude Include="Code\collision.h" />
-    <ClInclude Include="Code\enemy.h" />
-    <ClInclude Include="Code\GameStateList.h" />
-    <ClInclude Include="Code\GameStateManager.h" />
-    <ClInclude Include="Code\Hook.h" />
-    <ClInclude Include="Code\Input.h" />
-    <ClInclude Include="Code\Levels\Level1.h" />
-    <ClInclude Include="Code\extern.h" />
-    <ClInclude Include="Code\Levels\Level2.h" />
-    <ClInclude Include="Code\levelUI.h" />
-    <ClInclude Include="Code\LoadMap.h" />
-    <ClInclude Include="Code\menu.h" />
-    <ClInclude Include="Code\music.h" />
-    <ClInclude Include="Code\newrendersystem.h" />
-    <ClInclude Include="Code\ObjectManager.h" />
-    <ClInclude Include="Code\pch.h" />
-    <ClInclude Include="Code\physics.h" />
-    <ClInclude Include="Code\Levels\Level3.h" />
+    <ClInclude Include="Code\camera.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\collision.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\enemy.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\extern.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\GameStateList.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\GameStateManager.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Hook.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Input.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Levels\Level1.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Levels\Level2.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Levels\Level3.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\levelUI.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\LoadMap.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\menu.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\music.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\newrendersystem.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\ObjectManager.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\pch.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\physics.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Include">
+      <UniqueIdentifier>{e2806fc2-e04d-4c9a-9064-fa3c2bf7ff6f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source">
+      <UniqueIdentifier>{9fe5b1f2-d6ce-4e6f-8b09-7a6ce126d93f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>
