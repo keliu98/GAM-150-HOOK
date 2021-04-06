@@ -1,9 +1,5 @@
 #include "pch.h"
 
-AEGfxVertexList* button = 0;
-AEGfxVertexList* text = 0;
-AEGfxTexture * pTex1; 
-bool openGuide;
 int guidePage;
 
 //TODO~!!! FREE MEMORY AND CREATE BUTTONS ARRAY, pointer to a list of buttons
@@ -13,27 +9,31 @@ void menu_Load() {
 	load_button_texture();//change this during merge
 	load_guide_texture();
 	music_Load();
+	load_credits_render();
+	load_tutorial_render();
 
-	create_button(GS_LEVEL1, "Start Game", { -0.2f,-0.2f }, 200.0f, 45.0f);
-	create_button(GS_LEVEL_SELECT, "Select Level", { -0.2f,-0.35f }, 200.0f, 45.0f);
-	create_button(GS_INSTRUCTION, "Instructions", { -0.2f,-0.50f }, 200.0f, 45.0f);
-	create_button(GS_CREDITS, "Credits", { -0.2f,-0.65f }, 200.0f, 45.0f);
-	create_button(GS_QUIT, "Quit Game", { -0.2f,-0.80f }, 200.0f, 45.0f);
+
 }
 
 void menu_Initialize()
 {	
 	guidePage = 0;
-	openGuide = false;
-	//change this during merge
-	AEVec2 pos{ 0.0f, 0.0f };
+	display_credits = false;
+	display_tutorial = false;
 
-
-	//change this during merge
-	AEGfxSetCamPosition(0, 0); // reset cam pos
-	//AEVec2 pos2{ -300.0f, -300.0f };
-	//create_button(TITLE, pos2, 600.0f);//change this during merge
 	music_Initialize("../Music/bensound-ukulele.mp3");
+
+	AEGfxSetCamPosition(0, 0); // reset cam pos
+
+	create_button(GS_LEVEL1, "Start Game", { -0.2,-0.10 }, 200.0f, 45.0f);
+	create_button(LEVELSELECT, "Select Level", { -0.2,-0.25 }, 200.0f, 45.0f);
+	create_button(TUTORIAL, "Tutorial", { -0.2,-0.40 }, 200.0f, 45.0f);
+
+	create_button(OPTIONS, "Options", { -0.2,-0.55 }, 200.0f, 45.0f);
+	create_button(CREDITS, "Credits", { -0.2,-0.70 }, 200.0f, 45.0f);
+
+	create_button(GS_QUIT, "Quit Game", { -0.2,-0.85 }, 200.0f, 45.0f);
+	
 }
 
 void menu_Update() {
@@ -42,26 +42,9 @@ void menu_Update() {
 }
 
 void menu_Draw() {
-
-	update_render_buttons();//change this during merge
-
-	static char text[100];
-	memset(text, 0, 100 * sizeof(char));
-
-	sprintf_s(text, "Hookshot\n");
-	PrintText(text, NORMAL, { -0.15f, 0.2f });
-
-	// PrintText(text, NORMAL, { -0.42f, 0.0f });
-	// sprintf_s(text, "PRESS 1 for Level 1\n");
-	// PrintText(text, NORMAL, { -0.42f, -0.15f });
-	// sprintf_s(text, "PRESS 2 for Level 2\n");
-	// PrintText(text, NORMAL, { -0.42f, -0.25f });
-	// sprintf_s(text, "PRESS 3 for Level 3\n");
-	// PrintText(text, NORMAL, { -0.42f, -0.35f });
-	// sprintf_s(text, "PRESS I FOR INSTRUCTIONS\n");
-
-	// open guide
-	if (openGuide)
+	if (display_credits == true)
+		update_render_credits();
+	if (display_tutorial == true)
 	{
 		switch (guidePage)
 		{
@@ -79,14 +62,21 @@ void menu_Draw() {
 				break;
 		}
 	}
+	update_render_buttons();//change this during merge
+
+	static char text[100];
+	memset(text, 0, 100 * sizeof(char));
+
+	sprintf_s(text, "Hookshot\n");
+	PrintText(text, NORMAL, { -0.15f, 0.2f });
 
 }
 
 void menu_Free() {
 	music_Free();
+	free_button();
 }
 
 void menu_Unload() {
 	unload_render();//change this during merge
-	free_button();
 }

@@ -149,7 +149,6 @@ void Level1_Draw()
 void Level1_Free()
 {
 	free_objects();
-
 }
 
 //  Called if change state and State is NOT reset. ie Change levels. Do not unload if reseting.

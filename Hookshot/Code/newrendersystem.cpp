@@ -52,6 +52,12 @@ AEGfxTexture* bg;
 //Pointer to door
 AEGfxTexture* door;
 
+//Pointer to credits texture
+AEGfxTexture* credits;
+
+//Pointer to tutorial texture
+AEGfxTexture* tutorial;
+
 
 // counter to swap textures;
 int counter = 0;
@@ -249,10 +255,20 @@ void load_character_render_swingleft()
 // -------------ADDED CODE FROM LIU KE MERGE------------------------
 //------------------------------TO GENERALISED AND COMBINED INTO A SINGLE FUNCTION, SWITCH CASE - WEI WEN TO LIU KE----------------------------------------------
 
+void load_credits_render()
+{
+	credits = load_texture("../Images/Credits.png");
+}
+
 void load_guide_texture()
 {
 	guides = load_texture("../Images/Guides.png");
 }
+
+// void load_tutorial_render()
+// {
+// 	tutorial = load_texture("../Images/Tutorial.png");
+// }
 
 void update_render_guide(float x, float y)
 {
@@ -287,6 +303,37 @@ void update_render_door()
 	draw_render(render);
 }
 
+void update_render_credits()
+{
+	Render render;
+	static float scale_x = 800.0f, scale_y = 600.0f;
+
+	// make it translate left a bit -? for later
+	render.pos = { 0,0 };
+	render.x_scale = scale_x;
+	render.y_scale = scale_y;
+	render.pMesh = square_mesh;
+	render.pTexture = credits;
+	render.dir = 0;
+
+	draw_render(render);
+}
+
+void update_render_tutorial()
+{
+	Render render;
+	static float scale_x = 800.0f, scale_y = 600.0f;
+
+	// make it translate left a bit -? for later
+	render.pos = { 0,0 };
+	render.x_scale = scale_x;
+	render.y_scale = scale_y;
+	render.pMesh = square_mesh;
+	render.pTexture = tutorial;
+	render.dir = 0;
+
+	draw_render(render);
+}
 
 void update_render_bg()
 {
