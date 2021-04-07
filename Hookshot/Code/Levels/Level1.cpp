@@ -7,7 +7,7 @@ void Level1_Load()
 	{
 		// For debugging map binary data
 		// PrintRetrievedInformation();
-	}
+	} 
 	else
 	{
 		next = GS_QUIT;
