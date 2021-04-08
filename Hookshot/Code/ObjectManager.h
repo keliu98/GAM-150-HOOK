@@ -8,9 +8,6 @@ extern Character* character;
 struct Hook;
 extern Hook* hook;
 
-//extern size_t count = 0;
-
-
 struct Button;
 extern std::vector<Button> buttons;
 
@@ -24,6 +21,9 @@ extern std::vector<Enemy> enemies;
 //Extern position of end goal
 extern AEVec2* end_position;
 
+//Declaration for spikes
+struct Spike;
+extern std::vector<Spike> spikes;
 
 extern int lives;
 extern int ammo;
@@ -147,7 +147,13 @@ struct Wall {
 	int type;
 
 	AEVec2 position;
-	AABB aabb;
+};
+
+struct Spike{
+	float scale;
+	AEVec2 position;
+
+	AABB  aabb;
 };
 
 
@@ -193,6 +199,9 @@ void create_enemy(int enemy_type, AEVec2 pos);
 
 // Inserts a wall into the vector list walls
 void create_wall(int type, float scale, AEVec2 pos);
+
+//Inserts a spikes into the vector list walls.
+void create_spikes(float scale, AEVec2 pos);
 
 // When enemy is defeated by players (pass in enemy vec and index to delete)
 void destory_enemy(std::vector<Enemy>&, int index); 

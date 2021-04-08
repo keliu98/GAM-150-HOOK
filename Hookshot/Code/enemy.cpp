@@ -41,6 +41,7 @@ void skitter_AI(size_t i) {
 
 	if (character->counter == 0 && (CollisionIntersection_RectRect(character->aabb, character->velocity, enemies[i].aabb, enemies[i].velocity))) {
 		--character->health;
+		ammoD = 3;
 		release_hook();
 		calculate_knockback(character->pos, enemies[i].pos, character->velocity, character->knockback);
 		character->counter = 180;
@@ -77,6 +78,20 @@ void skitter_AI(size_t i) {
 	if (enemies[i].health <= 0)
 		enemies.erase(enemies.begin() + i);
 
+}
+
+void update_spikes()
+{
+	for (Spike& spike : spikes)
+	{
+		if (character->counter == 0 && (CollisionIntersection_RectRect(character->aabb, character->velocity, spike.aabb, {0,0}))) {
+			--character->health;
+			release_hook();
+			ammoD = 3;
+			calculate_knockback(character->pos, spike.position, character->velocity, character->knockback);
+			character->counter = 180;
+		}
+	}
 }
 
 void update_hook_attack()
