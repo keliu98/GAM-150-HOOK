@@ -20,6 +20,7 @@ extern char		font_italic;
 
 //For checking if game is paused and if to display credits
 extern bool PAUSE;
+extern bool sound_mute;
 extern bool display_credits;
 extern bool display_tutorial;
 extern bool confirm_state;

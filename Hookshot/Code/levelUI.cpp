@@ -3,7 +3,7 @@
 static char	font_to_use;
 bool confirm_state = false;
 bool full_screen = true;
-bool sound = true;
+bool sound_mute = false;
 
 //For buttons to switch
 const int CONFIRM_QUIT = 100;
@@ -181,15 +181,15 @@ void switchbuttonstate(int state)
 
 	case SOUND:
 		//TODO TURN ON AND OFF SOUND
-		if (sound == true)
+		if (sound_mute == false)
 		{
 			music_mute(true);
-			sound = false;
+			sound_mute = true;
 		}
 		else
 		{
 			music_mute(false);
-			sound = true;
+			sound_mute = false;
 		}
 
 

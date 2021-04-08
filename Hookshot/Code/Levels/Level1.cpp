@@ -1,7 +1,12 @@
 #include "../pch.h"
+static bool check;
 
 void Level1_Load()
 {
+	std::cout << "LOADDDDDD" << std::endl;
+	music_Load("../Music/EVERYBODYS DANCING - WorldMusic MSCLAT1_06.wav");
+
+
 	//../Code/Levels/Exported.txt
 	if (ImportMapDataFromTxt("../Levels/Level_1.txt"))
 	{
@@ -70,12 +75,6 @@ void Level1_Initialize()
 {
 	PAUSE = false;
 
-	if (!sound)
-	{
-		// Load music
-		music_Initialize("../Music/EVERYBODYS DANCING - WorldMusic MSCLAT1_06.wav");
-	}
-
 	//Translate the map data into the gameworld by creating objects
 	IntializeLevel();
 
@@ -85,6 +84,9 @@ void Level1_Initialize()
 	//Intialise physic
 	physics_intialize();
 
+	music_Initialize();
+
+	
 }
 
 void Level1_Update()
@@ -92,6 +94,7 @@ void Level1_Update()
 	// Handling Input
 	AEInputUpdate();
 	Input_g_mode();
+
 
 	if (PAUSE == false)
 	{
@@ -121,6 +124,14 @@ void Level1_Update()
 
 	//Updates the button interaction
 	UpdateButton();
+
+	//if (!sound_mute && !check)
+	//{
+	//	music_Initialize();
+	//	check = true;
+	//	std::cout << " RUN: " << std::endl;
+	//}
+
 }
 
 void Level1_Draw()
@@ -159,6 +170,7 @@ void Level1_Free()
 //  Called if change state and State is NOT reset. ie Change levels. Do not unload if reseting.
 void Level1_Unload()
 {
+	music_Unload();
 	FreeMapData();
 	unload_render();
 }

@@ -6,7 +6,7 @@ static FMOD::System* music_system = nullptr;
 static FMOD::Channel* channel = nullptr;
 
 
-void music_Load()
+void music_Load(const char* file)
 {
     // Create the main system object.
     result = FMOD::System_Create(&music_system);
@@ -14,19 +14,27 @@ void music_Load()
     // Initialize FMOD.
     if (result == FMOD_OK)
         music_system->init(8, FMOD_INIT_NORMAL, nullptr);
+
+    // Create the sound.
+    result = music_system->createSound(file, FMOD_LOOP_NORMAL, 0, &music);
 }
 
 
-void music_Initialize(const char* file) // "../Music/bensound-ukulele.mp3"
+void music_Initialize() // "../Music/bensound-ukulele.mp3"
 {
-    // Create the sound.
-    result = music_system->createSound(file, FMOD_LOOP_NORMAL, 0, &music);
-
     // Play the sound.
     music_system->playSound(music, 0, false, &channel);
+
+    if (sound_mute == true)
+        music_mute(true);
 }
 
 void music_Free()
+{
+    channel->stop();
+}
+
+void music_Unload()
 {
     // Clean up.
     music->release();

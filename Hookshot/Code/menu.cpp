@@ -6,10 +6,10 @@ void menu_Load() {
 	load_render();//change this during merge
 	load_button_texture();//change this during merge
 	load_guide_texture();
-	music_Load();
 	load_credits_render();
 	load_bg_render();
-	music_Initialize("../Music/bensound-ukulele.mp3");
+
+	music_Load("../Music/TEST OF CHARACTER - Corporate MSCCRP1_17.wav");
 }
 
 void menu_Initialize()
@@ -19,7 +19,10 @@ void menu_Initialize()
 	display_tutorial = false;
 	confirm_state = false;
 
-	music_Initialize("../Music/EVERYBODYS DANCING - WorldMusic MSCLAT1_06.wav");
+	if (!sound_mute)
+	{
+		music_Initialize();
+	}
 
 	AEGfxSetCamPosition(0, 0); // reset cam pos
 
@@ -72,10 +75,11 @@ void menu_Draw() {
 }
 
 void menu_Free() {
+	music_Free();
 	free_button();
 }
 
 void menu_Unload() {
 	unload_render();//change this during merge
-	music_Free();
+	music_Unload();
 }

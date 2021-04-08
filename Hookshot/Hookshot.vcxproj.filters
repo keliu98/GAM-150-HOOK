@@ -55,6 +55,9 @@
     <ClCompile Include="Code\collision.cpp">
       <Filter>Source</Filter>
     </ClCompile>
+    <ClCompile Include="Code\intro.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Code\camera.h">
@@ -112,6 +115,9 @@
       <Filter>Include</Filter>
     </ClInclude>
     <ClInclude Include="Code\physics.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\intro.h">
       <Filter>Include</Filter>
     </ClInclude>
   </ItemGroup>

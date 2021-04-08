@@ -6,7 +6,6 @@ bool PAUSE = false;
 void skip_intro()
 {
 	AEInputUpdate();
-	fullScreen();
 
 	if (AEInputCheckReleased(AEVK_LBUTTON))
 	{

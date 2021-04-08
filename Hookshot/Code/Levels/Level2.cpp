@@ -3,6 +3,13 @@
 
 void Level2_Load()
 {
+	//music_Load("../Music/EVERYBODYS DANCING - WorldMusic MSCLAT1_06.wav");
+	//if (!sound_mute)
+	//{
+	//	// Load music
+	//	music_Initialize();
+	//}
+
 	//../Code/Levels/Exported.txt
 	if (ImportMapDataFromTxt("../Levels/level_2.txt"))
 	{
@@ -66,9 +73,6 @@ void Level2_Load()
 
 void Level2_Initialize()
 {
-	// Load music
-	music_Initialize("../Music/EVERYBODYS DANCING - WorldMusic MSCLAT1_06.wav");
-
 	//Translate the map data into the gameworld by creating objects
 	IntializeLevel();
 
@@ -135,8 +139,8 @@ void Level2_Draw()
 // Called if change state, for everything including reset
 void Level2_Free()
 {
+	music_Free();
 	free_objects();
-
 }
 
 //  Called if change state and State is NOT reset. ie Change levels. Do not unload if reseting.
