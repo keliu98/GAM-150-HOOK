@@ -7,7 +7,7 @@ void menu_Load() {
 	load_button_texture();//change this during merge
 	load_guide_texture();
 	load_credits_render();
-	load_bg_render();
+	load_menubg_render();
 
 	music_Load("../Music/TEST OF CHARACTER - Corporate MSCCRP1_17.wav");
 }
@@ -48,7 +48,7 @@ void menu_Update() {
 }
 
 void menu_Draw() {
-	update_render_bg();
+	update_render_menubg();
 
 	if (display_credits == true)
 		update_render_credits();
