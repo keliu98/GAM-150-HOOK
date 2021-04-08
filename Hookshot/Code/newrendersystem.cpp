@@ -1,3 +1,23 @@
+/*!*************************************************************************
+****
+\file newrendersystem.cpp
+\authors: Liu Ke
+	
+
+\par DP email:  ke.liu@digipen.edu
+
+
+\par Course: CSD 1450
+\par Project: Software Engineering Project 2
+\date 020221
+
+
+\brief
+  This source file contains the implementation for all the character
+  animation
+****************************************************************************
+***/
+
 
 #include "pch.h"
 
