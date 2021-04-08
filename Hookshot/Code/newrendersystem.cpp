@@ -254,7 +254,7 @@ void load_character_render_swingleft()
 
 void load_credits_render()
 {
-	credits = load_texture("../Images/Credits.jpeg");
+	credits = load_texture("../Images/Credits.png");
 }
 
 void load_guide_texture()
@@ -264,7 +264,7 @@ void load_guide_texture()
 
 void load_menubg_render()
 {
-	menu_bg = load_texture("../Images/Title.jpeg");
+	menu_bg = load_texture("../Images/Title.png");
 
 }
 
