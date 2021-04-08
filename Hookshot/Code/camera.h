@@ -1,56 +1,89 @@
-/******************************************************************************/
-/*!
-\file         camera.h
-\author       Tan Egi, egi.tan, 2002777
-\par          egi.tan@digipen.edu
-\date         March 2, 2021
-\brief        This is the header file for camera system. 
+/*!*************************************************************************
+****
+\file camera.h
+\authors: Tan Egi
+		  Tan Wei Wen
 
-Copyright (C) 2021 DigiPen Institute of Technology.
-Reproduction or disclosure of this file or its contents without the prior 
-written consent of DigiPen Institute of Technology is prohibited.
-*/
-/******************************************************************************/
+\par DP email:  egi.tan@digipen.edu
+				t.weiwen@digipen.edu
+
+\par Course: CSD 1450
+\par Project: Software Engineering Project 2
+\date 020221
+
+
+\brief
+  This is the header file for camera system. 
+****************************************************************************
+***/
 
 #pragma once
 
 #include "pch.h"
 
 namespace Camera {
-struct BoundingBox {
-	AEVec2 min;
-	AEVec2 max;
-} typedef BoundingBox;
+
+	/**************************************************************************/
+	/*!
+		Created for camera bounding box.
+	*/
+	/**************************************************************************/
+	struct BoundingBox {
+		AEVec2 min;
+		AEVec2 max;
+	} typedef BoundingBox;
 
 }
+
+// store camera bounding box values
 static Camera::BoundingBox bounding_box;
 
-/// <summary>
-///		This is for testing the camera system.
-/// </summary>
+/**************************************************************************/
+/*!
+	This is for testing the camera system.
+*/
+/**************************************************************************/
 void draw_static_obj();
 
-/// <summary>
-///		This is for debugging to draw the camera bounding box.
-/// </summary>
+/**************************************************************************/
+/*!
+	This is for debugging to draw the camera bounding box.
+*/
+/**************************************************************************/
 void draw_cam_bounding_box(AEGfxTexture* texture);
 
-/// <summary>
-///		This function set the camera inital position. 
-/// </summary>
-/// <param name="character_pos"></param>
+/**************************************************************************/
+/*!
+	This function set the camera inital position.
+*/
+/**************************************************************************/
 void camera_init(AEVec2 character_pos);
 
-/// <summary>
-///		This function update camera position when character exit the camera bounding box.
-/// </summary>
-/// <param name="character_pos"></param>
+/**************************************************************************/
+/*!
+	This function update camera position when character exit the camera 
+	bounding box.
+*/
+/**************************************************************************/
 void camera_update(AEVec2 character_pos, AEVec2 velocity, float scale);
 
-// Get center camera value
+/**************************************************************************/
+/*!
+	Get camera's center position value.
+*/
+/**************************************************************************/
 const AEVec2 center_point();
 
-
-//ADDED IN NEW FUNCTION TO TRANSLATE CURSOR & UI - WEI WEN
+/**************************************************************************/
+/*!
+	Function to translate cursor.
+*/
+/**************************************************************************/
 void translate_cursor(int& cursor_x, int& cursor_y);
+
+/**************************************************************************/
+/*!
+	Function to translate UI.
+*/
+/**************************************************************************/
 void translate_UI(AEVec2& pos);
