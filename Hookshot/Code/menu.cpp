@@ -10,6 +10,7 @@ void menu_Load() {
 	load_guide_texture();
 	music_Load();
 	load_credits_render();
+	load_bg_render();
 }
 
 void menu_Initialize()
@@ -39,6 +40,8 @@ void menu_Update() {
 }
 
 void menu_Draw() {
+	update_render_bg();
+
 	if (display_credits == true)
 		update_render_credits();
 	if (display_tutorial == true)

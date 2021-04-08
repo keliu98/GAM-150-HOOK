@@ -2,7 +2,8 @@
 
 enum GS_STATES
 {
-	GS_MENU = 0,
+	GS_INTRO = 0,
+	GS_MENU,
 	GS_LEVEL1,
 	GS_LEVEL2,
 	GS_LEVEL3,

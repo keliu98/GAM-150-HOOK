@@ -22,6 +22,17 @@ static void fullScreen()
 	}
 }
 
+void skip_intro()
+{
+	AEInputUpdate();
+	fullScreen();
+
+	if (AEInputCheckReleased(AEVK_LBUTTON))
+	{
+		next = GS_MENU;
+	}
+}
+
 void Input_g_mode() {
 
 	float CHARACTER_ACCEL_HORI = 500.0f;

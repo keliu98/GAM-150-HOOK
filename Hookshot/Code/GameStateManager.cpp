@@ -61,6 +61,14 @@ void GSM_Update()
 		fpFree = menu_Free;
 		fpUnload = menu_Unload;
 		break;
+	case GS_INTRO:
+		fpLoad = intro_Load;
+		fpInitialize = intro_Initialize;
+		fpUpdate = intro_Update;
+		fpDraw = intro_Draw;
+		fpFree = intro_Free;
+		fpUnload = intro_Unload;
+		break;
 	case GS_LEVEL1:		
 		fpLoad = Level1_Load;
 		fpInitialize = Level1_Initialize;
