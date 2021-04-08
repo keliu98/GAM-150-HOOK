@@ -1,0 +1,17 @@
+#pragma once
+
+enum GS_STATES
+{
+	GS_INTRO = 0,
+	GS_MENU,
+	GS_LEVEL1,
+	GS_LEVEL2,
+	GS_LEVEL3,
+	GS_LEVEL4,
+	GS_LEVEL5,
+
+	GS_QUIT,
+	GS_RESTART,
+
+	GS_NONE
+};
