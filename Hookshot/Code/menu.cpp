@@ -19,7 +19,7 @@ void menu_Initialize()
 	display_credits = false;
 	display_tutorial = false;
 
-	music_Initialize("../Music/bensound-ukulele.mp3");
+	music_Initialize("../Music/EVERYBODYS DANCING - WorldMusic MSCLAT1_06.wav");
 
 	AEGfxSetCamPosition(0, 0); // reset cam pos
 

@@ -81,8 +81,6 @@ void intro_Draw()
 
 	// Draw the mesh
 	AEGfxMeshDraw(logo_mesh, AE_GFX_MDM_TRIANGLES);
-
-
 }
 
 void intro_Free()

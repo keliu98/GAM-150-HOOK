@@ -66,6 +66,8 @@ void Level2_Load()
 
 void Level2_Initialize()
 {
+	// Load music
+	music_Initialize("../Music/EVERYBODYS DANCING - WorldMusic MSCLAT1_06.wav");
 
 	//Translate the map data into the gameworld by creating objects
 	IntializeLevel();

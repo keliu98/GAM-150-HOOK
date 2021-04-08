@@ -70,6 +70,12 @@ void Level1_Initialize()
 {
 	PAUSE = false;
 
+	if (!sound)
+	{
+		// Load music
+		music_Initialize("../Music/EVERYBODYS DANCING - WorldMusic MSCLAT1_06.wav");
+	}
+
 	//Translate the map data into the gameworld by creating objects
 	IntializeLevel();
 
@@ -144,6 +150,7 @@ void Level1_Draw()
 // Called if change state, for everything including reset
 void Level1_Free()
 {
+	music_Free();
 	free_objects();
 }
 
