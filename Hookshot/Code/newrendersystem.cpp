@@ -72,6 +72,8 @@ AEGfxVertexList* animation_mesh;
 //Pointer to door
 AEGfxTexture* guides;
 
+AEGfxTexture* spike_texture;
+
 
 struct Render
 {
@@ -266,6 +268,12 @@ void load_menubg_render()
 
 }
 
+void load_spike_texture()
+{
+	spike_texture = load_texture("../Images/Spikes.png");
+}
+
+
 void update_render_guide(float x, float y)
 {
 	Render render;
@@ -364,6 +372,23 @@ void update_render_walls()
 			render.pTexture = wall_texture_top;
 		else
 			render.pTexture = wall_texture_bot;
+		render.dir = 0;
+
+		draw_render(render);
+	}
+}
+
+void update_render_spikes()
+{
+	Render render;
+
+	for (Spike const& spike : spikes)
+	{
+		render.pos = spike.position;
+		render.x_scale = spike.scale;
+		render.y_scale = spike.scale;
+		render.pMesh = square_mesh;
+		render.pTexture = spike_texture;
 		render.dir = 0;
 
 		draw_render(render);
@@ -544,7 +569,7 @@ void update_render_character()
 	{
 		draw_animation_render(render);
 	}
-	else if ((character->counter % 10) == 0)
+	else if ((character->counter % 5) == 0)
 	{
 		draw_animation_render(render);
 	}
@@ -582,6 +607,8 @@ void update_render_enemy()
 		draw_render(render);
 	}
 }
+
+
 
 
 void draw_render(Render &render)

@@ -11,6 +11,7 @@ std::vector<Button> buttons;
 std::vector < Health > heart;
 std::vector<Wall> walls;
 std::vector<Enemy> enemies;
+std::vector<Spike> spikes;
 AEVec2* end_position;
 
 Hook* create_hook() {
@@ -61,8 +62,8 @@ Character* create_character(AEVec2 pos)
 		0,			//damage counter
 	};
 
-	character->knockback.y = create_vel_height(20.0f, GRAVITY);
-	character->knockback.x = 350.0f;
+	character->knockback.y = create_vel_height(10.0f, GRAVITY);
+	character->knockback.x = 150.0f;
 
 	return character;
 }
@@ -171,5 +172,17 @@ void create_wall(int type, float scale, AEVec2 pos)
 	wall.scale = scale;
 	wall.position = pos;
 	walls.push_back(wall);
+}
+
+void create_spikes(float scale, AEVec2 pos)
+{
+	// create a wall
+	// Wall *wall = new Wall;
+	Spike spike;
+
+	spike.scale = scale;
+	spike.position = pos;
+	create_AABB(spike.aabb, spike.position, spike.scale, spike.scale);
+	spikes.push_back(spike);
 }
 

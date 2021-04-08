@@ -71,7 +71,7 @@ void Input_g_mode() {
 		// std::cout << ammo;
 	}
 
-	if (AEInputCheckCurr(AEVK_LBUTTON) && ammo > 0)
+	if (character->counter < 90 && AEInputCheckCurr(AEVK_LBUTTON) && ammo > 0)
 	{
 		fire_hook(cursor_x, cursor_y);
 	}

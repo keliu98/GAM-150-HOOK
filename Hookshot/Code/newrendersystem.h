@@ -16,6 +16,7 @@ void load_button_texture();
 void load_guide_texture();
 void load_credits_render();
 void load_menubg_render();
+void load_spike_texture();
 
 void update_render_guide(float x, float y);
 void update_render_door();
@@ -27,6 +28,7 @@ void update_render_hook();
 void update_render_enemy();
 void update_render_credits();
 void update_render_menubg();
+void update_render_spikes();
 
 
 void load_render();

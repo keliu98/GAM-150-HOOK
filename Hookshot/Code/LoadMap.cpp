@@ -53,11 +53,11 @@ int ImportMapDataFromTxt(const char* FileName)
 					map_data[x][y] = (int)c - 48;
 					binary_collision_array[x1][y] = map_data[x][y];
 					normalize_map_data[x1][y] = map_data[x][y];
-
 					if (map_data[x][y] != 1)
 					{
 						binary_collision_array[x1][y] = 0;
 					}
+					
 					// std::cout << "Map["<< x << ", " << y << "]:" << map_data[x][y] << " | ";
 				}
 				else
@@ -197,6 +197,12 @@ void IntializeLevel()
 			{
 				end_position = create_ending_point(pos);
 			}
+
+			if (normalize_map_data[x][y] == 'S')
+			{
+				create_spikes(40, pos);
+			}
+
 			pos.x += (wall_scale * 2);
 		}
 		pos.y += (wall_scale * 2);

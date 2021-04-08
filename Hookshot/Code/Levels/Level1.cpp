@@ -42,6 +42,9 @@ void Level1_Load()
 	// load buttons texture
 	load_button_texture();
 
+	// load spikes
+	load_spike_texture();
+
 	//---------------------ADDED IN FORM LIU KE MERGE----------------------------------------
 	//load_character render actions run to the right
 	load_character_render_right();
@@ -116,6 +119,8 @@ void Level1_Update()
 
 		}
 
+		update_spikes();
+
 		CheckWinLose();
 	}
 
@@ -144,8 +149,10 @@ void Level1_Draw()
 	update_render_walls();
 	update_render_hook();
 	update_render_enemy();
+	update_render_spikes();
 	update_render_character();
 	update_render_buttons();
+
 
 	//For Debuging Camera
 	/*draw_cam_bounding_box({ end_position->x - 40 * 4, end_position->y - 40 * 4 }, *end_position );*/

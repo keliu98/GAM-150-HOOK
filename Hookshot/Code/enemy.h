@@ -12,3 +12,5 @@ void enemy_jump(size_t i);
 void skitter_AI(size_t);
 
 void update_hook_attack();
+
+void update_spikes();
