@@ -97,6 +97,8 @@
     <ClCompile Include="Code\Hook.cpp" />
     <ClCompile Include="Code\Input.cpp" />
     <ClCompile Include="Code\Levels\Level1.cpp" />
+    <ClCompile Include="Code\Levels\Level4.cpp" />
+    <ClCompile Include="Code\Levels\Level5.cpp" />
     <ClCompile Include="Code\LoadMap.cpp" />
     <ClCompile Include="Code\menu.cpp" />
     <ClCompile Include="Code\music.cpp" />
@@ -121,6 +123,8 @@
     <ClInclude Include="Code\Levels\Level1.h" />
     <ClInclude Include="Code\extern.h" />
     <ClInclude Include="Code\Levels\Level2.h" />
+    <ClInclude Include="Code\Levels\Level4.h" />
+    <ClInclude Include="Code\Levels\Level5.h" />
     <ClInclude Include="Code\levelUI.h" />
     <ClInclude Include="Code\LoadMap.h" />
     <ClInclude Include="Code\menu.h" />

@@ -27,6 +27,8 @@
 #include "Levels/Level1.h"
 #include "Levels/Level2.h"
 #include "Levels/Level3.h"
+#include "Levels/Level4.h"
+#include "Levels/Level5.h"
 #include "menu.h"
 #include "GameStateList.h"
 #include "GameStateManager.h"

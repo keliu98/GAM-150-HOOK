@@ -1,9 +1,11 @@
 /*!*************************************************************************
 ****
-\file Level3.cpp
-\authors: Liu Ke
+\file Level4.cpp
+\authors: Tan Wei Wen
+		  Yong Hui
 
-\par DP email:  ke.liu@digipen.edu
+\par DP email:  t.weiwen@digipen.edu
+				l.yonghui@digipen.edu
 
 \par Course: CSD 1450
 \par Project: Software Engineering Project 2
@@ -11,7 +13,7 @@
 
 
 \brief
-  This source file contains the implementation for all the level 3
+  This source file contains the implementation for all the level 4
   functions.
 ****************************************************************************
 ***/
@@ -19,11 +21,11 @@
 #include "../pch.h"
 static bool check;
 
-void Level3_Load()
+void Level4_Load()
 {
 
 	//Load Map Data from txt file
-	if (!ImportMapDataFromTxt("../Levels/Level_3.txt"))
+	if (!ImportMapDataFromTxt("../Levels/Level_4.txt"))
 		next = GS_QUIT;
 
 	//Load Music
@@ -83,7 +85,7 @@ void Level3_Load()
 	load_character_render_swingright();
 }
 
-void Level3_Initialize()
+void Level4_Initialize()
 {
 	//Ensure game is unpaused when reset
 	PAUSE = false;
@@ -101,7 +103,7 @@ void Level3_Initialize()
 	music_Initialize();
 }
 
-void Level3_Update()
+void Level4_Update()
 {
 	// Handling Input
 	AEInputUpdate();
@@ -141,7 +143,7 @@ void Level3_Update()
 	UpdateButton();
 }
 
-void Level3_Draw()
+void Level4_Draw()
 {
 	static char text[100];
 	memset(text, 0, 100 * sizeof(char));
@@ -165,7 +167,7 @@ void Level3_Draw()
 }
 
 // Called if change state, for everything including reset
-void Level3_Free()
+void Level4_Free()
 {
 	music_Free();
 	free_objects();
@@ -173,7 +175,7 @@ void Level3_Free()
 }
 
 //  Called if change state and State is NOT reset. ie Change levels. Do not unload if reseting.
-void Level3_Unload()
+void Level4_Unload()
 {
 	music_Unload();
 	UnloadMapData();

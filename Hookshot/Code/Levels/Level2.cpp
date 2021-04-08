@@ -1,3 +1,23 @@
+/*!*************************************************************************
+****
+\file Level2.cpp
+\authors: Tan Wei Wen
+		  Yong Hui
+
+\par DP email:  t.weiwen@digipen.edu
+				l.yonghui@digipen.edu
+
+\par Course: CSD 1450
+\par Project: Software Engineering Project 2
+\date 020221
+
+
+\brief
+  This source file contains the implementation for all the level 2
+  functions.
+****************************************************************************
+***/
+
 #include "../pch.h"
 static bool check;
 

@@ -1,3 +1,27 @@
+/*!*************************************************************************
+****
+\file Level1.cpp
+\authors: Tan Wei Wen
+		  Egi Tan
+		  Liu Ke
+		  Yong Hui
+
+\par DP email:  t.weiwen@digipen.edu
+				egi.tan@digipen.edu
+				ke.liu@digipen.edu
+				l.yonghui@digipen.edu
+
+\par Course: CSD 1450
+\par Project: Software Engineering Project 2
+\date 020221
+
+
+\brief
+  This source file contains the implementation for all the level 1 
+  functions.
+****************************************************************************
+***/
+
 #include "../pch.h"
 static bool check;
 

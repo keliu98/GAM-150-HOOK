@@ -1,11 +1,9 @@
 /*!*************************************************************************
 ****
-\file Level2.h
-\authors: Tan Wei Wen
-		  Yong Hui
+\file Level5.h
+\authors: Liu Ke
 
-\par DP email:  t.weiwen@digipen.edu
-				l.yonghui@digipen.edu
+\par DP email:  ke.liu@digipen.edu
 
 \par Course: CSD 1450
 \par Project: Software Engineering Project 2
@@ -13,26 +11,26 @@
 
 
 \brief
-  This source file contains all the functions declaration for level 2.
+  This source file contains all the functions declaration for level 5.
 ****************************************************************************
 ***/
 
 #pragma once
 
 // load level
-void Level2_Load();
+void Level5_Load();
 
 // init level
-void Level2_Initialize();
+void Level5_Initialize();
 
 // update level
-void Level2_Update();
+void Level5_Update();
 
 // draw graphics
-void Level2_Draw();
+void Level5_Draw();
 
 // free level
-void Level2_Free();
+void Level5_Free();
 
 // unload level
-void Level2_Unload();
+void Level5_Unload();

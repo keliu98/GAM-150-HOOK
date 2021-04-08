@@ -1,6 +1,6 @@
 /*!*************************************************************************
 ****
-\file Level2.h
+\file Level4.h
 \authors: Tan Wei Wen
 		  Yong Hui
 
@@ -13,26 +13,26 @@
 
 
 \brief
-  This source file contains all the functions declaration for level 2.
+  This source file contains all the functions declaration for level 4.
 ****************************************************************************
 ***/
 
 #pragma once
 
 // load level
-void Level2_Load();
+void Level4_Load();
 
 // init level
-void Level2_Initialize();
+void Level4_Initialize();
 
 // update level
-void Level2_Update();
+void Level4_Update();
 
 // draw graphics
-void Level2_Draw();
+void Level4_Draw();
 
 // free level
-void Level2_Free();
+void Level4_Free();
 
 // unload level
-void Level2_Unload();
+void Level4_Unload();

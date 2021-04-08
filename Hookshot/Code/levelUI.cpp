@@ -140,7 +140,7 @@ void switchbuttonstate(int state)
 	case CREDITS:
 		free_button();
 		display_credits = true;
-		create_button(GS_RESTART, "Back", { 0.4f,-0.80f }, 100.0f, 45.0f);
+		create_button(GS_RESTART, "Back", { -0.9f, 0.80f }, 100.0f, 45.0f);
 		break;
 
 	case OPTIONS:
