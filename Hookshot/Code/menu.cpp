@@ -9,7 +9,7 @@ void menu_Load() {
 	load_credits_render();
 	load_menubg_render();
 
-	music_Load("../Music/TEST OF CHARACTER - Corporate MSCCRP1_17.wav");
+	music_Load("../Music/NEW YEARS - Holidays MSCHOL2_54.wav");
 }
 
 void menu_Initialize()

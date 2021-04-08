@@ -3,7 +3,7 @@
 int lives = 3;
 int ammo =3;
 int ammoD = 3;
-int score = 0;
+
 Character* character;
 Hook* hook;
 Button* button;

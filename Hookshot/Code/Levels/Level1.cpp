@@ -5,11 +5,11 @@ void Level1_Load()
 {
 	
 	//Load Map Data from txt file
-	if (!ImportMapDataFromTxt("../Levels/Level_4.txt"))
+	if (!ImportMapDataFromTxt("../Levels/Level_1.txt"))
 		next = GS_QUIT;
 
 	//Load Music
-	music_Load("../Music/EVERYBODYS DANCING - WorldMusic MSCLAT1_06.wav");
+	music_Load("../Music/LOST CIVILIZATION - NewAge MSCNEW2_41.wav");
 
 	//loading texture etc
 	load_render();
@@ -103,11 +103,11 @@ void Level1_Update()
 		//Update Spikes Collision
 		update_spikes();
 
-		// Updating the Collision
-		UpdateCollision();
-
 		//Updating the physics of the game e.g acceleration, velocity, gravity
 		physics_update();
+
+		// Updating the Collision
+		UpdateCollision();
 
 		//Update Camera to stay within player
 		camera_update(character->pos, character->velocity, character->scale);
@@ -144,8 +144,6 @@ void Level1_Draw()
 	PrintText(text, NORMAL, { -0.9f, -0.95f });
 	sprintf_s(text, "Shots: %d/3", ammoD);
 	PrintText(text, NORMAL, { 0.4f, -0.95f });
-	sprintf_s(text, "Score: %d", score);
-	PrintText(text, NORMAL, { -0.2f, 0.8f });
 }
 
 // Called if change state, for everything including reset

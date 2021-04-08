@@ -3,20 +3,13 @@ static bool check;
 
 void Level2_Load()
 {
-	std::cout << "LOADDDDDD" << std::endl;
-	music_Load("../Music/EVERYBODYS DANCING - WorldMusic MSCLAT1_06.wav");
 
-
-	//../Code/Levels/Exported.txt
-	if (ImportMapDataFromTxt("../Levels/Level_2.txt"))
-	{
-		// For debugging map binary data
-		// PrintRetrievedInformation();
-	}
-	else
-	{
+	//Load Map Data from txt file
+	if (!ImportMapDataFromTxt("../Levels/Level_2.txt"))
 		next = GS_QUIT;
-	}
+
+	//Load Music
+	music_Load("../Music/LOST CIVILIZATION - NewAge MSCNEW2_41.wav");
 
 	//loading texture etc
 	load_render();
@@ -36,7 +29,7 @@ void Level2_Load()
 	// load hook_texture
 	load_hook_render();
 
-	// load dppr
+	// load door/goal
 	load_door_texture();
 
 	// load buttons texture
@@ -45,7 +38,8 @@ void Level2_Load()
 	// load spikes
 	load_spike_texture();
 
-	//---------------------ADDED IN FORM LIU KE MERGE----------------------------------------
+
+	//---------------------Load Character Animation Textures----------------------------------------
 	//load_character render actions run to the right
 	load_character_render_right();
 
@@ -69,13 +63,11 @@ void Level2_Load()
 
 	// load character swinging right on the hook
 	load_character_render_swingright();
-
-	//---------------------ADDED IN FORM LIU KE MERGE----------------------------------------
-
 }
 
 void Level2_Initialize()
 {
+	//Ensure game is unpaused when reset
 	PAUSE = false;
 
 	//Translate the map data into the gameworld by creating objects
@@ -87,9 +79,8 @@ void Level2_Initialize()
 	//Intialise physic
 	physics_intialize();
 
+	//Initalise Music
 	music_Initialize();
-
-
 }
 
 void Level2_Update()
@@ -98,20 +89,10 @@ void Level2_Update()
 	AEInputUpdate();
 	Input_g_mode();
 
-
+	//If pause do not need update to run this few system
 	if (PAUSE == false)
 	{
-		//Updating the physics of the game e.g acceleration, velocity, gravity
-		physics_update();
-
-		// Updating the Collision
-		UpdateCollision();
-
-		camera_update(character->pos, character->velocity, character->scale);
-
-		AEVec2 dir = { -1.0f, 0.0f };
-
-		//enermy AI
+		//Update Enemy AI e.g movement
 		for (size_t i = 0; i < enemies.size(); i++)
 		{
 			create_AABB(enemies[i].aabb, enemies[i].pos, enemies[i].scale, enemies[i].scale);
@@ -119,8 +100,19 @@ void Level2_Update()
 
 		}
 
+		//Update Spikes Collision
 		update_spikes();
 
+		//Updating the physics of the game e.g acceleration, velocity, gravity
+		physics_update();
+
+		// Updating the Collision
+		UpdateCollision();
+
+		//Update Camera to stay within player
+		camera_update(character->pos, character->velocity, character->scale);
+
+		//Checks for win/lose condition
 		CheckWinLose();
 	}
 
@@ -129,14 +121,6 @@ void Level2_Update()
 
 	//Updates the button interaction
 	UpdateButton();
-
-	//if (!sound_mute && !check)
-	//{
-	//	music_Initialize();
-	//	check = true;
-	//	std::cout << " RUN: " << std::endl;
-	//}
-
 }
 
 void Level2_Draw()
@@ -153,10 +137,6 @@ void Level2_Draw()
 	update_render_character();
 	update_render_buttons();
 
-
-	//For Debuging Camera
-	/*draw_cam_bounding_box({ end_position->x - 40 * 4, end_position->y - 40 * 4 }, *end_position );*/
-
 	// print lives
 	sprintf_s(text, "Health: %d", character->health);
 	PrintText(text, NORMAL, { -0.9f, -0.85f });
@@ -164,8 +144,6 @@ void Level2_Draw()
 	PrintText(text, NORMAL, { -0.9f, -0.95f });
 	sprintf_s(text, "Shots: %d/3", ammoD);
 	PrintText(text, NORMAL, { 0.4f, -0.95f });
-	sprintf_s(text, "Score: %d", score);
-	PrintText(text, NORMAL, { -0.2f, 0.8f });
 }
 
 // Called if change state, for everything including reset
@@ -180,6 +158,6 @@ void Level2_Free()
 void Level2_Unload()
 {
 	music_Unload();
-	FreeMapData();
+	UnloadMapData();
 	unload_render();
 }
