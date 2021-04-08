@@ -41,8 +41,8 @@ void skitter_AI(size_t i) {
 
 	if (character->counter == 0 && (CollisionIntersection_RectRect(character->aabb, character->velocity, enemies[i].aabb, enemies[i].velocity))) {
 		--character->health;
+		release_hook();
 		calculate_knockback(character->pos, enemies[i].pos, character->velocity, character->knockback);
-
 		character->counter = 180;
 
 	}

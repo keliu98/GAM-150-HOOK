@@ -523,8 +523,15 @@ void update_render_character()
 	}
 
 	// -------------ADDED CODE FROM LIU KE MERGE------------------------	// -------------ADDED CODE FROM LIU KE MERGE------------------------
-
-	draw_animation_render(render);
+	if (character->counter == 0)
+	{
+		draw_animation_render(render);
+	}
+	else if ((character->counter % 10) == 0)
+	{
+		draw_animation_render(render);
+	}
+	
 }
 
 void update_render_hook()

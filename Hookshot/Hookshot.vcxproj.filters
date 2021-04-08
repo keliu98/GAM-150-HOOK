@@ -4,9 +4,6 @@
     <ClCompile Include="Code\camera.cpp">
       <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="Code\collision.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
     <ClCompile Include="Code\enemy.cpp">
       <Filter>Source</Filter>
     </ClCompile>
@@ -40,9 +37,6 @@
     <ClCompile Include="Code\menu.cpp">
       <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="Code\music.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
     <ClCompile Include="Code\newrendersystem.cpp">
       <Filter>Source</Filter>
     </ClCompile>
@@ -53,6 +47,12 @@
       <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="Code\pch.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\music.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\collision.cpp">
       <Filter>Source</Filter>
     </ClCompile>
   </ItemGroup>

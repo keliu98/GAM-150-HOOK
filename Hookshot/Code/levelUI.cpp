@@ -183,11 +183,13 @@ void switchbuttonstate(int state)
 		//TODO TURN ON AND OFF SOUND
 		if (sound == true)
 		{
-
+			music_mute(true);
+			sound = false;
 		}
 		else
 		{
-
+			music_mute(false);
+			sound = true;
 		}
 
 
