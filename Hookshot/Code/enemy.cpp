@@ -75,7 +75,11 @@ void skitter_AI(size_t i) {
 	}
 
 	if (enemies[i].health <= 0)
+	{
 		enemies.erase(enemies.begin() + i);
+		score += 100;
+	}
+
 
 }
 

@@ -28,6 +28,7 @@ extern AEVec2* end_position;
 extern int lives;
 extern int ammo;
 extern int ammoD;
+extern int score;
 
 
 //-----------------------------------------------------------
