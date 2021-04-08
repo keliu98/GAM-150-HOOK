@@ -81,7 +81,7 @@ int ImportMapDataFromTxt(const char* FileName)
 	return 0;
 }
 
-void FreeMapData(void)
+void UnloadMapData(void)
 {
 	for (int i = 0; i < map_height; ++i)
 	{

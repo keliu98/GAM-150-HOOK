@@ -37,7 +37,7 @@ static int** normalize_map_data;
 int ImportMapDataFromTxt(const char* FileName);
 
 // free map data
-void FreeMapData(void);
+void UnloadMapData(void);
 
 // print binary map and collision map
 void PrintRetrievedInformation(void);
