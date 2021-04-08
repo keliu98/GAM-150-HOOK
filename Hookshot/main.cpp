@@ -75,6 +75,9 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	//set background color
 	AEGfxSetBackgroundColor(0.0f, 0.0f, 0.0f);
 
+	//Setting to full screen
+	AEToogleFullScreen(true);
+
     //GSM initialize
     GSM_Initialize(GS_INTRO);
 

@@ -2,25 +2,6 @@
 #include"collision.h"
 
 bool PAUSE = false;
-bool FULLSCREEN = false;
-
-static void fullScreen()
-{
-	if (AEInputCheckReleased(AEVK_F))
-	{
-		if (!FULLSCREEN)
-		{
-			FULLSCREEN = true;
-			AEToogleFullScreen(FULLSCREEN);
-		}
-
-		else
-		{
-			FULLSCREEN = false;
-			AEToogleFullScreen(FULLSCREEN);
-		}
-	}
-}
 
 void skip_intro()
 {
@@ -36,9 +17,6 @@ void skip_intro()
 void Input_g_mode() {
 
 	float CHARACTER_ACCEL_HORI = 500.0f;
-
-	AEInputUpdate();
-	fullScreen();
 
 	if (AEInputCheckTriggered(AEVK_ESCAPE))
 		PAUSE = !PAUSE;
@@ -74,27 +52,19 @@ void Input_g_mode() {
 		}
 	}
 
-	if (AEInputCheckCurr(AEVK_R))
+	if (AEInputCheckCurr(AEVK_M))
 	{
 		next = GS_MENU;
 	}
 
-	if (AEInputCheckCurr(AEVK_H))
-	{
-		//std::cout << enemies[0].cliff_check.x <<"\n";
-		//std::cout << enemies[0].pos.x << "\n";
-		std::cout << GetCellValue(int(enemies[0].cliff_check.x), int(enemies[0].cliff_check.y));
 
-	}
-
-
+	//-----------For firing hook at enemies---------------
 	//Mouse Press and position
 	int cursor_x;
 	int cursor_y;
 
-	//temporary input, will need to translate as the camera moves ....
+	//Get Cursor position.
 	AEInputGetCursorPosition(&cursor_x, &cursor_y);
-
 	translate_cursor(cursor_x, cursor_y);
 
 	if (AEInputCheckTriggered(AEVK_LBUTTON) && ammo > 0) {
@@ -122,10 +92,6 @@ void Input_g_mode() {
 //For interracting with the main menu
 void Input_menu_mode()
 {
-	if (PAUSE != true)
-		AEInputUpdate();
-	fullScreen();
-
 	int cursor_x;
 	int cursor_y;
 

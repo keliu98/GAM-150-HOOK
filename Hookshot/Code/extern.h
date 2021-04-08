@@ -22,10 +22,17 @@ extern char		font_italic;
 extern bool PAUSE;
 extern bool display_credits;
 extern bool display_tutorial;
+extern bool confirm_state;
 
 //To use for buttons
+extern const float BUTTONSPACE_Y; //spacing to make it easier when arranging buttons
+
+extern const int CONFIRM_QUIT; //The different states
+extern const int FULLSCREEN;
+extern const int SOUND;
 extern const int TUTORIAL;
+extern const int LEVELSELECT;
 extern const int CREDITS;
 extern const int OPTIONS;
-extern const int LEVELSELECT;
+
 

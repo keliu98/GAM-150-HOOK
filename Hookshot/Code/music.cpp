@@ -53,12 +53,12 @@ void music_mute(bool mute)
     switch (mute)
     {
     case true:
-        channel->stop();
-        std::cout << "Music: Play\n";
+        channel->setMute(true);
+        std::cout << "Music: Mute\n";
         break;
     case false:
-        music_system->playSound(music, 0, false, &channel);
-        std::cout << "Music: Pause\n";
+        channel->setMute(false);
+        std::cout << "Music: Play\n";
         break;
     }
 }

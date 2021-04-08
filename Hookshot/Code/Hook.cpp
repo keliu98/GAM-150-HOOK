@@ -21,6 +21,7 @@
 
 static float SWING_ACCELERATION = 300;
 static float HOOK_SPEED = 20;
+static float previous_len;
 
 float intial_angle;
 
@@ -64,18 +65,21 @@ void fire_hook(int cursor_x, int cursor_y)
 		hook->pivot_angle = calculate_angle(hook->pivot_pos, character->pos);
 		AEVec2FromAngle(&dir_vec, hook->pivot_angle);
 
-		//Getting the various position of the hook
-		calculate_positions(dir_vec);
-
 		//Increasing the hook length
 		hook->curr_len += HOOK_SPEED;
 
+		//Getting the various position of the hook
+		calculate_positions(dir_vec);
+
+		//Upates hook position when it hits the enemy and also the health etc..
 		update_hook_attack();
 
 		//Wall collision																			
-		for (Wall& wall : walls)
+		if (GetCellValue((int)hook->head_pos.x / GRID_SCALE, (int)(hook->head_pos.y / GRID_SCALE)))
 		{
-			//TODO wall collision																				
+			hook->max_len = hook->curr_len;
+			hook->pivot_pos = hook->head_pos;
+			hook->hook_state = tethered;
 		}
 
 		//Reaching the selected point
@@ -124,11 +128,6 @@ void fire_hook(int cursor_x, int cursor_y)
 			character->velocity.x = 0;
 			character->velocity.y = 0;
 		}
-		
-		//NOTE TO SELF TO ADJUST LENGTH OF HOOK NEED TO CHANGE BOTH
-		//hook->max_len -= 2;
-		//hook->curr_len -= 2;
-
 	}
 }
 

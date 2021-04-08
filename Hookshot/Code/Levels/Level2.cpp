@@ -84,6 +84,7 @@ void Level2_Update()
 {
 
 	// Handling Input
+	AEInputUpdate();
 	Input_g_mode();
 
 	//Updating the physics of the game e.g acceleration, velocity, gravity
