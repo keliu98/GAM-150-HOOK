@@ -28,6 +28,7 @@ extern std::vector<Spike> spikes;
 extern int lives;
 extern int ammo;
 extern int ammoD;
+extern int score;
 
 
 //-----------------------------------------------------------

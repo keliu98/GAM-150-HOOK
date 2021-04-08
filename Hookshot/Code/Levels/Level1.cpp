@@ -8,7 +8,7 @@ void Level1_Load()
 
 
 	//../Code/Levels/Exported.txt
-	if (ImportMapDataFromTxt("../Levels/Level_1.txt"))
+	if (ImportMapDataFromTxt("../Levels/Level_4.txt"))
 	{
 		// For debugging map binary data
 		// PrintRetrievedInformation();
@@ -164,6 +164,8 @@ void Level1_Draw()
 	PrintText(text, NORMAL, { -0.9f, -0.95f });
 	sprintf_s(text, "Shots: %d/3", ammoD);
 	PrintText(text, NORMAL, { 0.4f, -0.95f });
+	sprintf_s(text, "Score: %d", score);
+	PrintText(text, NORMAL, { -0.2f, 0.8f });
 }
 
 // Called if change state, for everything including reset
