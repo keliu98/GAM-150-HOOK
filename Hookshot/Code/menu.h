@@ -23,8 +23,6 @@ To be used by the game state manager.
 
 #pragma once
 
-extern int guidePage;
-
 /**************************************************************************/
 /*!
 	Load Menu - Mostly render and music

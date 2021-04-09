@@ -64,6 +64,8 @@ extern bool sound_mute;
 extern bool display_credits;
 extern bool display_tutorial;
 extern bool confirm_state;
+extern int guidePage;
+extern int creditsPage;
 
 /**************************************************************************/
 /*!

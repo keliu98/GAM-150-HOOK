@@ -130,13 +130,29 @@ void Input_menu_mode()
 		if (guidePage >= 0 && guidePage < 3 && AEInputCheckReleased(AEVK_D))
 		{
 			++guidePage;
-			std::cout << guidePage << std::endl;
 		}
 		// previous
 		if (guidePage > 0 && guidePage < 4 && AEInputCheckReleased(AEVK_A))
 		{
 			--guidePage;
-			std::cout << guidePage << std::endl;
+		}
+	}
+
+
+	// -----------------------------CREDITS----------------------------------
+
+	// while guide is open check for next or previous
+	if (display_credits)
+	{
+		// next
+		if (creditsPage >= 0 && creditsPage < 1 && AEInputCheckReleased(AEVK_D))
+		{
+			++creditsPage;
+		}
+		// previous
+		if (creditsPage > 0 && creditsPage < 2 && AEInputCheckReleased(AEVK_A))
+		{
+			--creditsPage;
 		}
 	}
 }

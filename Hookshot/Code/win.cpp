@@ -71,16 +71,26 @@ void win_Draw()
 		update_render_bg();
 
 		sprintf_s(text, "Congraturation");
-		PrintText(text, NORMAL, { -0.25, 0.2f });
+		PrintText(text, NORMAL, { -0.25f, 0.2f });
 		sprintf_s(text, "You Found the Treasure!!");
-		PrintText(text, NORMAL, { -0.45, 0.0f });
+		PrintText(text, NORMAL, { -0.45f, 0.0f });
 		sprintf_s(text, "Winner is you");
-		PrintText(text, NORMAL, { -0.25, -0.2f });
+		PrintText(text, NORMAL, { -0.25f, -0.2f });
 	}
 
 	//Draw credits if true
 	if (display_credits == true)
-		update_render_credits();
+	{
+		switch (creditsPage)
+		{
+		case 0:
+			update_render_credits(0.0f, -250.0f);
+			break;
+		case 1:
+			update_render_credits(0.0f, 250.0f);
+			break;
+		}
+	}
 
 	update_render_buttons();
 }

@@ -26,7 +26,7 @@ void update_render_buttons();
 void update_render_character();
 void update_render_hook();
 void update_render_enemy();
-void update_render_credits();
+void update_render_credits(float x, float y);
 void update_render_menubg();
 void update_render_spikes();
 

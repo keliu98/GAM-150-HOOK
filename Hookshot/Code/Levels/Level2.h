@@ -2,8 +2,8 @@
 ****
 \file Level2.h
 \par Project: Hookshot
-\authors: Yong Hui (60%)
-		  Tan Wei Wen (40%)
+\authors: Yong Hui (70%)
+		  Tan Wei Wen (30%)
 \par DP email:  l.yonghui@digipen.edu
 				t.weiwen@digipen.edu
 \date 090421

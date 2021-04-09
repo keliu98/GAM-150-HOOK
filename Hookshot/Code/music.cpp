@@ -1,10 +1,27 @@
+/*!*************************************************************************
+****
+\file music.cpp
+\par Project: Hookshot
+\authors: Tan Egi (80%)
+          Tan Wei Wen (20%)
+\par DP email: egi.tan@digipen.edu
+               t.weiwen@digipen.edu
+\date 090421
+
+\brief
+This is the implementation file for the music system.
+
+\par Copyright: All content © 2021 Digipen Institute of Technology Singapore. 
+                All rights reserved.
+
+****************************************************************************
+***/
 #include "music.h"
 
 static FMOD_RESULT result;
 static FMOD::Sound* music = nullptr;
 static FMOD::System* music_system = nullptr;
 static FMOD::Channel* channel = nullptr;
-
 
 void music_Load(const char* file)
 {
@@ -20,7 +37,7 @@ void music_Load(const char* file)
 }
 
 
-void music_Initialize() // "../Music/bensound-ukulele.mp3"
+void music_Initialize()
 {
     // Play the sound.
     music_system->playSound(music, 0, false, &channel);
@@ -41,17 +58,17 @@ void music_Unload()
     music_system->release();
 }
 
-void music_play(bool play_music) // int music
+void music_play(bool play_music)
 {
     switch (play_music)
     {
         case true:
+            // music play
             channel->setPaused(false);
-            std::cout << "Music: Play\n";
             break;
         case false:
+            // music pause
             channel->setPaused(true);
-            std::cout << "Music: Pause\n";
             break;
     }
 }
@@ -61,12 +78,12 @@ void music_mute(bool mute)
     switch (mute)
     {
     case true:
+        // music mute
         channel->setMute(true);
-        std::cout << "Music: Mute\n";
         break;
     case false:
+        // music play
         channel->setMute(false);
-        std::cout << "Music: Play\n";
         break;
     }
 }

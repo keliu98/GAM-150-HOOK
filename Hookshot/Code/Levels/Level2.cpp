@@ -1,20 +1,20 @@
 /*!*************************************************************************
 ****
 \file Level2.cpp
-\authors: Tan Wei Wen
-		  Yong Hui
-
-\par DP email:  t.weiwen@digipen.edu
-				l.yonghui@digipen.edu
-
-\par Course: CSD 1450
-\par Project: Software Engineering Project 2
-\date 020221
-
+\par Project: Hookshot
+\authors: Yong Hui (70%)
+		  Tan Wei Wen (30%)
+\par DP email:  l.yonghui@digipen.edu
+				t.weiwen@digipen.edu
+\date 090421
 
 \brief
-  This source file contains the implementation for all the level 2
-  functions.
+This source file contains the implementation for all the level 2
+functions.
+
+\par Copyright: All content © 2021 Digipen Institute of Technology Singapore. 
+                All rights reserved.
+
 ****************************************************************************
 ***/
 

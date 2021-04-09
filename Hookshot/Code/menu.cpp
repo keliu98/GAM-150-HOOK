@@ -25,6 +25,7 @@ all the necessary functions to display and interact with the menu.
 
 //For storing the page of the tutorial. Extern Variable.
 int guidePage;
+int creditsPage;
 
 void menu_Load() {
 
@@ -42,6 +43,7 @@ void menu_Load() {
 void menu_Initialize()
 {	
 	//Intialising variables for displaying.
+	creditsPage = 0;
 	guidePage = 0;
 	display_credits = false;
 	display_tutorial = false;
@@ -78,10 +80,6 @@ void menu_Draw() {
 	//Draw menu bg
 	update_render_menubg();
 
-	//Draw credits if true
-	if (display_credits == true)
-		update_render_credits();
-
 	//Draw tutorial if true
 	if (display_tutorial == true)
 	{
@@ -99,6 +97,20 @@ void menu_Draw() {
 			case 3:
 				update_render_guide(-400.0f, 250.0f);
 				break;
+		}
+	}
+
+	//Draw credits if true
+	if (display_credits == true)
+	{
+		switch (creditsPage)
+		{
+		case 0:
+			update_render_credits(0.0f, -250.0f);
+			break;
+		case 1:
+			update_render_credits(0.0f, 250.0f);
+			break;
 		}
 	}
 

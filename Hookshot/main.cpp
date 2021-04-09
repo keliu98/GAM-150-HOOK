@@ -1,41 +1,33 @@
-
 /*!*************************************************************************
 ****
-\file GameStateManager.cpp
-\authors: Tan Wei Wen
-		  Egi Tan
-		  Liu Ke
-		  Yong Hui
-
+\file main.cpp
+\par Project: Hookshot
+\authors: Tan Wei Wen (25%)
+		  Egi Tan (25%)
+		  Liu Ke (25%)
+		  Yong Hui (25%)
 \par DP email:  t.weiwen@digipen.edu
 				egi.tan@digipen.edu
 				ke.liu@digipen.edu
 				l.yonghui@digipen.edu
+\date 090421
 
-\par Course: CSD 1450
-\par Project: Software Engineering Project 2
-\date 020221
+\brief
+This file contains the implementation to run the whole program.
 
-
-\brief //TODO
-
+\par Copyright: All content © 2021 Digipen Institute of Technology Singapore. 
+                All rights reserved.
 
 ****************************************************************************
 ***/
 
-// ---------------------------------------------------------------------------
-// includes
-
 #include "Code/pch.h"
 
-/*
-	NOTES:
-		mesh - shapes of objects. Eg: circle, square, triangle
-			 - colour / texture 
+/**************************************************************************/
+/*!
+	Extern variables
 */
-// ---------------------------------------------------------------------------
-// main
-
+/**************************************************************************/
 float	 g_dt;
 double	 g_appTime;
 int      WINDOW_WIDTH = 800;
@@ -57,7 +49,6 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	#if defined(DEBUG) | defined(_DEBUG)
 		_CrtSetDbgFlag( _CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF );
 	#endif
-	 //int * pi = new int;
 
 	//Intialise System
 	// Using custom window procedure
@@ -100,8 +91,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
         fpInitialize();
 
-        //Gameplay Loop
-        //**Need to add frames in actual build
+        // Gameplay Loop
         while (current == next)
         {
 			// Informing the system about the loop's start
@@ -117,11 +107,6 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
 			if (0 == AESysDoesWindowExist())
 				next = GS_QUIT;
-
-		/*	while (g_dt < 0.16667f)
-			{
-				g_dt += g_dt;
-			}*/
 
 			if (g_dt > 0.166667f)
 				g_dt = 0.166667f;

@@ -297,7 +297,6 @@ void update_render_door()
 	static float scale_x = 40.0f * 5.0f, scale_y = 40.0f * 6.0f;
 	static AEVec2 door_pos = *end_position;
 
-	// make it translate left a bit -? for later
 	render.pos = { door_pos.x - (40.0f * 2.0f), door_pos.y - (40.0f * 2.0f) };
 	render.x_scale = scale_x;
 	render.y_scale = scale_y;
@@ -308,15 +307,13 @@ void update_render_door()
 	draw_render(render);
 }
 
-void update_render_credits()
+void update_render_credits(float x, float y)
 {
 	Render render;
-	static float scale_x = (float)WINDOW_WIDTH, scale_y = (float)WINDOW_HEIGHT;
 
-	// make it translate left a bit -? for later
-	render.pos = { 0,0 };
-	render.x_scale = scale_x;
-	render.y_scale = scale_y;
+	render.pos = { x, y };
+	render.x_scale = 800.0f;
+	render.y_scale = 1000.0f;
 	render.pMesh = square_mesh;
 	render.pTexture = credits;
 	render.dir = 0;
