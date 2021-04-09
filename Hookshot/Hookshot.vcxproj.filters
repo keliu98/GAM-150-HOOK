@@ -161,6 +161,9 @@
     <Image Include="Images\skitter.png" />
     <Image Include="Images\Spikes.png" />
     <Image Include="Images\Title.png" />
+    <Image Include="Images\skitterside.png" />
+    <Image Include="Images\skittersprite.png" />
+    <Image Include="Images\skitterspritereverse.png" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Levels\Level_1.txt" />
@@ -170,5 +173,8 @@
     <Text Include="Levels\Level_5.txt" />
     <Text Include="Levels\Level_Design.txt" />
     <Text Include="Levels\test_level.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\skittersprite.psd" />
   </ItemGroup>
 </Project>

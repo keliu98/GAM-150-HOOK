@@ -60,8 +60,11 @@ AEGfxTexture* character_texture7;
 //Pointer to the hook texture
 AEGfxTexture* hook_texture;
 
-//Pointer to the hook texture
+//Pointer to the enemy texture
 AEGfxTexture* enemy_texture;
+
+//Pointer to the enemy texture other dir 
+AEGfxTexture* enemy_texture1;
 
 // Pointer to button
 AEGfxTexture* button_texture[2];
@@ -212,7 +215,12 @@ void load_hook_render()
 
 void load_enemy_texture()
 {
-	enemy_texture = load_texture("../Images/skitter.png");
+	enemy_texture = load_texture("../Images/skittersprite.png");
+}
+
+void load_enemy_texture1()
+{
+	enemy_texture1 = load_texture("../Images/skitterspritereverse.png");
 }
 
 void load_door_texture()
@@ -620,14 +628,40 @@ void update_render_enemy()
 		render.pos = enemy.pos;
 		render.x_scale = enemy.scale;
 		render.y_scale = enemy.scale;
-		render.pMesh = square_mesh;
-		render.pTexture = enemy_texture; //TO CHANGE !!!!, render based on the enemy type and its state
-		render.dir = 0;
+		render.pMesh = animation_mesh;
+		//render.pTexture = enemy_texture; //TO CHANGE !!!!, render based on the enemy type and its state
+		//render.dir = 0;
+
+		if (render.dir == 0)
+		{
+			render.pTexture = enemy_texture;	// enemy run left
+			render.x_offset = 0.0;
+			render.y_offset = 0.0;
+			render.x_offset1 = 0.5;
+			render.y_offset1 = 0.0;
+			render.x_offset2 = 0.0;
+			render.y_offset2 = 0.5;
+			render.x_offset3 = 0.5;
+			render.y_offset3 = 0.5;
+		}
+		else if (render.dir == 1)
+		{
+			render.pTexture = enemy_texture1;	// enemy run right
+			render.x_offset = 0.0;
+			render.y_offset = 0.0;
+			render.x_offset1 = 0.5;
+			render.y_offset1 = 0.0;
+			render.x_offset2 = 0.0;
+			render.y_offset2 = 0.5;
+			render.x_offset3 = 0.5;
+			render.y_offset3 = 0.5;
+		}
 
 		draw_render(render);
 	}
-}
 
+
+}
 
 
 
@@ -685,13 +719,13 @@ void draw_animation_render(Render& render)
 	// Set texture
 	AEGfxTextureSet(render.pTexture, render.x_offset, render.y_offset);  // Same object, different texture
 	++counter;
-	if (counter < 6)
+	if (counter < 3)
 		AEGfxTextureSet(render.pTexture, render.x_offset1, render.y_offset1);  // Same object, different texture
-	else if (counter < 12)
+	else if (counter < 6)
 		AEGfxTextureSet(render.pTexture, render.x_offset2, render.y_offset2);  // Same object, different texture
-	else if (counter < 18)
+	else if (counter < 9)
 		AEGfxTextureSet(render.pTexture, render.x_offset3, render.y_offset3);  // Same object, different texture
-	else if (counter < 24)
+	else if (counter < 12)
 		AEGfxTextureSet(render.pTexture, render.x_offset2, render.y_offset2);  // Same object, different texture
 	else
 	{

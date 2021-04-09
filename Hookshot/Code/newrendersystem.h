@@ -30,6 +30,7 @@ void load_dirt_render();
 void load_texture_render();
 void load_character_render();
 void load_enemy_texture();
+void load_enemy_texture1();
 void load_door_texture();
 void load_hook_render();
 void load_button_texture();
@@ -63,3 +64,5 @@ void load_character_render_shootleft();
 void load_character_render_shootright();
 void load_character_render_swingleft();
 void load_character_render_swingright();
+
+
