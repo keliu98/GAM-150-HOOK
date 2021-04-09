@@ -18,7 +18,7 @@ This file contains the implementation for the objectmanager. It is responsible f
 creating the objects and freeing them. It also has all the neccessary containers
 for each of the object.
 
-\par Copyright: All content © 2021 Digipen Institute of Technology Singapore. All
+\par Copyright: All content ï¿½ 2021 Digipen Institute of Technology Singapore. All
 				rights reserved.
 
 ****************************************************************************
@@ -26,20 +26,17 @@ for each of the object.
 
 #include "ObjectManager.h"
 
-//Global variables related to gameplay.
-int lives = 3;
-int ammo =3;
-int ammoD = 3;
+int lives = 3; //initialise live and set the starting amount to 3
+int ammo =3; // set internal ammo to 3
+int ammoD = 3;//set display ammo to 3
 
 //Pointers for single object.
 Character* character;
 Hook* hook;
-AEVec2* end_position;
-
-//Containers for objects.
-std::vector<Button> buttons;
+Button* button;//create button
+std::vector<Button> buttons;//create a vector of buttons
 std::vector<Wall> walls;
-std::vector<Enemy> enemies;
+std::vector<Enemy> enemies;//create a vector of enemies
 std::vector<Spike> spikes;
 
 //Creating the hook object, used together with load map.
@@ -103,14 +100,14 @@ void create_button(int state, const char* string, AEVec2 pos, float scale_x, flo
 {
 	Button button;
 	
-	// init values
-	button.state = state;
-	button.scale.x = scale_x;
-	button.scale.y = scale_y;
-	button.pos_ratio = pos;
-	button.string = string;
-	button.highlight = false;
-	buttons.push_back(button);
+	// init values 
+	button.state = state;// set button to defualt state
+	button.scale.x = scale_x;//set x for scale
+	button.scale.y = scale_y;// set y for scalw
+	button.pos_ratio = pos;//set position ratio
+	button.string = string;//set the string of the button
+	button.highlight = false;// set default to bee non highlighted at the start
+	buttons.push_back(button);//push back button by one at the beginning
 }
 
 //Creates the end point/goal of the game
@@ -126,34 +123,37 @@ void create_enemy(int enemy_type, AEVec2 pos)
 	// create single enemy
 	Enemy enemy;
 	
-	enemy.scale = 40.0f;
-	enemy.dir = 0.0f;
-	enemy.pos = pos;
-	enemy.type = enemy_type;
+	//TODO intialise values
+	enemy.scale = 40.0f;// set scale size to 40
+	enemy.dir = 0.0f;// set direction to 0
+	enemy.pos = pos;// set postion to the pass-in position 
+	enemy.type = enemy_type;//set the type to the pass in type
 
-	enemy.knockback.y = create_vel_height(30.0f, GRAVITY);
-	enemy.knockback.x = 200.0f;
+	enemy.knockback.y = create_vel_height(30.0f, GRAVITY);//set verticle knockback
+	enemy.knockback.x = 200.0f;//set horizontal knockback 
 
-	enemy.velocity.x = 0;
-	enemy.velocity.y = 0;
-	enemy.jump_state = not_jumping;
-	enemy.d_switch = 0;
-	enemy.health = 3;
-	enemy.Iframe = 0;
-
-	enemies.push_back(enemy);
+	enemy.velocity.x = 0;// set defualt horizontal velocity to 0
+	enemy.velocity.y = 0;//set verticle velocity to 0
+	enemy.jump_state = not_jumping;// set default jump state to not jumping
+	enemy.d_switch = 0; //set directional switch to 0
+	enemy.health = 3; // set health to 3
+	enemy.Iframe = 0; // 1 = invincible, 0=vulnerable
+	enemy.cliff_check = pos;//set cliff checker to 0
+	enemies.push_back(enemy);//puch back the enemies vector
+	
+	//std::cout << "enemy created\n";
 }
 
 // When enemy is defeated by players, to remove the enemy from the vector container.
 void destory_enemy(std::vector<Enemy>& enemies, int index)
 {
-	for (int i{ 0 }; i < enemies.size(); ++i)
+	for (int i{ 0 }; i < enemies.size(); ++i)//scan through the enemy list
 	{
-		if (i == index)
+		if (i == index) //if the enemy index is the same as the passed in index
 		{
 			// remove that particular enemy
 			delete& enemies[i];
-			enemies.erase(enemies.begin());
+			enemies.erase(enemies.begin());//remove that enemy from the list
 			return;
 		}
 	}
