@@ -105,7 +105,6 @@
     <ClCompile Include="Code\Levels\Level2.cpp" />
     <ClCompile Include="Code\newrendersystem.cpp" />
     <ClCompile Include="Code\ObjectManager.cpp" />
-    <ClCompile Include="Code\pch.cpp" />
     <ClCompile Include="Code\physics.cpp" />
     <ClCompile Include="Code\levelUI.cpp" />
     <ClCompile Include="Code\win.cpp" />

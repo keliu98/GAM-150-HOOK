@@ -46,9 +46,6 @@
     <ClCompile Include="Code\physics.cpp">
       <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="Code\pch.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
     <ClCompile Include="Code\music.cpp">
       <Filter>Source</Filter>
     </ClCompile>
