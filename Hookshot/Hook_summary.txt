@@ -1,0 +1,8 @@
+Hook (Adventure, Exploration, 2D Side Scroller)
+
+Hook is a pixel art game that revolves around the player, Mr. Hook. However, he was separated from his partner, Rex before their adventure can begin. So, the goal of the game is to get the sacred artifact lying deep in the cave while finding for the exit. However, in order to get through the different game levels, Mr. Hook will need to use the ‘Hookshot’ mechanic. This special feature allows him to either hook onto empty spaces or enemies to kill them.
+
+Tan Wei Wen – Technical Director
+Lau Yong Hui – Testing Manager
+Liu Ke – Lead Designer
+Tan Egi – Producer
