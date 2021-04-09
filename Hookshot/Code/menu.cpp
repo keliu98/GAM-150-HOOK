@@ -49,9 +49,6 @@ void menu_Initialize()
 	display_tutorial = false;
 	confirm_state = false;
 
-	//Intialise music
-	music_Initialize();
-
 	//Reset camera position
 	camera_init({ 0,0 });
 
@@ -64,16 +61,21 @@ void menu_Initialize()
 
 	create_button(GS_QUIT, "Quit Game", { -0.2f, -BUTTONSPACE_Y * 5 }, 200.0f, 45.0f);//create quit button
 	
+	//Intialise music
+	music_Initialize();
 }
 
 void menu_Update() {
 
-	//Handling input
-	AEInputUpdate();// allow input to be read
-	Input_menu_mode();//call menu input function
+	if (!check_minimized_window())
+	{
+		//Handling input
+		AEInputUpdate();// allow input to be read
+		Input_menu_mode();//call menu input function
 
-	//Updating buttons position and translating
-	UpdateButton();
+		//Updating buttons position and translating
+		UpdateButton();
+	}
 }
 
 void menu_Draw() {
@@ -125,6 +127,6 @@ void menu_Free() {
 }
 
 void menu_Unload() {
-	unload_render();//unload rendered object
 	music_Unload();
+	unload_render();//unload rendered object
 }

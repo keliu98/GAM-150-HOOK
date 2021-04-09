@@ -47,6 +47,7 @@ const int TUTORIAL = 96;
 const int LEVELSELECT = 97;
 const int CREDITS = 98;
 const int OPTIONS = 99;
+const int MENU = 91;
 
 //DEFINE to use when creating buttons, makes life easier.
 const float BUTTONSPACE_Y = 0.18f;
@@ -141,6 +142,20 @@ void switchbuttonstate(int state)
 		}
 		break;
 
+	case MENU:
+		display_tutorial = false;
+		display_credits = false;
+		free_button();
+		create_button(GS_LEVEL1, "Start Game", { -0.2f,-0.0f }, 200.0f, 45.0f);//create start button
+		create_button(LEVELSELECT, "Select Level", { -0.2f, -BUTTONSPACE_Y }, 200.0f, 45.0f);// create level selection button
+		create_button(TUTORIAL, "How to play", { -0.2f, -BUTTONSPACE_Y * 2 }, 200.0f, 45.0f);// create tutorial button
+
+		create_button(OPTIONS, "Options", { -0.2f, -BUTTONSPACE_Y * 3 }, 200.0f, 45.0f);//create option button
+		create_button(CREDITS, "Credits", { -0.2f, -BUTTONSPACE_Y * 4 }, 200.0f, 45.0f);//create credit button
+
+		create_button(GS_QUIT, "Quit Game", { -0.2f, -BUTTONSPACE_Y * 5 }, 200.0f, 45.0f);//create quit button
+		break;
+
 	case CONFIRM_QUIT:
 		if (confirm_state == true)
 		{
@@ -157,13 +172,13 @@ void switchbuttonstate(int state)
 		create_button(GS_LEVEL4, "Level 4", { -0.2f,-BUTTONSPACE_Y * 3 }, 200.0f, 45.0f);
 		create_button(GS_LEVEL5, "Level 5", { -0.2f,-BUTTONSPACE_Y * 4 }, 200.0f, 45.0f);
 
-		create_button(GS_RESTART, "Back", { 0.4f,-0.80f }, 100.0f, 45.0f);
+		create_button(MENU, "Back", { 0.4f,-0.80f }, 100.0f, 45.0f);
 		break;
 
 	case TUTORIAL:
 		free_button();
 		display_tutorial = true;
-		create_button(GS_RESTART, "Back", { -0.9f, 0.80f }, 100.0f, 45.0f);
+		create_button(MENU, "Back", { -0.9f, 0.80f }, 100.0f, 45.0f);
 		break;
 
 	case CREDITS:
@@ -171,7 +186,7 @@ void switchbuttonstate(int state)
 		display_credits = true;
 		if (current == GS_MENU)
 		{
-			create_button(GS_RESTART, "Back", { -0.9f, 0.80f }, 100.0f, 45.0f);
+			create_button(MENU, "Back", { -0.9f, 0.80f }, 100.0f, 45.0f);
 		}
 		else
 			create_button(GS_MENU, "Back", { -0.9f, 0.80f }, 100.0f, 45.0f);
@@ -182,7 +197,7 @@ void switchbuttonstate(int state)
 		create_button(FULLSCREEN, "Toggle Screen", { -0.25f,0.0f }, 220.0f, 45.0f);
 		create_button(SOUND, "Toggle Music", { -0.25f,-BUTTONSPACE_Y}, 220.0f, 45.0f);
 
-		create_button(GS_RESTART, "Back", { 0.4f,-0.80f }, 100.0f, 45.0f);
+		create_button(MENU, "Back", { 0.4f,-0.80f }, 100.0f, 45.0f);
 		break;
 
 	case OPTIONS_INGAME:

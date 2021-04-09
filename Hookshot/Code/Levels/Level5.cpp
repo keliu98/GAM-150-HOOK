@@ -117,37 +117,39 @@ void Level5_Update()
 	Input_g_mode();
 
 	//If pause do not need update to run this few system
-	if (PAUSE == false)
+	if (!check_minimized_window())
 	{
-		//Update Enemy AI e.g movement
-		for (size_t i = 0; i < enemies.size(); i++)
+		if (PAUSE == false)
 		{
-			create_AABB(enemies[i].aabb, enemies[i].pos, enemies[i].scale, enemies[i].scale);
-			skitter_AI(i);
+			//Update Enemy AI e.g movement
+			for (size_t i = 0; i < enemies.size(); i++)
+			{
+				create_AABB(enemies[i].aabb, enemies[i].pos, enemies[i].scale, enemies[i].scale);
+				skitter_AI(i);
+			}
 
+			//Update Spikes Collision
+			update_spikes();
+
+			//Updating the physics of the game e.g acceleration, velocity, gravity
+			physics_update();
+
+			// Updating the Collision
+			UpdateCollision();
+
+			//Update Camera to stay within player
+			camera_update(character->pos, character->velocity, character->scale);
+
+			//Checks for win/lose condition
+			CheckWinLose();
 		}
 
-		//Update Spikes Collision
-		update_spikes();
+		//Updates the pause menu
+		UpdatePauseMenu();
 
-		//Updating the physics of the game e.g acceleration, velocity, gravity
-		physics_update();
-
-		// Updating the Collision
-		UpdateCollision();
-
-		//Update Camera to stay within player
-		camera_update(character->pos, character->velocity, character->scale);
-
-		//Checks for win/lose condition
-		CheckWinLose();
+		//Updates the button interaction
+		UpdateButton();
 	}
-
-	//Updates the pause menu
-	UpdatePauseMenu();
-
-	//Updates the button interaction
-	UpdateButton();
 }
 
 void Level5_Draw()

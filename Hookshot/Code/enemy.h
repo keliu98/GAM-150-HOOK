@@ -23,16 +23,51 @@ This file contain the interface for the enemy behaviour and its interaction.
 #pragma once
 #include "pch.h"
 
-void enemy_move_L(size_t i);//move left function
+/**************************************************************************/
+/*!
+	Enemy move left function.
+*/
+/**************************************************************************/
+void enemy_move_L(size_t i);
 
-void enemy_move_R(size_t i);//move right function
+/**************************************************************************/
+/*!
+	Enemy move right function.
+*/
+/**************************************************************************/
+void enemy_move_R(size_t i);
 
-void enemy_idle(size_t i);//idle function
+/**************************************************************************/
+/*!
+	Enemy idle function.
+*/
+/**************************************************************************/
+void enemy_idle(size_t i);
 
-void enemy_jump(size_t i);// jump function
+/**************************************************************************/
+/*!
+	Enemy jump function.
+*/
+/**************************************************************************/
+void enemy_jump(size_t i);
 
-void skitter_AI(size_t);// Spider AI
+/**************************************************************************/
+/*!
+	Enemy AI - Spider
+*/
+/**************************************************************************/
+void skitter_AI(size_t);
 
-void update_hook_attack();// update hook attack
+/**************************************************************************/
+/*!
+	Update hook attack.
+*/
+/**************************************************************************/
+void update_hook_attack();
 
-void update_spikes();//
+/**************************************************************************/
+/*!
+	Update spikes
+*/
+/**************************************************************************/
+void update_spikes();

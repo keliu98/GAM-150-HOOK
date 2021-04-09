@@ -27,6 +27,7 @@ This file contain the implementation for the input of the game and menu.
 #include"collision.h"
 
 bool PAUSE = false; //set pause to off
+static bool minimized = false;
 
 void skip_intro()
 {
@@ -36,6 +37,24 @@ void skip_intro()
 	{
 		next = GS_MENU;//move to menu
 	}
+}
+
+bool check_minimized_window()
+{
+	// if minimized
+	if (!minimized && AESysGetWindowHandle() != GetForegroundWindow())
+	{
+		minimized = true;
+		music_play(false);
+	}
+	// if not minimized
+	else if (minimized && AESysGetWindowHandle() == GetForegroundWindow())
+	{
+		minimized = false;
+		music_play(true);
+	}
+
+	return minimized;
 }
 
 void Input_g_mode() { // Game mode configuration

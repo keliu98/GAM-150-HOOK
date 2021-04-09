@@ -76,6 +76,7 @@ extern int creditsPage;
 extern const float BUTTONSPACE_Y; 
 
 //The different states
+extern const int MENU;
 extern const int CONFIRM_QUIT; 
 extern const int FULLSCREEN;
 extern const int SOUND;
