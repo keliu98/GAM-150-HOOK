@@ -49,7 +49,7 @@ int	GetCellValue(int X, int Y);
 void IntializeLevel();
 
 //Checking for win or lose or level change state
-void CheckWinLose();
+bool CheckWinLose();
 
 
 // std::vector<Wall*> loadLevel();

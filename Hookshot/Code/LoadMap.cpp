@@ -214,29 +214,21 @@ void IntializeLevel()
 
 }
 
-void CheckWinLose()
+bool CheckWinLose()
 {	
 	//REACHING THE GOAL
 	// ending position is always top right, so will need to caculate bottom left
 	if (character->pos.x <= end_position->x && character->pos.x >= (end_position->x - 40 * 4) &&
 		character->pos.y <= end_position->y && character->pos.y >= (end_position->y - 40 * 4))
 	{
-		//TO CHANGE TO NEXT LEVEL
-		next = GS_MENU;
-	}
-
-	//FALLING OUTSIDE MAP
-	//TODO when character->pos.y < map_height * grid , --lives, bascially outside of map
-	if (0)
-	{
-
+		next++;
+		return true;
 	}
 
 	//HEATH REDUCED TO ZERO
 	if (character->health == 0)
 	{
 		lives --; //reduce lives
-		std::cout << "test";
 		next = GS_RESTART; //restart level
 	}
 
@@ -248,5 +240,7 @@ void CheckWinLose()
 		next = GS_MENU; //TO CHANGE TO GAMEOVER
 		
 	}
+
+	return false;
 }
 

@@ -61,5 +61,6 @@
 #include "levelUI.h"
 #include "music.h"
 #include "intro.h"
+#include "win.h"
 
 #endif //PCH_H

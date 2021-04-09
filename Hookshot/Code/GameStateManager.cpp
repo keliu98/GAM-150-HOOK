@@ -109,6 +109,14 @@ void GSM_Update()
 		fpFree = Level5_Free;
 		fpUnload = Level5_Unload;
 		break;
+	case GS_WIN:
+		fpLoad = win_Load;
+		fpInitialize = win_Initialize;
+		fpUpdate = win_Update;
+		fpDraw = win_Draw;
+		fpFree = win_Free;
+		fpUnload = win_Unload;
+		break;
 	case GS_RESTART:
 		break;
 	case GS_QUIT:

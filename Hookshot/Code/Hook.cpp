@@ -1,30 +1,29 @@
 /*!*************************************************************************
 ****
 \file hookshot.cpp
-\authors: Tan Wei Wen
-
+\par Project: Hookshot
+\authors: Tan Wei Wen (100%)
 \par DP email:  t.weiwen@digipen.edu
-
 \par Course: CSD 1450
-\par Project: Software Engineering Project 2
 \date 280221
 
+\brief 
+This file contains the implementation to for firing a hook inside the game hookshot
+It also calculates direction of the swing when tethered.
 
-\brief //TODO
+\par Copyright: All content © 2021 Digipen Institute of Technology Singapore. All
+				rights reserved.
 
 ****************************************************************************
 ***/
 
 #include "pch.h"
-#include "collision.h"
-//#include "ObjectManager.h"
 
+//DEFINES
 static float SWING_ACCELERATION = 300;
 static float HOOK_SPEED = 20;
-static float previous_len;
 
-float intial_angle;
-
+//For easier naming of the direction
 enum class swing_dir
 {
 	NO_DIR,
@@ -33,10 +32,12 @@ enum class swing_dir
 
 }swing_dir;
 
+//Forward declarations. Not used in other files.
 float calculate_angle(AEVec2& pos1, AEVec2& pos2);
 float calculate_arc();
 void calculate_positions(AEVec2 &dir_vec);
 
+//Function to fire the hook and to tether on the the bg/wall.
 void fire_hook(int cursor_x, int cursor_y)
 {	
 
@@ -131,7 +132,7 @@ void fire_hook(int cursor_x, int cursor_y)
 	}
 }
 
-
+//Function to release the hook and stop firing.
 void release_hook()
 {
 	//---------------------PHASE 3: RELEASING-----------------------------------
@@ -180,6 +181,7 @@ void hook_char_pos_update()
 
 }
 
+//Helper function to calculate the angle given two positions.
 float calculate_angle(AEVec2& pos1, AEVec2& pos2)
 {
 	AEVec2 dir_vec;
@@ -188,6 +190,7 @@ float calculate_angle(AEVec2& pos1, AEVec2& pos2)
 	return static_cast<float>(atan2(dir_vec.y, dir_vec.x));
 }
 
+//Helper function to calculate the arc direction. The direction of the swing
 float calculate_arc()
 {
 	//Getting the direction when first hooking
@@ -236,6 +239,7 @@ float calculate_arc()
 	return 0;
 }
 
+//Helper function to calculate the position of tail, head and center of the rope.
 void calculate_positions(AEVec2& dir_vec)
 {
 	hook->tail_pos = character->pos;							    //tail = character pos

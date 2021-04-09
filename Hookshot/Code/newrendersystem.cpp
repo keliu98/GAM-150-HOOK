@@ -268,6 +268,7 @@ void load_menubg_render()
 
 }
 
+
 void load_spike_texture()
 {
 	spike_texture = load_texture("../Images/Spikes.png");

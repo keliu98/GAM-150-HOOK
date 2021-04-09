@@ -58,8 +58,15 @@
     <ClCompile Include="Code\intro.cpp">
       <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="Code\Levels\Level4.cpp" />
-    <ClCompile Include="Code\Levels\Level5.cpp" />
+    <ClCompile Include="Code\Levels\Level4.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Levels\Level5.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\win.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Code\camera.h">
@@ -122,8 +129,15 @@
     <ClInclude Include="Code\intro.h">
       <Filter>Include</Filter>
     </ClInclude>
-    <ClInclude Include="Code\Levels\Level4.h" />
-    <ClInclude Include="Code\Levels\Level5.h" />
+    <ClInclude Include="Code\Levels\Level4.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Levels\Level5.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\win.h">
+      <Filter>Include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Include">
