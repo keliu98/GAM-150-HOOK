@@ -57,7 +57,7 @@ void menu_Initialize()
 
 	create_button(GS_LEVEL1, "Start Game", { -0.2f,-0.0f }, 200.0f, 45.0f);//create start button
 	create_button(LEVELSELECT, "Select Level", { -0.2f, -BUTTONSPACE_Y }, 200.0f, 45.0f);// create level selection button
-	create_button(TUTORIAL, "Tutorial", { -0.2f, -BUTTONSPACE_Y * 2 }, 200.0f, 45.0f);// create tutorial button
+	create_button(TUTORIAL, "How to play", { -0.2f, -BUTTONSPACE_Y * 2 }, 200.0f, 45.0f);// create tutorial button
 
 	create_button(OPTIONS, "Options", { -0.2f, -BUTTONSPACE_Y * 3 }, 200.0f, 45.0f);//create option button
 	create_button(CREDITS, "Credits", { -0.2f, -BUTTONSPACE_Y * 4 }, 200.0f, 45.0f);//create credit button
