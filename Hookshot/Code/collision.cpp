@@ -1,20 +1,22 @@
 /*!*************************************************************************
 ****
 \file collision.cpp
-\authors: Tan Egi
-		  Tan Wei Wen
-
-\par DP email:  egi.tan@digipen.edu
-				t.weiwen@digipen.edu
-
-\par Course: CSD 1450
-\par Project: Software Engineering Project 2
+\par Project: Hookshot
+\authors: Tan Egi (60%)
+		  Tan Wei Wen (35%)
+		  Yong Hui (5%)
+\par DP email: egi.tan@digipen.edu
+			   t.weiwen@digipen.edu
+			   l.yonghui@digipen.edu
 \date 160221
 
-
 \brief
-	This file contains implementation for collision detection between game 
-	objects.
+This file contains implementation for collision detection between game
+objects.
+
+\par Copyright: All content © 2021 Digipen Institute of Technology Singapore. 
+                All rights reserved.
+
 ****************************************************************************
 ***/
 
@@ -24,9 +26,11 @@ const int GRID_SCALE = 40;
 
 void UpdateCollision()
 {
+	// update collision flag and snap plater back to grid
 	character->grid_collision_flag = CheckInstanceBinaryMapCollision(character->pos, character->velocity);
 	SnapToCell(&character->pos, character->grid_collision_flag);
 
+	// track how many shots left
 	if (character->velocity.y < 0.01f && (character->grid_collision_flag & COLLISION_BOTTOM) == COLLISION_BOTTOM)
 	{
 		character->char_state = not_jumping;
@@ -34,6 +38,7 @@ void UpdateCollision()
 		ammoD = 3;
 	}
 
+	// collision for enemies
 	for (Enemy& enemy : enemies) {
 		enemy.grid_collision_flag = CheckInstanceBinaryMapCollision(enemy.pos, enemy.velocity);
 		SnapToCell(&enemy.pos, enemy.grid_collision_flag);
@@ -44,6 +49,7 @@ void UpdateCollision()
 		}
 	}
 
+	// create AABB points
 	create_AABB(character->aabb, character->pos, character->scale, character->scale);
 }
 
@@ -52,21 +58,25 @@ void SnapToCell(AEVec2* Coordinate, int Flag)
 	int character_x_index = 0;
 	int character_y_index = 0;
 
+	// for top collision
 	if ((Flag & COLLISION_TOP) == COLLISION_TOP)
 	{
 		character_y_index = (int)((Coordinate->y / GRID_SCALE) - 0.5f);
 		Coordinate->y = (float)(character_y_index * GRID_SCALE + (GRID_SCALE / 2));
 	}
+	// for bottom collision
 	if ((Flag & COLLISION_BOTTOM) == COLLISION_BOTTOM)
 	{
 		character_y_index = (int)((Coordinate->y / GRID_SCALE) + 0.5f);
 		Coordinate->y = (float)(character_y_index * GRID_SCALE + (GRID_SCALE / 2) - 2.5f);
 	}
+	// for left collision
 	if ((Flag & COLLISION_LEFT) == COLLISION_LEFT)
 	{
 		character_x_index = (int)((Coordinate->x / GRID_SCALE) + 0.5f);
 		Coordinate->x = (float)(character_x_index * GRID_SCALE + (GRID_SCALE / 2));
 	}
+	// for right collision
 	if ((Flag & COLLISION_RIGHT) == COLLISION_RIGHT)
 	{
 		character_x_index = (int)((Coordinate->x / GRID_SCALE) - 0.5f);
@@ -79,6 +89,7 @@ int	CheckInstanceBinaryMapCollision(AEVec2& pos, AEVec2& velocity)
 	int flag = 0;
 	Hotspot item;
 
+	// creating hotspots
 	item.right.point_1 = { pos.x + GRID_SCALE / 2 , pos.y + GRID_SCALE / 4 };
 	item.right.point_2 = { pos.x + GRID_SCALE / 2 , pos.y - GRID_SCALE / 4 };
 
@@ -91,7 +102,7 @@ int	CheckInstanceBinaryMapCollision(AEVec2& pos, AEVec2& velocity)
 	item.bottom.point_1 = { pos.x - GRID_SCALE / 4, pos.y - GRID_SCALE / 2 };
 	item.bottom.point_2 = { pos.x + GRID_SCALE / 4, pos.y - GRID_SCALE / 2 };
 
-	// check collision
+	// check collision for bottom
 	if (GetCellValue((int)item.bottom.point_1.x / GRID_SCALE, (int)item.bottom.point_1.y / GRID_SCALE) ||
 		GetCellValue((int)item.bottom.point_2.x / GRID_SCALE, (int)item.bottom.point_2.y / GRID_SCALE))
 	{
@@ -99,18 +110,23 @@ int	CheckInstanceBinaryMapCollision(AEVec2& pos, AEVec2& velocity)
 		velocity.y = 0.0f;
 	}
 
+	// check collision for right
 	if (GetCellValue((int)item.right.point_1.x / GRID_SCALE, (int)item.right.point_1.y / GRID_SCALE) ||
 		GetCellValue((int)item.right.point_2.x / GRID_SCALE, (int)item.right.point_2.y / GRID_SCALE))
 	{
 		flag += COLLISION_RIGHT;
 		velocity.x = 0;
 	}
+
+	// check collision for left
 	if (GetCellValue((int)item.left.point_1.x / GRID_SCALE, (int)item.left.point_1.y / GRID_SCALE) ||
 		GetCellValue((int)item.left.point_2.x / GRID_SCALE, (int)item.left.point_2.y / GRID_SCALE))
 	{
 		flag += COLLISION_LEFT;
 		velocity.x = 0;
 	}
+
+	// check collision for top
 	if (GetCellValue((int)item.top.point_1.x / GRID_SCALE, (int)item.top.point_1.y / GRID_SCALE) ||
 		GetCellValue((int)item.top.point_2.x / GRID_SCALE, (int)item.top.point_2.y / GRID_SCALE))
 	{
@@ -118,7 +134,7 @@ int	CheckInstanceBinaryMapCollision(AEVec2& pos, AEVec2& velocity)
 		velocity = { 0.0f, -0.01f };
 	}
 
-
+	// return collision flag
 	return flag;
 }
 
@@ -130,7 +146,6 @@ bool CollisionIntersection_RectRect(const AABB& aabb1, const AEVec2& vel1, const
 		aabb1.max.x > aabb2.min.x &&
 		aabb1.max.y > aabb2.min.y)
 	{
-		//std::cout << "check";
 		return true;
 	}
 
@@ -242,7 +257,7 @@ bool CollisionIntersection_RectRect(const AABB& aabb1, const AEVec2& vel1, const
 
 bool CollisionIntersection_PointRect(const AEVec2 point1, const AABB& aabb2)
 {
-	//static collision
+	// static collision
 	if (point1.x > aabb2.min.x &&
 		point1.x < aabb2.max.x &&
 		point1.y > aabb2.min.y &&
@@ -256,6 +271,7 @@ bool CollisionIntersection_PointRect(const AEVec2 point1, const AABB& aabb2)
 
 void create_AABB(AABB& aabb, AEVec2 const& pos, float scale_x, float scale_y)
 {
+	// create AABB points
 	aabb.min.x = pos.x - (scale_x / 2);
 	aabb.min.y = pos.y - (scale_y / 2);
 	aabb.max.x = pos.x + (scale_x / 2);

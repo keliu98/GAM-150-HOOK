@@ -1,19 +1,19 @@
 /*!*************************************************************************
 ****
 \file camera.cpp
-\authors: Tan Egi
-		  Tan Wei Wen
-
-\par DP email:  egi.tan@digipen.edu
-				t.weiwen@digipen.edu
-
-\par Course: CSD 1450
-\par Project: Software Engineering Project 2
-\date 020221
-
+\par Project: Hookshot
+\authors: Tan Egi (90%)
+		  Tan Wei Wen (10%)
+\par DP email: egi.tan@digipen.edu
+			   t.weiwen@digipen.edu
+\date 090421
 
 \brief
-  This file contain the camera system function definition. 
+This file contain the camera system function definition.
+
+\par Copyright: All content © 2021 Digipen Institute of Technology Singapore. 
+                All rights reserved.
+
 ****************************************************************************
 ***/
 
@@ -65,7 +65,6 @@ void draw_cam_bounding_box(AEGfxTexture* texture)
 	AEGfxMeshDraw(pMeshLine2, AE_GFX_MDM_LINES_STRIP);	// set draw mode
 	AEGfxSetTransparency(0.5f);							// set transparency
 	AEGfxSetBlendMode(AE_GFX_BM_BLEND);					// set blend mode
-
 	AEGfxMeshFree(pMeshLine2);							// free mesh
 }
 
@@ -84,7 +83,6 @@ void camera_init(AEVec2 character_pos) {
 		if (dist.y < 0)
 			dist.y = dist.y * -1;
 		loadOnce = true;
-		//printf("once\n");
 	}
 
 	// update bounding box based on camera position & distance calculated 

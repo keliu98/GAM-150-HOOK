@@ -16,18 +16,21 @@ This file contains the interface for firing a hook inside the game hookshot.
 
 ****************************************************************************
 ***/
+
 /**************************************************************************/
 /*!
 	Function to fire the hook and to tether on the the bg/wall.
 */
 /**************************************************************************/
 void fire_hook(int cursor_x, int cursor_y);
+
 /**************************************************************************/
 /*!
 	Function to release the hook and stop firing.
 */
 /**************************************************************************/
 void release_hook();
+
 /**************************************************************************/
 /*!
 	Function for transalating the character position to stay within the arc, "pulling it back in". Called in physics.cpp

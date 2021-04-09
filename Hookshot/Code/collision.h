@@ -3,9 +3,11 @@
 \file collision.h
 \par Project: Hookshot
 \authors: Tan Egi (60%)
-		  Tan Wei Wen (40%)
+		  Tan Wei Wen (35%)
+		  Yong Hui (5%)
 \par DP email: egi.tan@digipen.edu
 			   t.weiwen@digipen.edu
+			   l.yonghui@digipen.edu
 \date 160221
 
 \brief
