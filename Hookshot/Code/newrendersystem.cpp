@@ -343,7 +343,7 @@ void update_render_door()
 }
 
 // update the rendering credits 
-void update_render_credits()
+void update_render_credits(float x, float y)
 {
 	Render render;
 
