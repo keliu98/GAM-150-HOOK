@@ -34,8 +34,10 @@ void PrintText(char* message, int type, AEVec2 position)	// italic or norm
 
 	if (type == NORMAL)
 		font_to_use = font;
-	else
+	else if (type == ITALIC)
 		font_to_use = font_italic;
+	else
+		font_to_use = smaller_font;
 
 	AEGfxPrint(font_to_use, message, position.x, position.y, 1.0f, 1.f, 1.f, 1.f);
 }

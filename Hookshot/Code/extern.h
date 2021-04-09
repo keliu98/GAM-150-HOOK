@@ -51,6 +51,7 @@ extern const float GRAVITY;
 /**************************************************************************/
 extern char		font;
 extern char		font_italic;
+extern char		smaller_font;
 
 /**************************************************************************/
 /*!

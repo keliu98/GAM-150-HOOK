@@ -43,6 +43,7 @@ int      WINDOW_HEIGHT = 500;
 size_t   TOTAL_LIVES = 3;
 char	 font;
 char	 font_italic;
+char	 smaller_font;
 
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	_In_opt_ HINSTANCE hPrevInstance,
@@ -63,6 +64,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	AESysInit(hInstance, nCmdShow, WINDOW_WIDTH, WINDOW_HEIGHT, 1, 60, true, NULL);
 	
 	// init font id:
+	smaller_font = AEGfxCreateFont("../Fonts/Pixel Digivolve.otf", 16);
 	font = AEGfxCreateFont("../Fonts/Pixel Digivolve.otf", 24);
 	font_italic = AEGfxCreateFont("../Fonts/Pixel Digivolve Italic.otf", 16);
 
@@ -142,6 +144,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     }
     
 	// Destory font ID
+	AEGfxDestroyFont(smaller_font);
 	AEGfxDestroyFont(font);
 	AEGfxDestroyFont(font_italic);
 

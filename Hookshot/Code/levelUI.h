@@ -7,6 +7,7 @@ enum font_type
 {
 	NORMAL,
 	ITALIC,
+	SMALL,
 };
 
 void PrintText(char* message, int type, AEVec2 position);
