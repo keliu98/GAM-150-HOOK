@@ -167,6 +167,7 @@
     <Image Include="Images\Title.png" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="Ke_Liu.txt" />
     <Text Include="Levels\Level_1.txt" />
     <Text Include="Levels\Level_2.txt" />
     <Text Include="Levels\Level_3.txt" />

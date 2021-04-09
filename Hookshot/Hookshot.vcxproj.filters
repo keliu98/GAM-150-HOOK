@@ -173,6 +173,7 @@
     <Text Include="Levels\Level_5.txt" />
     <Text Include="Levels\Level_Design.txt" />
     <Text Include="Levels\test_level.txt" />
+    <Text Include="Ke_Liu.txt" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Images\skittersprite.psd" />
