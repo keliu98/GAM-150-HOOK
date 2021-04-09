@@ -9,14 +9,14 @@ struct Hook;
 extern Hook* hook;
 
 struct Button;
-extern std::vector<Button> buttons;
+extern std::vector<Button> buttons;//a list of buttons
 
 //Extern list to use for walls and enemies
 struct Wall;
 extern std::vector<Wall> walls;
 
 struct Enemy;
-extern std::vector<Enemy> enemies;
+extern std::vector<Enemy> enemies;// enemy list
 
 //Extern position of end goal
 extern AEVec2* end_position;
@@ -25,9 +25,9 @@ extern AEVec2* end_position;
 struct Spike;
 extern std::vector<Spike> spikes;
 
-extern int lives;
-extern int ammo;
-extern int ammoD;
+extern int lives;// number of lives
+extern int ammo;// internal ammo count
+extern int ammoD;// UI ammo display
 
 //-----------------------------------------------------------
 
@@ -66,9 +66,9 @@ enum wall_type
 
 enum enemy_type
 {
-	TEMP_ENEMY,
-	BASIC,
-	ELITE,
+	TEMP_ENEMY,//defualt enemy type
+	BASIC,//basic (spider)
+	ELITE,// elite type enemy(hopper)
 };
 
 struct Hook {
@@ -119,24 +119,16 @@ struct Character {
 	AEVec2 knockback;
 };
 
-struct Button {
+struct Button {//button structure
 	
-	AEVec2 scale;
-	int state;
-	AEMtx33 transform;
-	AEVec2 pos_ratio;
-	AEVec2 pos_trans;
-	AABB  aabb;
-	bool  highlight;
-	const char* string;
-};
-
-struct Health {
-	size_t total;
-	float scale;
-	int type;
-	AEMtx33 transform;
-	AEVec2 pos;
+	AEVec2 scale;//scale of button
+	int state;//state of button
+	AEMtx33 transform;//transformation matrix
+	AEVec2 pos_ratio;// position  ratio
+	AEVec2 pos_trans;//translate ratio
+	AABB  aabb;// boundig box
+	bool  highlight;//highlight state
+	const char* string;//string 
 };
 
 
@@ -157,29 +149,29 @@ struct Spike{
 
 
 struct Enemy {
-	AABB  aabb;
+	AABB  aabb;//enemy bounding box
 
-	float scale;
-	float dir;
-	AEMtx33 transform;
+	float scale;//enemy scale
+	float dir;// enemy direction
+	AEMtx33 transform;// transformation matrix
 
-	AEVec2 pos;
-	AEVec2 cliff_check;
-	AEVec2 velocity;
+	AEVec2 pos;// position
+	AEVec2 cliff_check;// check for ledge
+	AEVec2 velocity;// enemy velocity
 
-	float jump_height;
-	float gravity;
+	float jump_height;// jump height
+	float gravity;// gravity
 
-	int type;
+	int type;// enemy type
 
-	int health;
-	int damage;
+	int health;// enemy health
+	int damage;// enemy damage 
 
-	AEVec2 knockback;
-	int jump_state;
-	int grid_collision_flag;
-	int d_switch;
-	int Iframe;
+	AEVec2 knockback;//enemy knockback value
+	int jump_state;// jump state
+	int grid_collision_flag;// collision flag
+	int d_switch; //direction switch
+	int Iframe;// invincibility frame
 };
 
 

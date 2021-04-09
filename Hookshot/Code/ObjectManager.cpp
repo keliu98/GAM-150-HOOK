@@ -1,17 +1,15 @@
 #include "ObjectManager.h"
 
-int lives = 3;
-int ammo =3;
-int ammoD = 3;
+int lives = 3; //initialise live and set the starting amount to 3
+int ammo =3; // set internal ammo to 3
+int ammoD = 3;//set display ammo to 3
 
 Character* character;
 Hook* hook;
-Button* button;
-Health* health;
-std::vector<Button> buttons;
-std::vector < Health > heart;
+Button* button;//create button
+std::vector<Button> buttons;//create a vector of buttons
 std::vector<Wall> walls;
-std::vector<Enemy> enemies;
+std::vector<Enemy> enemies;//create a vector of enemies
 std::vector<Spike> spikes;
 AEVec2* end_position;
 
@@ -70,18 +68,18 @@ Character* create_character(AEVec2 pos)
 }
 
 
-void create_button(int state, const char* string, AEVec2 pos, float scale_x, float scale_y)
+void create_button(int state, const char* string, AEVec2 pos, float scale_x, float scale_y) 
 {
 	Button button;
 	
-	// init values
-	button.state = state;
-	button.scale.x = scale_x;
-	button.scale.y = scale_y;
-	button.pos_ratio = pos;
-	button.string = string;
-	button.highlight = false;
-	buttons.push_back(button);
+	// init values 
+	button.state = state;// set button to defualt state
+	button.scale.x = scale_x;//set x for scale
+	button.scale.y = scale_y;// set y for scalw
+	button.pos_ratio = pos;//set position ratio
+	button.string = string;//set the string of the button
+	button.highlight = false;// set default to bee non highlighted at the start
+	buttons.push_back(button);//push back button by one at the beginning
 }
 
 /*
@@ -110,22 +108,22 @@ void create_enemy(int enemy_type, AEVec2 pos)
 	Enemy enemy;
 	
 	//TODO intialise values
-	enemy.scale = 40.0f;
-	enemy.dir = 0.0f;
-	enemy.pos = pos;
-	enemy.type = enemy_type;
+	enemy.scale = 40.0f;// set scale size to 40
+	enemy.dir = 0.0f;// set direction to 0
+	enemy.pos = pos;// set postion to the pass-in position 
+	enemy.type = enemy_type;//set the type to the pass in type
 
-	enemy.knockback.y = create_vel_height(30.0f, GRAVITY);
-	enemy.knockback.x = 200.0f;
+	enemy.knockback.y = create_vel_height(30.0f, GRAVITY);//set verticle knockback
+	enemy.knockback.x = 200.0f;//set horizontal knockback 
 
-	enemy.velocity.x = 0;
-	enemy.velocity.y = 0;
-	enemy.jump_state = not_jumping;
-	enemy.d_switch = 0;
-	enemy.health = 3;
+	enemy.velocity.x = 0;// set defualt horizontal velocity to 0
+	enemy.velocity.y = 0;//set verticle velocity to 0
+	enemy.jump_state = not_jumping;// set default jump state to not jumping
+	enemy.d_switch = 0; //set directional switch to 0
+	enemy.health = 3; // set health to 3
 	enemy.Iframe = 0; // 1 = invincible, 0=vulnerable
-	enemy.cliff_check = pos;
-	enemies.push_back(enemy);
+	enemy.cliff_check = pos;//set cliff checker to 0
+	enemies.push_back(enemy);//puch back the enemies vector
 	
 	//std::cout << "enemy created\n";
 }
@@ -133,13 +131,13 @@ void create_enemy(int enemy_type, AEVec2 pos)
 // When enemy is defeated by players
 void destory_enemy(std::vector<Enemy>& enemies, int index)
 {
-	for (int i{ 0 }; i < enemies.size(); ++i)
+	for (int i{ 0 }; i < enemies.size(); ++i)//scan through the enemy list
 	{
-		if (i == index)
+		if (i == index) //if the enemy index is the same as the passed in index
 		{
 			// remove that particular enemy
 			delete& enemies[i];
-			enemies.erase(enemies.begin());
+			enemies.erase(enemies.begin());//remove that enemy from the list
 			return;
 		}
 	}
