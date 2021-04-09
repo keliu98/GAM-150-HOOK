@@ -135,17 +135,6 @@ void PrintRetrievedInformation(void)
 	}
 }
 
-/*int	GetCellValue(int X, int Y)
-{
-	// Check within
-	if ((X >= 0 && X < map_width) && ((Y >= 0 && Y < map_height)))
-	{
-		return binary_collision_array[Y][X];
-	}
-
-	return 0;
-}*/
-
 int GetCellValue(int X, int Y)
 {
 	if (X > (map_width - 1) || X<0 || Y >(map_height - 1) || Y < 0) {//if value is out of bound return 0

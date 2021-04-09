@@ -45,9 +45,6 @@ void intro_Initialize()
 
 void intro_Update()
 {
-	if (AEInputCheckReleased(AEVK_ESCAPE))
-		next = GS_QUIT;
-
 	if (index != 0)
 		skip_intro();
 
@@ -103,13 +100,12 @@ void intro_Draw()
 	AEGfxTextureSet(logo[index], 0.0f, 0.0f); // Same object, different texture
 	// Set transformation matrix
 	AEGfxSetTransform(logo_trans.m);
-
 	// Draw the mesh
 	AEGfxMeshDraw(logo_mesh, AE_GFX_MDM_TRIANGLES);
 
 	// print copyright
 	sprintf_s(text, "©2021 DigiPen Corporation (Singapore), All Rights Reserved");
-	PrintText(text, SMALL, { -0.70f, -0.85f });
+	PrintText(text, SMALL, { -0.68f, -0.85f });
 }
 
 void intro_Free()
