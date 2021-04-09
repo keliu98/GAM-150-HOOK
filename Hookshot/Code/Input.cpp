@@ -1,17 +1,24 @@
 /*!*************************************************************************
 ****
-\file Input.cpp
-\authors: Yong Hui
+\file input.cpp
+\par Project: Hookshot
+\authors: Yong Hui (80%)
+		  Tan Wei Wen (15%)
+		  Egi Tan (5%)
 
 \par DP email: l.yonghui@digipen.edu
+			   t.weiwen@digipen.edu
+			   egi.tan@digipen.edu
 
 \par Course: CSD 1450
-\par Project: Software Engineering Project 2
-\date 020221
-
+\date 090421
 
 \brief
-  This source file contains the implementation for all the Input function.
+This file contain the implementation for the input of the game and menu.
+
+\par Copyright: All content © 2021 Digipen Institute of Technology Singapore.
+				All rights reserved.
+
 ****************************************************************************
 ***/
 

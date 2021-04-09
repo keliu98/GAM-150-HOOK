@@ -174,8 +174,6 @@
     <Text Include="Levels\Level_3.txt" />
     <Text Include="Levels\Level_4.txt" />
     <Text Include="Levels\Level_5.txt" />
-    <Text Include="Levels\Level_Design.txt" />
-    <Text Include="Levels\test_level.txt" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Images\creditspage.zip" />

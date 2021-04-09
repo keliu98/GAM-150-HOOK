@@ -6,6 +6,7 @@
 		  Egi Tan (25%)
 		  Liu Ke (25%)
 		  Yong Hui (25%)
+
 \par DP email:  t.weiwen@digipen.edu
 				egi.tan@digipen.edu
 				ke.liu@digipen.edu

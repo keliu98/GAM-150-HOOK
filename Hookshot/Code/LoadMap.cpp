@@ -4,6 +4,7 @@
 \par Project: Hookshot
 \authors: Tan Egi (70%)
 		  Tan Wei Wen (30%)
+
 \par DP email: egi.tan@digipen.edu
 			   t.weiwen@digipen.edu
 \date 090421

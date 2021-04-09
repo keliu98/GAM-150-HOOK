@@ -6,6 +6,8 @@
 		  Tan Wei Wen (10%)
 \par DP email: egi.tan@digipen.edu
 			   t.weiwen@digipen.edu
+
+\par Course: CSD 1450
 \date 090421
 
 \brief

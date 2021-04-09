@@ -1,17 +1,25 @@
 /*!*************************************************************************
 ****
-\file Input.h
-\authors: Yong Hui
+\file input.cpp
+\par Project: Hookshot
+\authors: Yong Hui (80%)
+		  Tan Wei Wen (15%)
+		  Egi Tan (5%)
 
 \par DP email: l.yonghui@digipen.edu
+			   t.weiwen@digipen.edu
+			   egi.tan@digipen.edu
 
 \par Course: CSD 1450
-\par Project: Software Engineering Project 2
-\date 020221
-
+\date 090421
 
 \brief
-  This is a header file for the input system.
+This file contain the interface for the input of the game and menu. Functions
+are to be called by the game state.
+
+\par Copyright: All content © 2021 Digipen Institute of Technology Singapore.
+				All rights reserved.
+
 ****************************************************************************
 ***/
 

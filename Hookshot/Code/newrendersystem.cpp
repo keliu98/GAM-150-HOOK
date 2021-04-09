@@ -1,20 +1,26 @@
 /*!*************************************************************************
 ****
 \file newrendersystem.cpp
-\authors: Liu Ke
-	
+\authors: Liu Ke (70%)
+		  Tan Wei Wen (10%)
+		  Egi Tan (10%)
+		  Yong Hui (10%)
+		  
 
-\par DP email:  ke.liu@digipen.edu
-
+\par DP email:  t.weiwen@digipen.edu
+				egi.tan@digipen.edu
+				l.yonghui@digipen.edu
+				ke.liu@digipen.edu
 
 \par Course: CSD 1450
-\par Project: Software Engineering Project 2
 \date 020221
-
 
 \brief
   This source file contains the implementation for all the character
-  animation
+  animation and rendering all the objects in the game
+
+ \par Copyright: All content © 2021 Digipen Institute of Technology Singapore. All
+				rights reserved.
 ****************************************************************************
 ***/
 

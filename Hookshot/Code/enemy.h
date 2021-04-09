@@ -1,18 +1,24 @@
 /*!*************************************************************************
 ****
-\file enemy.h
-\authors: Lau Yong Hui
+\file enemy.cpp
+\par Project: Hookshot
+\authors: Yong Hui (85%)
+		  Tan Wei Wen (15%)
 
-\par DP email:  l.yonghui@digipen.edu
-			
+\par DP email: l.yonghui@digipen.edu
+			   t.weiwen@digipen.edu
+
 \par Course: CSD 1450
-\par Project: Software Engineering Project 2
-\date 160221
-
+\date 090421
 
 \brief
-  This is a header file for  the enemy AI.
-****************************************************************************/
+This file contain the interface for the enemy behaviour and its interaction.
+
+\par Copyright: All content © 2021 Digipen Institute of Technology Singapore.
+				All rights reserved.
+
+****************************************************************************
+***/
 
 #pragma once
 #include "pch.h"

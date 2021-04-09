@@ -4,17 +4,20 @@
 \par Project: Hookshot
 \authors: Tan Egi (100%)
 \par DP email: egi.tan@digipen.edu
-\date 090421
 
 \brief
 This is a implementation file for the logo introduction before showing the 
 game main menu.
+
+\par Course: CSD 1450
+\date 090421
 
 \par Copyright: All content © 2021 Digipen Institute of Technology Singapore. 
                 All rights reserved.
 
 ****************************************************************************
 ***/
+
 #include "intro.h"
 
 static const int MAX_LOGO = 2;			// Number of logo to show
