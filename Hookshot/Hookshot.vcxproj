@@ -177,6 +177,9 @@
     <Text Include="Levels\test_level.txt" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Images\creditspage.zip" />
+    <None Include="Images\Creditspage1.psd" />
+    <None Include="Images\creditspage2.psd" />
     <None Include="Images\skittersprite.psd" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

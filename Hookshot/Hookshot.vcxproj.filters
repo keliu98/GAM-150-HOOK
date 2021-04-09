@@ -177,5 +177,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Images\skittersprite.psd" />
+    <None Include="Images\creditspage.zip" />
+    <None Include="Images\Creditspage1.psd" />
+    <None Include="Images\creditspage2.psd" />
   </ItemGroup>
 </Project>
