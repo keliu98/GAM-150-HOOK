@@ -1,17 +1,21 @@
 /*!*************************************************************************
 ****
-\file win.h
-\authors: Tan Wei Wen
+\file win.cpp
+\par Project: Hookshot
+\authors: Tan Wei Wen (100%)
 
 \par DP email:  t.weiwen@digipen.edu
 
 \par Course: CSD 1450
-\par Project: Software Engineering Project 2
-\date 040821
-
+\date 050421
 
 \brief
-  This file contains all the functions interface for the win state.
+This file contains the interface for the win state of the game. Displays the
+game win screen. To be used by game state manager
+
+\par Copyright: All content © 2021 Digipen Institute of Technology Singapore. All
+				rights reserved.
+
 ****************************************************************************
 ***/
 
@@ -19,42 +23,42 @@
 
 /**************************************************************************/
 /*!
-	Load level
+	Load win_state - Load Assets
 */
 /**************************************************************************/
 void win_Load();
 
 /**************************************************************************/
 /*!
-	Initialize level
+	Initialize win_state - Intialise Variables
 */
 /**************************************************************************/
 void win_Initialize();
 
 /**************************************************************************/
 /*!
-	Update level
+	Update win_state - Interaction with win state
 */
 /**************************************************************************/
 void win_Update();
 
 /**************************************************************************/
 /*!
-	Draw level
+	Draw win_state - Credits, Bg, buttons, fonts
 */
 /**************************************************************************/
 void win_Draw();
 
 /**************************************************************************/
 /*!
-	Free level
+	Free win_state - Free any music and buttons
 */
 /**************************************************************************/
 void win_Free();
 
 /**************************************************************************/
 /*!
-	Unload level
+	Unload win_state - Unload Assets
 */
 /**************************************************************************/
 void win_Unload();

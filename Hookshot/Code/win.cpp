@@ -1,20 +1,21 @@
 /*!*************************************************************************
 ****
 \file win.cpp
-\authors: Tan Wei Wen
-		  Egi Tan
-		  Liu Ke
-		  Yong Hui
+\par Project: Hookshot
+\authors: Tan Wei Wen (100%)
 
 \par DP email:  t.weiwen@digipen.edu
 
 \par Course: CSD 1450
-\par Project: Software Engineering Project 2
 \date 050421
 
-
 \brief
-  This source file contains the implementation for the win state
+This file contains the implementation for the win state of the game. Displays the 
+game win screen.
+
+\par Copyright: All content © 2021 Digipen Institute of Technology Singapore. All
+				rights reserved.
+
 ****************************************************************************
 ***/
 
@@ -22,6 +23,7 @@
 
 void win_Load()
 {
+	//Load Music
 	music_Load("../Music/NEW YEARS - Holidays MSCHOL2_54.wav");
 
 	//loading texture etc
@@ -30,17 +32,23 @@ void win_Load()
 	//load bg
 	load_bg_render();
 
+	//load credits
+	load_credits_render();
+
 	// load buttons texture
 	load_button_texture();
 
 	//Creates a back button
-	create_button(GS_MENU, "Return Menu", { -0.2f, -BUTTONSPACE_Y * 3 }, 200.0f, 45.0f);
+	create_button(CREDITS, "Credits", { -0.2f, -BUTTONSPACE_Y * 3 }, 200.0f, 45.0f);
 }
 
 void win_Initialize()
 {
 	//Initalise Music
 	music_Initialize();
+
+	//Reset camera position
+	camera_init({ 0,0 });
 }
 
 void win_Update()
@@ -55,18 +63,26 @@ void win_Update()
 
 void win_Draw()
 {
+	
 	static char text[100];
 	memset(text, 0, 100 * sizeof(char));
+	if (display_credits == false)
+	{
+		update_render_bg();
 
-	update_render_bg();
+		sprintf_s(text, "Congraturation");
+		PrintText(text, NORMAL, { -0.25, 0.2f });
+		sprintf_s(text, "You Found the Treasure!!");
+		PrintText(text, NORMAL, { -0.45, 0.0f });
+		sprintf_s(text, "Winner is you");
+		PrintText(text, NORMAL, { -0.25, -0.2f });
+	}
+
+	//Draw credits if true
+	if (display_credits == true)
+		update_render_credits();
+
 	update_render_buttons();
-
-	sprintf_s(text, "Congraturation");
-	PrintText(text, NORMAL, { -0.25, 0.2f });
-	sprintf_s(text, "You Found the Treasure!!");
-	PrintText(text, NORMAL, { -0.45, 0.0f });
-	sprintf_s(text, "Winner is you");
-	PrintText(text, NORMAL, { -0.25, -0.2f });
 }
 
 // Called if change state, for everything including reset
