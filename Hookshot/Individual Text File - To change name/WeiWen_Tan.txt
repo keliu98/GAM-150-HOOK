@@ -7,6 +7,22 @@ Main Contribution:
 4) Help to do debuging for everyone.
 5) Guided and wrote partial code for enemy, input and rendering. 
 
+Render System:    10% * 497 = 50
+Collision:        25 % * 191 = 48
+Load Map:         30% * 175 = 52
+Level UI:         100% = 157
+Hook:             100% = 141
+Object manager:   40% * 123 = 49
+Camera:           10% * 109 = 11
+Input:            15% * 106 = 16
+Enemy:            15% * 92 = 14
+5 x Levels:       25% [Not quality Code, no point]
+GamestateManager: 25% [Code used from CSD1130, no point]
+Menu:             100% = 74
+Physics:          100% = 63
+Win state:        100% = 59
+Total Code Contribution: 734
+
 Personal Notes:
 This project might have been one of the toughest that I have done. Not because it was very technical but it was emotionally draining.
 I had high hopes for my team at the beginning as we formed early, but that quickly became the opposite when our personal deadlines that 

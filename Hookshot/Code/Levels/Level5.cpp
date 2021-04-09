@@ -5,7 +5,7 @@
 \authors: Tan Wei Wen (25%)
 		  Egi Tan (25%)
 		  Yong Hui (25%)
-		  Liu Ke (20%)
+		  Liu Ke (25%)
 
 \par DP email:  t.weiwen@digipen.edu
 				egi.tan@digipen.edu
