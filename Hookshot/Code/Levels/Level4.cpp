@@ -2,18 +2,26 @@
 ****
 \file Level4.cpp
 \par Project: Hookshot
-\authors: Yong Hui (70%)
-		  Tan Wei Wen (30%)
-\par DP email:  l.yonghui@digipen.edu
-				t.weiwen@digipen.edu
-\date 090421
+\authors: Tan Wei Wen (25%)
+		  Egi Tan (25%)
+		  Yong Hui (25%)
+		  Liu Ke (20%)
+
+\par DP email:  t.weiwen@digipen.edu
+				egi.tan@digipen.edu
+				l.yonghui@digipen.edu
+				ke.liu@digipen.edu
+
+\par Course: CSD 1450
+\date 050421
 
 \brief
-This source file contains the implementation for all the level 4
-functions.
+This file contains the implementation for the level 4 game state. The functions
+defined here are used by the game state manager to determine the flow of the engine.
+It calls the neccessary function for the entire game to flow as intended.
 
-\par Copyright: All content © 2021 Digipen Institute of Technology Singapore. 
-                All rights reserved.
+\par Copyright: All content Â© 2021 Digipen Institute of Technology Singapore. All
+				rights reserved.
 
 ****************************************************************************
 ***/

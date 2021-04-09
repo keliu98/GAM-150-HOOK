@@ -1,20 +1,48 @@
+/*!*************************************************************************
+****
+\file ObjectManager.cpp
+\par Project: Hookshot
+\authors: Tan Wei Wen (40%)
+		  Egi Tan (40%)
+		  Yong Hui (20%)
+
+\par DP email:  t.weiwen@digipen.edu
+				egi.tan@digipen.edu
+				l.yonghui@digipen.edu
+
+\par Course: CSD 1450
+\date 050421
+
+\brief
+This file contains the implementation for the objectmanager. It is responsible for
+creating the objects and freeing them. It also has all the neccessary containers
+for each of the object.
+
+\par Copyright: All content © 2021 Digipen Institute of Technology Singapore. All
+				rights reserved.
+
+****************************************************************************
+***/
+
 #include "ObjectManager.h"
 
+//Global variables related to gameplay.
 int lives = 3;
 int ammo =3;
 int ammoD = 3;
 
+//Pointers for single object.
 Character* character;
 Hook* hook;
-Button* button;
-Health* health;
+AEVec2* end_position;
+
+//Containers for objects.
 std::vector<Button> buttons;
-std::vector < Health > heart;
 std::vector<Wall> walls;
 std::vector<Enemy> enemies;
 std::vector<Spike> spikes;
-AEVec2* end_position;
 
+//Creating the hook object, used together with load map.
 Hook* create_hook() {
 	Hook* hook = new Hook{
 		{false},      //bool flag
@@ -40,6 +68,7 @@ Hook* create_hook() {
 	return hook;
 }
 
+//Creating the character object, used together with load map.
 Character* create_character(AEVec2 pos)
 {
 	Character* character = new Character{
@@ -69,7 +98,7 @@ Character* create_character(AEVec2 pos)
 	return character;
 }
 
-
+//Create interactable buttons in game. 
 void create_button(int state, const char* string, AEVec2 pos, float scale_x, float scale_y)
 {
 	Button button;
@@ -84,32 +113,19 @@ void create_button(int state, const char* string, AEVec2 pos, float scale_x, flo
 	buttons.push_back(button);
 }
 
-/*
-void create_health(int type, AEVec2 pos, float scale)
-{
-	Button button;
-
-	// init values
-	button.type = type;
-	button.scale = scale;
-	button.pos = pos;
-	buttons.push_back(button);
-}*/
-
+//Creates the end point/goal of the game
 AEVec2* create_ending_point(AEVec2 pos)
 {
 	AEVec2* end_position = new AEVec2{ pos };
 	return end_position;
 }
 
-
-
+//Create a single enemy, used together with load map. Stored in a vector container
 void create_enemy(int enemy_type, AEVec2 pos)
 {
 	// create single enemy
 	Enemy enemy;
 	
-	//TODO intialise values
 	enemy.scale = 40.0f;
 	enemy.dir = 0.0f;
 	enemy.pos = pos;
@@ -123,14 +139,12 @@ void create_enemy(int enemy_type, AEVec2 pos)
 	enemy.jump_state = not_jumping;
 	enemy.d_switch = 0;
 	enemy.health = 3;
-	enemy.Iframe = 0; // 1 = invincible, 0=vulnerable
-	enemy.cliff_check = pos;
+	enemy.Iframe = 0;
+
 	enemies.push_back(enemy);
-	
-	//std::cout << "enemy created\n";
 }
 
-// When enemy is defeated by players
+// When enemy is defeated by players, to remove the enemy from the vector container.
 void destory_enemy(std::vector<Enemy>& enemies, int index)
 {
 	for (int i{ 0 }; i < enemies.size(); ++i)
@@ -145,23 +159,25 @@ void destory_enemy(std::vector<Enemy>& enemies, int index)
 	}
 }
 
+// Removes all objects in the game.
 void free_objects()
 {
 	walls.clear();
 	enemies.clear();
+	spikes.clear();
 	
 	delete hook;
 	delete character;
 	delete end_position;
 }
 
+// Removes the buttons in the game
 void free_button()
 {
 	buttons.clear();
 }
 
-
-// Question: Use vector or array? Cause wall can be nullpointer.
+// Creates a wall, used together with load map. Stored in a vector container.
 void create_wall(int type, float scale, AEVec2 pos)
 {
 	// create a wall
@@ -175,6 +191,7 @@ void create_wall(int type, float scale, AEVec2 pos)
 	walls.push_back(wall);
 }
 
+// Creates a spike, used together with load map. Stored in a vector container.
 void create_spikes(float scale, AEVec2 pos)
 {
 	// create a wall

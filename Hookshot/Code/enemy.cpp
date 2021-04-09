@@ -19,6 +19,7 @@ void enemy_idle(size_t i) {
 
 	set_accel_to_vel(enemies[i].velocity, idle, 0.0f);
 }
+
 void enemy_jump(size_t i) {
 	if (enemies[i].jump_state != jumping)
 	{
@@ -28,9 +29,6 @@ void enemy_jump(size_t i) {
 }
 
 void skitter_AI(size_t i) {
-
-	enemies[i].cliff_check.x = enemies[i].pos.x - 1.0f;
-	enemies[i].cliff_check.x = enemies[i].pos.y - 1.0f;
 
 	//For checking if the character needs to change direction. If cell value returns 1 means there a floor.
 	AEVec2 bottom_left = { enemies[i].pos.x - GRID_SCALE, enemies[i].pos.y - GRID_SCALE / 2 };
@@ -52,7 +50,6 @@ void skitter_AI(size_t i) {
 	}
 
 	if (character->health == 0) {
-		//character->health = 3;
 		next = GS_RESTART;
 	}
 
@@ -103,10 +100,9 @@ void update_hook_attack()
 	{
 		if (CollisionIntersection_PointRect(hook->head_pos, enemy.aabb))
 		{
-			//new code here
 			if (enemy.Iframe == 0)
 				enemy.health -= 1;
-			//new code here
+
 			calculate_knockback(hook->head_pos, character->pos, enemy.velocity, enemy.knockback);
 
 			hook->max_len = hook->curr_len;

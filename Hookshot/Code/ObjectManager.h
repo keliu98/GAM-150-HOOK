@@ -1,3 +1,29 @@
+/*!*************************************************************************
+****
+\file ObjectManager.h
+\par Project: Hookshot
+\authors: Tan Wei Wen (35%)
+		  Egi Tan (35%)
+		  Yong Hui (30%)
+
+\par DP email:  t.weiwen@digipen.edu
+				egi.tan@digipen.edu
+				l.yonghui@digipen.edu
+
+\par Course: CSD 1450
+\date 050421
+
+\brief
+This file contains the interface for the objectmanager. It is has the functions that
+are responsible for creating the objects and freeing them. It also externs all the
+neccessary containers for each of the object.
+
+\par Copyright: All content © 2021 Digipen Institute of Technology Singapore. All
+				rights reserved.
+
+****************************************************************************
+***/
+
 #pragma once
 #include "pch.h"
 
@@ -11,25 +37,26 @@ extern Hook* hook;
 struct Button;
 extern std::vector<Button> buttons;
 
-//Extern list to use for walls and enemies
+extern AEVec2* end_position;
+
+//Extern list to use for walls and enemies and spikes
 struct Wall;
 extern std::vector<Wall> walls;
 
 struct Enemy;
 extern std::vector<Enemy> enemies;
 
-//Extern position of end goal
-extern AEVec2* end_position;
-
-//Declaration for spikes
 struct Spike;
 extern std::vector<Spike> spikes;
 
+// Extern global variables related to the objects.
 extern int lives;
 extern int ammo;
 extern int ammoD;
 
-//-----------------------------------------------------------
+
+
+//-------------- START OF STRUCTURE DECLARATIONS---------------------
 
 struct AABB {
 	AEVec2 min; //min is the bottom-left of the object
@@ -37,14 +64,6 @@ struct AABB {
 };
 
 enum char_state {
-	//jumping left
-	//jumping right
-	//moving right
-	//moving left
-	//swing left
-	//swing right 
-	//idle
-
 	jumping,
 	not_jumping,
 };
@@ -176,7 +195,6 @@ struct Enemy {
 	AEMtx33 transform;
 
 	AEVec2 pos;
-	AEVec2 cliff_check;
 	AEVec2 velocity;
 
 	float jump_height;
@@ -185,7 +203,6 @@ struct Enemy {
 	int type;
 
 	int health;
-	int damage;
 
 	AEVec2 knockback;
 	int jump_state;
@@ -194,36 +211,97 @@ struct Enemy {
 	int Iframe;
 };
 
+//-------------- END OF STRUCTURE DECLARATIONS---------------------
 
 // --------------------------FUNCTIONS FROM OBJECTMANAGER.CPP---------------------------------------------
-// Create hook
+
+/**************************************************************************/
+/*!
+	To create the hook object, used together with load map.
+*/
+/**************************************************************************/
+
 Hook* create_hook();
 
-// Create character
+/**************************************************************************/
+/*!
+	To create the character object, used together with load map.
+*/
+/**************************************************************************/
+
 Character* create_character(AEVec2 pos);
+
+/**************************************************************************/
+/*!
+	To create an interactable button. Position is based on the 
+	ratio of the screen. Following the way fonts are drawn.
+*/
+/**************************************************************************/
 
 // Create Buttons
 void create_button(int state, const char* string, AEVec2 pos, float scale_x, float scale_y);
 
+/**************************************************************************/
+/*!
+	To create the enemy object, used together with load map. Stored 
+	in a vector container
+*/
+/**************************************************************************/
+
 // Inserts a enemy into the vecot list enemies
 void create_enemy(int enemy_type, AEVec2 pos);
+
+/**************************************************************************/
+/*!
+	To create the wall object, used together with load map. Stored
+	in a vector container
+*/
+/**************************************************************************/
 
 // Inserts a wall into the vector list walls
 void create_wall(int type, float scale, AEVec2 pos);
 
+/**************************************************************************/
+/*!
+	To create the spike object, used together with load map. Stored
+	in a vector container
+*/
+/**************************************************************************/
+
 //Inserts a spikes into the vector list walls.
 void create_spikes(float scale, AEVec2 pos);
 
-// When enemy is defeated by players (pass in enemy vec and index to delete)
+/**************************************************************************/
+/*!
+	To remove enemy from the vector container. Takes in an index to remove
+	that specific enemy.
+*/
+/**************************************************************************/
+
 void destory_enemy(std::vector<Enemy>&, int index); 
+
+/**************************************************************************/
+/*!
+	Removes the buttons from the game
+*/
+/**************************************************************************/
  
-//Free buttons
 void free_button();
 
-// Store the ending point
+/**************************************************************************/
+/*!
+	Creates the ending point in the game
+*/
+/**************************************************************************/
+
 AEVec2* create_ending_point(AEVec2 pos);
 
-// Free all object
+/**************************************************************************/
+/*!
+	Removes all objects in the game.
+*/
+/**************************************************************************/
+
 void free_objects();
-// -------------------------------------------------------------------------------------------------------
+
 
