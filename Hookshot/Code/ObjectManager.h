@@ -2,9 +2,9 @@
 ****
 \file ObjectManager.h
 \par Project: Hookshot
-\authors: Tan Wei Wen (35%)
-		  Egi Tan (35%)
-		  Yong Hui (30%)
+\authors: Tan Wei Wen (40%)
+		  Egi Tan (40%)
+		  Yong Hui (20%)
 
 \par DP email:  t.weiwen@digipen.edu
 				egi.tan@digipen.edu
@@ -18,7 +18,7 @@ This file contains the interface for the objectmanager. It is has the functions 
 are responsible for creating the objects and freeing them. It also externs all the
 neccessary containers for each of the object.
 
-\par Copyright: All content � 2021 Digipen Institute of Technology Singapore. All
+\par Copyright: All content © 2021 Digipen Institute of Technology Singapore. All
 				rights reserved.
 
 ****************************************************************************
@@ -185,6 +185,7 @@ struct Enemy {
 	AEMtx33 transform;// transformation matrix
 
 	AEVec2 pos;// position
+	AEVec2 cliff_check; // check cliff position
 	AEVec2 velocity;// enemy velocity
 
 	float jump_height;// jump height
