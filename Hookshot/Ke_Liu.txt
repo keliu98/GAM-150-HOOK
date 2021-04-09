@@ -1,0 +1,19 @@
+Name: LIU KE
+
+Role: Lead Designer
+
+Main contributions (graphics, art design, animation system, level design)
+
+List of files worked on:
+	1. rendersystem.cpp
+	2. rendersystem.hpp
+	3. Level3.cpp
+	4. Level3.hpp
+	5. Level5.cpp
+	6. Level5.hpp
+
+total LOC:
+
+What i have learn: 
+I find that doing animation is very tough and complicated.
+

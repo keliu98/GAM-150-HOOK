@@ -1,3 +1,23 @@
+/*!*************************************************************************
+****
+\file newrendersystem.cpp
+\authors: Liu Ke
+	
+
+\par DP email:  ke.liu@digipen.edu
+
+
+\par Course: CSD 1450
+\par Project: Software Engineering Project 2
+\date 020221
+
+
+\brief
+  This source file contains the implementation for all the character
+  animation
+****************************************************************************
+***/
+
 
 #include "pch.h"
 
@@ -40,8 +60,11 @@ AEGfxTexture* character_texture7;
 //Pointer to the hook texture
 AEGfxTexture* hook_texture;
 
-//Pointer to the hook texture
+//Pointer to the enemy texture
 AEGfxTexture* enemy_texture;
+
+//Pointer to the enemy texture other dir 
+//AEGfxTexture* enemy_texture1;
 
 // Pointer to button
 AEGfxTexture* button_texture[2];
@@ -105,7 +128,7 @@ void draw_animation_render(Render& render);
 
 void load_square_mesh()
 {
-
+	// create square mesh for the map 
 	AEGfxMeshStart();
 
 	AEGfxTriAdd(
@@ -125,6 +148,8 @@ void load_square_mesh()
 
 void load_animation_mesh()
 {
+
+	// create mesh for the animation characters
 	AEGfxMeshStart();
 	AEGfxTriAdd(
 		0.5, 0.5, 0x00FFFFFF, 0.5f, 0.0f,
@@ -138,7 +163,7 @@ void load_animation_mesh()
 	AE_ASSERT_MESG(square_mesh, "Failed to create mesh 1!!");
 }
 
-// Array to free the textures used - WEI WEN
+// loading of textures
 AEGfxTexture* load_texture(const char* image)
 {
 
@@ -151,59 +176,68 @@ AEGfxTexture* load_texture(const char* image)
 }
 
 
+// rendering textures functions
 void load_render()
 {
 	load_square_mesh();
 	load_animation_mesh();
 }
 
-// -------------ADDED CODE FROM LIU KE MERGE------------------------
-//------------------------------TO GENERALISED AND COMBINED INTO A SINGLE FUNCTION SWITCH CASE - WEI WEN TO LIU KE----------------------------------------------
+
+// create button textures
 void load_button_texture()
 {
-	// NOTE: This is tmp code for user testing
-	// button_texture[0] = load_texture("../Images/Title.png");
-	// --------------------------------------------
+
 
 	button_texture[0] = load_texture("../Images/Button1.png"); //change this during merge
 	button_texture[1] = load_texture("../Images/Button2.png"); //change this during merge
 }
 
+// background image render
 void load_bg_render()
 {
 	bg = load_texture("../Images/Background_2.png");
 }
 
+// ground render
 void load_dirt_render()
 {
 	wall_texture_top = load_texture("../Images/Floor1_3.png");
 	wall_texture_bot = load_texture("../Images/Floor2_2.png");
 }
 
+// load second ground render
 void load_texture_render()
 {
 	hook_texture = load_texture("../Images/Floor2_2.png");
 }
 
+// create hook render 
 void load_hook_render()
 {
 	hook_texture = load_texture("../Images/Floor2_2.png");
 }
 
+// create enemy texture
 void load_enemy_texture()
 {
-	enemy_texture = load_texture("../Images/skitter.png");
+	enemy_texture = load_texture("../Images/skittersprite.png");
 }
 
+
+// create door or exit texture
 void load_door_texture()
 {
 	door = load_texture("../Images/Door.png");
 }
 
+//create character render  animation
 void load_character_render()
 {
 	character_texture = load_texture("../Images/4testimagesstart.png");
 }
+
+
 void load_character_left()
 {
 	character_texture00 = load_texture("../Images/4testimagesstartleft.png");
@@ -249,32 +283,33 @@ void load_character_render_swingleft()
 	// shoot hook in right direction
 	character_texture7 = load_texture("../Images/4testimageswiningleft.png");
 }
-// -------------ADDED CODE FROM LIU KE MERGE------------------------
-//------------------------------TO GENERALISED AND COMBINED INTO A SINGLE FUNCTION, SWITCH CASE - WEI WEN TO LIU KE----------------------------------------------
 
+// credit page render image
 void load_credits_render()
 {
 	credits = load_texture("../Images/Credits.png");
 }
 
+// guide render images
 void load_guide_texture()
 {
 	guides = load_texture("../Images/Guides.png");
 }
 
+// menu image
 void load_menubg_render()
 {
 	menu_bg = load_texture("../Images/Title.png");
 
 }
 
-
+// spike render texture
 void load_spike_texture()
 {
 	spike_texture = load_texture("../Images/Spikes.png");
 }
 
-
+// update render guide
 void update_render_guide(float x, float y)
 {
 	Render render;
@@ -290,7 +325,7 @@ void update_render_guide(float x, float y)
 	draw_render(render);
 }
 
-
+// update of rendering door function
 void update_render_door()
 {
 	Render render;
@@ -307,7 +342,8 @@ void update_render_door()
 	draw_render(render);
 }
 
-void update_render_credits(float x, float y)
+// update the rendering credits 
+void update_render_credits()
 {
 	Render render;
 
@@ -321,6 +357,7 @@ void update_render_credits(float x, float y)
 	draw_render(render);
 }
 
+// update render menu function
 void update_render_menubg()
 {
 	Render render;
@@ -336,6 +373,7 @@ void update_render_menubg()
 
 	draw_render(render);
 }
+
 
 void update_render_bg()
 {
@@ -356,6 +394,7 @@ void update_render_bg()
 	// draw_cam_bounding_box(render.pTexture);
 }
 
+//update render wall function
 void update_render_walls()
 {
 	Render render;
@@ -376,6 +415,7 @@ void update_render_walls()
 	}
 }
 
+// update render spikes function
 void update_render_spikes()
 {
 	Render render;
@@ -393,6 +433,7 @@ void update_render_spikes()
 	}
 }
 
+// update render button function
 void update_render_buttons()//change this during merge
 {
 	Render render;
@@ -408,22 +449,12 @@ void update_render_buttons()//change this during merge
 		else
 			render.pTexture = button_texture[1];
 
-		// --- NOTE: This is tmp code for user testing ----
-		//render.x_scale = 800.0f;
-		//render.y_scale = 600.0f;
-		//render.pTexture = button_texture[0];
-		// -------------------------------------------------
+
 
 		render.dir = 0;
 		draw_render(render);
 
-		//Drawing the font
-		//Need to change the pos of the button into a scale of the windows.
-		//AEVec2 windowscale{ 0,0 };
-		//static char text[100];
-		//memset(text, 0, 100 * sizeof(char));
-		//sprintf_s(text, button.string);
-		//PrintText(text, NORMAL, windowscale);
+		// drawing the font 
 		
 		static char text[100];
 		memset(text, 0, 100 * sizeof(char));
@@ -432,6 +463,7 @@ void update_render_buttons()//change this during merge
 	}
 }
 
+// update the rendering of the character function
 void update_render_character()
 {
 	Render render;
@@ -441,8 +473,7 @@ void update_render_character()
 	render.pMesh = animation_mesh;
 
 
-	// BREAK CODE DOWN INTO FUNCTIONS PLS REMEMBER TO DO THE SPRITE SHEET, BREAK IT DOWN INTO ROWS AND COLS, MAKE IT USABLE FOR ENEMY AS WELL- WEI WEN to LIU KE
-	// -------------ADDED CODE FROM LIU KE MERGE------------------------ 	// -------------ADDED CODE FROM LIU KE MERGE------------------------
+
 	render.dir = 0; //TO update base on character movement
 
 	if (AEInputCheckPrev(AEVK_D))
@@ -562,7 +593,7 @@ void update_render_character()
 		}
 	}
 
-	// -------------ADDED CODE FROM LIU KE MERGE------------------------	// -------------ADDED CODE FROM LIU KE MERGE------------------------
+
 	if (character->counter == 0)
 	{
 		draw_animation_render(render);
@@ -590,6 +621,7 @@ void update_render_hook()
 	}
 }
 
+// update rendering enemy movement function
 void update_render_enemy()
 {
 	Render render;
@@ -598,17 +630,17 @@ void update_render_enemy()
 		render.pos = enemy.pos;
 		render.x_scale = enemy.scale;
 		render.y_scale = enemy.scale;
-		render.pMesh = square_mesh;
+		render.pMesh = animation_mesh;
 		render.pTexture = enemy_texture; //TO CHANGE !!!!, render based on the enemy type and its state
 		render.dir = 0;
-
 		draw_render(render);
 	}
+
+
 }
 
 
-
-
+// drawing of texture 
 void draw_render(Render &render)
 {
 	AEMtx33	trans, scale, rot;
@@ -642,8 +674,8 @@ void draw_render(Render &render)
 	AEGfxSetTransparency(1.0f);
 	AEGfxSetBlendMode(AE_GFX_BM_BLEND);
 }
-//THIS NEEDS TO BE CHANGED AND COMBINED WITH THE PREVIOUS CODE, BAD TO JUST COPY AND PASTE CODE :< - WEI WEN to LIU KE
-// -------------ADDED CODE FROM LIU KE MERGE------------------------	// -------------ADDED CODE FROM LIU KE MERGE------------------------
+
+// offset the textures to create animations
 void draw_animation_render(Render& render)
 {
 	AEMtx33	trans, scale, rot;
@@ -663,13 +695,13 @@ void draw_animation_render(Render& render)
 	// Set texture
 	AEGfxTextureSet(render.pTexture, render.x_offset, render.y_offset);  // Same object, different texture
 	++counter;
-	if (counter < 6)
+	if (counter < 3)
 		AEGfxTextureSet(render.pTexture, render.x_offset1, render.y_offset1);  // Same object, different texture
-	else if (counter < 12)
+	else if (counter < 6)
 		AEGfxTextureSet(render.pTexture, render.x_offset2, render.y_offset2);  // Same object, different texture
-	else if (counter < 18)
+	else if (counter < 9)
 		AEGfxTextureSet(render.pTexture, render.x_offset3, render.y_offset3);  // Same object, different texture
-	else if (counter < 24)
+	else if (counter < 12)
 		AEGfxTextureSet(render.pTexture, render.x_offset2, render.y_offset2);  // Same object, different texture
 	else
 	{
@@ -686,8 +718,9 @@ void draw_animation_render(Render& render)
 	AEGfxSetTransparency(1.0f);
 	AEGfxSetBlendMode(AE_GFX_BM_BLEND);
 }
-// -------------ADDED CODE FROM LIU KE MERGE------------------------	// -------------ADDED CODE FROM LIU KE MERGE------------------------
 
+
+// unload or free the texture
 void unload_render()
 {
 	//unload texture

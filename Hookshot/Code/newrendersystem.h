@@ -1,3 +1,23 @@
+/*!*************************************************************************
+****
+\file newrendersystem.h
+\authors: Liu Ke
+
+
+\par DP email:  ke.liu@digipen.edu
+
+
+\par Course: CSD 1450
+\par Project: Software Engineering Project 2
+\date 020221
+
+
+\brief
+  This header file contains the implementation for all the character
+  animation
+****************************************************************************
+***/
+
 #pragma once
 
 #include "pch.h"
@@ -10,6 +30,7 @@ void load_dirt_render();
 void load_texture_render();
 void load_character_render();
 void load_enemy_texture();
+void load_enemy_texture1();
 void load_door_texture();
 void load_hook_render();
 void load_button_texture();
@@ -43,3 +64,5 @@ void load_character_render_shootleft();
 void load_character_render_shootright();
 void load_character_render_swingleft();
 void load_character_render_swingright();
+
+

@@ -135,6 +135,54 @@
     <ClInclude Include="Code\physics.h" />
     <ClInclude Include="Code\win.h" />
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="Images\4testimages - Copy.png" />
+    <Image Include="Images\4testimagesfortest left.png" />
+    <Image Include="Images\4testimagesfortest.png" />
+    <Image Include="Images\4testimagesjump - Copy.png" />
+    <Image Include="Images\4testimagesjump.png" />
+    <Image Include="Images\4testimagesjumpleft.png" />
+    <Image Include="Images\4testimagesleft.png" />
+    <Image Include="Images\4testimagesreverse.png" />
+    <Image Include="Images\4testimagesstart.png" />
+    <Image Include="Images\4testimagesthrowleft.png" />
+    <Image Include="Images\4testimageswining.png" />
+    <Image Include="Images\4testimageswiningleft.png" />
+    <Image Include="Images\4testimageswiningright.png" />
+    <Image Include="Images\Background_2.png" />
+    <Image Include="Images\Button1.png" />
+    <Image Include="Images\Button2.png" />
+    <Image Include="Images\Button_Original.png" />
+    <Image Include="Images\Character_Original.png" />
+    <Image Include="Images\Credits.png" />
+    <Image Include="Images\DigiPen_Singapore_WEB_RED.png" />
+    <Image Include="Images\Door.png" />
+    <Image Include="Images\Floor1_3.png" />
+    <Image Include="Images\Floor2_2.png" />
+    <Image Include="Images\Guides.png" />
+    <Image Include="Images\skitter.png" />
+    <Image Include="Images\skitterside.png" />
+    <Image Include="Images\skittersprite.png" />
+    <Image Include="Images\skitterspritereverse.png" />
+    <Image Include="Images\Spikes.png" />
+    <Image Include="Images\Title.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Ke_Liu.txt" />
+    <Text Include="Levels\Level_1.txt" />
+    <Text Include="Levels\Level_2.txt" />
+    <Text Include="Levels\Level_3.txt" />
+    <Text Include="Levels\Level_4.txt" />
+    <Text Include="Levels\Level_5.txt" />
+    <Text Include="Levels\Level_Design.txt" />
+    <Text Include="Levels\test_level.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\creditspage.zip" />
+    <None Include="Images\Creditspage1.psd" />
+    <None Include="Images\creditspage2.psd" />
+    <None Include="Images\skittersprite.psd" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
