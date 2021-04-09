@@ -1,17 +1,17 @@
 /*!*************************************************************************
 ****
 \file win.h
-\authors: Tan Wei Wen
-
+\par Project: Hookshot
+\authors: Tan Wei Wen (100%)
 \par DP email:  t.weiwen@digipen.edu
-
-\par Course: CSD 1450
-\par Project: Software Engineering Project 2
 \date 040821
 
-
 \brief
-  This file contains all the functions interface for the win state.
+This file contains all the functions interface for the win state.
+
+\par Copyright: All content © 2021 Digipen Institute of Technology Singapore. 
+                All rights reserved.
+
 ****************************************************************************
 ***/
 

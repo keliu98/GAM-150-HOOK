@@ -99,9 +99,6 @@
     <ClInclude Include="Code\Levels\Level2.h">
       <Filter>Include</Filter>
     </ClInclude>
-    <ClInclude Include="Code\Levels\Level3.h">
-      <Filter>Source</Filter>
-    </ClInclude>
     <ClInclude Include="Code\levelUI.h">
       <Filter>Include</Filter>
     </ClInclude>
@@ -136,6 +133,9 @@
       <Filter>Include</Filter>
     </ClInclude>
     <ClInclude Include="Code\win.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Levels\Level3.h">
       <Filter>Include</Filter>
     </ClInclude>
   </ItemGroup>

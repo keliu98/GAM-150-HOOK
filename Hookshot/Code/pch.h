@@ -1,35 +1,39 @@
 /*!*************************************************************************
 ****
 \file pch.h
-\authors: Tan Wei Wen
-		  Egi Tan
-		  Liu Ke
-		  Yong Hui
-
+\par Project: Hookshot
+\authors: Tan Wei Wen (25%)
+		  Egi Tan (25%)
+		  Liu Ke (25%)
+		  Yong Hui (25%)
 \par DP email:  t.weiwen@digipen.edu
 				egi.tan@digipen.edu
 				ke.liu@digipen.edu
 				l.yonghui@digipen.edu
-
-\par Course: CSD 1450
-\par Project: Software Engineering Project 2
 \date 020221
 
-
 \brief
-   This is a precompiled header file. Files listed below are compiled only 
-   once, improving build performance for future builds. This also affects 
-   IntelliSense performance, including code completion and many code browsing 
-   features. However, files listed here are ALL re-compiled if any one of 
-   them is updated between builds. Do not add files here that you will be 
-   updating frequently as this negates the performance advantage.
+This is a precompiled header file. Files listed below are compiled only 
+once, improving build performance for future builds. This also affects 
+IntelliSense performance, including code completion and many code browsing 
+features. However, files listed here are ALL re-compiled if any one of 
+them is updated between builds. Do not add files here that you will be 
+updating frequently as this negates the performance advantage.
+
+\par Copyright: All content © 2021 Digipen Institute of Technology Singapore. 
+                All rights reserved.
+
 ****************************************************************************
 ***/
 
 #ifndef PCH_H
 #define PCH_H
 
-// All libraries
+/**************************************************************************/
+/*!
+	Below contains all the libraries used.
+*/
+/**************************************************************************/
 #include <fstream>
 #include <iostream>
 #include <vector>
@@ -39,7 +43,11 @@
 #include "AEEngine.h"
 #include "fmod.hpp"
 
-// File headers of game
+/**************************************************************************/
+/*!
+	Below contains all file headers of game.
+*/
+/**************************************************************************/
 #include "physics.h"
 #include "extern.h"
 #include "hook.h"

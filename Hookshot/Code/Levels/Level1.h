@@ -1,23 +1,23 @@
 /*!*************************************************************************
 ****
 \file Level1.h
-\authors: Tan Wei Wen
-		  Egi Tan
-		  Liu Ke
-		  Yong Hui
-
+\par Project: Hookshot
+\authors: Tan Wei Wen (25%)
+		  Egi Tan (25%)
+		  Liu Ke (25%)
+		  Yong Hui (25%)
 \par DP email:  t.weiwen@digipen.edu
 				egi.tan@digipen.edu
 				ke.liu@digipen.edu
 				l.yonghui@digipen.edu
-
-\par Course: CSD 1450
-\par Project: Software Engineering Project 2
 \date 020221
 
-
 \brief
-  This source file contains all the functions declaration for level 1.
+This source file contains all the functions declaration for level 1.
+
+\par Copyright: All content © 2021 Digipen Institute of Technology Singapore. 
+                All rights reserved.
+
 ****************************************************************************
 ***/
 

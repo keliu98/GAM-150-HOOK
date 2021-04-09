@@ -71,6 +71,18 @@ enum enemy_type
 	ELITE,
 };
 
+/**************************************************************************/
+/*!
+	enum for the different front type
+*/
+/**************************************************************************/
+enum font_type
+{
+	NORMAL,
+	ITALIC,
+	SMALL,
+};
+
 struct Hook {
 	bool flag;
 

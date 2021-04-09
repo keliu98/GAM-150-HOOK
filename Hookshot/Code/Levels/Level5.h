@@ -1,17 +1,17 @@
 /*!*************************************************************************
 ****
 \file Level5.h
-\authors: Liu Ke
-
+\par Project: Hookshot
+\authors: Liu Ke (100%)
 \par DP email:  ke.liu@digipen.edu
-
-\par Course: CSD 1450
-\par Project: Software Engineering Project 2
-\date 020221
-
+\date 090421
 
 \brief
-  This source file contains all the functions declaration for level 5.
+This source file contains all the functions declaration for level 5.
+
+\par Copyright: All content © 2021 Digipen Institute of Technology Singapore. 
+                All rights reserved.
+
 ****************************************************************************
 ***/
 

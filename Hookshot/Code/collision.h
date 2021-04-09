@@ -1,19 +1,19 @@
 /*!*************************************************************************
 ****
 \file collision.h
-\authors: Tan Egi
-		  Tan Wei Wen
-
-\par DP email:  egi.tan@digipen.edu
-				t.weiwen@digipen.edu
-
-\par Course: CSD 1450
-\par Project: Software Engineering Project 2
+\par Project: Hookshot
+\authors: Tan Egi (60%)
+		  Tan Wei Wen (40%)
+\par DP email: egi.tan@digipen.edu
+			   t.weiwen@digipen.edu
 \date 160221
 
-
 \brief
-  This is a header file for collision system.
+This is a header file for collision system.
+
+\par Copyright: All content © 2021 Digipen Institute of Technology Singapore. 
+                All rights reserved.
+
 ****************************************************************************
 ***/
 

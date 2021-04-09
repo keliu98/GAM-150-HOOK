@@ -1,19 +1,19 @@
 /*!*************************************************************************
 ****
 \file camera.h
-\authors: Tan Egi
-		  Tan Wei Wen
-
-\par DP email:  egi.tan@digipen.edu
-				t.weiwen@digipen.edu
-
-\par Course: CSD 1450
-\par Project: Software Engineering Project 2
+\par Project: Hookshot
+\authors: Tan Egi (90%)
+		  Tan Wei Wen (10%)
+\par DP email: egi.tan@digipen.edu
+			   t.weiwen@digipen.edu
 \date 020221
 
-
 \brief
-  This is the header file for camera system. 
+This is the header file for camera system. 
+
+\par Copyright: All content © 2021 Digipen Institute of Technology Singapore. 
+				All rights reserved.
+
 ****************************************************************************
 ***/
 
