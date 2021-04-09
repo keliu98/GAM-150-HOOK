@@ -45,6 +45,9 @@ void intro_Initialize()
 
 void intro_Update()
 {
+	if (AEInputCheckReleased(AEVK_ESCAPE))
+		next = GS_QUIT;
+
 	if (index != 0)
 		skip_intro();
 
@@ -80,9 +83,6 @@ void intro_Draw()
 {
 	static char text[100];
 	memset(text, 0, 100 * sizeof(char));
-	// print copyright
-	sprintf_s(text, "©2021 DigiPen Corporation (Singapore), All Rights Reserved");
-	PrintText(text, SMALL, { -0.75f, -0.85f });
 
 	AEMtx33	trans, scale, logo_trans;
 	// Compute the scalling matrix
@@ -106,6 +106,10 @@ void intro_Draw()
 
 	// Draw the mesh
 	AEGfxMeshDraw(logo_mesh, AE_GFX_MDM_TRIANGLES);
+
+	// print copyright
+	sprintf_s(text, "©2021 DigiPen Corporation (Singapore), All Rights Reserved");
+	PrintText(text, SMALL, { -0.70f, -0.85f });
 }
 
 void intro_Free()
