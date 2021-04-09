@@ -1,11 +1,41 @@
+/*!*************************************************************************
+****
+\file levelUI.cpp
+\par Project: Hookshot
+\authors: Tan Wei Wen (90%)
+		  Egi Tan (10%)
+
+\par DP email:  t.weiwen@digipen.edu
+                egi.tan@digipen.edu
+
+\par Course: CSD 1450
+\date 050421
+
+\brief
+This file contains the implementation for the UI of the game. For example
+creating buttons and printing text on to the screen.
+
+\par Copyright: All content © 2021 Digipen Institute of Technology Singapore. All
+				rights reserved.
+
+****************************************************************************
+***/
+
 #include "levelUI.h"
 
+//To store font.
 static char	font_to_use;
+
+//Booleans used for checking
 bool confirm_state = false;
 bool full_screen = true;
 bool sound_mute = false;
 
-//For buttons to switch
+//To check if there is a need to display credits and tutorial
+bool display_credits = false;
+bool display_tutorial = false;
+
+//DEFINES to switch between buttons
 const int CONFIRM_QUIT = 100;
 
 const int PAUSE_MENU = 92;
@@ -18,16 +48,10 @@ const int LEVELSELECT = 97;
 const int CREDITS = 98;
 const int OPTIONS = 99;
 
-
-//To check if there is a need to display credits and tutorial
-bool display_credits = false;
-bool display_tutorial = false;
-
-
+//DEFINE to use when creating buttons, makes life easier.
 const float BUTTONSPACE_Y = 0.18f;
 
-
-
+//Function to print text onto the screen
 void PrintText(char* message, int type, AEVec2 position)	// italic or norm
 {
 	AEGfxSetBlendMode(AE_GFX_BM_BLEND);
@@ -42,6 +66,7 @@ void PrintText(char* message, int type, AEVec2 position)	// italic or norm
 	AEGfxPrint(font_to_use, message, position.x, position.y, 1.0f, 1.f, 1.f, 1.f);
 }
 
+//Function to translate buttons so that they can be created based on ratio of the screen.
 void UpdateButton()
 {
 	for (Button& button : buttons)
@@ -58,6 +83,7 @@ void UpdateButton()
 	}
 }
 
+//For creating the pause menu.
 void UpdatePauseMenu()
 {
 	//If true create the buttons 
@@ -74,6 +100,7 @@ void UpdatePauseMenu()
 	}
 }
 
+//Function to switch between the different states and actions for each button.
 void switchbuttonstate(int state)
 {
 	switch (state)
@@ -142,7 +169,12 @@ void switchbuttonstate(int state)
 	case CREDITS:
 		free_button();
 		display_credits = true;
-		create_button(GS_RESTART, "Back", { -0.9f, 0.80f }, 100.0f, 45.0f);
+		if (current == GS_MENU)
+		{
+			create_button(GS_RESTART, "Back", { -0.9f, 0.80f }, 100.0f, 45.0f);
+		}
+		else
+			create_button(GS_MENU, "Back", { -0.9f, 0.80f }, 100.0f, 45.0f);
 		break;
 
 	case OPTIONS:
