@@ -2,10 +2,17 @@
 ****
 \file Level4.h
 \par Project: Hookshot
-\authors: Yong Hui (60%)
-		  Tan Wei Wen (40%)
-\par DP email:  l.yonghui@digipen.edu
-				t.weiwen@digipen.edu
+\authors: Tan Wei Wen (25%)
+		  Egi Tan (25%)
+		  Yong Hui (25%)
+		  Liu Ke (20%)
+
+\par DP email:  t.weiwen@digipen.edu
+				egi.tan@digipen.edu
+				l.yonghui@digipen.edu
+				ke.liu@digipen.edu
+
+\par Course: CSD 1450
 \date 090421
 
 \brief

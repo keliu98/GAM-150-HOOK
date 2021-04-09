@@ -4,12 +4,14 @@
 \par Project: Hookshot
 \authors: Tan Wei Wen (25%)
 		  Egi Tan (25%)
-		  Liu Ke (25%)
 		  Yong Hui (25%)
+		  Liu Ke (20%)
+
 \par DP email:  t.weiwen@digipen.edu
 				egi.tan@digipen.edu
-				ke.liu@digipen.edu
 				l.yonghui@digipen.edu
+				ke.liu@digipen.edu
+\par Course: CSD 1450
 \date 020221
 
 \brief

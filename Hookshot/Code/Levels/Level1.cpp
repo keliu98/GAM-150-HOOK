@@ -11,7 +11,6 @@
 				egi.tan@digipen.edu
 				l.yonghui@digipen.edu
 				ke.liu@digipen.edu
-
 \par Course: CSD 1450
 \date 050421
 
