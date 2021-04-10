@@ -5,13 +5,13 @@ Role: Lead Designer
 Main contributions (graphics, art design, animation system, level design)
 
 List of files worked on:
-	1. newrendersystem.cpp		348 lines	
-	2. GameStateManager.cpp 	21 lines
-	3. Level1.cpp			21 lines
-	4. Level3.cpp			21 lines
-	5. Level5.cpp			21 lines
-	6. Level2.cpp			21 lines
-	7. main.cpp			17 lines
+	1. newrendersystem.cpp		470 * 70% = 348 lines	
+	2. GameStateManager.cpp 	84 * 25% = 21 lines
+	3. Level1.cpp			84 * 25% = 21 lines
+	4. Level3.cpp			84 * 25% = 21 lines
+	5. Level5.cpp			84 * 25% = 21 lines
+	6. Level2.cpp			84 * 25% = 21 lines
+	7. main.cpp			84 * 25% = 17 lines
 	
 	
 total LOC:	470
