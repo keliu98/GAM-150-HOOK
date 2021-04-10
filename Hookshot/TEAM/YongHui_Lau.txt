@@ -1,0 +1,56 @@
+Name: Lau Yong Hui
+Role: Testing Manager
+ 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+main contribution:
+menu.h(alpha)
+	
+menu.cpp(alpha)
+	
+enemy.h
+	
+enemy.cpp
+
+Input.h
+
+Input.cpp
+	
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+List: 	
+menu.h(alpha)
+	
+menu.cpp(alpha)
+	
+enemy.h
+	
+enemy.cpp
+
+Input.h
+
+Input.CPP
+	
+objectManager.h
+	
+objectManager.cpp
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+number of code contributed: 364 + 72 (Alpha Menu) = 436
+
+
+Note/reflection: I've learned alot in game 150 and have faced alot of difficulties along the way but despite all
+   		 that I had alot of fun making game and watching it turn from an idea into a reality
+		 , though I have alot planned, I wasn't able to fully bring out my vision for the game due 
+		 to my low amount of knowledge and exprience as well as time restrain. This is however something 
+		 I hated and dislike.
+
+		 through the span of the semester I've learn how to make a mouse interact with a button creating a 
+		 small liabary of different enemy type and series of behaviour and interaction for the enemies.
+		 
+		I had also make the alpha build of the menu which was not included in the final built as it was 
+		replace by a far superior one coded by a friend. Despite all that I'm happy that I at least got to
+		something from it and I hope it can improve me as a teamate and a programmer for future project.
+
+ 
+
+   
