@@ -217,6 +217,9 @@ void IntializeLevel()
 		pos.x = init_pos.x;
 	}
 
+	AE_ASSERT_MESG(character, "Character is not created [NULL]");
+	AE_ASSERT_MESG(end_position, "Goal is not created [NULL]");
+
 	walls.shrink_to_fit();
 	enemies.shrink_to_fit();
 }

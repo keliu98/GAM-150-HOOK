@@ -55,7 +55,7 @@ const float BUTTONSPACE_Y = 0.18f;
 //Function to print text onto the screen
 void PrintText(char* message, int type, AEVec2 position)	// italic or norm
 {
-	AEGfxSetBlendMode(AE_GFX_BM_BLEND);
+	AE_ASSERT_MESG(message, "No message set for print text.");
 
 	if (type == NORMAL)
 		font_to_use = font;

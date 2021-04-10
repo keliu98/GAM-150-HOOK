@@ -26,6 +26,9 @@ const int GRID_SCALE = 40;
 
 void UpdateCollision()
 {
+	//Checks if character is not a nullptr
+	AE_ASSERT_MESG(character, "Character is not intialised [NULL]");
+
 	// update collision flag and snap plater back to grid
 	character->grid_collision_flag = CheckInstanceBinaryMapCollision(character->pos, character->velocity);
 	SnapToCell(&character->pos, character->grid_collision_flag);

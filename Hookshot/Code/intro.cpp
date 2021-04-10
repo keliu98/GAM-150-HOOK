@@ -27,6 +27,7 @@ static float transparency[MAX_LOGO];	// transparency for fading in / out
 static bool shown[MAX_LOGO];			// bool to track which have been shown
 static bool completed;					// bool to track if finish showing all
 static int index;						// track which logo it is showing
+static char text[100];                  // To store text
 
 void intro_Load()
 {
@@ -50,6 +51,10 @@ void intro_Load()
 	// load textures
 	logo[0] = AEGfxTextureLoad("../Images/DigiPen_Singapore_WEB_WHITE.png");
 	logo[1] = AEGfxTextureLoad("../Images/hookshot_logo.png");
+
+	memset(text, 0, 100 * sizeof(char));
+	sprintf_s(text, "©2021 DigiPen Corporation (Singapore), All Rights Reserved");
+	AE_ASSERT_MESG(text != "©2021 DigiPen Corporation(Singapore), All Rights Reserved", "Copy right statement is not saved");
 }
 
 void intro_Initialize()
@@ -107,9 +112,6 @@ void intro_Update()
 
 void intro_Draw()
 {
-	static char text[100];
-	memset(text, 0, 100 * sizeof(char));
-
 	AEMtx33	trans, scale, logo_trans;
 	AEMtx33Scale(&scale, 100, 100);
 	AEMtx33Trans(&trans, 0, 0);
@@ -117,15 +119,16 @@ void intro_Draw()
 
 	// Drawing object 
 	AEGfxSetRenderMode(AE_GFX_RM_TEXTURE);
-	AEGfxSetBlendMode(AE_GFX_BM_BLEND);
-	AEGfxSetTransparency(transparency[index]);
+
 	AEGfxSetTintColor(1.0f, 1.0f, 1.0f, 1.0f);
 	AEGfxTextureSet(logo[index], 0.0f, 0.0f);
 	AEGfxSetTransform(logo_trans.m);
 	AEGfxMeshDraw(logo_mesh, AE_GFX_MDM_TRIANGLES);
 
+	AEGfxSetTransparency(transparency[index]);
+	AEGfxSetBlendMode(AE_GFX_BM_BLEND);
+
 	// print copyright
-	sprintf_s(text, "©2021 DigiPen Corporation (Singapore), All Rights Reserved");
 	PrintText(text, SMALL, { -0.68f, -0.85f });
 }
 
