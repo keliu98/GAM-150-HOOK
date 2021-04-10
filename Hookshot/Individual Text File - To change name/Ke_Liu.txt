@@ -5,14 +5,16 @@ Role: Lead Designer
 Main contributions (graphics, art design, animation system, level design)
 
 List of files worked on:
-	1. rendersystem.cpp
-	2. rendersystem.hpp
-	3. Level3.cpp
-	4. Level3.hpp
-	5. Level5.cpp
-	6. Level5.hpp
-
-total LOC:
+	1. newrendersystem.cpp		348 lines	
+	2. GameStateManager.cpp 	21 lines
+	3. Level1.cpp			21 lines
+	4. Level3.cpp			21 lines
+	5. Level5.cpp			21 lines
+	6. Level2.cpp			21 lines
+	7. main.cpp			17 lines
+	
+	
+total LOC:	470
 
 What i have learn: 
 I find that doing animation is very tough and complicated.
