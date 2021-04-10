@@ -1,0 +1,45 @@
+Name: Tan Wei Wen
+Role: Technical Director
+Main Contribution: 
+1) Hookshot Mechanic
+2) Physics System
+3) Menu & Buttons
+4) Help to do debuging for everyone.
+5) Guided and wrote partial code for enemy, input and rendering. 
+
+Render System:    10% * 497 = 50
+Collision:        25 % * 191 = 48
+Load Map:         30% * 175 = 52
+Level UI:         100% = 157
+Hook:             100% = 141
+Object manager:   40% * 123 = 49
+Camera:           10% * 109 = 11
+Input:            15% * 106 = 16
+Enemy:            15% * 92 = 14
+5 x Levels:       25% [Not quality Code, no point]
+GamestateManager: 25% [Code used from CSD1130, no point]
+Menu:             100% = 74
+Physics:          100% = 63
+Win state:        100% = 59
+Total Code Contribution: 734
+
+Personal Notes:
+This project might have been one of the toughest that I have done. Not because it was very technical but it was emotionally draining.
+I had high hopes for my team at the beginning as we formed early, but that quickly became the opposite when our personal deadlines that 
+we set for the reports and the game development were not met repeatly. Egi (Producer) and I would grow increasingly frustrated and demoralised
+as we would come to lab and felt that progress was lacking despite the two of us being on track.
+
+Overtime, I started to doubt if Liu Ke and Yong Hui was slacking off or if they were having issues with the coding. Thats when I spoke 
+to them and come to learn that they were struggling with programming and the work load of the course.
+
+Despite struggling with the code, often I would come to lab and see them idling, instead of taking the intiative to ask the TA or lecturals for help
+and it would further affect both how me and Egi felt.
+
+As the technical director, I wanted to give them the space to write the code and figure it out. But I had to step when we really exceeded the dateline. 
+I had to take the time to help them figure out the pseduo code/steps and wrote some of the code for the systems. In combination with helping with the overall debugging,
+as selfish as it may sound, I wonder if the time could be better spent so that I could contribute more lines of code.
+
+In the end, it is diffcult to think of a solution to this issue which makes it really frustrating.
+Were me and the producer too passive with the deadlines? Would it have been better if we more assertive ? Although it might not work as it comes down to the second issue:
+Whats the solution to a teammate struggling with programing or work load and is this valid?
+

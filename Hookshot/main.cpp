@@ -1,41 +1,34 @@
-
 /*!*************************************************************************
 ****
-\file GameStateManager.cpp
-\authors: Tan Wei Wen
-		  Egi Tan
-		  Liu Ke
-		  Yong Hui
+\file main.cpp
+\par Project: Hookshot
+\authors: Tan Wei Wen (25%)
+		  Egi Tan (25%)
+		  Liu Ke (25%)
+		  Yong Hui (25%)
 
 \par DP email:  t.weiwen@digipen.edu
 				egi.tan@digipen.edu
 				ke.liu@digipen.edu
 				l.yonghui@digipen.edu
+\date 090421
 
-\par Course: CSD 1450
-\par Project: Software Engineering Project 2
-\date 020221
+\brief
+This file contains the implementation to run the whole program.
 
-
-\brief //TODO
-
+\par Copyright: All content © 2021 Digipen Institute of Technology Singapore. 
+                All rights reserved.
 
 ****************************************************************************
 ***/
 
-// ---------------------------------------------------------------------------
-// includes
-
 #include "Code/pch.h"
 
-/*
-	NOTES:
-		mesh - shapes of objects. Eg: circle, square, triangle
-			 - colour / texture 
+/**************************************************************************/
+/*!
+	Extern variables
 */
-// ---------------------------------------------------------------------------
-// main
-
+/**************************************************************************/
 float	 g_dt;
 double	 g_appTime;
 int      WINDOW_WIDTH = 800;
@@ -43,6 +36,7 @@ int      WINDOW_HEIGHT = 500;
 size_t   TOTAL_LIVES = 3;
 char	 font;
 char	 font_italic;
+char	 smaller_font;
 
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	_In_opt_ HINSTANCE hPrevInstance,
@@ -56,13 +50,13 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	#if defined(DEBUG) | defined(_DEBUG)
 		_CrtSetDbgFlag( _CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF );
 	#endif
-	 //int * pi = new int;
 
 	//Intialise System
 	// Using custom window procedure
 	AESysInit(hInstance, nCmdShow, WINDOW_WIDTH, WINDOW_HEIGHT, 1, 60, true, NULL);
 	
 	// init font id:
+	smaller_font = AEGfxCreateFont("../Fonts/Pixel Digivolve.otf", 16);
 	font = AEGfxCreateFont("../Fonts/Pixel Digivolve.otf", 24);
 	font_italic = AEGfxCreateFont("../Fonts/Pixel Digivolve Italic.otf", 16);
 
@@ -98,8 +92,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
         fpInitialize();
 
-        //Gameplay Loop
-        //**Need to add frames in actual build
+        // Gameplay Loop
         while (current == next)
         {
 			// Informing the system about the loop's start
@@ -115,11 +108,6 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
 			if (0 == AESysDoesWindowExist())
 				next = GS_QUIT;
-
-		/*	while (g_dt < 0.16667f)
-			{
-				g_dt += g_dt;
-			}*/
 
 			if (g_dt > 0.166667f)
 				g_dt = 0.166667f;
@@ -142,6 +130,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     }
     
 	// Destory font ID
+	AEGfxDestroyFont(smaller_font);
 	AEGfxDestroyFont(font);
 	AEGfxDestroyFont(font_italic);
 

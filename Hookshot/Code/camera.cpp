@@ -1,25 +1,33 @@
-/******************************************************************************/
-/*!
-\file         camera.cpp
-\author       Tan Egi, egi.tan, 2002777
-\par          egi.tan@digipen.edu
-\date         March 2, 2021
-\brief        This file contain the camera system function definition. 
+/*!*************************************************************************
+****
+\file camera.cpp
+\par Project: Hookshot
+\authors: Tan Egi (90%)
+		  Tan Wei Wen (10%)
+\par DP email: egi.tan@digipen.edu
+			   t.weiwen@digipen.edu
 
-Copyright (C) 2021 DigiPen Institute of Technology.
-Reproduction or disclosure of this file or its contents without the prior 
-written consent of DigiPen Institute of Technology is prohibited.
-*/
-/******************************************************************************/
+\par Course: CSD 1450
+\date 090421
+
+\brief
+This file contain the camera system function definition.
+
+\par Copyright: All content © 2021 Digipen Institute of Technology Singapore. 
+                All rights reserved.
+
+****************************************************************************
+***/
 
 #include "camera.h"
 
-static AEVec2 center, cam_max, dist;
-static int counter = 0;
-static bool loadOnce = false;
+
+static AEVec2 center, cam_max, dist;	// camera variable
+static bool loadOnce = false;			// init variable only once
 
 void draw_static_obj()
 {
+	// create mesh
 	AEGfxMeshStart();
 
 	AEGfxVertexAdd(40.0f, 140.0f, 0x808080, 0.0f, 0.0f);
@@ -27,17 +35,19 @@ void draw_static_obj()
 
 	AEGfxVertexList* pMeshLine = AEGfxMeshEnd();
 	AE_ASSERT_MESG(pMeshLine, "Failed to create line mesh!!");
-
+	
+	// draw mesh
 	AEGfxSetRenderMode(AE_GFX_RM_COLOR);
 	AEGfxSetPosition(0.0f, 0.0f);
 	AEGfxMeshDraw(pMeshLine, AE_GFX_MDM_LINES_STRIP);
 
+	// free mesh
 	AEGfxMeshFree(pMeshLine);
 }
 
 void draw_cam_bounding_box(AEGfxTexture* texture)
 {
-	// Informing the library that we're about to start adding triangles
+	// Create mesh
 	AEGfxMeshStart();
 
 	AEGfxVertexAdd(bounding_box.min.x, bounding_box.min.y, 0x000000, 0.0f, 0.0f);
@@ -49,31 +59,24 @@ void draw_cam_bounding_box(AEGfxTexture* texture)
 	AEGfxVertexList* pMeshLine2 = AEGfxMeshEnd();
 	AE_ASSERT_MESG(pMeshLine2, "Failed to create line mesh!!");
 
-
-	// Drawing object  - (first) - No tint
-	AEGfxSetRenderMode(AE_GFX_RM_TEXTURE);	// set to texture
-	// No tint
-	AEGfxSetTintColor(1.0f, 1.0f, 1.0f, 1.0f);
-	// Set texture
-	AEGfxTextureSet(texture, 0.0f, 0.0f); // Same object, different texture
-
-	AEGfxSetPosition(0.0f, 0.0f);
-	AEGfxMeshDraw(pMeshLine2, AE_GFX_MDM_LINES_STRIP);
-
-	AEGfxSetTransparency(0.5f);
-	AEGfxSetBlendMode(AE_GFX_BM_BLEND);
-
-	AEGfxMeshFree(pMeshLine2);
-	//printf("BOUNDING BOX: %f, %f\n", bounding_box.min.x, bounding_box.min.y);
-	//printf("BOUNDING BOX: %f, %f\n", bounding_box.max.x, bounding_box.max.y);
+	// Draw bounding box
+	AEGfxSetRenderMode(AE_GFX_RM_TEXTURE);				// set to texture
+	AEGfxSetTintColor(1.0f, 1.0f, 1.0f, 1.0f);			// no tint
+	AEGfxTextureSet(texture, 0.0f, 0.0f);				// set texture
+	AEGfxSetPosition(0.0f, 0.0f);						// set position
+	AEGfxMeshDraw(pMeshLine2, AE_GFX_MDM_LINES_STRIP);	// set draw mode
+	AEGfxSetTransparency(0.5f);							// set transparency
+	AEGfxSetBlendMode(AE_GFX_BM_BLEND);					// set blend mode
+	AEGfxMeshFree(pMeshLine2);							// free mesh
 }
 
 void camera_init(AEVec2 character_pos) {
-
+	// set camera center position
 	center = character_pos;
+	// set camera bounding box distance
 	cam_max = { character_pos.x + (40.0f * 4), character_pos.y + (40.0f * 3) };
 
-	// find distance
+	// find distance between character & bounding box max point
 	if (!loadOnce)
 	{
 		AEVec2Sub(&dist, &center, &cam_max);
@@ -82,26 +85,21 @@ void camera_init(AEVec2 character_pos) {
 		if (dist.y < 0)
 			dist.y = dist.y * -1;
 		loadOnce = true;
-		//printf("once\n");
 	}
 
-
-	// update bounding box to character position
+	// update bounding box based on camera position & distance calculated 
 	AEVec2Add(&bounding_box.max, &center, &dist);
 	AEVec2Sub(&bounding_box.min, &center, &dist);
 
-	// printf("dist pos: %f, %f\n", dist.x, dist.y);
-	// printf("camera pos: %f, %f\n", center.x, center.y);
 	// set camera at character position
-
 	AEGfxSetCamPosition(center.x, center.y);
 }
 
 
-// Create a small bounding box for player - 3/4 of the screen top and bottom
+// Create a small bounding box for player
 void camera_update(AEVec2 character_pos, AEVec2 velocity, float character_scale)
 {
-	// update bounding box to character position
+	// update bounding box to based on distance calculated
 	AEVec2Add(&bounding_box.max, &center, &dist);
 	AEVec2Sub(&bounding_box.min, &center, &dist);
 
@@ -110,7 +108,8 @@ void camera_update(AEVec2 character_pos, AEVec2 velocity, float character_scale)
 	{
 		if ((character_pos.x - character_scale) < bounding_box.min.x)
 		{
-			center.x -= bounding_box.min.x - character_pos.x + character_scale; //translate the camera by the distance of when it exits the bounding box
+			//translate the camera by the distance of when it exits the bounding box
+			center.x -= bounding_box.min.x - character_pos.x + character_scale;
 			AEGfxSetCamPosition(center.x, center.y);
 		}
 	}
@@ -120,11 +119,9 @@ void camera_update(AEVec2 character_pos, AEVec2 velocity, float character_scale)
 	{
 		if ((character_pos.x + character_scale) > bounding_box.max.x)
 		{
+			//translate the camera by the distance of when it exits the bounding box
 			center.x += character_pos.x + character_scale - bounding_box.max.x;
 			AEGfxSetCamPosition(center.x, center.y);
-			// printf("Touching bounding box: %d\n", counter++);
-			//center.x += velocity.x * g_dt;
-			//AEGfxSetCamPosition(center.x, center.y);
 		}
 	}
 
@@ -133,10 +130,9 @@ void camera_update(AEVec2 character_pos, AEVec2 velocity, float character_scale)
 	{
 		if ((character_pos.y + character_scale) > bounding_box.max.y)
 		{
+			//translate the camera by the distance of when it exits the bounding box
 			center.y += character_pos.y + character_scale - bounding_box.max.y;
 			AEGfxSetCamPosition(center.x, center.y);
-			//center.y += velocity.y * g_dt;
-			//AEGfxSetCamPosition(center.x, center.y);
 		}
 	}
 
@@ -145,6 +141,7 @@ void camera_update(AEVec2 character_pos, AEVec2 velocity, float character_scale)
 	{
 		if ((character_pos.y - character_scale) < bounding_box.min.y)
 		{
+			//translate the camera by the distance of when it exits the bounding box
 			center.y -= bounding_box.min.y - character_pos.y + character_scale;
 			AEGfxSetCamPosition(center.x, center.y);
 		}
@@ -152,16 +149,17 @@ void camera_update(AEVec2 character_pos, AEVec2 velocity, float character_scale)
 
 }
 
+// return camera center point
 const AEVec2 center_point()
 {
 	return center;
 }
 
 
-//FUNCTION TO TRANSLATE THE CURSOR POSITION WHEN THE CAMERA MOVES AS WELL.
+// Function to translate the cursor position when the camera moves
 void translate_cursor(int& cursor_x, int& cursor_y)
 {
-	//centering the cursor_position
+	//Moving the origin of the cursor from the top left to center of the screen.
 	cursor_x = cursor_x - WINDOW_WIDTH / 2;
 	cursor_y = (cursor_y - WINDOW_HEIGHT / 2) * -1;
 
@@ -173,6 +171,7 @@ void translate_cursor(int& cursor_x, int& cursor_y)
 	}
 }
 
+//Function to translate UI, similar to translate cursor but no need to shift origin to center.
 void translate_UI(AEVec2& pos)
 {
 	if (current != GS_MENU)

@@ -1,94 +1,146 @@
+/*!*************************************************************************
+****
+\file intro.cpp
+\par Project: Hookshot
+\authors: Tan Egi (100%)
+\par DP email: egi.tan@digipen.edu
+
+\brief
+This is a implementation file for the logo introduction before showing the 
+game main menu.
+
+\par Course: CSD 1450
+\date 090421
+
+\par Copyright: All content © 2021 Digipen Institute of Technology Singapore. 
+                All rights reserved.
+
+****************************************************************************
+***/
+
 #include "intro.h"
 
-//Pointer to square mesh
-static AEGfxVertexList* logo_mesh;
-static AEGfxTexture* logo;
-static float transparency;
-static bool shown;
+static const int MAX_LOGO = 2;			// Number of logo to show
+static AEGfxVertexList* logo_mesh;		// logo mesh (rectangle)
+static AEGfxTexture* logo[MAX_LOGO];	// Array of texture containing logo
+static float transparency[MAX_LOGO];	// transparency for fading in / out
+static bool shown[MAX_LOGO];			// bool to track which have been shown
+static bool completed;					// bool to track if finish showing all
+static int index;						// track which logo it is showing
+static char text[100];                  // To store text
 
 void intro_Load()
 {
+	// create mesh
 	AEGfxMeshStart();
 
 	AEGfxTriAdd(
-		-1.5, -0.5, 0x00FF00FF, 0.0f, 1.0f,
-		1.5, -0.5, 0x00FFFF00, 1.0f, 1.0f,
-		-1.5, 0.5, 0x0000FFFF, 0.0f, 0.0f);
+		-2.7f, -1.0f, 0x00FF00FF, 0.0f, 1.0f,
+		2.7f, -1.0f, 0x00FFFF00, 1.0f, 1.0f,
+		-2.7f, 1.0f, 0x0000FFFF, 0.0f, 0.0f);
 
 	AEGfxTriAdd(
-		1.5, -0.5, 0x00FFFFFF, 1.0f, 1.0f,
-		1.5, 0.5, 0x00FFFFFF, 1.0f, 0.0f,
-		-1.5, 0.5, 0x00FFFFFF, 0.0f, 0.0f);
+		2.7f, -1.0f, 0x00FFFFFF, 1.0f, 1.0f,
+		2.7f, 1.0f, 0x00FFFFFF, 1.0f, 0.0f,
+		-2.7f, 1.0f, 0x00FFFFFF, 0.0f, 0.0f);
 
 
 	logo_mesh = AEGfxMeshEnd();
 	AE_ASSERT_MESG(logo_mesh, "Failed to create logo mesh!!");
 
-	logo = AEGfxTextureLoad("../Images/DigiPen_Singapore_WEB_RED.png");
+	// load textures
+	logo[0] = AEGfxTextureLoad("../Images/DigiPen_Singapore_WEB_WHITE.png");
+	logo[1] = AEGfxTextureLoad("../Images/hookshot_logo.png");
+
+	memset(text, 0, 100 * sizeof(char));
+	sprintf_s(text, "©2021 DigiPen Corporation (Singapore), All Rights Reserved");
+	AE_ASSERT_MESG(text != "©2021 DigiPen Corporation(Singapore), All Rights Reserved", "Copy right statement is not saved");
 }
 
 void intro_Initialize()
 {
-	transparency = 0;
-	shown = false;
+	// init variables
+	completed = false;
+	index = 0;
+
+	for (int i{ 0 }; i < MAX_LOGO; ++i)
+	{
+		shown[i] = false;
+		transparency[i] = 0;
+	}
 }
 
 void intro_Update()
 {
-	skip_intro();
+	// for bypass intro screen
+	if (index != 0)
+		skip_intro();
 
-	if (!shown && transparency <= 1)
+	if (!completed)
 	{
-		transparency += g_dt;
-		if (transparency >= 1)
-			shown = true;
-	}
-		
-	else
-	{
-		transparency -= g_dt;
-		if (transparency <= 0)
+		// fade in each logo
+		if (!shown[index] && transparency[index] <= 1)
 		{
-			next = GS_MENU;
+			transparency[index] += 0.01f;
+			if (transparency[index] >= 1)
+				shown[index] = true;
+		}
+
+		// fade out each logo
+		else
+		{
+			transparency[index] -= 0.01f;
+
+			if (transparency[index] <= 0)
+			{
+				// check if finish
+				if (index == MAX_LOGO - 1)
+				{
+					completed = true;
+				}
+				// proceed to next
+				else
+					++index;
+			}
 		}
 	}
-		
 
-	// std::cout << transparency << std::endl;
+	// done with screening logo
+	else
+		next = GS_MENU;
 }
 
 void intro_Draw()
 {
 	AEMtx33	trans, scale, logo_trans;
-	// Compute the scalling matrix
-	AEMtx33Scale(&scale, 150, 150);
-	// Compute the translation matrix
+	AEMtx33Scale(&scale, 100, 100);
 	AEMtx33Trans(&trans, 0, 0);
-	//Combining the matrix
 	AEMtx33Concat(&logo_trans, &trans, &scale);
 
-	// Drawing object  - (first) - No tint
-	AEGfxSetRenderMode(AE_GFX_RM_TEXTURE);	// set to texture
-		//For the texture to blend into the game.
-	AEGfxSetBlendMode(AE_GFX_BM_BLEND);
-	AEGfxSetTransparency(transparency);
-	// No tint
-	AEGfxSetTintColor(1.0f, 1.0f, 1.0f, 1.0f);
-	// Set texture
-	AEGfxTextureSet(logo, 0.0f, 0.0f); // Same object, different texture
-	// Set transformation matrix
-	AEGfxSetTransform(logo_trans.m);
+	// Drawing object 
+	AEGfxSetRenderMode(AE_GFX_RM_TEXTURE);
 
-	// Draw the mesh
+	AEGfxSetTintColor(1.0f, 1.0f, 1.0f, 1.0f);
+	AEGfxTextureSet(logo[index], 0.0f, 0.0f);
+	AEGfxSetTransform(logo_trans.m);
 	AEGfxMeshDraw(logo_mesh, AE_GFX_MDM_TRIANGLES);
+
+	AEGfxSetTransparency(transparency[index]);
+	AEGfxSetBlendMode(AE_GFX_BM_BLEND);
+
+	// print copyright
+	PrintText(text, SMALL, { -0.68f, -0.85f });
 }
 
 void intro_Free()
 {
+	// free mesh
 	AEGfxMeshFree(logo_mesh);
 }
 
 void intro_Unload()
 {
-	AEGfxTextureUnload(logo);
+	// free textures
+	for (int i{ 0 }; i < MAX_LOGO; ++i)
+		AEGfxTextureUnload(logo[i]);
 }

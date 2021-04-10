@@ -1,33 +1,47 @@
-/******************************************************************************/
-/*!
-\file         collision.h
-\author       Tan Egi, egi.tan, 2002777
-\par          egi.tan@digipen.edu
-\date         February 16, 2021
-\brief        This is a header file for collision system.
+/*!*************************************************************************
+****
+\file collision.h
+\par Project: Hookshot
+\authors: Tan Egi (70%)
+		  Tan Wei Wen (25%)
+		  Yong Hui (5%)
+\par DP email: egi.tan@digipen.edu
+			   t.weiwen@digipen.edu
+			   l.yonghui@digipen.edu
+\date 160221
 
-Copyright (C) 2021 DigiPen Institute of Technology.
-Reproduction or disclosure of this file or its contents
-without the prior written consent of DigiPen Institute of
-Technology is prohibited.
-*/
-/******************************************************************************/
+\brief
+This is a header file for collision system.
+
+\par Copyright: All content © 2021 Digipen Institute of Technology Singapore. 
+                All rights reserved.
+
+****************************************************************************
+***/
+
 #pragma once
 
 #include "pch.h"
-#include "ObjectManager.h"
-extern const int GRID_SCALE;
 
-//Flags
+/**************************************************************************/
+/*!
+	Below are collision Flags.
+*/
+/**************************************************************************/
 const unsigned int	FLAG_ACTIVE = 0x00000001;
 const unsigned int	FLAG_VISIBLE = 0x00000002;
 const unsigned int	FLAG_NON_COLLIDABLE = 0x00000004;
 
 const int	COLLISION_LEFT = 0x00000001;	//0001
 const int	COLLISION_RIGHT = 0x00000002;	//0010
-const int	COLLISION_TOP = 0x00000004;	//0100
+const int	COLLISION_TOP = 0x00000004;		//0100
 const int	COLLISION_BOTTOM = 0x00000008;	//1000
 
+/**************************************************************************/
+/*!
+	This enum contain collision types.
+*/
+/**************************************************************************/
 enum TYPE_OBJECT
 {
 	TYPE_OBJECT_EMPTY,			//0
@@ -37,12 +51,22 @@ enum TYPE_OBJECT
 	TYPE_OBJECT_COIN			//4
 };
 
+/**************************************************************************/
+/*!
+	This struct store 2 hotpot spot for each corner.
+*/
+/**************************************************************************/
 struct Corners 
 {
 	AEVec2 point_1;
 	AEVec2 point_2;
 }typedef Corners;
 
+/**************************************************************************/
+/*!
+	This struct store all collision hotspot.
+*/
+/**************************************************************************/
 struct Hotspot
 {
 	Corners left;
@@ -51,13 +75,25 @@ struct Hotspot
 	Corners bottom;
 }typedef Hotspot;
 
-// Updates the Collision
+/**************************************************************************/
+/*!
+	Updates the Collision.
+*/
+/**************************************************************************/
 void UpdateCollision();
 
-// check binary map collision
+/**************************************************************************/
+/*!
+	Check binary map collision.
+*/
+/**************************************************************************/
 int	CheckInstanceBinaryMapCollision(AEVec2& pos, AEVec2& velocity);
 
-// snap object back to cell if there is collision
+/**************************************************************************/
+/*!
+	Snap object back to cell if there is collision.
+*/
+/**************************************************************************/
 void SnapToCell(AEVec2* Coordinate, int flag);
 
 /**************************************************************************/
@@ -65,16 +101,21 @@ void SnapToCell(AEVec2* Coordinate, int flag);
 	A collision test function to see if two rectangle object collide together.
 */
 /**************************************************************************/
-
 bool CollisionIntersection_RectRect(const struct AABB& aabb1, const AEVec2& vel1, const struct AABB& aabb2, const AEVec2& vel2);
 
 /**************************************************************************/
 /*!
-	A collision test function to see if a point object and rectangle object collide together.
+	A collision test function to see if a point object and rectangle object 
+	collide together.
 */
 /**************************************************************************/
 bool CollisionIntersection_PointRect(const AEVec2 point1, const struct AABB& aabb2);
 
+/**************************************************************************/
+/*!
+	Create AABB collision points for game objects.
+*/
+/**************************************************************************/
 void create_AABB(AABB& aabb, AEVec2 const& pos, float scale_x, float scale_y);
 
 

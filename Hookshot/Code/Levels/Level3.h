@@ -1,36 +1,69 @@
 /*!*************************************************************************
 ****
 \file Level3.h
-\authors: Liu Ke
+\par Project: Hookshot
+\authors: Tan Wei Wen (25%)
+		  Egi Tan (25%)
+		  Yong Hui (25%)
+		  Liu Ke (20%)
 
-\par DP email:  ke.liu@digipen.edu
+\par DP email:  t.weiwen@digipen.edu
+				egi.tan@digipen.edu
+				l.yonghui@digipen.edu
+				ke.liu@digipen.edu
 
 \par Course: CSD 1450
-\par Project: Software Engineering Project 2
-\date 020221
-
+\date 090421
 
 \brief
-  This source file contains all the functions declaration for level 3.
+This source file contains all the functions declaration for level 3.
+
+\par Copyright: All content © 2021 Digipen Institute of Technology Singapore. 
+                All rights reserved.
+
 ****************************************************************************
 ***/
 
 #pragma once
 
-// load level
+/**************************************************************************/
+/*!
+	Load level
+*/
+/**************************************************************************/
 void Level3_Load();
 
-// init level
+/**************************************************************************/
+/*!
+	Initialize level
+*/
+/**************************************************************************/
 void Level3_Initialize();
 
-// update level
+/**************************************************************************/
+/*!
+	Update level
+*/
+/**************************************************************************/
 void Level3_Update();
 
-// draw graphics
+/**************************************************************************/
+/*!
+	Draw level
+*/
+/**************************************************************************/
 void Level3_Draw();
 
-// free level
+/**************************************************************************/
+/*!
+	Free level
+*/
+/**************************************************************************/
 void Level3_Free();
 
-// unload level
+/**************************************************************************/
+/*!
+	Unload level
+*/
+/**************************************************************************/
 void Level3_Unload();

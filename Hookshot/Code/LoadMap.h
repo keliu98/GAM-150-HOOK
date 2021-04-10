@@ -1,17 +1,23 @@
-/******************************************************************************/
-/*!
-\file         LoadMap.h
-\author       Tan Egi, egi.tan, 2002777
-\par          egi.tan@digipen.edu
-\date         March 4, 2021
-\brief        This is the header file for LoadMap.cpp. It contains function that
-			  loads the binary map.
+/*!*************************************************************************
+****
+\file LoadMap.h
+\par Project: Hookshot
+\authors: Tan Egi (70%)
+		  Tan Wei Wen (30%)
+\par DP email: egi.tan@digipen.edu
+			   t.weiwen@digipen.edu
+\date 090421
 
-Copyright (C) 2021 DigiPen Institute of Technology.
-Reproduction or disclosure of this file or its contents without the prior 
-written consent of DigiPen Institute of Technology is prohibited.
-*/
-/******************************************************************************/
+\brief
+This is the header file for LoadMap.cpp. It contains function that
+loads the binary map.
+
+\par Copyright: All content © 2021 Digipen Institute of Technology Singapore. 
+                All rights reserved.
+
+****************************************************************************
+***/
+
 #pragma once
 #include "pch.h"
 
@@ -31,25 +37,49 @@ in MapData is 1, it represents a collision cell, any other value is a non-collis
 cell*/
 static int** binary_collision_array;
 
+/*This variable will contain the flipped map data from map_data.*/
 static int** normalize_map_data;
 
-// import map from text file
+
+/**************************************************************************/
+/*!
+	This function import map data from the text file.
+*/
+/**************************************************************************/
 int ImportMapDataFromTxt(const char* FileName);
 
-// free map data
+/**************************************************************************/
+/*!
+	This function free map data.
+*/
+/**************************************************************************/
 void UnloadMapData(void);
 
-// print binary map and collision map
+/**************************************************************************/
+/*!
+	This function print out the binary map and collision map data.
+*/
+/**************************************************************************/
 void PrintRetrievedInformation(void);
 
-// retrieve value from cell
+/**************************************************************************/
+/*!
+	This function retrieve value from the map data grid.
+*/
+/**************************************************************************/
 int	GetCellValue(int X, int Y);
 
-//loading of the level
+/**************************************************************************/
+/*!
+	This function load the level by initialize variables used.
+*/
+/**************************************************************************/
 void IntializeLevel();
 
-//Checking for win or lose or level change state
-void CheckWinLose();
-
-
-// std::vector<Wall*> loadLevel();
+/**************************************************************************/
+/*!
+	This function check for the win or lose condition for the game so that 
+	it can change the level state.
+*/
+/**************************************************************************/
+bool CheckWinLose();

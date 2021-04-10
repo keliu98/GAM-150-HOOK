@@ -1,17 +1,20 @@
-
 /*!*************************************************************************
 ****
 \file physics.cpp
-\authors: Tan Wei Wen
+\par Project: Hookshot
+\authors: Tan Wei Wen (100%)
 
 \par DP email:  t.weiwen@digipen.edu
 
 \par Course: CSD 1450
-\par Project: Software Engineering Project 2
-\date 160221
+\date 050421
 
+\brief
+This file contains the implementation for the physics system of the game. It 
+calcuate the positions of objects by simulating simplified real life physics.
 
-\brief //TODO
+\par Copyright: All content © 2021 Digipen Institute of Technology Singapore. All
+				rights reserved.
 
 ****************************************************************************
 ***/

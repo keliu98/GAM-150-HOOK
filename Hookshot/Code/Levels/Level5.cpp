@@ -1,18 +1,28 @@
 /*!*************************************************************************
 ****
 \file Level5.cpp
-\authors: Liu Ke
+\par Project: Hookshot
+\authors: Tan Wei Wen (25%)
+		  Egi Tan (25%)
+		  Yong Hui (25%)
+		  Liu Ke (25%)
 
-\par DP email:  ke.liu@digipen.edu
+\par DP email:  t.weiwen@digipen.edu
+				egi.tan@digipen.edu
+				l.yonghui@digipen.edu
+				ke.liu@digipen.edu
 
 \par Course: CSD 1450
-\par Project: Software Engineering Project 2
-\date 020221
-
+\date 050421
 
 \brief
-  This source file contains the implementation for all the level 5
-  functions.
+This file contains the implementation for the level 5 game state. The functions
+defined here are used by the game state manager to determine the flow of the engine.
+It calls the neccessary function for the entire game to flow as intended.
+
+\par Copyright: All content © 2021 Digipen Institute of Technology Singapore. All
+				rights reserved.
+
 ****************************************************************************
 ***/
 
@@ -107,37 +117,39 @@ void Level5_Update()
 	Input_g_mode();
 
 	//If pause do not need update to run this few system
-	if (PAUSE == false)
+	if (!check_minimized_window())
 	{
-		//Update Enemy AI e.g movement
-		for (size_t i = 0; i < enemies.size(); i++)
+		if (PAUSE == false)
 		{
-			create_AABB(enemies[i].aabb, enemies[i].pos, enemies[i].scale, enemies[i].scale);
-			skitter_AI(i);
+			//Update Enemy AI e.g movement
+			for (size_t i = 0; i < enemies.size(); i++)
+			{
+				create_AABB(enemies[i].aabb, enemies[i].pos, enemies[i].scale, enemies[i].scale);
+				skitter_AI(i);
+			}
 
+			//Update Spikes Collision
+			update_spikes();
+
+			//Updating the physics of the game e.g acceleration, velocity, gravity
+			physics_update();
+
+			// Updating the Collision
+			UpdateCollision();
+
+			//Update Camera to stay within player
+			camera_update(character->pos, character->velocity, character->scale);
+
+			//Checks for win/lose condition
+			CheckWinLose();
 		}
 
-		//Update Spikes Collision
-		update_spikes();
+		//Updates the pause menu
+		UpdatePauseMenu();
 
-		//Updating the physics of the game e.g acceleration, velocity, gravity
-		physics_update();
-
-		// Updating the Collision
-		UpdateCollision();
-
-		//Update Camera to stay within player
-		camera_update(character->pos, character->velocity, character->scale);
-
-		//Checks for win/lose condition
-		CheckWinLose();
+		//Updates the button interaction
+		UpdateButton();
 	}
-
-	//Updates the pause menu
-	UpdatePauseMenu();
-
-	//Updates the button interaction
-	UpdateButton();
 }
 
 void Level5_Draw()

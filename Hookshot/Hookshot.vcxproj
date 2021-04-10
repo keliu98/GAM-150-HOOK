@@ -105,9 +105,9 @@
     <ClCompile Include="Code\Levels\Level2.cpp" />
     <ClCompile Include="Code\newrendersystem.cpp" />
     <ClCompile Include="Code\ObjectManager.cpp" />
-    <ClCompile Include="Code\pch.cpp" />
     <ClCompile Include="Code\physics.cpp" />
     <ClCompile Include="Code\levelUI.cpp" />
+    <ClCompile Include="Code\win.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -133,6 +133,7 @@
     <ClInclude Include="Code\ObjectManager.h" />
     <ClInclude Include="Code\pch.h" />
     <ClInclude Include="Code\physics.h" />
+    <ClInclude Include="Code\win.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Images\4testimages - Copy.png" />
@@ -173,8 +174,6 @@
     <Text Include="Levels\Level_3.txt" />
     <Text Include="Levels\Level_4.txt" />
     <Text Include="Levels\Level_5.txt" />
-    <Text Include="Levels\Level_Design.txt" />
-    <Text Include="Levels\test_level.txt" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Images\creditspage.zip" />

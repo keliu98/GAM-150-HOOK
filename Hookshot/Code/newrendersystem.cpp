@@ -1,20 +1,26 @@
 /*!*************************************************************************
 ****
 \file newrendersystem.cpp
-\authors: Liu Ke
-	
+\authors: Liu Ke (70%)
+		  Tan Wei Wen (10%)
+		  Egi Tan (10%)
+		  Yong Hui (10%)
+		  
 
-\par DP email:  ke.liu@digipen.edu
-
+\par DP email:  t.weiwen@digipen.edu
+				egi.tan@digipen.edu
+				l.yonghui@digipen.edu
+				ke.liu@digipen.edu
 
 \par Course: CSD 1450
-\par Project: Software Engineering Project 2
 \date 020221
-
 
 \brief
   This source file contains the implementation for all the character
-  animation
+  animation and rendering all the objects in the game
+
+ \par Copyright: All content © 2021 Digipen Institute of Technology Singapore. All
+				rights reserved.
 ****************************************************************************
 ***/
 
@@ -332,7 +338,6 @@ void update_render_door()
 	static float scale_x = 40.0f * 5.0f, scale_y = 40.0f * 6.0f;
 	static AEVec2 door_pos = *end_position;
 
-	// make it translate left a bit -? for later
 	render.pos = { door_pos.x - (40.0f * 2.0f), door_pos.y - (40.0f * 2.0f) };
 	render.x_scale = scale_x;
 	render.y_scale = scale_y;
@@ -344,15 +349,13 @@ void update_render_door()
 }
 
 // update the rendering credits 
-void update_render_credits()
+void update_render_credits(float x, float y)
 {
 	Render render;
-	static float scale_x = (float)WINDOW_WIDTH, scale_y = (float)WINDOW_HEIGHT;
 
-	// make it translate left a bit -? for later
-	render.pos = { 0,0 };
-	render.x_scale = scale_x;
-	render.y_scale = scale_y;
+	render.pos = { x, y };
+	render.x_scale = 800.0f;
+	render.y_scale = 1000.0f;
 	render.pMesh = square_mesh;
 	render.pTexture = credits;
 	render.dir = 0;

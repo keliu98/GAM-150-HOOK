@@ -1,0 +1,26 @@
+Name: Tan Egi
+Role: Producer
+Main contribution: Graphics for the game, Camera system, Load Level system, collision system, Introduction screen for logo, Music system.
+
+List of files:
+	1. camera.cpp:		109 * 90% = 98
+	2. collision.cpp:		191 * 70% = 133
+	3. intro.cpp:		90 * 100% = 90
+	4. LoadMap.cpp:		175 * 70% = 122
+	5. music.cpp:		51 * 80% = 40
+	6. newrendersystem.cpp:	497 * 10% = 49
+	7. levelUI.cpp:		157 * 10% = 15
+	8. ObjectManager.cpp:	123 * 40% = 49
+	9. input.cpp:		106 * 5% = 5
+	10. menu.cpp:		74 * 10% = 7
+	11. main.cpp: 		25% Code used from CSD1130		
+	12. GameStateManager.cpp: 	25% Code used from CSD1130
+	13. 5 x Levels: 		25% each but not quality code
+
+Total LOC = 608
+_______________________________________
+
+Personal Notes: 
+When the project first started, we had alot of features planned in mind. However, after the first 2 weeks, I found out the other 2 member, yong hui and liu ke was struggling in terms of coding. Afterwards, the project just went downhill and became really tiring. This is mostly because wei wen and I would have to come in and take over most of their workload so that we could meet the deadline such as engine proof and alpha build. Hence, we couldn't progress far with the project. I could also see that wei wen was mostly helping the other two debugging and fixing their problem. 
+
+Looking back, the simplest solution to this would be to start early. However, the workload from the other courses are preventing us to fully focus on this game project. However, the wise solution would be to make full use of the lab time that we had during lab session to complete our project task. Yet, I usually see yong hui and liu ke just idling around. It seems to me almost like they are taking it really laidback. Even wei wen have talk to them about being behind schedule but no changes was seen during lab.
