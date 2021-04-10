@@ -53,8 +53,8 @@ void intro_Load()
 	logo[1] = AEGfxTextureLoad("../Images/hookshot_logo.png");
 
 	memset(text, 0, 100 * sizeof(char));
-	sprintf_s(text, "©2021 DigiPen Corporation (Singapore), All Rights Reserved");
-	AE_ASSERT_MESG(text != "©2021 DigiPen Corporation(Singapore), All Rights Reserved", "Copy right statement is not saved");
+	sprintf_s(text, "Copyright 2021 DigiPen Corporation (Singapore), All Rights Reserved");
+	AE_ASSERT_MESG(text != "Copyright 2021 DigiPen Corporation(Singapore), All Rights Reserved", "Copy right statement is not saved");
 }
 
 void intro_Initialize()
@@ -129,7 +129,7 @@ void intro_Draw()
 	AEGfxSetBlendMode(AE_GFX_BM_BLEND);
 
 	// print copyright
-	PrintText(text, SMALL, { -0.68f, -0.85f });
+	PrintText(text, SMALL, { -0.80f, -0.85f });
 }
 
 void intro_Free()
