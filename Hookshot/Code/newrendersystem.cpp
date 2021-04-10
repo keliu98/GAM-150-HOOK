@@ -227,7 +227,7 @@ void load_hook_render()
 // create enemy texture
 void load_enemy_texture()
 {
-	enemy_texture = load_texture("../Images/skittersprite.png");
+	enemy_texture = load_texture("../Images/skitter.png");
 }
 
 
@@ -636,7 +636,7 @@ void update_render_enemy()
 		render.pos = enemy.pos;
 		render.x_scale = enemy.scale;
 		render.y_scale = enemy.scale;
-		render.pMesh = animation_mesh;
+		render.pMesh = square_mesh;
 		render.pTexture = enemy_texture; //TO CHANGE !!!!, render based on the enemy type and its state
 		render.dir = 0;
 		draw_render(render);
